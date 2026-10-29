@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn UIT</title>
+<style>
+  :root { --bg:#fafafa; --fg:#1a1a1a; --muted:#666; --card:#fff; --border:#e3e3e3; --accent:#2563eb; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#111; --fg:#eee; --muted:#999; --card:#1b1b1b; --border:#2c2c2c; --accent:#60a5fa; }
+  }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui, sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:32px 16px; }
+  h1 { margin:0 0 4px; }
+  p.sub { color:var(--muted); margin:0 0 24px; }
+  input { width:100%; box-sizing:border-box; padding:10px 12px; border:1px solid var(--border); border-radius:8px; background:var(--card); color:var(--fg); font:inherit; margin-bottom:20px; }
+  h2 { font-size:14px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:24px 0 8px; }
+  ul { list-style:none; padding:0; margin:0; }
+  li a { display:block; padding:10px 14px; margin-bottom:6px; background:var(--card); border:1px solid var(--border); border-radius:8px; color:var(--accent); text-decoration:none; }
+  li a:hover { border-color:var(--accent); }
+  .empty { color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Learn UIT</h1>
+  <p class="sub">Các file HTML ôn tập</p>
+  <input id="q" type="search" placeholder="Tìm bài...">
+  <div id="list"><p class="empty">Đang tải...</p></div>
+</main>
+<script>
+const REPO = "Kunokui/Learn-UIT";
+let files = [];
+
+function render() {
+  const q = document.getElementById("q").value.toLowerCase();
+  const groups = {};
+  for (const path of files) {
+    if (q && !path.toLowerCase().includes(q)) continue;
+    const i = path.lastIndexOf("/");
+    const dir = i < 0 ? "Chung" : path.slice(0, i);
+    (groups[dir] ||= []).push(path);
+  }
+  const el = document.getElementById("list");
+  const dirs = Object.keys(groups).sort();
+  if (!dirs.length) { el.innerHTML = '<p class="empty">Chưa có bài nào.</p>'; return; }
+  el.innerHTML = dirs.map(dir =>
+    `<h2>${dir}</h2><ul>` +
+    groups[dir].map(p => {
+      const name = p.split("/").pop().replace(/\.html$/i, "").replace(/[-_]/g, " ");
+      return `<li><a href="${encodeURI(p)}">${name}</a></li>`;
+    }).join("") + "</ul>"
+  ).join("");
+}
+
+fetch(`https://api.github.com/repos/${REPO}/git/trees/main?recursive=1`)
+  .then(r => r.json())
+  .then(data => {
+    files = (data.tree || [])
+      .map(t => t.path)
+      .filter(p => /\.html$/i.test(p) && p !== "index.html")
+      .sort();
+    render();
+  })
+  .catch(() => {
+    document.getElementById("list").innerHTML = '<p class="empty">Không tải được danh sách.</p>';
+  });
+
+document.getElementById("q").addEventListener("input", render);
+</script>
+</body>
+</html>
