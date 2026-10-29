@@ -132,6 +132,17 @@ button.btn { font: inherit; font-size: 13.5px; padding: 6px 14px; border-radius:
 button.btn:hover { border-color: var(--accent); color: var(--accent); }
 button.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+.chap { margin-top: 28px; padding-top: 4px; }
+.chap > .tag { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.chap > h3 { margin-top: 2px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 12px 0; }
+.card { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 12px 16px; min-width: 0; font-size: 14.5px; }
+.card h4 { margin: 0 0 4px; font-family: var(--font-display); font-weight: 600; font-size: 15px; }
+.card p, .card ul { margin: 4px 0; }
+.card ul { padding-left: 18px; }
+.levels { display: grid; gap: 6px; margin: 12px 0; max-width: 640px; }
+.levels div { border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px; background: var(--surface); font-size: 14.5px; }
+.levels div b { color: var(--accent); }
 .checklist { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 8px; max-width: 76ch; }
 .checklist label { display: grid; grid-template-columns: 22px minmax(0,1fr); gap: 10px; align-items: start; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); cursor: pointer; }
 .checklist input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--accent); }
@@ -147,6 +158,7 @@ html { scroll-behavior: smooth; }
     <div class="label">Mục lục</div>
     <ol>
       <li><a href="#cau-truc">Cấu trúc đề</a></li>
+      <li><a href="#ly-thuyet">Lý thuyết C1–C3</a></li>
       <li><a href="#erd">Câu 1: ERD</a></li>
       <li><a href="#sql">Câu 2.1: SQL</a></li>
       <li><a href="#dsqh">Câu 2.2: Đại số QH</a></li>
@@ -196,6 +208,180 @@ html { scroll-behavior: smooth; }
         <div class="row"><span class="lbl">Kiểm tra lại</span><div class="bar" style="width:13%"></div><span class="t">5'</span></div>
       </div>
       <div class="note ok"><b>Mẹo</b>Nên làm câu 2 trước. Câu 2 chấm theo đáp án nên dễ chắc điểm. ERD thì mỗi người vẽ một kiểu, điểm phụ thuộc người chấm.</div>
+    </section>
+
+    <!-- Lý thuyết -->
+    <section id="ly-thuyet">
+      <h2>Lý thuyết trọng tâm chương 1–3</h2>
+      <p class="sub">Tóm tắt từ slide cập nhật 2026 của Khoa HTTT. Đề giữa kỳ không có câu lý thuyết riêng, nhưng hiểu đúng định nghĩa giúp vẽ ERD và viết đại số quan hệ không sai.</p>
+
+      <!-- Chương 1 -->
+      <div class="chap">
+        <div class="tag">Chương 1</div>
+        <h3>Tổng quan về cơ sở dữ liệu</h3>
+        <p><b>Cơ sở dữ liệu</b> là một hệ thống các thông tin <b>có cấu trúc</b>, được lưu trên thiết bị lưu trữ, để đáp ứng nhu cầu khai thác <b>đồng thời</b> của nhiều người dùng hoặc nhiều chương trình với những mục đích khác nhau. Một tập dữ liệu ngẫu nhiên không được xem là CSDL.</p>
+
+        <div class="grid2">
+          <div class="card"><h4>Hệ thống tập tin (cách cũ)</h4>
+            <p>Ưu điểm: triển khai nhanh, đáp ứng kịp thời cho một mục đích hẹp.</p>
+            <p>Khuyết điểm: dữ liệu trùng lắp, dư thừa; thiếu nhất quán; khó truy xuất; khó chia sẻ; chi phí cao.</p></div>
+          <div class="card"><h4>Tiếp cận CSDL</h4>
+            <p>Ưu điểm: giảm trùng lắp tới mức thấp nhất, đảm bảo nhất quán và toàn vẹn; truy xuất theo nhiều cách; chia sẻ cho nhiều người, nhiều ứng dụng.</p>
+            <p>Vấn đề phải giải quyết: chủ quyền dữ liệu, bảo mật và phân quyền, tranh chấp dữ liệu, an toàn khi có sự cố.</p></div>
+        </div>
+
+        <h3>Đối tượng sử dụng CSDL</h3>
+        <ul class="plain">
+          <li><b>Người dùng cuối:</b> trong giáo dục, y tế, kinh doanh…, cần công cụ để khai thác CSDL.</li>
+          <li><b>Chuyên viên tin học:</b> xây dựng các ứng dụng quản lý.</li>
+          <li><b>Quản trị viên CSDL (DBA):</b> tổ chức CSDL, bảo mật, cấp quyền, sao lưu và phục hồi, giải quyết tranh chấp.</li>
+        </ul>
+
+        <h3>Hệ quản trị CSDL (DBMS)</h3>
+        <p>DBMS là phần mềm cho phép <b>định nghĩa</b> (khai báo cấu trúc), <b>xây dựng</b> (lưu dữ liệu lên bộ nhớ phụ) và <b>xử lý</b> dữ liệu (truy vấn, cập nhật, lập báo cáo). Ví dụ: SQL Server, Oracle, DB2, MS Access. Hầu hết DBMS hiện nay dựa trên mô hình quan hệ.</p>
+        <p>Một DBMS phải có: ngôn ngữ giao tiếp, từ điển dữ liệu, cơ chế bảo mật, cơ chế giải quyết tranh chấp, sao lưu và phục hồi, và phải đảm bảo <b>tính độc lập giữa dữ liệu và chương trình</b>.</p>
+        <div class="tbl"><table>
+          <thead><tr><th>Ngôn ngữ</th><th>Dùng để</th><th>Lệnh SQL tiêu biểu</th></tr></thead>
+          <tbody>
+            <tr><td><b>DDL</b>: định nghĩa dữ liệu</td><td>Khai báo cấu trúc CSDL và mối liên hệ</td><td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code></td></tr>
+            <tr><td><b>DML</b>: thao tác dữ liệu</td><td>Thêm, xóa, sửa dữ liệu</td><td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td></tr>
+            <tr><td><b>SQL</b>: truy vấn</td><td>Truy vấn thông tin cần thiết</td><td><code>SELECT</code></td></tr>
+            <tr><td><b>DCL</b>: kiểm soát dữ liệu</td><td>Bảo mật, cấp quyền cho người dùng</td><td><code>GRANT</code>, <code>REVOKE</code></td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Kiến trúc 3 mức</h3>
+        <div class="levels">
+          <div><b>Mức ngoài (khung nhìn / view):</b> phần CSDL mà một nhóm người dùng quan tâm, che phần còn lại. Có nhiều lược đồ ngoài.</div>
+          <div><b>Mức quan niệm (logic):</b> cái nhìn tổng thể về toàn bộ CSDL gồm thực thể, kiểu dữ liệu, mối liên hệ, ràng buộc. Dành cho DBA.</div>
+          <div><b>Mức trong (vật lý):</b> cấu trúc lưu trữ vật lý, tức dữ liệu gì, lưu thế nào, ở đâu.</div>
+        </div>
+
+        <h3>Các mô hình dữ liệu</h3>
+        <p>Mô hình dữ liệu là sự trừu tượng hóa môi trường thực, biểu diễn dữ liệu ở mức quan niệm. Gồm: mô hình <b>phân cấp</b>, <b>mạng</b> (đồ thị có hướng gồm mẫu tin, loại mẫu tin, loại liên hệ, bản số 1:1, 1:n, n:1, đệ quy; đơn giản nhưng không hợp với CSDL lớn và diễn đạt ngữ nghĩa kém), <b>thực thể – mối kết hợp</b>, <b>quan hệ</b>, <b>hướng đối tượng</b>.</p>
+
+        <h3>Mô hình thực thể – mối kết hợp (ER, Chen 1976)</h3>
+        <p class="sub">Dùng để thiết kế CSDL ở mức quan niệm. Đây là nền tảng của câu 1 trong đề.</p>
+        <div class="tbl"><table>
+          <thead><tr><th>Khái niệm</th><th>Định nghĩa</th><th>Ký hiệu / ví dụ</th></tr></thead>
+          <tbody>
+            <tr><td>Loại thực thể</td><td>Loại đối tượng của thế giới thực cần quản lý</td><td>Hình chữ nhật: HOCVIEN, LOP</td></tr>
+            <tr><td>Thực thể</td><td>Một thể hiện của loại thực thể</td><td>('HV001', 'Nguyen Nam', …)</td></tr>
+            <tr><td>Thuộc tính đơn trị</td><td>Mỗi thực thể chỉ có một giá trị</td><td>Mahv, Hoten</td></tr>
+            <tr><td>Thuộc tính đa trị</td><td>Một thực thể có thể có nhiều giá trị</td><td><code>{BANGCAP}</code></td></tr>
+            <tr><td>Thuộc tính đa hợp</td><td>Gồm nhiều thành phần</td><td><code>DCHI(SONHA, DUONG, PHUONG, QUAN)</code></td></tr>
+            <tr><td>Khóa của loại thực thể</td><td>Thuộc tính nhận diện duy nhất một thực thể. Mỗi loại thực thể có ít nhất một khóa.</td><td>Gạch dưới: <u>Mahv</u></td></tr>
+            <tr><td>Loại mối kết hợp</td><td>Sự kết hợp giữa hai hay nhiều loại thực thể. Giữa hai loại thực thể có thể có nhiều mối kết hợp.</td><td>Hình oval hoặc thoi: Thuộc, Là trưởng lớp</td></tr>
+            <tr><td>Số ngôi</td><td>Số loại thực thể tham gia mối kết hợp</td><td>Thuộc: 2 ngôi; Thi (HOCVIEN, MONHOC, LANTHI): 3 ngôi</td></tr>
+            <tr><td>Thuộc tính của mối kết hợp</td><td>Tính chất không gắn được vào riêng thực thể nào</td><td>Giảng dạy có Hocky, Nam</td></tr>
+            <tr><td>Bản số (min,max)</td><td>Số lần tối thiểu, tối đa một thực thể tham gia mối kết hợp</td><td>(0,1), (1,1), (0,n), (1,n)</td></tr>
+            <tr><td>Mối kết hợp đệ quy</td><td>Loại thực thể kết hợp với chính nó</td><td>NHANVIEN Quản lý NHANVIEN: (0,1) và (0,n)</td></tr>
+            <tr><td>Thực thể yếu</td><td>Không có khóa riêng, khóa lấy từ thực thể chủ, bắt buộc tham gia mối kết hợp xác định</td><td>Khung đôi: LANTHI, THANNHAN</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- Chương 2 -->
+      <div class="chap">
+        <div class="tag">Chương 2</div>
+        <h3>Mô hình dữ liệu quan hệ</h3>
+        <p>Do E. F. Codd đưa ra năm 1970, dựa trên lý thuyết tập hợp. Là nền tảng của các hệ quản trị thương mại như Oracle, DB2, SQL Server.</p>
+        <div class="tbl"><table>
+          <thead><tr><th>Khái niệm</th><th>Ý nghĩa</th><th>Ký hiệu</th></tr></thead>
+          <tbody>
+            <tr><td>Thuộc tính</td><td>Đặc trưng của đối tượng, gồm tên, kiểu dữ liệu, miền giá trị. Kiểu phức tạp (set, list, array, record) không được chấp nhận. Chưa có giá trị thì là Null.</td><td><code>Dom(A)</code> hay <code>MGT(A)</code></td></tr>
+            <tr><td>Quan hệ</td><td>Tập hữu hạn các thuộc tính, xem như một bảng</td><td><code>R(A1, …, An)</code>, tập thuộc tính <code>R+</code></td></tr>
+            <tr><td>Bộ</td><td>Một dòng: thông tin của một đối tượng (mẫu tin)</td><td><code>t</code>, giá trị <code>t.A</code> hay <code>t[A]</code></td></tr>
+            <tr><td>Thể hiện</td><td>Tập các bộ của quan hệ tại một thời điểm</td><td><code>TR</code></td></tr>
+            <tr><td>Tân từ</td><td>Quy tắc mô tả ý nghĩa của quan hệ</td><td><code>||R||</code></td></tr>
+            <tr><td>Lược đồ quan hệ</td><td>Tên quan hệ + tập thuộc tính + mô tả ý nghĩa</td><td><code>R(A1, A2, …, An)</code>, bậc n</td></tr>
+            <tr><td>Lược đồ CSDL</td><td>Tập các lược đồ quan hệ và mối liên hệ giữa chúng</td><td></td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Các loại khóa</h3>
+        <div class="grid2">
+          <div class="card"><h4>Siêu khóa (super key)</h4><p>Tập thuộc tính phân biệt được hai bộ bất kỳ trong mọi thể hiện: <span class="mono">∀ t1 ≠ t2 ⇒ t1[SK] ≠ t2[SK]</span>. Mọi quan hệ có ít nhất một siêu khóa là chính <span class="mono">R+</span>.</p></div>
+          <div class="card"><h4>Khóa (key)</h4><p>Siêu khóa <b>tối tiểu</b>: không bỏ bớt được thuộc tính nào mà vẫn còn là siêu khóa. Thuộc tính nằm trong khóa gọi là thuộc tính khóa.</p></div>
+          <div class="card"><h4>Khóa chính (PK)</h4><p>Khóa được chọn (thường là khóa ít thuộc tính nhất). Không được Null, được gạch dưới.</p></div>
+          <div class="card"><h4>Khóa tương đương</h4><p>Các khóa còn lại không được chọn. Ví dụ HOCVIEN có khóa chính {MAHV}, khóa tương đương {HOTEN, NGSINH}.</p></div>
+        </div>
+        <div class="pattern">
+          <h4>Khóa ngoại (FK)</h4>
+          <p class="when">K2 thuộc S là khóa ngoại tham chiếu khóa chính K1 của R khi:</p>
+          <ul>
+            <li>K1 và K2 có cùng số thuộc tính và cùng ngữ nghĩa.</li>
+            <li>Giữa R và S có mối quan hệ 1-n trên K1 và K2.</li>
+            <li>Mọi bộ s của S đều có đúng một bộ r của R với <span class="mono">r.K1 = s.K2</span>. Bộ được tham chiếu phải tồn tại trước.</li>
+          </ul>
+          <p>Lưu ý: một thuộc tính có thể vừa nằm trong khóa chính vừa là khóa ngoại. Khóa ngoại có thể tham chiếu chính quan hệ của nó (ví dụ MA_NQL tham chiếu MANV). Nhiều khóa ngoại có thể cùng tham chiếu một khóa chính.</p>
+        </div>
+
+        <h3>Đặc trưng của quan hệ</h3>
+        <ul class="plain">
+          <li>Mỗi quan hệ có tên duy nhất. Các thuộc tính trong một quan hệ có tên khác nhau.</li>
+          <li>Không có hai bộ trùng nhau. Mỗi giá trị là nguyên tố hoặc Null.</li>
+          <li>Thứ tự các bộ không quan trọng. Thứ tự thuộc tính không thực sự quan trọng. Nhưng thứ tự các giá trị bên trong một bộ là quan trọng.</li>
+        </ul>
+
+        <h3>Các quy tắc chuyển ERD sang quan hệ (theo slide)</h3>
+        <div class="tbl"><table>
+          <thead><tr><th>Quy tắc</th><th>Cách chuyển</th><th>Ví dụ</th></tr></thead>
+          <tbody>
+            <tr><td>(1) Loại thực thể</td><td>Thành một quan hệ cùng tên, cùng thuộc tính, cùng khóa</td><td><code>NHANVIEN(<u>MANV</u>, …)</code></td></tr>
+            <tr><td>(2a) Nhiều – nhiều</td><td>Quan hệ mới, khóa gồm khóa của các bên, thêm thuộc tính riêng</td><td><code>PHANCONG(<u>MANV, MADA</u>, THOIGIAN)</code></td></tr>
+            <tr><td>(2b) Một – nhiều</td><td>Thêm khóa của bên "một" vào quan hệ bên "nhiều"</td><td><code>NHANVIEN(…, MAPHG)</code></td></tr>
+            <tr><td>(2c) Một – một</td><td>Thêm khóa của bên này vào bên kia, hoặc vào cả hai</td><td><code>PHONGBAN(…, MANV, NG_NHANCHUC)</code></td></tr>
+            <tr><td>(2d) 3 ngôi</td><td>Quan hệ mới, khóa gồm 3 khóa của 3 thực thể</td><td><code>GIANGDAY(<u>MAGV, MAMH, MALOP</u>, HOCKY, NAM)</code></td></tr>
+            <tr><td>(3) Thực thể yếu</td><td>Quan hệ cùng tên, thêm khóa của thực thể chủ</td><td><code>THANNHAN(<u>MANV, TENTN</u>, PHAI, …)</code></td></tr>
+            <tr><td>(4) Thuộc tính đa trị</td><td>Quan hệ mới, khóa gồm khóa thực thể và thuộc tính đa trị</td><td><code>DIADIEM_PHG(<u>MAPHG, DIADIEM</u>)</code></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- Chương 3 -->
+      <div class="chap">
+        <div class="tag">Chương 3</div>
+        <h3>Đại số quan hệ</h3>
+        <p>Là mô hình toán học dựa trên lý thuyết tập hợp. Đầu vào và đầu ra của mỗi phép toán đều là quan hệ, nên có thể lồng các phép toán vào nhau thành <b>biểu thức đại số quan hệ</b>.</p>
+        <div class="note ok"><b>Nhớ</b>5 phép toán cơ bản: chọn σ, chiếu π, tích Descartes ×, trừ −, hợp ∪. Các phép giao ∩, kết ⋈, chia ÷ được suy ra từ 5 phép cơ bản. Riêng phép đổi tên ρ không suy ra được.</div>
+
+        <div class="tbl"><table>
+          <thead><tr><th>Phép toán</th><th>Cách 1 (ký hiệu)</th><th>Cách 2 (kiểu lớp)</th><th>Ghi chú</th></tr></thead>
+          <tbody>
+            <tr><td>Chọn</td><td><code>σ Phai='Nam' (NHANVIEN)</code></td><td><code>(NHANVIEN: Phai='Nam')</code></td><td>Lấy các dòng thỏa điều kiện; nối điều kiện bằng ∧ ∨ ¬. Có tính giao hoán.</td></tr>
+            <tr><td>Chiếu</td><td><code>π HoTen, Phai (NHANVIEN)</code></td><td><code>NHANVIEN[HoTen, Phai]</code></td><td>Lấy một số cột, tự bỏ bộ trùng. Không giao hoán.</td></tr>
+            <tr><td>Tích Descartes</td><td><code>R × S</code></td><td></td><td>Ghép mọi bộ của R với mọi bộ của S, được n+m thuộc tính.</td></tr>
+            <tr><td>Kết theta</td><td><code>R ⋈ R.A θ S.B S</code></td><td><code>(R × S): đk</code></td><td>Bằng tích Descartes cộng điều kiện; θ ∈ {=, ≠, &lt;, &gt;, ≤, ≥}.</td></tr>
+            <tr><td>Kết bằng</td><td><code>NHANVIEN ⋈ PHONG=MAPH PHONGBAN</code></td><td></td><td>Kết theta với θ là dấu =.</td></tr>
+            <tr><td>Kết tự nhiên</td><td><code>R * S</code></td><td></td><td>Kết bằng trên các thuộc tính cùng tên, bỏ bớt một cột trùng.</td></tr>
+            <tr><td>Kết ngoài</td><td><code>⟕</code> trái, <code>⟖</code> phải, <code>⟗</code> đầy đủ</td><td></td><td>Giữ lại các bộ không khớp, phần thiếu điền Null.</td></tr>
+            <tr><td>Hợp / giao / trừ</td><td><code>R ∪ S</code>, <code>R ∩ S</code>, <code>R − S</code></td><td></td><td>R và S phải <b>khả hợp</b>: cùng bậc và miền giá trị tương ứng giống nhau. ∪ và ∩ giao hoán; <code>R ∩ S = R − (R − S)</code>.</td></tr>
+            <tr><td>Chia</td><td><code>R ÷ S</code></td><td><code>R[A,B] / S[B]</code></td><td>Cần <code>S+ ⊂ R+</code>, kết quả có <code>Q+ = R+ − S+</code>. Q chứa các bộ q mà q ghép với <b>mọi</b> bộ của S đều nằm trong R.</td></tr>
+            <tr><td>Đổi tên</td><td><code>ρ Q(A, B) (E)</code> hoặc <code>Q ← E</code></td><td></td><td>Đặt tên cho kết quả trung gian hoặc cho cột.</td></tr>
+            <tr><td>Gom nhóm</td><td><code>G1,…,Gn ℑ F1(A1),…,Fm(Am) (E)</code></td><td></td><td>Hàm F: avg, min, max, sum, count. Không có G thì cả quan hệ là một nhóm.</td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Ví dụ trong slide</h3>
+<pre><span class="c">-- Nhân viên không làm đề án nào (trừ)</span>
+π MANV (NHANVIEN) − π MANV (PHANCONG)
+
+<span class="c">-- Nhân viên làm đề án TH01 hoặc TH02 (hợp)</span>
+(PHANCONG: MADA='TH01')[MANV] ∪ (PHANCONG: MADA='TH02')[MANV]
+
+<span class="c">-- Nhân viên làm cả TH01 và TH02 (giao)</span>
+(PHANCONG: MADA='TH01')[MANV] ∩ (PHANCONG: MADA='TH02')[MANV]
+
+<span class="c">-- Nhân viên làm tất cả đề án (chia)</span>
+π MANV, MADA (PHANCONG) ÷ π MADA (DEAN)
+
+<span class="c">-- Tất cả tài xế kèm chuyến đi (nếu có) (kết ngoài trái)</span>
+TAIXE ⟕ MaTX CHUYENDI
+
+<span class="c">-- Điểm cao nhất, thấp nhất, trung bình của từng môn (gom nhóm)</span>
+Mamh ℑ max(Diem), min(Diem), avg(Diem) (KETQUATHI)</pre>
+      </div>
     </section>
 
     <!-- 2 -->
