@@ -1,0 +1,520 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ôn thi giữa kỳ CSDL IT004</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lexend:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: sticky mục lục bên trái + cột nội dung đọc được; một cột trên điện thoại */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --fg: #1c2230;
+  --muted: #5b6475;
+  --line: #dde1e8;
+  --accent: #1f5fbf;
+  --accent-soft: #e6eefb;
+  --code-bg: #f0f2f6;
+  --ok: #1d7a4f;
+  --warn: #b25e09;
+  --bad: #b3261e;
+  --warn-soft: #fdf1e3;
+  --bad-soft: #fbe9e7;
+  --ok-soft: #e4f4ec;
+  --op-sel: #6a3fb5;
+  --font-display: "Lexend", "Be Vietnam Pro", system-ui, sans-serif;
+  --font-body: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", Consolas, "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151c; --surface: #1a1f29; --fg: #e4e8ef; --muted: #9aa3b2; --line: #2c3341;
+    --accent: #7fb0ff; --accent-soft: #1c2b45; --code-bg: #20262f;
+    --ok: #6fd3a0; --warn: #f0b062; --bad: #ff8a80;
+    --warn-soft: #3a2a17; --bad-soft: #3b1f1e; --ok-soft: #173326; --op-sel: #c3a6ff;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151c; --surface: #1a1f29; --fg: #e4e8ef; --muted: #9aa3b2; --line: #2c3341;
+  --accent: #7fb0ff; --accent-soft: #1c2b45; --code-bg: #20262f;
+  --ok: #6fd3a0; --warn: #f0b062; --bad: #ff8a80;
+  --warn-soft: #3a2a17; --bad-soft: #3b1f1e; --ok-soft: #173326; --op-sel: #c3a6ff;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 15.5px; line-height: 1.65;
+}
+.wrap {
+  max-width: 1180px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+  display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px;
+}
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; } nav.toc { position: static !important; } }
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; font-size: 14px; }
+nav.toc .label { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+nav.toc a { display: block; padding: 5px 10px; border-radius: 6px; color: var(--muted); text-decoration: none; border-left: 2px solid transparent; }
+nav.toc a:hover, nav.toc a:focus-visible { color: var(--fg); background: var(--accent-soft); outline: none; }
+nav.toc a.active { color: var(--accent); border-left-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+@media (max-width: 860px) { nav.toc ol { display: flex; flex-wrap: wrap; gap: 6px; } nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; } }
+
+main { min-width: 0; }
+header.hero { padding-bottom: 24px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+h1 { font-family: var(--font-display); font-size: clamp(28px, 4.2vw, 40px); line-height: 1.15; margin: 6px 0 10px; text-wrap: balance; letter-spacing: -.01em; }
+.lede { color: var(--muted); max-width: 64ch; margin: 0; }
+.score-bar { display: flex; margin-top: 20px; border-radius: 8px; overflow: hidden; height: 44px; font-size: 13px; font-weight: 600; }
+.score-bar div { display: flex; align-items: center; justify-content: center; color: #fff; padding: 0 8px; white-space: nowrap; overflow: hidden; }
+.sb-erd { background: #3d7a5f; flex: 2.5; } .sb-sql { background: #b07524; flex: 1.5; } .sb-ra { background: #2f63b3; flex: 6; }
+.score-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+section { padding-top: 40px; scroll-margin-top: 16px; }
+h2 { font-family: var(--font-display); font-size: 24px; margin: 0 0 6px; text-wrap: balance; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+h2 .pts { font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 2px 10px; border-radius: 999px; }
+h3 { font-family: var(--font-display); font-size: 17.5px; margin: 28px 0 8px; font-weight: 600; }
+p { max-width: 70ch; margin: 8px 0; }
+.sub { color: var(--muted); max-width: 70ch; margin-top: 0; }
+ul.plain { margin: 8px 0; padding-left: 20px; max-width: 70ch; }
+ul.plain li { margin: 4px 0; }
+
+.tbl { overflow-x: auto; margin: 12px 0; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; background: var(--code-bg); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+code, .mono { font-family: var(--font-mono); font-size: .9em; }
+:not(pre) > code { background: var(--code-bg); padding: 1px 6px; border-radius: 4px; }
+pre { background: var(--code-bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; overflow-x: auto; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.6; margin: 10px 0; }
+pre .c { color: var(--muted); }
+pre .k { color: var(--accent); font-weight: 600; }
+
+.op { display: inline-block; font-family: var(--font-mono); font-weight: 600; min-width: 1.8em; text-align: center; padding: 0 6px; border-radius: 5px; background: var(--accent-soft); color: var(--accent); }
+.kw { font-weight: 600; }
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 10px; max-width: 76ch; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 30px minmax(0,1fr); gap: 12px; align-items: start; }
+.steps li::before { content: counter(s); font-family: var(--font-display); font-weight: 600; font-size: 14px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+
+.note { border-radius: 10px; padding: 12px 16px; margin: 12px 0; max-width: 76ch; font-size: 14.5px; }
+.note b:first-child { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 2px; }
+.note.warn { background: var(--warn-soft); } .note.warn b:first-child { color: var(--warn); }
+.note.bad { background: var(--bad-soft); } .note.bad b:first-child { color: var(--bad); }
+.note.ok { background: var(--ok-soft); } .note.ok b:first-child { color: var(--ok); }
+
+.pattern { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 16px 18px; margin: 14px 0; }
+.pattern h4 { margin: 0 0 4px; font-family: var(--font-display); font-weight: 600; font-size: 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.pattern .when { color: var(--muted); font-size: 14px; margin: 0 0 6px; }
+.pattern pre { margin-bottom: 6px; }
+.pattern ul { margin: 6px 0 0; padding-left: 20px; font-size: 14.5px; }
+
+.time { display: grid; gap: 6px; margin: 12px 0; max-width: 560px; }
+.time .row { display: grid; grid-template-columns: minmax(0, 1fr) 46px; gap: 10px; align-items: center; font-size: 14px; }
+.time .bar { height: 8px; border-radius: 4px; background: var(--accent); opacity: .75; }
+.time .t { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.time .lbl { grid-column: 1 / -1; margin-bottom: -4px; }
+
+details.sol { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); margin: 10px 0; }
+details.sol summary { cursor: pointer; padding: 10px 16px; font-weight: 600; list-style: none; display: flex; gap: 10px; align-items: baseline; }
+details.sol summary::-webkit-details-marker { display: none; }
+details.sol summary::before { content: "▸"; color: var(--accent); transition: transform .15s; display: inline-block; }
+details.sol[open] summary::before { transform: rotate(90deg); }
+details.sol summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 10px; }
+details.sol .body { padding: 0 16px 12px; }
+details.sol .q { color: var(--muted); font-size: 14.5px; margin: 0 0 6px; }
+.tools { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+button.btn { font: inherit; font-size: 13.5px; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+button.btn:hover { border-color: var(--accent); color: var(--accent); }
+button.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.checklist { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 8px; max-width: 76ch; }
+.checklist label { display: grid; grid-template-columns: 22px minmax(0,1fr); gap: 10px; align-items: start; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); cursor: pointer; }
+.checklist input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--accent); }
+.checklist input:checked + span { color: var(--muted); text-decoration: line-through; }
+.progress { font-size: 13.5px; color: var(--muted); }
+footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+html { scroll-behavior: smooth; }
+</style>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Mục lục">
+    <div class="label">Mục lục</div>
+    <ol>
+      <li><a href="#cau-truc">Cấu trúc đề</a></li>
+      <li><a href="#erd">Câu 1: ERD</a></li>
+      <li><a href="#sql">Câu 2.1: SQL</a></li>
+      <li><a href="#dsqh">Câu 2.2: Đại số QH</a></li>
+      <li><a href="#quy-trinh">Quy trình 6 bước</a></li>
+      <li><a href="#de-mau">Giải đề 2025-26</a></li>
+      <li><a href="#lo-trinh">Lộ trình ôn</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="eyebrow">IT004 · Khoa HTTT · UIT</div>
+      <h1>Ôn thi giữa kỳ Cơ sở dữ liệu</h1>
+      <p class="lede">Tổng hợp từ 7 đề giữa kỳ, từ năm 2019-2020 đến 2025-2026. Gồm cấu trúc đề, cách nhận dạng từng dạng câu, mẫu lời giải và các lỗi hay mất điểm. Đề làm trong 75 phút và không được dùng tài liệu.</p>
+      <div class="score-bar" role="img" aria-label="Phân bổ điểm: ERD 2.5, SQL 1.5, Đại số quan hệ 6">
+        <div class="sb-erd">ERD 2.5đ</div><div class="sb-sql">SQL 1.5đ</div><div class="sb-ra">Đại số quan hệ 6đ</div>
+      </div>
+      <div class="score-legend"><span>Phân bổ điểm ổn định từ 2020 đến nay</span><span>Riêng đại số quan hệ chiếm 60% số điểm</span></div>
+    </header>
+
+    <!-- 1 -->
+    <section id="cau-truc">
+      <h2>Cấu trúc đề qua các năm</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Năm</th><th>Câu 1 (ERD)</th><th>SQL</th><th>Đại số QH</th><th>Ngữ cảnh</th></tr></thead>
+        <tbody>
+          <tr><td class="num">2019-20</td><td class="num">2đ</td><td>2đ: ràng buộc, thêm cột, DELETE, UPDATE</td><td class="num">6đ</td><td>Đăng ký học phần online</td></tr>
+          <tr><td class="num">2020-21</td><td class="num">2.5đ</td><td>1.5đ: thêm/xóa cột, UPDATE</td><td class="num">6đ</td><td>Bán xe máy trả góp</td></tr>
+          <tr><td class="num">2023-24 HK1</td><td class="num">2.5đ</td><td>1.5đ: CHECK miền giá trị, UPDATE</td><td class="num">6đ</td><td>Cửa hàng hoa, PCCC chung cư</td></tr>
+          <tr><td class="num">2023-24 HK2</td><td class="num">2.5đ</td><td>1.5đ: CHECK, UPDATE</td><td class="num">6đ</td><td>Sản xuất xe điện</td></tr>
+          <tr><td class="num">2024-25</td><td class="num">2.5đ</td><td>1.5đ: CHECK, UPDATE</td><td class="num">6đ</td><td>Kiểm định sản phẩm, theo dõi bão</td></tr>
+          <tr><td class="num">2025-26</td><td class="num">2.5đ</td><td>1.5đ: CHECK, FK, UPDATE</td><td class="num">6đ</td><td>Bảo hiểm nhân thọ, tố giác</td></tr>
+        </tbody>
+      </table></div>
+      <ul class="plain">
+        <li>Câu 2 luôn cho sẵn một lược đồ có 4–6 bảng kèm tân từ. Câu SQL và câu đại số quan hệ đều dùng chung lược đồ này.</li>
+        <li>Đề 1 và Đề 2 dùng chung lược đồ, chỉ đổi điều kiện. Luyện một đề là coi như đã luyện được hai.</li>
+        <li>6 câu đại số quan hệ gần như năm nào cũng theo cùng một thứ tự dạng câu, xem <a href="#dsqh">mục đại số quan hệ</a>.</li>
+      </ul>
+
+      <h3>Phân bổ 75 phút</h3>
+      <div class="time">
+        <div class="row"><span class="lbl">Đọc lược đồ câu 2, đánh dấu khóa ngoại</span><div class="bar" style="width:13%"></div><span class="t">5'</span></div>
+        <div class="row"><span class="lbl">Đại số quan hệ, khoảng 6' mỗi câu</span><div class="bar" style="width:100%"></div><span class="t">38'</span></div>
+        <div class="row"><span class="lbl">SQL</span><div class="bar" style="width:18%"></div><span class="t">7'</span></div>
+        <div class="row"><span class="lbl">Câu 1: ERD và chuyển sang quan hệ</span><div class="bar" style="width:53%"></div><span class="t">20'</span></div>
+        <div class="row"><span class="lbl">Kiểm tra lại</span><div class="bar" style="width:13%"></div><span class="t">5'</span></div>
+      </div>
+      <div class="note ok"><b>Mẹo</b>Nên làm câu 2 trước. Câu 2 chấm theo đáp án nên dễ chắc điểm. ERD thì mỗi người vẽ một kiểu, điểm phụ thuộc người chấm.</div>
+    </section>
+
+    <!-- 2 -->
+    <section id="erd">
+      <h2>Câu 1: ERD và chuyển sang mô hình quan hệ <span class="pts">2.5đ</span></h2>
+      <p class="sub">Mô tả hay viết theo gạch đầu dòng, và mỗi gạch thường tương ứng với một thực thể hoặc một mối kết hợp.</p>
+
+      <h3>Cách làm 5 bước</h3>
+      <ol class="steps">
+        <li><div><span class="kw">Tìm thực thể.</span> Thực thể là danh từ có "mã số riêng / duy nhất để phân biệt". Gạch chân ngay khi đọc đề.</div></li>
+        <li><div><span class="kw">Gán thuộc tính cho từng thực thể.</span> Đó là các thông tin liệt kê sau "gồm có…", "có thông tin…". Không đưa khóa ngoại vào thực thể trong ERD.</div></li>
+        <li><div><span class="kw">Tìm mối kết hợp.</span> Thường là động từ nối hai thực thể: cung cấp, tố giác, lắp đặt, kiểm định, thuộc…</div></li>
+        <li><div><span class="kw">Xác định bản số (min,max), ghi ở phía thực thể.</span> Bản số cho biết mỗi thực thể đó tham gia mối kết hợp ít nhất và nhiều nhất bao nhiêu lần.</div></li>
+        <li><div><span class="kw">Gắn thuộc tính cho mối kết hợp.</span> Câu "mỗi lần / mỗi lượt … ghi nhận ngày, kết quả, chi phí" nghĩa là các thuộc tính này thuộc mối kết hợp n-n.</div></li>
+      </ol>
+
+      <h3>Đọc bản số từ câu chữ</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Câu trong đề</th><th>Bản số phía thực thể đó</th></tr></thead>
+        <tbody>
+          <tr><td>"mỗi X <b>chỉ</b> thuộc / do <b>một</b> Y"</td><td class="mono">(1,1)</td></tr>
+          <tr><td>"<b>tối đa</b> một", "có thể không"</td><td class="mono">(0,1)</td></tr>
+          <tr><td>"có thể … <b>nhiều</b>"</td><td class="mono">(0,n) hoặc (1,n)</td></tr>
+          <tr><td>"<b>ít nhất</b> một", "phải"</td><td class="mono">(1,n)</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Các tình huống bẫy</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Dấu hiệu trong đề</th><th>Cách xử lý</th></tr></thead>
+        <tbody>
+          <tr><td>Tầng chỉ thuộc một tòa nhà nhưng có <b>mã duy nhất</b> (đề 2023)</td><td>Thực thể thường, <b>không phải</b> thực thể yếu. Chỉ khi mã chỉ phân biệt được trong phạm vi tòa nhà thì mới là thực thể yếu.</td></tr>
+          <tr><td>Nhà cung cấp có <b>nhiều người đại diện</b>, mỗi người có tên và SĐT</td><td>Thuộc tính đa trị phức hợp. Tách thành quan hệ riêng.</td></tr>
+          <tr><td>"Giá bán hiện tại <b>của từng nhà cung cấp</b>" cho nguyên vật liệu</td><td>GiaBan là thuộc tính của mối kết hợp n-n giữa NCC và NVL.</td></tr>
+          <tr><td>"<b>Lưu lại tất cả thay đổi</b>" (định mức, giá)</td><td>Đưa <b>ngày áp dụng</b> vào khóa.</td></tr>
+          <tr><td>"Khách hàng <b>cũng có thể là</b> nhà cung cấp"</td><td>Dùng chung một thực thể ĐỐI TÁC có thuộc tính loại, hoặc dùng tổng quát hóa/chuyên biệt hóa.</td></tr>
+          <tr><td>"Một mẫu chỉ liên quan <b>tối đa</b> một sản phẩm"</td><td>Bản số phía mẫu là <span class="mono">(0,1)</span>, không phải <span class="mono">(1,1)</span>.</td></tr>
+          <tr><td>Hai vai trò giữa cùng hai thực thể (đại diện ký và thụ hưởng)</td><td>Vẽ <b>hai mối kết hợp riêng</b>, đặt tên khác nhau.</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Quy tắc chuyển sang mô hình quan hệ <span class="pts" style="font-family:var(--font-body);font-size:12px">1đ</span></h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Thành phần ERD</th><th>Cách chuyển</th></tr></thead>
+        <tbody>
+          <tr><td>Thực thể</td><td>Thành một quan hệ, gạch dưới khóa chính.</td></tr>
+          <tr><td>Mối kết hợp 1-n</td><td>Khóa phía "1" thành <b>khóa ngoại</b> ở quan hệ phía có bản số (1,1).</td></tr>
+          <tr><td>Mối kết hợp n-n</td><td>Tạo quan hệ mới. Khóa chính = khóa của hai bên, cộng các thuộc tính của mối kết hợp. Nếu một cặp có thể lặp nhiều lần thì thêm ngày vào khóa.</td></tr>
+          <tr><td>Mối kết hợp 1-1</td><td>Đưa khóa sang bên có bản số (1,1), tức bên tham gia bắt buộc.</td></tr>
+          <tr><td>Thực thể yếu</td><td>Khóa chính = khóa của thực thể chủ + khóa riêng phần.</td></tr>
+          <tr><td>Thuộc tính đa trị</td><td>Tạo quan hệ riêng gồm (khóa của thực thể, giá trị).</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note warn"><b>Không để mất điểm</b>Ghi rõ khóa chính (gạch dưới) và khóa ngoại (in nghiêng, hoặc ghi chú "FK: … tham chiếu …"). Số quan hệ phải bằng số thực thể + số mối kết hợp n-n + số thuộc tính đa trị.</div>
+    </section>
+
+    <!-- 3 -->
+    <section id="sql">
+      <h2>Câu 2.1: SQL <span class="pts">1.5đ</span></h2>
+      <p class="sub">Phần này chỉ cần học thuộc mẫu. Các dạng đã xuất hiện qua các năm:</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Yêu cầu</th><th>Mẫu câu lệnh</th></tr></thead>
+        <tbody>
+          <tr><td>Miền giá trị (trạng thái, loại, bậc thợ, giá trị 0/1)</td><td><code>CHECK (Cot IN (N'..', N'..'))</code> hoặc <code>CHECK (Cot BETWEEN 1 AND 7)</code></td></tr>
+          <tr><td>So sánh giữa các cột (ngày A &lt; ngày B &lt; ngày C; giá bán bằng 1.1 đến 1.4 lần giá nhập)</td><td><code>CHECK (NgKy &lt; NgHieuLuc AND NgHieuLuc &lt; NgHetHan)</code></td></tr>
+          <tr><td>"X <b>cũng là</b> một Y"</td><td><code>FOREIGN KEY (X) REFERENCES Y(MaY)</code></td></tr>
+          <tr><td>Thêm cột / xóa cột</td><td><code>ALTER TABLE T ADD Cot kieu</code> / <code>ALTER TABLE T DROP COLUMN Cot</code></td></tr>
+          <tr><td>Tăng / giảm theo %</td><td><code>UPDATE T SET A = A*1.15, B = B*1.15 WHERE ...</code></td></tr>
+          <tr><td>Cập nhật theo điều kiện nằm ở bảng khác</td><td><code>UPDATE T SET ... WHERE Ma IN (SELECT Ma FROM T2 WHERE ...)</code></td></tr>
+          <tr><td>Xóa</td><td><code>DELETE FROM T WHERE ...</code></td></tr>
+        </tbody>
+      </table></div>
+<pre><span class="k">ALTER TABLE</span> YEUCAUBAOHIEM <span class="k">ADD CONSTRAINT</span> CK_TrangThai
+  <span class="k">CHECK</span> (TrangThai <span class="k">IN</span> (N'Đang xét duyệt', N'Đã chi trả', N'Đã từ chối', N'Đã hủy'));
+
+<span class="k">ALTER TABLE</span> HOPDONG <span class="k">ADD CONSTRAINT</span> FK_HD_KH
+  <span class="k">FOREIGN KEY</span> (MaKHDaiDien) <span class="k">REFERENCES</span> KHACHHANG(MaKH);
+
+<span class="k">UPDATE</span> SANPHAM <span class="k">SET</span> TinhTrang = N'Chưa kiểm định'
+<span class="k">WHERE</span> MaSP <span class="k">IN</span> (<span class="k">SELECT</span> MaSP <span class="k">FROM</span> ... <span class="k">WHERE</span> MaPX = 'PX05' <span class="k">AND</span> NgaySX = '2024-10-20');</pre>
+      <div class="note bad"><b>Lỗi hay mất điểm</b>
+        Quên đặt tên ràng buộc (<code>ADD CONSTRAINT Ten</code>). Quên chữ <code>N</code> trước chuỗi tiếng Việt. Viết <code>SET A = .. AND B = ..</code>, trong khi phải dùng <b>dấu phẩy</b> để ngăn cách các cột. UPDATE có điều kiện nằm ở bảng khác thì phải dùng truy vấn con <code>IN (SELECT …)</code>.</div>
+    </section>
+
+    <!-- 4 -->
+    <section id="dsqh">
+      <h2>Câu 2.2: Đại số quan hệ <span class="pts">6đ</span></h2>
+      <p class="sub">Đây là phần quyết định điểm. Nhận dạng câu qua từ khóa trong đề:</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Câu</th><th>Từ khóa trong đề</th><th>Phép toán</th><th>Đã xuất hiện</th></tr></thead>
+        <tbody>
+          <tr><td class="num">a</td><td>điều kiện đơn giản trên 1 bảng</td><td><span class="op">σ</span> <span class="op">π</span></td><td>mọi năm</td></tr>
+          <tr><td class="num">b</td><td>thông tin nằm ở 2–3 bảng</td><td><span class="op">⋈</span></td><td>mọi năm</td></tr>
+          <tr><td class="num">c</td><td><b>"(nếu có)"</b></td><td><span class="op">⟕</span> kết ngoài trái</td><td>2020, 2023, 2024, 2025</td></tr>
+          <tr><td class="num">d</td><td><b>"chưa / không có / không bất kỳ"</b></td><td><span class="op">−</span></td><td>2019, 2020, 2024, 2025 Đ1</td></tr>
+          <tr><td class="num">d</td><td><b>"cả hai X và Y", "cùng lúc"</b></td><td><span class="op">∩</span></td><td>2020, 2023, HK2 2024, 2025 Đ2</td></tr>
+          <tr><td class="num">e/f</td><td><b>"tất cả"</b></td><td><span class="op">÷</span></td><td>mọi năm</td></tr>
+          <tr><td class="num">e/f</td><td><b>"mỗi / với từng / bao nhiêu / số lượng"</b></td><td><span class="op">ℑ</span> count, sum</td><td>mọi năm</td></tr>
+          <tr><td class="num">f</td><td><b>"chiếm từ 80%", "lớn nhất"</b></td><td><span class="op">ℑ</span> hai lần, rồi kết và so sánh</td><td>2025</td></tr>
+        </tbody>
+      </table></div>
+      <p class="sub">Ký hiệu: <span class="mono">σ đk (R)</span> có thể viết theo kiểu của lớp là <span class="mono">R : (đk)</span>; <span class="mono">π A,B (R)</span> viết là <span class="mono">R[A,B]</span>; đổi tên dùng ρ; gom nhóm viết <span class="mono">G1 ℑ count(A) (E)</span>.</p>
+
+      <h3>Mẫu lời giải theo dạng</h3>
+
+      <div class="pattern">
+        <h4><span class="op">σ ⋈ π</span> Chọn, kết, chiếu (câu a, b)</h4>
+        <p class="when">Thứ tự làm: lọc trước, kết sau, chiếu cuối cùng.</p>
+<pre>A  ← σ đk1 (R1) ⋈ R1.k = R2.k σ đk2 (R2)
+KQ ← π cột_yêu_cầu (A)</pre>
+        <ul><li>Trước khi kết, vẽ nhanh đường đi khóa ngoại giữa các bảng. Ví dụ: KHACHHANG ← HOPDONG ← CHITIETHD → LOAIBAOHIEM.</li></ul>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">⟕</span> Câu có "(nếu có)"</h4>
+        <p class="when">Bên trái là đối tượng phải hiện đủ. Bên phải là phần "nếu có".</p>
+<pre>KQ ← π ... ( σ đk_trái (TRAI) ⟕ đk_kết σ đk_phải (PHAI) )</pre>
+        <ul><li><b>Lọc điều kiện ở bên phải trước khi kết.</b> Nếu lọc sau khi kết, các dòng null bị loại mất và câu lại thành kết thường.</li></ul>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">−</span> Câu "chưa / không có"</h4>
+<pre>TatCa ← π Ma (R)
+Co    ← π Ma ( σ đk (...) )
+KQ    ← (TatCa − Co) ⋈ R        <span class="c">-- kết lại để lấy thêm tên</span></pre>
+        <ul><li>Hai vế của phép trừ phải cùng tập thuộc tính. Vì vậy trừ trên mã trước, rồi mới kết lại để lấy tên.</li></ul>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">∩</span> Câu "cả hai X và Y"</h4>
+<pre>A  ← π Ma ( ... σ Ten='X' ... )
+B  ← π Ma ( ... σ Ten='Y' ... )
+KQ ← (A ∩ B) ⋈ ...</pre>
+        <ul><li><b>Sai rất phổ biến:</b> viết <span class="mono">σ Ten='X' ∧ Ten='Y'</span>. Một bộ không thể có cùng lúc hai giá trị, nên kết quả luôn rỗng.</li></ul>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">÷</span> Câu "tất cả" (câu phân loại điểm)</h4>
+<pre>R  ← π ĐốiTượng, ThuộcTínhChia ( σ điều_kiện_hành_động (...) )   <span class="c">-- ai đã làm gì</span>
+S  ← π ThuộcTínhChia ( σ điều_kiện_"tất cả" (...) )            <span class="c">-- danh sách cần phủ hết</span>
+KQ ← R ÷ S</pre>
+        <ul>
+          <li>R chỉ chứa <b>đúng</b> đối tượng và thuộc tính chia. Thừa một cột là sai kết quả.</li>
+          <li>Điều kiện như "trong năm 2025", "đã giao thành công" thì đặt vào R.</li>
+          <li>Điều kiện như "có kỳ thanh toán hàng năm", "giá từ 1 triệu" thì đặt vào S.</li>
+        </ul>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">ℑ</span> Câu "mỗi / với từng / bao nhiêu"</h4>
+<pre>KQ ← ρ KQ(MaX, TenX, SoLuong) ( MaX, TenX ℑ count(MaY) (E) )</pre>
+        <ul>
+          <li>Đề yêu cầu xuất tên thì đưa tên vào danh sách thuộc tính nhóm.</li>
+          <li>Đếm "số khách hàng" hay "số đơn hàng" khi E có thể lặp: chiếu bỏ trùng trước rồi mới đếm.</li>
+          <li>Dùng ρ để đặt tên cột kết quả đúng như đề yêu cầu, ví dụ "Ngày bán, Số đơn hàng đã giao".</li>
+        </ul>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">ℑ ℑ</span> Câu "tỉ lệ %" hoặc "lớn nhất"</h4>
+<pre>T1 ← ρ T1(Ma, Tong) ( Ma ℑ count(*) (E) )
+T2 ← ρ T2(Ma, Dat)  ( Ma ℑ count(*) ( σ đk (E) ) )
+KQ ← π Ma ( σ Dat ≥ 0.8 * Tong (T1 ⋈ T2) )
+
+<span class="c">-- lớn nhất</span>
+M  ← ρ M(MaxSL) ( ℑ max(SL) (T) )
+KQ ← T ⋈ T.SL = M.MaxSL M</pre>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section id="quy-trinh">
+      <h2>Quy trình chung cho một câu đại số quan hệ</h2>
+      <ol class="steps">
+        <li><div><span class="kw">Gạch chân thông tin cần xuất.</span> Đó chính là bước π cuối cùng.</div></li>
+        <li><div><span class="kw">Khoanh các điều kiện</span> và ghi mỗi điều kiện thuộc bảng nào.</div></li>
+        <li><div><span class="kw">Tìm từ khóa dạng câu</span> theo bảng nhận dạng ở trên.</div></li>
+        <li><div><span class="kw">Vẽ đường đi khóa ngoại</span> nối các bảng có liên quan.</div></li>
+        <li><div><span class="kw">Viết từng bước gán</span> A ←, B ←. Dễ được điểm từng phần, dễ đọc và dễ tự kiểm tra.</div></li>
+        <li><div><span class="kw">Kiểm tra lại:</span> điều kiện kết đã ghi rõ chưa (nhất là cột trùng tên như MaKH và MaKHDaiDien)? Hai vế ∪ ∩ − có cùng thuộc tính không? R của phép chia có thừa cột không?</div></li>
+      </ol>
+    </section>
+
+    <!-- 6 -->
+    <section id="de-mau">
+      <h2>Giải mẫu: Đề 1 năm 2025-2026</h2>
+      <p class="sub">Nên tự làm trước rồi mới mở lời giải.</p>
+      <div class="tools">
+        <button class="btn" type="button" id="open-all">Mở tất cả lời giải</button>
+        <button class="btn" type="button" id="close-all">Thu gọn tất cả</button>
+      </div>
+
+      <details class="sol"><summary>Câu 1: ERD tố giác bắt cóc</summary><div class="body">
+        <p class="q">Người tố giác, vụ việc, nạn nhân, điều tra viên. Mỗi lượt xử lý ghi nhận ngày phân công, ngày xử lý, vai trò, kết quả sơ bộ.</p>
+<pre>NGUOITOGIAC (1,n) ── TỐ GIÁC ── (1,1) VUVIEC
+NANNHAN     (1,n) ── LIÊN QUAN ─ (1,1) VUVIEC
+VUVIEC      (1,n) ── XỬ LÝ {NgayPhanCong, NgayXuLy, VaiTro, KetQuaSoBo} ── (0,n) DIEUTRAVIEN</pre>
+<pre>NGUOITOGIAC (<u>MaNTG</u>, HoTen, SDT, Email)
+NANNHAN     (<u>MaNN</u>, HoTen, DoTuoi, NoiCuTru, TinhTrang)
+VUVIEC      (<u>MaVV</u>, TomTat, TGPhatHien, NenTang, TinhTrangXL, <i>MaNTG</i>, <i>MaNN</i>)
+DIEUTRAVIEN (<u>MaDTV</u>, HoTen, DonVi, ChuyenMon, TrangThaiPC)
+XULY        (<u><i>MaVV</i>, <i>MaDTV</i></u>, NgayPhanCong, NgayXuLy, VaiTro, KetQuaSoBo)</pre>
+        <p>Nếu một điều tra viên có thể được phân công nhiều lần cho cùng một vụ, đưa thêm NgayPhanCong vào khóa chính.</p>
+      </div></details>
+
+      <details class="sol"><summary>2.1 SQL: a, b, c</summary><div class="body">
+<pre><span class="c">-- a</span>
+<span class="k">ALTER TABLE</span> YEUCAUBAOHIEM <span class="k">ADD CONSTRAINT</span> CK_TrangThai
+  <span class="k">CHECK</span> (TrangThai <span class="k">IN</span> (N'Đang xét duyệt', N'Đã chi trả', N'Đã từ chối', N'Đã hủy'));
+<span class="c">-- b</span>
+<span class="k">ALTER TABLE</span> HOPDONG <span class="k">ADD CONSTRAINT</span> FK_HD_KH
+  <span class="k">FOREIGN KEY</span> (MaKHDaiDien) <span class="k">REFERENCES</span> KHACHHANG(MaKH);
+<span class="c">-- c</span>
+<span class="k">UPDATE</span> LOAIBAOHIEM
+<span class="k">SET</span> STBaoHiem = STBaoHiem * 0.9, STDongDinhKy = STDongDinhKy * 0.9
+<span class="k">WHERE</span> TenLBH = N'Bảo hiểm sức khỏe nha khoa';</pre>
+      </div></details>
+
+      <details class="sol"><summary>2.2a: chọn và chiếu</summary><div class="body">
+        <p class="q">Giao dịch đóng tiền trong năm 2025, phương thức "Chuyển khoản".</p>
+<pre>π MaGD, MaCTHD ( σ year(NgDongTien)=2025 ∧ PhuongThuc='Chuyển khoản' (LSDONGTIEN) )</pre>
+      </div></details>
+
+      <details class="sol"><summary>2.2b: kết nhiều bảng</summary><div class="body">
+        <p class="q">Hợp đồng có hiệu lực sau 01/01/2025, đã mua loại bảo hiểm LBH202.</p>
+<pre>A  ← σ NgHieuLuc > '01/01/2025' (HOPDONG) ⋈ HOPDONG.SoHD=CHITIETHD.SoHD σ MaLBH='LBH202' (CHITIETHD)
+KQ ← π SoHD, MaCTHD, HoTen ( A ⋈ A.MaKHDaiDien=KHACHHANG.MaKH KHACHHANG )</pre>
+      </div></details>
+
+      <details class="sol"><summary>2.2c: "(nếu có)", dùng kết ngoài trái</summary><div class="body">
+        <p class="q">Khách hàng thụ hưởng, kèm các yêu cầu tháng 11/2025 có trạng thái "Đã chi trả" (nếu có).</p>
+<pre>KH ← KHACHHANG ⋈ MaKH=MaKHThuHuong CHITIETHD
+YC ← σ month(NgYeuCau)=11 ∧ year(NgYeuCau)=2025 ∧ TrangThai='Đã chi trả' (YEUCAUBAOHIEM)
+KQ ← π MaKH, HoTen, MaYC ( KH ⟕ KH.MaCTHD=YC.MaCTHD YC )</pre>
+        <div class="note bad"><b>Bẫy</b>Dùng ⋈ thay cho ⟕ sẽ làm mất những khách hàng không có yêu cầu nào.</div>
+      </div></details>
+
+      <details class="sol"><summary>2.2d: "không có", dùng phép trừ</summary><div class="body">
+        <p class="q">Hợp đồng không có yêu cầu nào trong năm 2025 ở trạng thái "Đã hủy".</p>
+<pre>HUY ← π SoHD ( σ year(NgYeuCau)=2025 ∧ TrangThai='Đã hủy' (YEUCAUBAOHIEM) ⋈ CHITIETHD )
+HD  ← π SoHD (HOPDONG) − HUY
+KQ  ← π SoHD, MaKH, HoTen ( (HD ⋈ HOPDONG) ⋈ MaKHDaiDien=MaKH KHACHHANG )</pre>
+      </div></details>
+
+      <details class="sol"><summary>2.2e: "tất cả", dùng phép chia</summary><div class="body">
+        <p class="q">Hợp đồng có đóng tiền năm 2025 bằng chuyển khoản cho tất cả các loại bảo hiểm có kỳ thanh toán "Hàng năm".</p>
+<pre>R  ← π SoHD, MaLBH ( σ year(NgDongTien)=2025 ∧ PhuongThuc='Chuyển khoản' (LSDONGTIEN) ⋈ CHITIETHD )
+S  ← π MaLBH ( σ KyThanhToan='Hàng năm' (LOAIBAOHIEM) )
+KQ ← R ÷ S</pre>
+      </div></details>
+
+      <details class="sol"><summary>2.2f: "chiếm từ 80%", gom nhóm hai lần</summary><div class="body">
+        <p class="q">Hợp đồng có số yêu cầu "Đã chi trả" chiếm từ 80% trở lên trong tổng số yêu cầu năm 2025 của hợp đồng đó.</p>
+<pre>Y   ← σ year(NgYeuCau)=2025 (YEUCAUBAOHIEM) ⋈ CHITIETHD
+T1  ← ρ T1(SoHD, Tong)     ( SoHD ℑ count(MaYC) (Y) )
+T2  ← ρ T2(SoHD, SoChiTra) ( SoHD ℑ count(MaYC) ( σ TrangThai='Đã chi trả' (Y) ) )
+KQ  ← π T1.SoHD ( σ SoChiTra ≥ 0.8 * Tong ( T1 ⋈ T1.SoHD=T2.SoHD T2 ) )</pre>
+      </div></details>
+    </section>
+
+    <!-- 7 -->
+    <section id="lo-trinh">
+      <h2>Lộ trình ôn</h2>
+      <p class="sub">Đánh dấu khi xong. Trạng thái được lưu trên trình duyệt của bạn. <span class="progress" id="progress"></span></p>
+      <ul class="checklist" id="checklist">
+        <li><label><input type="checkbox" id="c1"><span><b>Phép chia và gom nhóm.</b> Đây là câu e, f, khó nhất và phân loại điểm. Làm lại câu e, f của cả 7 đề.</span></label></li>
+        <li><label><input type="checkbox" id="c2"><span><b>Câu c, d.</b> Luyện bẫy lọc sai chỗ khi dùng ⟕ và lỗi σ X ∧ Y khi gặp câu "cả hai".</span></label></li>
+        <li><label><input type="checkbox" id="c3"><span><b>Câu a, b.</b> Làm nhanh cho quen tay, mỗi câu dưới 5 phút.</span></label></li>
+        <li><label><input type="checkbox" id="c4"><span><b>ERD.</b> Mỗi ngày vẽ 1 đề cũ, đối chiếu với bảng tình huống bẫy. Bài 1 trong file bài tập ôn rất giống đề thật.</span></label></li>
+        <li><label><input type="checkbox" id="c5"><span><b>Chuyển ERD sang mô hình quan hệ.</b> Kiểm tra số quan hệ, khóa chính, khóa ngoại.</span></label></li>
+        <li><label><input type="checkbox" id="c6"><span><b>SQL.</b> Học thuộc bảng mẫu trong khoảng 15 phút.</span></label></li>
+        <li><label><input type="checkbox" id="c7"><span><b>Làm thử một đề trọn 75 phút</b> theo đúng phân bổ thời gian ở trên.</span></label></li>
+      </ul>
+    </section>
+
+    <footer>Tổng hợp từ các đề giữa kỳ CSDL HK1 2019-2020, 2020-2021, 2023-2024, HK2 2023-2024, HK1 2024-2025, 2025-2026, file bài tập ôn thi và slide chương 1–3 (cập nhật 2026) của Khoa HTTT.</footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  var KEY = 'ontap-csdl-checklist';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('#checklist input'));
+  var progress = document.getElementById('progress');
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+  function render() {
+    var done = boxes.filter(function (b) { return b.checked; }).length;
+    progress.textContent = '· Đã xong ' + done + '/' + boxes.length;
+  }
+  boxes.forEach(function (b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener('change', function () {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      render();
+    });
+  });
+  render();
+
+  var sols = document.querySelectorAll('details.sol');
+  document.getElementById('open-all').addEventListener('click', function () { sols.forEach(function (d) { d.open = true; }); });
+  document.getElementById('close-all').addEventListener('click', function () { sols.forEach(function (d) { d.open = false; }); });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          links.forEach(function (a) { a.classList.remove('active'); });
+          var a = map[en.target.id]; if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { obs.observe(s); });
+  }
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,1185 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ôn thi giữa kỳ IT007</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: sticky tab bar over one reading column (max 1040px); each tab is a view; simulator is a two-pane tool that stacks on phones. */
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --sunk:#E9EDF2; --ink:#141C26; --muted:#566273; --line:#D7DDE5;
+  --accent:#1D58B8; --accent-ink:#FFFFFF; --accent-soft:#E2EBF9; --warn:#9A4E06; --warn-soft:#FBEEDD;
+  --good:#17703F; --good-soft:#DDF2E5; --bad:#B0281E; --bad-soft:#F9E1DE;
+  --p1:#A9C8F5; --p2:#F5C38F; --p3:#A8DDB9; --p4:#E7B0D6; --p5:#F1E08D; --p6:#B7B4F0; --p7:#9ED9DD; --p8:#F2AFA6; --p-ink:#141C26; --idle:#E3E7EC;
+  --f-display:"Bricolage Grotesque", "Be Vietnam Pro", system-ui, sans-serif;
+  --f-body:"Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F141A; --surface:#161D26; --sunk:#1D2530; --ink:#E5EAF1; --muted:#98A4B3; --line:#2A3441;
+  --accent:#86ADF2; --accent-ink:#0F141A; --accent-soft:#1C2A40; --warn:#E6A65C; --warn-soft:#33261A;
+  --good:#63C78E; --good-soft:#16301F; --bad:#F08A80; --bad-soft:#3A1D1B;
+  --p1:#2F5D9E; --p2:#8E5A21; --p3:#2C7349; --p4:#86386E; --p5:#7A6A14; --p6:#4E4A9E; --p7:#22747A; --p8:#93413A; --p-ink:#F1F4F8; --idle:#252E3A;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F141A; --surface:#161D26; --sunk:#1D2530; --ink:#E5EAF1; --muted:#98A4B3; --line:#2A3441;
+  --accent:#86ADF2; --accent-ink:#0F141A; --accent-soft:#1C2A40; --warn:#E6A65C; --warn-soft:#33261A;
+  --good:#63C78E; --good-soft:#16301F; --bad:#F08A80; --bad-soft:#3A1D1B;
+  --p1:#2F5D9E; --p2:#8E5A21; --p3:#2C7349; --p4:#86386E; --p5:#7A6A14; --p6:#4E4A9E; --p7:#22747A; --p8:#93413A; --p-ink:#F1F4F8; --idle:#252E3A;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding-block:28px 18px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,44px);line-height:1.08;margin:6px 0 10px;text-wrap:balance;letter-spacing:-.01em}
+h2{font-family:var(--f-display);font-weight:700;font-size:24px;line-height:1.2;margin:0 0 12px;text-wrap:balance}
+h3{font-size:16px;font-weight:700;margin:0 0 6px}
+p{margin:0 0 10px}
+.lede{color:var(--muted);max-width:68ch;margin:0}
+.chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tag{font-family:var(--f-mono);font-size:12px;padding:3px 9px;border-radius:999px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{flex:0 0 auto;border:0;background:none;font:600 14px var(--f-body);color:var(--muted);padding:13px 12px 11px;border-bottom:3px solid transparent;cursor:pointer}
+nav.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+nav.tabs button:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main{padding-block:26px 60px}
+section.view{display:grid;gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+code,.mono{font-family:var(--f-mono);font-size:.9em}
+pre{font-family:var(--f-mono);font-size:13px;line-height:1.5;background:var(--sunk);border-radius:8px;padding:12px 14px;overflow-x:auto;margin:8px 0;white-space:pre}
+ul.tight{margin:4px 0 10px;padding-left:20px}
+ul.tight li{margin:2px 0}
+.kv{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:6px 16px;margin:8px 0}
+.kv dt{font-weight:600}
+.kv dd{margin:0;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.grid2>*{min-width:0}
+.mini{background:var(--sunk);border-radius:8px;padding:12px 14px}
+.mini h3{font-size:14px}
+.chap{display:grid;gap:14px}
+.chap>h2 .num{font-family:var(--f-mono);font-size:14px;color:var(--accent);font-weight:600;display:block;letter-spacing:.06em}
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{color:var(--accent);text-decoration:none;font-weight:600;font-size:14px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.tablewrap{overflow-x:auto;margin:6px 0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:13px;background:var(--sunk)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--f-mono);font-size:13px}
+.formula{font-family:var(--f-mono);font-size:14px;background:var(--accent-soft);border-radius:8px;padding:10px 14px;display:grid;gap:4px}
+.state-diagram{overflow-x:auto}
+.state-diagram svg{display:block;max-width:100%;height:auto;min-width:520px}
+/* traps */
+.traps{display:grid;gap:10px}
+.trap{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.trap>div{padding:12px 16px;min-width:0}
+.trap .wrong{background:var(--bad-soft)}
+.trap .right{background:var(--surface)}
+.trap .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px}
+.trap .wrong .lbl{color:var(--bad)}
+.trap .right .lbl{color:var(--good)}
+@media (max-width:640px){.trap{grid-template-columns:1fr}}
+/* quiz */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:none;padding:7px 12px;font:600 13px var(--f-body);color:var(--muted);cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+select,input[type=number],input[type=text]{font:500 14px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+.btn{font:600 14px var(--f-body);border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:none}
+.scorebar{display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;font-variant-numeric:tabular-nums}
+.scorebar b{font-family:var(--f-display);font-size:26px}
+.progress{height:6px;border-radius:3px;background:var(--sunk);overflow:hidden;flex:1 1 160px;min-width:120px;align-self:center}
+.progress i{display:block;height:100%;background:var(--accent)}
+.qlist{display:grid;gap:14px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:10px}
+.q.correct{border-color:var(--good)}
+.q.wrongq{border-color:var(--bad)}
+.qhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.qhead .qn{font-family:var(--f-mono);font-weight:600;color:var(--accent)}
+.qtext{font-weight:500}
+.opts{display:grid;gap:6px}
+.opt{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;text-align:left;font:400 14.5px/1.5 var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt .L{font-family:var(--f-mono);font-weight:600;color:var(--muted)}
+.opt.is-right{background:var(--good-soft);border-color:var(--good)}
+.opt.is-right .L{color:var(--good)}
+.opt.is-wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt.is-wrong .L{color:var(--bad)}
+.opt[disabled]{cursor:default}
+.explain{background:var(--accent-soft);border-radius:8px;padding:10px 14px;font-size:14px}
+.explain b{color:var(--accent)}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+/* simulator */
+.sim{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:18px;align-items:start}
+.sim>*{min-width:0}
+@media (max-width:860px){.sim{grid-template-columns:1fr}}
+.ptable input{width:100%;min-width:44px;padding:5px 6px;font-family:var(--f-mono);font-size:13px}
+.ptable td{padding:4px 4px;border:0}
+.ptable th{padding:5px 4px;background:none;border-bottom:1px solid var(--line)}
+.ptable .del{border:0;background:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:2px 6px}
+.field{display:grid;gap:4px;font-size:13px;font-weight:600;color:var(--muted)}
+.fields{display:flex;flex-wrap:wrap;gap:12px;align-items:end}
+.algo-btns{display:flex;flex-wrap:wrap;gap:6px}
+.algo-btns button{font:600 13px var(--f-body);padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.algo-btns button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.gantt-scroll{overflow-x:auto;padding-bottom:4px}
+.gantt{position:relative;height:74px}
+.gantt .bar{position:absolute;top:0;height:42px;display:flex;align-items:center;justify-content:center;font:600 13px var(--f-mono);color:var(--p-ink);border-right:2px solid var(--surface);overflow:hidden;white-space:nowrap}
+.gantt .bar.idle{background:repeating-linear-gradient(45deg,var(--idle),var(--idle) 4px,transparent 4px,transparent 8px);color:var(--muted);font-weight:400}
+.gantt .tick{position:absolute;top:46px;transform:translateX(-50%);font:500 12px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.gantt .tick::before{content:"";position:absolute;left:50%;top:-6px;height:5px;border-left:1px solid var(--muted)}
+.log{font-family:var(--f-mono);font-size:12.5px;line-height:1.6;max-height:260px;overflow:auto;background:var(--sunk);border-radius:8px;padding:10px 12px}
+.log div{white-space:nowrap}
+.log .t{color:var(--accent);font-weight:600}
+.best{background:var(--good-soft);color:var(--good);font-weight:700}
+.note{background:var(--warn-soft);color:var(--ink);border-radius:8px;padding:10px 14px;font-size:14px}
+.note b{color:var(--warn)}
+.presets{display:grid;gap:8px}
+.preset{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.preset .nm{font-weight:600}
+details.ans{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+details.ans summary{cursor:pointer;padding:9px 14px;font-weight:600;color:var(--accent)}
+details.ans>div{padding:0 14px 12px}
+.answers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 12px;font-family:var(--f-mono);font-size:13px}
+footer{color:var(--muted);font-size:13px;padding-block:20px 40px;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion:no-preference){.opt,.btn,.algo-btns button{transition:background-color .15s,border-color .15s}}
+</style>
+
+<header class="top wrap">
+  <div class="eyebrow">IT007 · Hệ điều hành · Giữa kỳ HK1</div>
+  <h1>Ôn thi giữa kỳ Hệ điều hành</h1>
+  <p class="lede">Tóm tắt 4 chương (Tổng quan, Cấu trúc HĐH, Tiến trình, Định thời CPU) theo slide bài giảng và slide training BHT CNPM 2025-2026, đề cương ôn tập Week 08 của thầy có lời giải, kèm ngân hàng câu trắc nghiệm lấy từ 8 đề giữa kỳ 2018–2025, bộ mô phỏng giản đồ Gantt và các bài fork() đã giải.</p>
+  <div class="chips-row"><span class="tag">Trắc nghiệm ~60%</span><span class="tag">Tự luận: Gantt + fork()</span><span class="tag">65 phút · không tài liệu</span></div>
+</header>
+
+<nav class="tabs" aria-label="Các phần ôn tập">
+  <div class="wrap" role="tablist">
+    <button role="tab" data-view="lythuyet">Lý thuyết</button>
+    <button role="tab" data-view="decuong">Đề cương của thầy</button>
+    <button role="tab" data-view="bay">Bẫy hay gặp</button>
+    <button role="tab" data-view="tracnghiem">Trắc nghiệm</button>
+    <button role="tab" data-view="dinhthoi">Mô phỏng định thời</button>
+    <button role="tab" data-view="fork">Bài fork()</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ LÝ THUYẾT ============ -->
+<section class="view" id="v-lythuyet">
+  <div class="toc"><a href="#c1" data-jump="c1">1 · Tổng quan</a><a href="#c2" data-jump="c2">2 · Cấu trúc HĐH</a><a href="#c3" data-jump="c3">3 · Tiến trình</a><a href="#c4" data-jump="c4">4 · Định thời CPU</a></div>
+
+  <article class="chap" id="c1">
+    <h2><span class="num">CHƯƠNG 1</span>Tổng quan về hệ điều hành</h2>
+    <div class="card">
+      <h3>Khái niệm</h3>
+      <p>HĐH là <b>chương trình trung gian giữa phần cứng máy tính và người sử dụng</b>, có chức năng <b>điều khiển và phối hợp việc sử dụng phần cứng</b> và <b>cung cấp các dịch vụ cơ bản cho các ứng dụng</b>.</p>
+      <ul class="tight">
+        <li>Góc độ cơ bản: là chương trình <b>quản lý phần cứng</b> máy tính.</li>
+        <li>Góc độ hệ thống: là <b>bộ cấp phát tài nguyên</b> (resource allocator) và <b>chương trình điều khiển</b> (control program).</li>
+        <li>Mục tiêu: giúp người dùng dễ dàng sử dụng hệ thống; quản lý và cấp phát tài nguyên hiệu quả.</li>
+        <li>Chương trình <i>ứng dụng</i> (không phải HĐH) mới là thứ dùng tài nguyên để giải quyết bài toán của người dùng.</li>
+      </ul>
+      <h3>Chức năng</h3>
+      <ul class="tight">
+        <li>Phân chia thời gian xử lý và định thời CPU.</li>
+        <li>Phối hợp và đồng bộ hoạt động giữa các process.</li>
+        <li>Quản lý tài nguyên hệ thống; kiểm soát truy cập, bảo vệ hệ thống.</li>
+        <li>Duy trì sự nhất quán, kiểm soát lỗi và phục hồi; cung cấp giao diện làm việc cho user.</li>
+      </ul>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Cấu trúc hệ thống máy tính</h3>
+        <p>Gồm 4 thành phần: <b>Phần cứng → Hệ điều hành → Chương trình ứng dụng → Người dùng</b>.</p>
+        <ul class="tight">
+          <li><b>Kernel</b> (nhân): chương trình duy nhất luôn chạy mọi lúc máy hoạt động.</li>
+          <li><b>System program</b>: đóng gói cùng HĐH nhưng <i>không</i> phải một phần của nhân.</li>
+          <li>CPU và các bộ điều khiển thiết bị nối với nhau qua <b>bus</b> để truy xuất bộ nhớ chia sẻ.</li>
+          <li>HĐH hoạt động <b>định hướng theo ngắt</b> (interrupt-driven), có 2 chế độ: <b>user mode</b> và <b>kernel mode</b>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Hệ thống lưu trữ</h3>
+        <ul class="tight">
+          <li>Phân cấp theo <b>tốc độ truy xuất, chi phí, tính bay hơi</b> (lưu được khi mất điện hay không).</li>
+          <li><b>Bộ nhớ chính</b> (RAM): bay hơi, là thiết bị lưu trữ lớn duy nhất CPU truy xuất trực tiếp.</li>
+          <li><b>Lưu trữ thứ cấp</b> (HDD, SSD): không bay hơi, dung lượng lớn.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Ngắt (interrupt)</h3>
+        <ul class="tight">
+          <li>Thiết bị I/O và CPU thực thi đồng thời; mỗi device controller có buffer cục bộ và một device driver tương ứng. Controller xong việc thì báo CPU bằng <b>ngắt</b>.</li>
+          <li>Ngắt chuyển điều khiển đến <b>interrupt service routine</b> qua <b>interrupt vector</b> (chứa địa chỉ mọi service routine).</li>
+          <li>Kiến trúc ngắt phải <b>lưu địa chỉ của lệnh bị ngắt</b>.</li>
+          <li>Ngắt do phần mềm tạo ra vì <b>lỗi</b> hoặc <b>yêu cầu của người dùng</b> gọi là <b>trap</b> hoặc <b>exception</b>.</li>
+          <li>HĐH hoạt động định hướng theo ngắt.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Khái niệm về bộ xử lý</h3>
+        <dl class="kv">
+          <dt>CPU</dt><dd>Phần cứng thực thi các lệnh.</dd>
+          <dt>Processor</dt><dd>Một con chip vật lý chứa một hoặc nhiều CPU.</dd>
+          <dt>Core</dt><dd>Đơn vị tính toán cơ bản của CPU.</dd>
+          <dt>Multicore</dt><dd>Nhiều lõi trên cùng một CPU.</dd>
+          <dt>Multiprocessor</dt><dd>Nhiều bộ xử lý.</dd>
+        </dl>
+      </div>
+      <div class="card">
+        <h3>Chế độ hoạt động</h3>
+        <ul class="tight">
+          <li>Hai chế độ cơ bản: <b>user mode</b> và <b>kernel mode</b> (có thể nhiều hơn). Giúp HĐH bảo vệ chính nó và hệ thống.</li>
+          <li><b>Mode bit</b> trong phần cứng: người dùng = <b>1</b>, hạt nhân = <b>0</b>.</li>
+          <li>Lệnh <b>đặc quyền</b> (privileged) chỉ chạy ở kernel mode; system call chuyển user → kernel mode.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Kiến trúc hệ thống máy tính</h3>
+        <ul class="tight">
+          <li><b>Đơn bộ xử lý</b>: một bộ xử lý đa dụng, một lõi; có thể kèm bộ xử lý chuyên dụng (chỉ chạy tập lệnh hạn chế, không chạy tiến trình).</li>
+          <li><b>Đa bộ xử lý</b> (parallel, tightly-coupled): đối xứng / bất đối xứng; thiết kế dual-core, NUMA.</li>
+          <li><b>Gom cụm</b>: bất đối xứng (một máy <b>hot-standby</b>, các máy khác chạy ứng dụng); đối xứng (nhiều nút chạy ứng dụng và giám sát lẫn nhau).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Phân loại hệ điều hành</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Loại</th><th>Đặc điểm cần nhớ</th></tr></thead>
+        <tbody>
+          <tr><td><b>Đơn chương</b></td><td>Chỉ 1 công việc trong bộ nhớ tại một thời điểm; thi hành <b>tuần tự</b>. Có bộ giám sát thường trực.</td></tr>
+          <tr><td><b>Đa chương</b> (multiprogramming)</td><td>Nhiều công việc nạp đồng thời vào bộ nhớ; bộ định thời công việc (job scheduling) chọn job chạy; khi job chờ I/O → chuyển sang job khác ⇒ tận dụng thời gian rảnh, tăng hiệu suất CPU. Job đang thực thi gọi là process.</td></tr>
+          <tr><td><b>Đa nhiệm</b> (time-sharing)</td><td>Mở rộng của đa chương; mỗi công việc chạy một khoảng thời gian nhất định; cần quản lý tiến trình (đồng bộ, giao tiếp, tránh deadlock), quản lý file và lưu trữ.</td></tr>
+          <tr><td><b>Song song / đa xử lý</b> (tightly-coupled)</td><td><b>Hai hay nhiều bộ xử lý chia sẻ một bộ nhớ</b>. Ưu điểm: tăng throughput, kinh tế, độ tin cậy cao. Chia thành <b>đa xử lý đối xứng</b> (mỗi CPU làm mọi việc) và <b>bất đối xứng</b> (mỗi CPU một việc, có master).</td></tr>
+          <tr><td><b>Phân tán</b> (loosely-coupled)</td><td>Mỗi processor có <b>bộ nhớ riêng</b>, giao tiếp qua mạng/bus tốc độ cao; người dùng nhìn thấy một hệ thống đơn nhất; độ sẵn sàng cao. Mô hình: <b>client-server</b> và <b>peer-to-peer</b> (ngang hàng, không có CSDL tập trung).</td></tr>
+          <tr><td><b>Gom cụm</b> (clustered)</td><td>Một dạng đa bộ xử lý nhưng gồm <b>nhiều hệ thống</b> làm việc với nhau; chia sẻ lưu trữ qua <b>SAN</b> (storage-area network); high availability; đối xứng hoặc bất đối xứng.</td></tr>
+          <tr><td><b>Thời gian thực</b></td><td>Hard real-time và soft real-time.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </article>
+
+  <article class="chap" id="c2">
+    <h2><span class="num">CHƯƠNG 2</span>Cấu trúc của hệ điều hành</h2>
+    <div class="card">
+      <h3>7 thành phần của HĐH và nhiệm vụ</h3>
+      <p class="muted small">Dạng câu hỏi quen thuộc: “X là chức năng của thành phần nào?”. Học theo cột phải.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Thành phần</th><th>Nhiệm vụ / dịch vụ</th></tr></thead>
+        <tbody>
+          <tr><td><b>Quản lý tiến trình</b></td><td>Tạo, hủy; tạm dừng/tiếp tục; cơ chế đồng bộ, giao tiếp giữa tiến trình; khống chế tắc nghẽn (deadlock).</td></tr>
+          <tr><td><b>Quản lý bộ nhớ chính</b></td><td>Theo dõi, quản lý vùng nhớ trống và đã cấp; <b>quyết định nạp chương trình nào</b> khi có vùng nhớ trống; cấp phát và thu hồi vùng nhớ.</td></tr>
+          <tr><td><b>Quản lý file</b></td><td>Tạo/xóa file, thư mục; thao tác xử lý; <b>ánh xạ file/thư mục vào thiết bị thứ cấp</b>; sao lưu, phục hồi.</td></tr>
+          <tr><td><b>Quản lý hệ thống I/O</b></td><td>Che dấu khác biệt thiết bị I/O; <b>cung cấp giao diện chung đến các trình điều khiển thiết bị</b>; cơ chế buffering, caching, spooling.</td></tr>
+          <tr><td><b>Quản lý lưu trữ thứ cấp</b></td><td>Quản lý không gian trống (free space management); <b>cấp phát không gian lưu trữ</b> (storage allocation); định thời đĩa (disk scheduling).</td></tr>
+          <tr><td><b>Hệ thống bảo vệ</b></td><td><b>Cơ chế kiểm soát đăng nhập/xuất</b>; phân định truy cập hợp pháp/bất hợp pháp; phương tiện thi hành chính sách.</td></tr>
+          <tr><td><b>Hệ thống thông dịch lệnh</b></td><td>Giao diện chủ yếu giữa người dùng và OS.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Dịch vụ HĐH cung cấp</h3>
+        <ul class="tight">
+          <li>Thực thi chương trình; thao tác I/O; thao tác trên file system.</li>
+          <li>Trao đổi thông tin giữa tiến trình: <b>Shared memory</b> và <b>Message passing</b> (không có “shared message”).</li>
+          <li>Phát hiện lỗi, cấp phát tài nguyên, <b>kế toán</b> (lưu vết người dùng để tính phí/thống kê), bảo vệ và an ninh.</li>
+          <li>Giao diện người dùng: <b>CLI, GUI, Touch screen</b> (System call <i>không</i> phải giao diện người dùng).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Lời gọi hệ thống (system call)</h3>
+        <ul class="tight">
+          <li>Cung cấp giao diện giữa <b>tiến trình</b> và HĐH (không phải người dùng).</li>
+          <li>Thường viết bằng C/C++; truy cập chủ yếu qua <b>API</b>.</li>
+          <li>3 cách truyền tham số: <b>thanh ghi</b>, <b>vùng nhớ</b> (địa chỉ gửi qua thanh ghi), <b>stack</b>.</li>
+          <li>Người dùng chủ yếu làm việc qua system program, không gọi system call trực tiếp.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <h3>5 kiểu cấu trúc hệ thống</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Cấu trúc</th><th>Đặc điểm</th><th>Ví dụ</th></tr></thead>
+        <tbody>
+          <tr><td><b>Monolithic</b> (đơn giản)</td><td>Do giới hạn phần cứng nên đơn giản; 2 phần tách rời: kernel + system program.</td><td>MS-DOS, UNIX gốc</td></tr>
+          <tr><td><b>Layered</b> (phân lớp)</td><td>Chia nhiều lớp; dưới cùng là hardware, trên cùng giao tiếp user; lớp trên chỉ phụ thuộc lớp dưới; <b>một lớp chỉ gọi hàm của lớp dưới</b>.</td><td>THE</td></tr>
+          <tr><td><b>Microkernel</b> (vi nhân)</td><td><b>Chuyển một số chức năng từ kernel space sang user space</b>; thu gọn kernel; user module giao tiếp qua <b>truyền thông điệp</b>.</td><td>CMU Mach</td></tr>
+          <tr><td><b>Modules</b> (LKM)</td><td><b>Hướng đối tượng</b>; mỗi core thành phần tách biệt; trao đổi qua <b>interfaces</b>; mỗi module như một phần của nhân. Giống layer nhưng linh hoạt hơn.</td><td>Linux, Solaris</td></tr>
+          <tr><td><b>Hybrid</b> (lai)</td><td><b>Kết hợp nhiều cách tiếp cận</b> để giải quyết nhu cầu hiệu suất, bảo mật, sử dụng.</td><td>Linux, Solaris, Windows</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </article>
+
+  <article class="chap" id="c3">
+    <h2><span class="num">CHƯƠNG 3</span>Quản lý tiến trình</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Chương trình và tiến trình</h3>
+        <ul class="tight">
+          <li><b>Program</b>: thực thể <i>bị động</i>, file khả thi lưu trên đĩa.</li>
+          <li><b>Process</b>: chương trình <i>đang thực thi</i>, thực thể <i>chủ động</i>, dùng CPU/RAM, nằm trong RAM; sở hữu không gian địa chỉ, PC, thanh ghi, stack.</li>
+          <li>Chương trình thành tiến trình khi file thực thi được <b>loader</b> nạp vào bộ nhớ. Một chương trình có thể tạo nhiều tiến trình.</li>
+        </ul>
+        <h3>Loader tạo tiến trình</h3>
+        <ul class="tight"><li>Cấp PID duy nhất → cấp không gian nhớ → tạo PCB → thiết lập quan hệ cần thiết.</li><li class="muted">(Không có bước “đưa vào hàng đợi công việc”.)</li></ul>
+      </div>
+      <div class="card">
+        <h3>Layout trong bộ nhớ</h3>
+        <dl class="kv">
+          <dt>Text</dt><dd>Mã lệnh (code)</dd>
+          <dt>Data</dt><dd><b>Biến toàn cục</b> (global, <code>int x = 15;</code> ngoài main)</dd>
+          <dt>Heap</dt><dd>Bộ nhớ cấp phát động (malloc/new)</dd>
+          <dt>Stack</dt><dd>Tham số hàm, địa chỉ trả về, <b>biến cục bộ</b> (<code>int i</code> trong main)</dd>
+        </dl>
+        <p class="small muted">Cộng thêm Program Counter và các thanh ghi. <code>argc</code> = số đối số (tính cả tên chương trình), <code>argv[0]</code> luôn là tên chương trình, <code>argv[argc]</code> = NULL.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Trạng thái tiến trình</h3>
+      <div class="state-diagram">
+        <svg viewBox="0 0 640 210" role="img" aria-label="Sơ đồ chuyển trạng thái tiến trình">
+          <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--muted)"/></marker></defs>
+          <g font-family="Be Vietnam Pro, sans-serif" font-size="13" text-anchor="middle">
+            <g fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5">
+              <rect x="20" y="30" width="90" height="38" rx="19"/><rect x="200" y="30" width="90" height="38" rx="19"/><rect x="380" y="30" width="100" height="38" rx="19"/><rect x="540" y="30" width="90" height="38" rx="19"/><rect x="285" y="150" width="100" height="38" rx="19"/>
+            </g>
+            <g fill="var(--ink)" font-weight="600"><text x="65" y="54">new</text><text x="245" y="54">ready</text><text x="430" y="54">running</text><text x="585" y="54">terminated</text><text x="335" y="174">waiting</text></g>
+            <g stroke="var(--muted)" stroke-width="1.4" fill="none" marker-end="url(#ah)">
+              <path d="M110,49 H196"/><path d="M290,40 H376"/><path d="M380,60 C340,85 320,85 292,62"/><path d="M480,49 H536"/><path d="M430,68 C430,120 410,160 388,165"/><path d="M285,165 C255,150 245,110 245,72"/>
+            </g>
+            <g fill="var(--muted)" font-size="11.5"><text x="153" y="42">admitted</text><text x="333" y="30">dispatch</text><text x="335" y="98">interrupt / hết quantum</text><text x="508" y="42">exit</text><text x="468" y="135">I/O, đợi sự kiện</text><text x="215" y="130">I/O xong</text></g>
+          </g>
+        </svg>
+      </div>
+      <ul class="tight">
+        <li><b>new</b>: vừa được tạo · <b>ready</b>: đủ tài nguyên, chỉ còn chờ CPU · <b>running</b>: lệnh đang thực thi · <b>waiting/blocked</b>: đợi I/O hoặc tín hiệu · <b>terminated</b>: kết thúc.</li>
+        <li><b>running không thể về new</b>. I/O xong thì waiting → <b>ready</b> (không phải running).</li>
+        <li>Mỗi lệnh <code>printf</code> là một thao tác I/O ⇒ tiến trình vào waiting một lần.</li>
+      </ul>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>PCB (Process Control Block)</h3>
+        <p>Cấu trúc dữ liệu HĐH dùng để quản lý tiến trình: trạng thái, PC, thanh ghi, thông tin định thời (độ ưu tiên), thông tin bộ nhớ, thông tin lượng CPU/thời gian sử dụng, trạng thái I/O.</p>
+        <h3>Hàng đợi</h3>
+        <p>Job queue · Ready queue · Device (I/O) queue. HĐH sắp xếp các PCB trên các hàng đợi.</p>
+      </div>
+      <div class="card">
+        <h3>3 bộ định thời</h3>
+        <dl class="kv">
+          <dt>Dài (long-term, job scheduler)</dt><dd>Chọn chương trình được <b>nạp vào hệ thống</b> (new → ready); điều khiển mức độ đa chương; giữ cân bằng CPU-bound / I/O-bound.</dd>
+          <dt>Vừa (mid-term)</dt><dd><b>Swap out / swap in</b> giữa RAM và đĩa; do phần quản lý bộ nhớ thực hiện.</dd>
+          <dt>Ngắn (short-term, CPU scheduler)</dt><dd>Chọn tiến trình trong <b>ready queue</b> để cấp CPU (ready → running).</dd>
+        </dl>
+        <p class="small muted">Bộ định thời dài và vừa ảnh hưởng đến mức độ đa chương.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Tạo và kết thúc tiến trình</h3>
+      <ul class="tight">
+        <li>Tạo qua system call <b>create-process</b>: <code>fork()</code>, họ <code>exec()</code>. Tiến trình được tạo là <b>con</b> của tiến trình tạo ra nó.</li>
+        <li>Con nhận tài nguyên <b>từ HĐH hoặc từ cha</b>; chia sẻ toàn bộ hoặc một phần tài nguyên; thực thi <b>đồng thời</b> hoặc cha đợi con (không phải “luôn đồng thời”).</li>
+        <li><code>fork()</code>: con sao chép toàn bộ không gian địa chỉ của cha, chạy tiếp từ ngay sau lệnh fork. Trả về <b>&gt; 0</b> ở cha (PID của con), <b>= 0</b> ở con, <b>&lt; 0</b> khi thất bại.</li>
+        <li><code>exec()</code>: nạp chương trình mới đè lên không gian địa chỉ của tiến trình gọi.</li>
+        <li>Kết thúc: tự kết thúc (<code>exit</code>) hoặc bị tiến trình có quyền kết thúc (<code>abort(pid)</code>); HĐH thu hồi tài nguyên.</li>
+      </ul>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>IPC – giao tiếp liên tiến trình</h3>
+        <dl class="kv">
+          <dt>Shared memory</dt><dd>Vùng nhớ dùng chung; giao tiếp do <b>tiến trình điều khiển</b> (HĐH chỉ cung cấp cơ chế tạo); cần đồng bộ.</dd>
+          <dt>Message passing</dt><dd><code>send(dest, msg)</code>, <code>receive(src, msg)</code>; hàng đợi zero / bounded / unbounded capacity; cần HĐH hỗ trợ.</dd>
+        </dl>
+        <p class="small muted">Lý do cộng tác: chia sẻ thông tin, tăng tốc tính toán, thực hiện công việc chung.</p>
+      </div>
+      <div class="card">
+        <h3>Tiểu trình (thread)</h3>
+        <ul class="tight">
+          <li>Đơn vị cơ bản sử dụng CPU. Riêng: <b>thread ID, PC, registers, stack</b>. Chia sẻ chung: <b>code, data, files</b>.</li>
+          <li>Lợi ích: đáp ứng nhanh, chia sẻ tài nguyên, kinh tế (tạo và chuyển ngữ cảnh nhanh hơn process), khả năng mở rộng.</li>
+          <li>Đồng thời (luân phiên trên 1 lõi) khác với song song (nhiều lõi).</li>
+          <li>User thread (không cần nhân hỗ trợ) và kernel thread (HĐH quản lý).</li>
+          <li>Mô hình: <b>Many-to-One</b> (1 thread block thì tất cả block; không song song), <b>One-to-One</b> (Windows, Linux; số thread bị hạn chế), <b>Many-to-Many</b>. Không có One-to-Many.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <article class="chap" id="c4">
+    <h2><span class="num">CHƯƠNG 4</span>Định thời CPU</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Khái niệm</h3>
+        <ul class="tight">
+          <li><b>Burst time</b> (service time): thời gian process cần CPU trong một chu kỳ CPU–I/O.</li>
+          <li><b>CPU-bound</b>: cần nhiều thời gian CPU. <b>I/O-bound</b>: cần nhiều thời gian ngoại vi.</li>
+          <li>Bộ định thời ngắn được gọi khi: ngắt thời gian, ngắt I/O, system call, tín hiệu đồng bộ.</li>
+          <li>Dispatcher: chuyển ngữ cảnh (dùng PCB) → chuyển về user mode → nhảy tới vị trí PC.</li>
+          <li><b>Dispatch latency</b>: thời gian bộ định thời dừng một tiến trình và khởi động tiến trình khác. <b>OS overhead</b>: thời gian OS dùng CPU để chuyển ngữ cảnh.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Tiêu chuẩn định thời</h3>
+        <p><b>Hướng người dùng</b> (càng nhỏ càng tốt): thời gian đáp ứng, thời gian hoàn thành, thời gian chờ.</p>
+        <p><b>Hướng hệ thống</b>: hiệu năng CPU (cực đại), công bằng, thông lượng – số tiến trình hoàn tất trong một đơn vị thời gian (cực đại).</p>
+        <div class="formula">
+          <div>Đáp ứng   = lần chạy đầu − arrival</div>
+          <div>Hoàn thành = finish − arrival</div>
+          <div>Chờ       = hoàn thành − burst</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Chế độ quyết định</h3>
+      <div class="grid2">
+        <div class="mini"><h3>Không trưng dụng (non-preemptive)</h3><p class="small">Running thì chạy đến khi kết thúc hoặc blocked do I/O. Hàm chọn chạy khi running → waiting hoặc running → terminated.</p></div>
+        <div class="mini"><h3>Trưng dụng (preemptive)</h3><p class="small">Đang running có thể bị ngắt và về <b>ready</b>. Chi phí <b>cao hơn</b>, đổi lại thời gian đáp ứng tốt hơn, không tiến trình nào độc chiếm CPU. Hàm chọn chạy thêm khi running → ready, waiting/new → ready.</p></div>
+      </div>
+      <p class="small muted" style="margin-top:10px">Một giải thuật gồm 2 yếu tố: <b>hàm lựa chọn</b> (selection function) và <b>chế độ quyết định</b> (decision mode).</p>
+    </div>
+    <div class="card">
+      <h3>Các giải thuật</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Giải thuật</th><th>Chế độ</th><th>Hàm chọn và lưu ý</th></tr></thead>
+        <tbody>
+          <tr><td><b>FCFS</b></td><td>Không trưng dụng</td><td>Đến trước phục vụ trước; dùng hàng đợi <b>FIFO</b> (mới vào thêm ở cuối, lấy ở đầu).</td></tr>
+          <tr><td><b>SJF</b></td><td>Không trưng dụng</td><td>Khi CPU trống chọn burst ngắn nhất; chạy tới hết. Là định thời theo độ ưu tiên với ưu tiên = thời gian CPU dự đoán. Process burst <b>lớn</b> có thể bị đói.</td></tr>
+          <tr><td><b>SRTF</b></td><td>Trưng dụng</td><td>= SJF trưng dụng. Process mới có burst &lt; thời gian còn lại của process đang chạy thì giành CPU. <b>Tối ưu thời gian chờ trung bình.</b></td></tr>
+          <tr><td><b>Priority</b></td><td>Cả hai</td><td>Cấp CPU cho ưu tiên cao nhất. Hạn chế: <b>trì hoãn vô hạn định</b> (starvation), khắc phục bằng <b>aging</b> (tăng ưu tiên theo thời gian chờ).</td></tr>
+          <tr><td><b>Round Robin</b></td><td>Trưng dụng</td><td>Mỗi process chạy tối đa 1 quantum rồi về cuối ready queue. Giả thiết ngầm: mọi process <b>quan trọng ngang nhau</b>. Chờ tối đa <b>(n−1)·q</b>. Quantum quá lớn → thành FCFS; quantum nhỏ → đáp ứng nhanh nhưng nhiều chuyển ngữ cảnh, overhead lớn. Hạn chế: thời gian chờ trung bình và hoàn thành trung bình khá lớn.</td></tr>
+          <tr><td><b>HRRN</b></td><td>Không trưng dụng</td><td>Chọn <b>response ratio lớn nhất</b>: RR = (thời gian chờ + service time) / service time. Ưu tiên process ngắn nhưng process dài chờ lâu cũng được chọn.</td></tr>
+          <tr><td><b>Multilevel Queue</b></td><td>Tùy hàng đợi</td><td>Ready queue chia nhiều hàng đợi (foreground/background…), process <b>gán cố định</b>, không di chuyển. Định thời giữa các hàng đợi: fixed priority (có thể đói) hoặc time slice (vd 80% RR, 20% FCFS).</td></tr>
+          <tr><td><b>Multilevel Feedback Queue</b></td><td>Trưng dụng</td><td>Cho phép process <b>di chuyển giữa các hàng đợi</b>; I/O-bound/interactive lên hàng ưu tiên cao, CPU-bound xuống thấp; chờ lâu thì được đẩy lên (aging). Phổ biến và phức tạp nhất.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Định thời đa xử lý</h3>
+        <ul class="tight">
+          <li><b>Bất đối xứng</b>: một bộ xử lý (master server) làm mọi việc lập lịch, I/O, truy xuất dữ liệu hệ thống; master có thể nghẽn cổ chai.</li>
+          <li><b>Đối xứng (SMP)</b>: <b>mỗi bộ xử lý tự định thời cho chính nó</b>. Hàng đợi chung thì nhiều CPU có thể chọn cùng một thread hoặc bỏ sót thread; hàng đợi riêng thì khối lượng công việc lệch nhau, cần <b>cân bằng tải</b>.</li>
+          <li>Cân bằng tải ảnh hưởng tới <b>processor affinity</b>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Định thời “xổ số” (lottery)</h3>
+        <p class="small">Cộng dồn số vé từ P1 đến Pn, tiến trình đầu tiên có tổng <b>lớn hơn</b> số ngẫu nhiên được chọn. Vé 5, 6, 2, 7 và số 10: tổng dồn 5, 11, … ⇒ chọn <b>P2</b>.</p>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Định thời tiểu trình</h3>
+        <ul class="tight">
+          <li>HĐH hiện đại định thời <b>tiểu trình</b>, không phải tiến trình.</li>
+          <li><b>User thread</b>: định thời qua thư viện, phạm vi trong tiến trình <b>PCS</b> (process-contention scope), thường do lập trình viên đặt độ ưu tiên.</li>
+          <li><b>Kernel thread</b>: định thời trên mọi CPU, phạm vi toàn hệ thống <b>SCS</b> (system-contention scope).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Cân bằng tải và processor affinity</h3>
+        <ul class="tight">
+          <li>Cần cân bằng tải khi <b>một CPU quá tải trong khi CPU khác rỗi</b> (thường gặp khi mỗi CPU có hàng đợi riêng).</li>
+          <li><b>Push migration</b>: tác vụ đặc biệt kiểm tra định kỳ, đẩy việc từ CPU quá tải sang CPU khác. <b>Pull migration</b>: CPU rỗi kéo việc từ CPU bận.</li>
+          <li>Dời tác vụ sang CPU khác thì cache CPU mới phải nạp lại, cache cũ bị hủy ⇒ phí tổn, ảnh hưởng <b>processor affinity</b>. Soft affinity: cố giữ, không đảm bảo. Hard affinity: tiến trình chọn tập CPU được chạy.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Định thời thời gian thực (đọc thêm)</h3>
+        <ul class="tight">
+          <li><b>Soft real-time</b>: tác vụ quan trọng có ưu tiên cao nhất, không đảm bảo gì thêm. <b>Hard real-time</b>: phải xong trước deadline.</li>
+          <li>Bộ định thời phải dùng <b>độ ưu tiên + trưng dụng</b>. Tác vụ chu kỳ có C (xử lý), d (deadline), T (chu kỳ): 0 ≤ C ≤ d ≤ T.</li>
+          <li><b>Rate Monotonic</b>: ưu tiên theo nghịch đảo chu kỳ (chu kỳ ngắn ⇒ ưu tiên cao). <b>EDF</b>: deadline sớm nhất chạy trước.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Linux: O(1) và CFS</h3>
+        <ul class="tight">
+          <li>Linux 2.5: bộ định thời <b>O(1)</b>, ưu tiên + trưng dụng, tốt cho SMP nhưng đáp ứng kém với tiến trình interactive.</li>
+          <li>Từ 2.6.23: <b>CFS</b> (Completely Fair Scheduler), định thời theo <b>lớp</b> (default, real-time); thời gian CPU theo <b>tỷ lệ</b>, không theo quantum cố định.</li>
+          <li>Giá trị <b>nice</b> từ −20 đến 19, thấp hơn thì ưu tiên cao hơn. <b>Target latency</b>: khoảng thời gian mỗi tiến trình được chạy ít nhất một lần.</li>
+          <li>Chọn tác vụ có <b>virtual run time nhỏ nhất</b>.</li>
+          <li>Real-time theo POSIX: ưu tiên 0–99 real-time, 100–139 normal (nice −20 → 100, +19 → 139).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Windows</h3>
+        <ul class="tight">
+          <li>Định thời theo <b>độ ưu tiên + trưng dụng</b>, luôn chạy tác vụ ưu tiên cao nhất.</li>
+          <li>Tiến trình chạy đến khi: bị block bởi system call, hết quantum, hoặc bị tiến trình ưu tiên cao hơn thay thế.</li>
+          <li><b>32 mức ưu tiên</b>: variable 1–15, real-time 16–31; mức 0 dành cho quản lý bộ nhớ. Mỗi mức một hàng đợi; không có việc thì chạy <b>idle thread</b>.</li>
+          <li>Lớp ưu tiên (REALTIME, HIGH, ABOVE_NORMAL, NORMAL, BELOW_NORMAL, IDLE) kết hợp độ ưu tiên tương đối; hết quantum có thể bị giảm nhưng không dưới mức cơ sở.</li>
+          <li>Windows 7 thêm <b>user-mode scheduling (UMS)</b>.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ ĐỀ CƯƠNG ============ -->
+<section class="view" id="v-decuong" hidden>
+  <div>
+    <h2>Đề cương ôn tập của thầy (Week 08)</h2>
+    <p class="muted" style="max-width:72ch">Các câu hỏi ôn tập trong file Midterm Review, trả lời theo slide bài giảng chương 1–4. Đánh dấu câu đã thuộc để theo dõi tiến độ; trạng thái chỉ lưu trên trình duyệt của bạn.</p>
+    <div class="scorebar" style="margin-top:10px"><span><b id="rqDone">0</b> / <span id="rqTotal">0</span> câu đã thuộc</span><div class="progress"><i id="rqBar" style="width:0%"></i></div></div>
+  </div>
+  <div id="rqList" style="display:grid;gap:22px"></div>
+</section>
+
+<!-- ============ BẪY ============ -->
+<section class="view" id="v-bay" hidden>
+  <div>
+    <h2>Bẫy hay gặp trong đề</h2>
+    <p class="muted">Các phương án nhiễu lặp lại qua nhiều năm. Cột trái là phát biểu sai hay được cài vào đề, cột phải là phát biểu đúng.</p>
+  </div>
+  <div class="traps" id="traps"></div>
+</section>
+
+<!-- ============ TRẮC NGHIỆM ============ -->
+<section class="view" id="v-tracnghiem" hidden>
+  <div class="card" style="display:grid;gap:14px">
+    <div class="toolbar">
+      <div class="seg" id="chapSeg" role="group" aria-label="Lọc theo chương">
+        <button data-c="0" aria-pressed="true">Tất cả</button><button data-c="1" aria-pressed="false">C1</button><button data-c="2" aria-pressed="false">C2</button><button data-c="3" aria-pressed="false">C3</button><button data-c="4" aria-pressed="false">C4</button>
+      </div>
+      <label class="field" style="flex-direction:row;display:flex;align-items:center;gap:6px" for="srcSel">Đề
+        <select id="srcSel"><option value="">Tất cả đề</option></select>
+      </label>
+      <label style="display:flex;align-items:center;gap:6px;font-size:14px" for="onlyWrong"><input type="checkbox" id="onlyWrong"> Chỉ câu làm sai</label>
+      <label style="display:flex;align-items:center;gap:6px;font-size:14px" for="onlyNew"><input type="checkbox" id="onlyNew"> Chỉ câu chưa làm</label>
+    </div>
+    <div class="toolbar">
+      <button class="btn" id="shuffleBtn">Xáo trộn thứ tự</button>
+      <button class="btn ghost" id="resetBtn">Làm lại các câu đang lọc</button>
+    </div>
+    <div class="scorebar"><span><b id="scRight">0</b> đúng</span><span><b id="scWrong">0</b> sai</span><span class="muted" id="scLeft"></span><div class="progress"><i id="scBar" style="width:0%"></i></div></div>
+  </div>
+  <div class="qlist" id="qlist"></div>
+</section>
+
+<!-- ============ MÔ PHỎNG ============ -->
+<section class="view" id="v-dinhthoi" hidden>
+  <div>
+    <h2>Mô phỏng giản đồ Gantt</h2>
+    <p class="muted" style="max-width:72ch">Nhập bảng tiến trình hoặc mở một đề tự luận có sẵn, chọn giải thuật để xem giản đồ, nhật ký hàng đợi và bảng tính. Dùng để kiểm tra bài tự làm, không thay cho việc tự vẽ.</p>
+  </div>
+  <div class="sim">
+    <div style="display:grid;gap:14px">
+      <div class="card" style="display:grid;gap:12px">
+        <h3>Bảng tiến trình</h3>
+        <div class="tablewrap"><table class="ptable"><thead><tr><th>Tên</th><th>Arrival</th><th>Burst</th><th>Ưu tiên</th><th></th></tr></thead><tbody id="ptbody"></tbody></table></div>
+        <div class="toolbar"><button class="btn" id="addRow">+ Thêm tiến trình</button></div>
+        <div class="fields">
+          <label class="field" for="quantum">Quantum (RR)<input type="number" id="quantum" min="1" value="5" style="width:90px"></label>
+          <label class="field" for="prioDir">Độ ưu tiên<select id="prioDir"><option value="asc">Số nhỏ = cao (1 &gt; 2 &gt; 3)</option><option value="desc">Số lớn = cao</option></select></label>
+        </div>
+      </div>
+      <div class="card" style="display:grid;gap:10px">
+        <h3>Đề tự luận có sẵn</h3>
+        <div class="presets" id="presets"></div>
+      </div>
+    </div>
+    <div style="display:grid;gap:14px;min-width:0">
+      <div class="card" style="display:grid;gap:12px;min-width:0">
+        <div class="algo-btns" id="algoBtns" role="group" aria-label="Giải thuật"></div>
+        <div><div class="eyebrow" id="ganttTitle">Giản đồ Gantt</div></div>
+        <div class="gantt-scroll"><div class="gantt" id="gantt"></div></div>
+        <div class="tablewrap"><table id="resTable"></table></div>
+      </div>
+      <div class="card" style="display:grid;gap:8px;min-width:0">
+        <h3>Nhật ký từng bước</h3>
+        <p class="small muted" style="margin:0" id="logHint"></p>
+        <div class="log" id="log"></div>
+      </div>
+      <div class="card" style="display:grid;gap:8px;min-width:0">
+        <h3>So sánh các giải thuật trên bảng này</h3>
+        <p class="small muted" style="margin:0">Trả lời dạng “giải thuật nào cho thời gian chờ/đáp ứng trung bình tốt hơn”. Ô xanh là giá trị nhỏ nhất.</p>
+        <div class="tablewrap"><table id="cmpTable"></table></div>
+      </div>
+      <div class="note"><b>Quy ước dùng ở đây (theo đáp án đề UIT):</b> RR: khi một tiến trình hết quantum đúng lúc có tiến trình mới đến, tiến trình mới vào hàng đợi <b>trước</b> tiến trình vừa bị ngắt. Hai tiến trình bằng nhau về tiêu chí thì ưu tiên tiến trình đang chạy, sau đó tiến trình đến sớm hơn, rồi theo thứ tự bảng.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORK ============ -->
+<section class="view" id="v-fork" hidden>
+  <div>
+    <h2>Bài tập fork()</h2>
+    <p class="muted" style="max-width:72ch">Dạng tự luận ngắn hoặc trắc nghiệm có trong mọi đề: đếm tiến trình, đếm số lần in, số lần chuyển trạng thái, giá trị biến.</p>
+  </div>
+  <div class="card">
+    <h3>Cách làm</h3>
+    <ul class="tight">
+      <li>Mỗi lệnh <code>fork()</code> được thực thi bởi N tiến trình thì số tiến trình thành <b>2N</b>. Chỉ những tiến trình đi qua dòng fork đó (thỏa điều kiện if/else) mới nhân đôi.</li>
+      <li>Trong vòng lặp, xét từng giá trị i: đếm số tiến trình lúc vào thân vòng, đi qua từng dòng để nhân. Tiến trình con được tạo giữa vòng lặp vẫn chạy tiếp phần còn lại của vòng hiện tại và các vòng sau.</li>
+      <li>Số lần in ở một dòng <code>printf</code> = số tiến trình đi qua dòng đó.</li>
+      <li><code>k = fork()</code>: ở cha <code>k &gt; 0</code> (PID con, khác nhau với mỗi lần fork), ở con <code>k == 0</code>.</li>
+      <li>Biến: con nhận <b>bản sao</b> giá trị tại thời điểm fork, sau đó độc lập với cha. Địa chỉ ảo <code>&amp;a</code> in ra ở cha và con <b>giống nhau</b>.</li>
+      <li><b>Quy ước trạng thái:</b> mỗi <code>printf</code> là một I/O ⇒ 1 lần vào <b>waiting</b>. Số lần vào <b>running</b> = số lần waiting + 1 (lần đầu được cấp CPU). <code>fork()</code> không tính.</li>
+    </ul>
+  </div>
+  <div id="forkList" style="display:grid;gap:14px"></div>
+  <div class="card">
+    <h3>Câu hỏi trả lời ngắn khác trong đề</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Câu hỏi</th><th>Đáp án</th><th>Đề</th></tr></thead>
+      <tbody>
+        <tr><td>Ba phương pháp truyền tham số cho system call: thanh ghi, vùng nhớ và…?</td><td><b>stack</b></td><td class="mono">24-25 GK1</td></tr>
+        <tr><td>Biến toàn cục được chứa ở đâu khi nạp chương trình?</td><td><b>data section</b></td><td class="mono">24-25 GK1</td></tr>
+        <tr><td>Hai chế độ hoạt động cơ bản: chế độ người dùng và chế độ…?</td><td><b>hạt nhân (kernel)</b></td><td class="mono">23-24 GK2</td></tr>
+        <tr><td>Đúng/Sai: Hệ thống đơn bộ xử lý chỉ có một bộ xử lý đa dụng với một lõi duy nhất.</td><td><b>Đúng</b></td><td class="mono">23-24 GK2</td></tr>
+        <tr><td>Đúng/Sai: Trưng dụng có chi phí thấp hơn không trưng dụng…</td><td><b>Sai</b> (chi phí cao hơn)</td><td class="mono">23-24 GK2</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+</main>
+<footer class="wrap">Nguồn: slide bài giảng chương 1–4 và file Week08 Midterm Review của giảng viên, slide training giữa kỳ BHT CNPM HK1 2025-2026 và đề giữa kỳ IT007 các năm 2018-2019, 2020-2021, 2022-2023, 2023-2024, 2024-2025. Đáp án các đề không có lời giải được tính lại; câu nào lệch với phương án của đề đều ghi chú trong phần giải thích. Kết quả làm bài chỉ lưu trên trình duyệt của bạn.</footer>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+/* ---------- tabs ---------- */
+const views=["lythuyet","decuong","bay","tracnghiem","dinhthoi","fork"];
+function show(v){
+  if(!views.includes(v))v="lythuyet";
+  views.forEach(x=>{$("#v-"+x).hidden=x!==v});
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.view===v?"true":"false"));
+}
+document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>{show(b.dataset.view);try{history.replaceState(null,"","#"+b.dataset.view)}catch(e){}window.scrollTo({top:0})}));
+document.querySelectorAll("[data-jump]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();document.getElementById(a.dataset.jump).scrollIntoView({behavior:"smooth",block:"start"})}));
+const h=(location.hash||"").slice(1);
+show(["c1","c2","c3","c4"].includes(h)?"lythuyet":h);
+
+/* ---------- đề cương của thầy ---------- */
+const simBtn=(p,a,q,label)=>`<button class="btn" style="padding:4px 10px;font-size:13px" data-gopreset="${p}" data-goalgo="${a}" data-goq="${q||""}">${label}</button>`;
+const RQ=[
+{t:"Chương 1 · Tổng quan về hệ điều hành",items:[
+["Định nghĩa hệ điều hành?","Chương trình trung gian giữa phần cứng máy tính và người sử dụng, có chức năng điều khiển và phối hợp việc sử dụng phần cứng và cung cấp các dịch vụ cơ bản cho các ứng dụng. Mục tiêu: giúp người dùng dễ sử dụng hệ thống; quản lý và cấp phát tài nguyên hiệu quả."],
+["Cấu trúc hệ thống máy tính gồm những phần nào?","<b>Phần cứng</b> (CPU, bộ nhớ, thiết bị I/O) · <b>Hệ điều hành</b> (phân phối tài nguyên, điều khiển và phối hợp hoạt động của các chương trình) · <b>Chương trình ứng dụng</b> (dùng tài nguyên giải quyết bài toán của người dùng: compiler, database, game…) · <b>Người dùng</b> (người, máy, máy tính khác)."],
+["Chương trình hệ thống và chương trình ứng dụng khác nhau như thế nào?","<b>Chương trình hệ thống</b> được đóng gói cùng HĐH nhưng không thuộc nhân, cung cấp môi trường để phát triển và chạy chương trình (quản lý file, thông tin trạng thái, soạn thảo, hỗ trợ ngôn ngữ lập trình, loader/debugger, giao tiếp). <b>Chương trình ứng dụng</b> là mọi chương trình không liên kết với hoạt động của hệ thống, giải quyết bài toán cụ thể của người dùng. Kernel là chương trình duy nhất luôn chạy. Một số HĐH còn có <b>middleware</b> (framework hỗ trợ CSDL, đa phương tiện, đồ họa)."],
+["Những đặc điểm cơ bản của ngắt?","Chuyển điều khiển đến interrupt service routine qua <b>interrupt vector</b>; kiến trúc ngắt phải <b>lưu địa chỉ lệnh bị ngắt</b>; ngắt phần mềm do lỗi hoặc yêu cầu người dùng gọi là <b>trap/exception</b>; HĐH hoạt động <b>định hướng theo ngắt</b>. Device controller xong thao tác thì phát ngắt báo CPU."],
+["Hệ thống lưu trữ được phân cấp dựa trên những yếu tố nào?","<b>Tốc độ truy xuất</b> (speed), <b>chi phí</b> (cost), <b>khả năng lưu dữ liệu khi mất điện</b> (volatility). Bộ nhớ chính: truy xuất ngẫu nhiên, mất dữ liệu khi mất điện, công nghệ DRAM, là thiết bị lớn duy nhất CPU truy xuất trực tiếp. Bộ nhớ thứ cấp mở rộng dung lượng, không bay hơi."],
+["Phân biệt các khái niệm cơ bản về bộ xử lý?","<b>CPU</b>: phần cứng thực thi lệnh · <b>Processor</b>: con chip vật lý chứa một hoặc nhiều CPU · <b>Core</b>: đơn vị tính toán cơ bản của CPU · <b>Multicore</b>: nhiều lõi trên một CPU · <b>Multiprocessor</b>: nhiều bộ xử lý."],
+["Đặc điểm của hệ thống đơn bộ xử lý, đa bộ xử lý, gom cụm?","<b>Đơn bộ xử lý</b>: một bộ xử lý đa dụng một lõi, có thể kèm bộ xử lý chuyên dụng (không chạy tiến trình). <b>Đa bộ xử lý</b> (parallel, tightly-coupled): ưu điểm tăng throughput, kinh tế, tin cậy; chia đối xứng (mọi CPU làm mọi việc) và bất đối xứng (mỗi CPU một việc). <b>Gom cụm</b>: nhiều hệ thống làm việc với nhau, chia sẻ lưu trữ qua SAN, high-availability; bất đối xứng (một máy hot-standby) hoặc đối xứng (các nút chạy ứng dụng và giám sát nhau)."],
+["Có những chế độ hoạt động nào bên trong hệ điều hành?","<b>User mode</b> và <b>kernel mode</b> (có thể nhiều hơn), giúp HĐH tự bảo vệ. Phân biệt bằng <b>mode bit</b>: user = 1, kernel = 0. Lệnh đặc quyền chỉ thực thi ở kernel mode."],
+["Đặc điểm của hệ thống đơn chương, đa chương và đa nhiệm?","<b>Đơn chương</b>: một job trong bộ nhớ, thi hành tuần tự. <b>Đa chương</b>: nhiều job nạp đồng thời, job scheduling chọn job chạy, job chờ I/O thì chuyển job khác ⇒ tăng hiệu suất CPU; job đang chạy gọi là process. <b>Đa nhiệm</b>: mở rộng của đa chương, CPU chuyển job thường xuyên hơn để người dùng tương tác được với từng job."]
+]},
+{t:"Chương 2 · Cấu trúc hệ điều hành",items:[
+["Hệ điều hành gồm những thành phần nào? Cụ thể từng thành phần?","7 thành phần: quản lý tiến trình, quản lý bộ nhớ chính, quản lý file, quản lý hệ thống I/O, quản lý lưu trữ thứ cấp, hệ thống bảo vệ, hệ thống thông dịch lệnh. Nhiệm vụ cụ thể xem bảng “7 thành phần” ở tab Lý thuyết, chương 2."],
+["Cấu trúc hệ thống gồm những loại nào? Cho ví dụ từng loại.","<b>Monolithic</b>: Original UNIX (nhân + system program tách rời), MS-DOS · <b>Layered</b>: THE · <b>Microkernel</b>: CMU Mach (kernel chỉ còn quản lý tiến trình, bộ nhớ, IPC) · <b>Modules</b> (LKM): Linux, Solaris · <b>Hybrid</b>: nhân Linux và Solaris (monolithic + modules), Windows (liền khối + vi nhân); macOS/iOS (Darwin), Android (dựa trên nhân Linux, máy ảo ART)."],
+["Chương trình hệ thống gồm những chương trình nào?","Quản lý hệ thống file (create, delete, rename, list) · Thông tin trạng thái (date, time, bộ nhớ trống) · Soạn thảo file (editor) · Hỗ trợ ngôn ngữ lập trình (compiler, assembler, interpreter) · Nạp, thực thi, tìm lỗi (loader, debugger) · Giao tiếp (email, talk, web browser). Người dùng làm việc chủ yếu qua system program, không gọi system call trực tiếp."],
+["Lời gọi hệ thống là gì và dùng để làm gì?","Giao diện giữa <b>tiến trình</b> và HĐH, để chương trình yêu cầu dịch vụ của HĐH (tạo tiến trình, đọc/ghi file, I/O…). Thường viết bằng C/C++, truy cập qua API. Ví dụ: <code>fork()</code>, <code>exec()</code>, <code>exit()</code>, <code>wait()</code>, <code>open()</code>, <code>read()</code>, <code>write()</code>. Truyền tham số qua thanh ghi, vùng nhớ (địa chỉ qua thanh ghi) hoặc stack."],
+["Hệ điều hành cung cấp những dịch vụ nào?","Giao diện người dùng (CLI, GUI, touch screen), thực thi chương trình, thao tác I/O, thao tác file system, trao đổi thông tin (shared memory, message passing), phát hiện lỗi, cấp phát tài nguyên, kế toán (lưu vết để tính phí/thống kê), bảo vệ và an ninh."]
+]},
+{t:"Chương 3 · Tiến trình",items:[
+["Một tiến trình chứa những thành phần gì?","Text section (code), data section (biến toàn cục), heap (bộ nhớ cấp phát động), stack (tham số hàm, địa chỉ trả về, biến cục bộ), program counter và các thanh ghi."],
+["Tiến trình có những trạng thái nào? Chuyển trạng thái ra sao?","new → ready (được nhận vào) → running (dispatch) → ready (ngắt, hết quantum) / waiting (I/O, đợi sự kiện) → ready (I/O xong) → … → terminated (exit). Xem sơ đồ ở tab Lý thuyết, chương 3."],
+["Tại sao phải cộng tác giữa các tiến trình?","Để <b>chia sẻ dữ liệu</b>, <b>tăng tốc tính toán</b> (chia thành nhiều phần nhỏ chạy song song trên nhiều CPU), <b>thực hiện công việc chung</b> (chia phần mềm phức tạp thành các module/process hợp tác). Cộng tác đòi hỏi HĐH hỗ trợ cơ chế giao tiếp (IPC) và đồng bộ."],
+["PCB là gì? Dùng để làm gì?","Process Control Block: cấu trúc dữ liệu HĐH dùng để quản lý thông tin của tiến trình: trạng thái, PC, thanh ghi, thông tin định thời (độ ưu tiên), thông tin bộ nhớ, thông tin thống kê (thời gian dùng CPU…), trạng thái I/O. HĐH dùng PCB khi chuyển ngữ cảnh và xếp tiến trình vào các hàng đợi."],
+["Tiểu trình là gì?","Đơn vị cơ bản sử dụng CPU, nhỏ hơn process. Mỗi thread có ID, PC, registers, stack riêng; chia sẻ code, data, files với các thread cùng process. Lợi ích: đáp ứng nhanh, chia sẻ tài nguyên, kinh tế, mở rộng trên đa lõi. Mô hình: Many-to-One, One-to-One, Many-to-Many."],
+["Trình tự thực thi của tiến trình cha và tiến trình con?","Hai khả năng: <b>cha và con thực thi đồng thời</b>, hoặc <b>cha đợi đến khi con kết thúc</b> (gọi <code>wait()</code>). Không gian địa chỉ của con: nhân bản từ cha (<code>fork()</code>) hoặc nạp chương trình mới (<code>exec()</code> sau fork). Tài nguyên: con chia sẻ toàn bộ hoặc một phần của cha."],
+{ex:1,q:"Bài tập: tiến trình chạy từ chương trình sau trải qua những trạng thái nào? Vẽ sơ đồ chuyển trạng thái.",code:"/* test.c */\nint main(int argc, char** argv) {\n  int a;\n  for (int i = 1; i < 5; i++) {\n    if (i % 2 == 0)\n      printf(\"Hello world\\n\");\n    else a = 5*9;\n  }\n  exit(0);\n}",a:"<p>Chỉ <code>printf</code> là I/O, chạy khi i = 2 và i = 4. Trình tự:</p><pre style=\"white-space:pre-wrap\">new → ready → running\n  (i=1: tính a, i=2: printf) → waiting → ready → running\n  (i=3: tính a, i=4: printf) → waiting → ready → running\n  (exit) → terminated</pre><p>Trải qua đủ 5 trạng thái: new, ready, running, waiting, terminated. Vào waiting <b>2 lần</b>, vào running <b>3 lần</b>.</p>"},
+{ex:1,q:"Bài tập: chương trình in ra những gì? Vẽ cây tiến trình.",code:"int main() {\n  int i;\n  for (i = 0; i < 4; i++) {\n    fork();\n    printf(\"hello\\n\");\n  }\n  return 0;\n}",a:"<p>Mỗi vòng số tiến trình nhân đôi, rồi tất cả in “hello”: vòng i = 0..3 in 2 + 4 + 8 + 16 = <b>30 dòng “hello”</b>, có <b>16 tiến trình</b>. Thứ tự các dòng phụ thuộc bộ định thời.</p><pre>P0\n├── A   (tạo ở i=0)\n│   ├── A1   (i=1)\n│   │   ├── A12  (i=2)\n│   │   │   └── A123 (i=3)\n│   │   └── A13  (i=3)\n│   ├── A2   (i=2)\n│   │   └── A23  (i=3)\n│   └── A3   (i=3)\n├── B   (i=1)\n│   ├── B2   (i=2)\n│   │   └── B23  (i=3)\n│   └── B3   (i=3)\n├── C   (i=2)\n│   └── C3   (i=3)\n└── D   (i=3)</pre><p class=\"small muted\">Tiến trình tạo ở vòng i in 4 − i lần (P0 in 4 lần): 4 + 1·4 + 2·3 + 4·2 + 8·1 = 30.</p>"}
+]},
+{t:"Chương 4 · Định thời CPU",items:[
+["Tại sao phải định thời? Có những loại bộ định thời nào?","Hệ đa nhiệm nạp nhiều chương trình vào bộ nhớ nhưng tại mỗi thời điểm một CPU chỉ chạy một tiến trình ⇒ cần chiến lược chọn tiến trình để đạt hiệu quả cao nhất (CPU bận, đáp ứng nhanh, công bằng). Ba loại: <b>dài</b> (job scheduler, chọn chương trình nạp vào hệ thống, điều khiển mức đa chương), <b>vừa</b> (swap in/out), <b>ngắn</b> (CPU scheduler)."],
+["Định thời CPU là gì? Bộ định thời nào chịu trách nhiệm?","Chọn tiến trình trong <b>ready queue</b> để cấp CPU thực thi kế tiếp. Do <b>bộ định thời ngắn</b> thực hiện; được gọi khi có ngắt thời gian, ngắt I/O, system call, tín hiệu đồng bộ. Sau khi chọn: chuyển ngữ cảnh (dùng PCB), chuyển về user mode, nhảy đến vị trí trong PC."],
+["Phí tổn gây ra khi định thời là gì?","<b>OS overhead</b>: thời gian OS dùng CPU để chuyển ngữ cảnh. <b>Dispatch latency</b>: thời gian bộ định thời dừng một tiến trình và khởi động tiến trình khác."],
+["Trình bày các tiêu chuẩn định thời CPU?","Hướng người dùng (cực tiểu): thời gian đáp ứng, thời gian hoàn thành, thời gian đợi. Hướng hệ thống: hiệu năng sử dụng CPU (cực đại), công bằng, thông lượng (cực đại)."],
+["Kể tên các giải thuật định thời CPU?","FCFS, SJF, SRTF, Round Robin, Priority Scheduling, HRRN, Multilevel Queue, Multilevel Feedback Queue."],
+{q:"Mô tả, nêu ưu điểm và nhược điểm của từng giải thuật: FCFS, SJF, SRTF, RR, Priority, HRRN, MQ, MFQ.",a:`<div class="tablewrap"><table><thead><tr><th>Giải thuật</th><th>Ưu điểm</th><th>Nhược điểm</th></tr></thead><tbody>
+<tr><td><b>FCFS</b></td><td>Đơn giản, dễ cài đặt (hàng đợi FIFO), không gây đói.</td><td>Thời gian chờ trung bình lớn: tiến trình ngắn phải chờ sau tiến trình dài; không trưng dụng nên không hợp hệ chia thời gian.</td></tr>
+<tr><td><b>SJF</b></td><td>Thời gian chờ trung bình nhỏ (tối ưu trong nhóm không trưng dụng).</td><td>Phải ước lượng trước CPU burst; tiến trình dài có thể bị đói.</td></tr>
+<tr><td><b>SRTF</b></td><td>Thời gian chờ trung bình nhỏ nhất; đáp ứng tốt cho tiến trình ngắn mới đến.</td><td>Nhiều chuyển ngữ cảnh; cần biết thời gian còn lại; tiến trình dài dễ bị đói.</td></tr>
+<tr><td><b>Round Robin</b></td><td>Thời gian đáp ứng nhỏ, công bằng, không đói (chờ tối đa (n−1)q).</td><td>Chờ và hoàn thành trung bình thường khá lớn; hiệu quả phụ thuộc quantum (nhỏ: overhead lớn; lớn: thành FCFS).</td></tr>
+<tr><td><b>Priority</b></td><td>Phản ánh tầm quan trọng của tiến trình; dùng được cả hai chế độ.</td><td>Trì hoãn vô hạn định (starvation) với tiến trình ưu tiên thấp; khắc phục bằng aging.</td></tr>
+<tr><td><b>HRRN</b></td><td>Ưu tiên tiến trình ngắn nhưng tiến trình dài chờ lâu thì ratio tăng dần nên cuối cùng được chọn (giống aging) ⇒ tránh đói.</td><td>Cần biết service time; phải tính lại ratio mỗi lần chọn; không trưng dụng.</td></tr>
+<tr><td><b>Multilevel Queue</b></td><td>Mỗi loại tiến trình (foreground/background) dùng giải thuật phù hợp.</td><td>Tiến trình gán cố định, không chuyển hàng đợi; fixed priority gây đói; giảm hiệu suất khi một hàng đợi đông còn hàng đợi khác trống.</td></tr>
+<tr><td><b>Multilevel Feedback Queue</b></td><td>Linh hoạt nhất: tiến trình di chuyển giữa các hàng đợi, I/O-bound/interactive được đáp ứng nhanh, aging chống đói.</td><td>Phức tạp nhất; phải chọn số hàng đợi, giải thuật mỗi hàng, thời điểm nâng/hạ hàng đợi.</td></tr>
+</tbody></table></div><p class="small muted">Theo slide chương 4. Phần ưu/nhược FCFS, SJF, SRTF, HRRN được tổng hợp từ đặc điểm giải thuật vì slide không liệt kê riêng.</p>`},
+["Đặc điểm của định thời trên hệ thống nhiều bộ xử lý? Khi nào cần cân bằng tải?","Hai cách tiếp cận. <b>Bất đối xứng</b>: master server lo mọi việc lập lịch và I/O, các CPU khác chỉ chạy user code; đơn giản nhưng master có thể nghẽn cổ chai. <b>Đối xứng (SMP)</b>: mỗi CPU tự định thời; hàng đợi chung thì có tranh chấp (cần khóa, nghẽn) hoặc bỏ sót thread; hàng đợi riêng phổ biến hơn nhưng khối lượng việc lệch nhau. Cần <b>cân bằng tải</b> khi một CPU quá tải trong khi CPU khác rỗi: push migration hoặc pull migration. Cân bằng tải làm mất <b>processor affinity</b> (phải nạp lại cache)."],
+["Đặc điểm định thời theo thời gian thực?","Soft real-time: tác vụ quan trọng được ưu tiên cao nhất, không đảm bảo gì thêm. Hard real-time: phải hoàn thành trước deadline. Bộ định thời phải hỗ trợ <b>ưu tiên + trưng dụng</b>. Tác vụ chu kỳ có thời gian xử lý C, deadline d, chu kỳ T với 0 ≤ C ≤ d ≤ T. Giải thuật: Rate Monotonic (chu kỳ ngắn ưu tiên cao), EDF (deadline sớm nhất trước)."],
+["Mô tả các đặc điểm cơ bản của bộ định thời CFS trên Linux?","Dùng từ Linux 2.6.23. Định thời theo <b>lớp</b> (default, real-time), chọn tác vụ ưu tiên cao nhất trong lớp ưu tiên cao nhất. Thời gian CPU chia theo <b>tỷ lệ</b> dựa trên giá trị <b>nice</b> (−20 đến 19, thấp hơn ưu tiên cao hơn), không dùng quantum cố định. <b>Target latency</b>: khoảng thời gian mỗi tiến trình được chạy ít nhất một lần, tăng khi số tiến trình tăng. Chọn tác vụ có <b>virtual run time nhỏ nhất</b>."],
+["Mô tả các đặc điểm cơ bản của định thời trên Windows?","Ưu tiên + trưng dụng, luôn chạy thread ưu tiên cao nhất; chạy đến khi block bởi system call, hết quantum, hoặc bị thread ưu tiên cao hơn chiếm. <b>32 mức</b>: variable 1–15, real-time 16–31, mức 0 cho quản lý bộ nhớ; mỗi mức một hàng đợi; idle thread khi rỗi. Lớp ưu tiên + độ ưu tiên tương đối xác định giá trị; hết quantum có thể bị giảm nhưng không dưới mức cơ sở. Windows 7 có user-mode scheduling (UMS)."],
+{ex:1,q:"Bài tập: P1–P5 vào lúc 0, 2, 4, 5, 7 với burst 10, 29, 3, 7, 12. Vẽ Gantt, tính chờ, đáp ứng, hoàn thành trung bình cho FCFS, SJF preemptive, RR q = 10.",a:`<div class="tablewrap"><table style="max-width:520px"><thead><tr><th>Giải thuật</th><th class="num">Chờ TB</th><th class="num">Đáp ứng TB</th><th class="num">Hoàn thành TB</th></tr></thead><tbody id="w08res"></tbody></table></div><div class="toolbar" style="margin-top:8px">${simBtn("w08","FCFS",0,"Gantt FCFS")}${simBtn("w08","SRTF",0,"Gantt SJF preemptive")}${simBtn("w08","RR",10,"Gantt RR q=10")}</div><p class="small muted">SJF preemptive chính là SRTF. Các bài tập chương 4 khác của thầy (bài 1, 3, 4) có sẵn trong tab Mô phỏng định thời.</p>`}
+]}
+];
+let rqDone=store.get("hdh-rq",{});
+let rqN=0;
+$("#rqList").innerHTML=RQ.map((ch,ci)=>`<div style="display:grid;gap:8px"><h3 style="font-family:var(--f-display);font-size:19px">${ch.t}</h3>${ch.items.map((it,ii)=>{
+  const o=Array.isArray(it)?{q:it[0],a:it[1]}:it, id=ci+"-"+ii; rqN++;
+  return `<div style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start"><input type="checkbox" id="rq${id}" data-rq="${id}" ${rqDone[id]?"checked":""} aria-label="Đã thuộc" style="margin-top:12px;width:18px;height:18px"><details class="ans"><summary>${o.ex?'<span class="tag" style="margin-right:6px">Bài tập</span>':""}${o.q}</summary><div>${o.code?`<pre>${esc(o.code)}</pre>`:""}${o.a.startsWith("<")?o.a:`<p>${o.a}</p>`}</div></details></div>`}).join("")}</div>`).join("");
+$("#rqTotal").textContent=rqN;
+function rqCount(){const n=Object.values(rqDone).filter(Boolean).length;$("#rqDone").textContent=n;$("#rqBar").style.width=(n/rqN*100)+"%"}
+rqCount();
+$("#rqList").addEventListener("change",e=>{const c=e.target.closest("[data-rq]");if(!c)return;rqDone[c.dataset.rq]=c.checked;store.set("hdh-rq",rqDone);rqCount()});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-gopreset]");if(!b)return;loadPreset(b.dataset.gopreset,b.dataset.goalgo,b.dataset.goq?+b.dataset.goq:undefined);show("dinhthoi");try{history.replaceState(null,"","#dinhthoi")}catch(_){}window.scrollTo({top:0})});
+
+/* ---------- traps ---------- */
+const TRAPS=[
+["Cấp phát không gian lưu trữ là việc của quản lý bộ nhớ chính.","Storage allocation thuộc <b>quản lý lưu trữ thứ cấp</b> (cùng free space management, disk scheduling)."],
+["Cung cấp giao diện chung đến trình điều khiển thiết bị là việc của quản lý bộ nhớ.","Đó là <b>quản lý hệ thống I/O</b>. Quản lý bộ nhớ: theo dõi vùng nhớ, quyết định nạp, cấp phát/thu hồi."],
+["Lời gọi hệ thống là giao diện giữa người dùng và HĐH.","System call là giao diện giữa <b>tiến trình</b> và HĐH. Giao diện chủ yếu của người dùng là hệ thống thông dịch lệnh."],
+["Truyền tham số system call qua: thanh ghi, một tiến trình / message / heap, stack.","Ba cách đúng: <b>thanh ghi, vùng nhớ, stack</b>."],
+["Microkernel dùng cách tiếp cận hướng đối tượng, module giao tiếp qua interface.","Đó là <b>Modules</b>. Microkernel: chuyển chức năng từ kernel space sang <b>user space</b>, giao tiếp bằng <b>truyền thông điệp</b>."],
+["Cấu trúc phân lớp: một lớp gọi hàm của lớp trên.","Một lớp <b>chỉ gọi hàm của lớp dưới</b>; lớp trên chỉ phụ thuộc lớp dưới."],
+["Hệ thống song song phân thành đơn chương và đa chương / client-server và peer-to-peer.","Song song: <b>đa xử lý đối xứng và bất đối xứng</b>. Client-server và peer-to-peer là mô hình của hệ thống <b>phân tán</b>."],
+["Hệ thống đa chương: tác vụ thi hành tuần tự.","Thi hành tuần tự là <b>đơn chương</b>. Đa chương nạp nhiều job vào bộ nhớ, job chờ I/O thì chuyển job khác."],
+["Stack section chứa biến toàn cục.","Biến toàn cục ở <b>data</b>; stack chứa biến cục bộ, tham số hàm, địa chỉ trả về. <code>int i</code> trong main nằm ở <b>stack</b>."],
+["Tiến trình running có thể chuyển về new; I/O xong thì về running.","Running chỉ sang <b>ready, waiting, terminated</b>. I/O xong: waiting → <b>ready</b>."],
+["Tiến trình cha và con luôn thực thi đồng thời; con chỉ dùng được một phần tài nguyên của cha.","Thực thi đồng thời <b>hoặc</b> cha đợi con; con dùng <b>một phần hoặc toàn bộ</b> tài nguyên, nhận từ HĐH hoặc từ cha."],
+["SJF không trưng dụng còn gọi là SRTF.","<b>SRTF là SJF trưng dụng</b>. SRTF tối ưu thời gian chờ trung bình."],
+["HRRN chọn tiến trình có response ratio nhỏ nhất; tiến trình dài được ưu tiên.","HRRN chọn response ratio <b>lớn nhất</b>; tiến trình <b>ngắn</b> được ưu tiên."],
+["Multilevel Queue cho phép tiến trình di chuyển giữa các hàng đợi.","Chỉ <b>Multilevel Feedback Queue</b> cho di chuyển (và dùng chế độ trưng dụng). Multilevel Queue gán cố định."],
+["Không thể dùng Round Robin nếu muốn các tiến trình có độ ưu tiên khác nhau.","Phát biểu này được đề coi là <b>SAI</b> (có thể kết hợp RR với độ ưu tiên). RR giả thiết ngầm mọi tiến trình quan trọng ngang nhau."],
+["Trong SJF, tiến trình burst nhỏ bị đói khi nhiều tiến trình burst lớn đến.","Ngược lại: tiến trình burst <b>lớn</b> mới bị đói khi liên tục có tiến trình ngắn đến."],
+["Trưng dụng chi phí thấp hơn, thời gian hoàn thành tương đương không trưng dụng; bị ngắt thì về waiting.","Trưng dụng chi phí <b>cao hơn</b>, đổi lại thời gian <b>đáp ứng tốt hơn</b>; bị ngắt thì về <b>ready</b>."],
+["Thời gian đáp ứng, hoàn thành, chờ là tiêu chuẩn hướng hệ thống.","Đó là hướng <b>người dùng</b> (cực tiểu). Hướng hệ thống: hiệu năng CPU, công bằng, <b>thông lượng</b> (cực đại)."],
+["Đa xử lý đối xứng: mọi thao tác lập lịch, I/O do master server làm.","Đó là <b>bất đối xứng</b>. Đối xứng: <b>mỗi bộ xử lý tự định thời cho chính nó</b>."],
+["Các tiểu trình chia sẻ chung registers / stack.","Mỗi thread có riêng <b>ID, PC, registers, stack</b>; chỉ chia sẻ code, data, files."],
+["Bộ định thời ngắn quyết định swap in / swap out.","Swap là <b>bộ định thời vừa</b>. Bộ định thời ngắn chọn tiến trình trong ready queue để cấp CPU."],
+["Hệ điều hành dùng tài nguyên để giải quyết bài toán của người dùng.","Đó là vai trò của <b>chương trình ứng dụng</b>."]
+];
+$("#traps").innerHTML=TRAPS.map(([w,r])=>`<div class="trap"><div class="wrong"><span class="lbl">Bẫy</span>${w}</div><div class="right"><span class="lbl">Đúng</span>${r}</div></div>`).join("");
+
+/* ---------- question bank ---------- */
+const T={ /* data tables reused by questions */
+ g2223b:{h:["Process","Arrival","Burst"],r:[["P1",0,14],["P2",4,6],["P3",9,7],["P4",11,11],["P5",5,4]]},
+ g2324a:{h:["Process","Arrival","Burst"],r:[["P1",0,8],["P2",7,12],["P3",12,7],["P4",4,9],["P5",9,4]]}
+};
+const Q=[
+/* 2018-2019 GK1 */
+{s:"18-19 GK1",c:1,q:"Hệ điều hành là chương trình hoạt động giữa người dùng với:",o:["Phần mềm máy tính","Các chương trình ứng dụng","Phần cứng máy tính","CPU và bộ nhớ"],a:2,e:"HĐH là trung gian giữa phần cứng máy tính và người sử dụng."},
+{s:"18-19 GK1",c:1,q:"Cấu trúc của một hệ thống máy tính gồm những thành phần chính nào?",o:["CPU, Main Memory, OS và các thiết bị I/O","Hardware, OS, Main Memory và Application Programs","CPU, Main Memory, OS và Application Programs","Hardware, OS, Application Programs và Users"],a:3,e:"4 thành phần: phần cứng, hệ điều hành, chương trình ứng dụng, người dùng."},
+{s:"18-19 GK1",c:1,q:"Đứng dưới góc độ hệ thống, Hệ điều hành đóng vai trò gì?",o:["Là một bộ cấp phát tài nguyên (Resource Allocator) và một chương trình điều khiển (Control Program)","Giúp người dùng tận dụng tài nguyên và sử dụng máy tính thuận tiện","Cả a và b đúng","Cả a và b sai"],a:0,e:"Góc độ hệ thống: resource allocator + control program. Phương án b là góc độ người dùng."},
+{s:"18-19 GK1",c:2,q:"Thành phần nào sau đây KHÔNG phải là một thành phần của hệ điều hành?",o:["Quản lý hệ thống File","Quản lý bộ nhớ","Quản lý kernel","Quản lý tiến trình"],a:2,e:"7 thành phần: tiến trình, bộ nhớ chính, file, I/O, lưu trữ thứ cấp, bảo vệ, thông dịch lệnh. Không có “quản lý kernel”."},
+{s:"18-19 GK1",c:2,q:"Lời gọi hệ thống là lệnh do hệ điều hành cung cấp dùng để giao tiếp giữa:",o:["Hệ điều hành (OS) và tiến trình (Process)","Hệ điều hành và Kernel","Kernel và chương trình ứng dụng","Chương trình ứng dụng và người dùng"],a:0,e:"System call: giao diện giữa tiến trình và HĐH."},
+{s:"18-19 GK1",c:3,q:"Câu nào sau đây là đúng?",o:["Tiến trình là một chương trình đang thực thi và là một thực thể bị động","Tiến trình là một chương trình đang xử lí, sở hữu một không gian địa chỉ, một con trỏ lệnh, một tập các thanh ghi và stack","Tiến trình tự quyết định thời điểm dừng hoạt động để phục vụ tiến trình khác","Các tiến trình có thể tự liên lạc với nhau mà không thông qua hệ điều hành"],a:1,e:"Tiến trình là thực thể chủ động. Việc dừng do bộ định thời quyết định; IPC cần HĐH hỗ trợ."},
+{s:"18-19 GK1",c:2,q:"Trong các loại cấu trúc dưới đây, loại nào HĐH được chia thành nhiều lớp?",o:["Cấu trúc đơn giản (Monolithic)","Cấu trúc phân tầng (Layers)","Cấu trúc vi nhân (Microkernel)","Cấu trúc lai (Hybrid)"],a:1,e:"Layered approach, ví dụ HĐH THE."},
+{s:"18-19 GK1",c:3,q:"Một tiến trình đang running, nếu nó đợi sự kiện hoặc I/O thì sẽ được chuyển đến hàng đợi nào?",o:["ready queue","running queue","waiting queue","Không chuyển đến hàng đợi nào cả"],a:2,e:"running → waiting khi đợi I/O hoặc sự kiện."},
+{s:"18-19 GK1",c:4,q:"Bộ định thời nào xác định process nào trong ready queue sẽ được chiếm CPU để thực thi kế tiếp?",o:["Short-term Scheduler","Medium-term Scheduler","Long-term Scheduler","Tất cả đều thực hiện được"],a:0,e:"Bộ định thời ngắn = CPU scheduler."},
+{s:"18-19 GK1",c:3,q:"Việc CPU chuyển từ tiến trình này sang tiến trình khác, lưu trạng thái cũ và nạp trạng thái mới, gọi là:",o:["Tạo độ trễ","Lặp lịch CPU","Chuyển ngữ cảnh","Khóa tiến trình"],a:2,e:"Context switch."},
+{s:"18-19 GK1",c:4,q:"Thuật toán định thời nào sau đây không gây ra tình trạng “đói” (starvation)?",o:["FCFS","Round Robin","Priority","Tất cả các câu đều đúng"],a:1,e:"Đáp án đề: Round Robin, vì mỗi tiến trình chờ tối đa (n−1)·q. Priority (và SJF/SRTF) có thể gây đói."},
+{s:"18-19 GK1",c:3,q:"Các tiến trình giao tiếp với nhau thông qua các cơ chế chính nào?",o:["Shared Memory","Message Passing","Message Queue","a và b đúng","Tất cả đều đúng"],a:3,e:"Hai mô hình IPC: shared memory và message passing."},
+{s:"18-19 GK1",c:3,q:"Sau khi kết thúc, chương trình sau đã nằm trong hàng đợi waiting bao nhiêu lần?",code:"int main(int argc, char** argv) {\n  int a;\n  for (int i = 1; i < 5; i++) {\n    if (i % 2 == 0)\n      printf(\"Hello world\\n\");\n    else a = 5*9;\n  }\n  exit(0);\n}",o:["1","2","3","4"],a:1,e:"i = 1..4, chỉ i = 2 và 4 gọi printf (I/O) ⇒ 2 lần waiting."},
+{s:"18-19 GK1",c:4,q:"Có n process trong ready queue, quantum = q. Không process nào phải chờ quá bao nhiêu đơn vị thời gian?",o:["(n−1)q","(n/2)q","(n+1)q","(n*2)q"],a:0,e:"Phải chờ n−1 tiến trình khác, mỗi tiến trình tối đa q."},
+{s:"18-19 GK1",c:3,q:"u, v là giá trị in ra bởi cha; x, y là giá trị in ra bởi con. Lựa chọn nào đúng?",code:"if (fork() == 0) {\n  a = a + 5;\n  printf(\"%d,%d\\n\", a, &a);\n} else {\n  a = a - 5;\n  printf(\"%d,%d\\n\", a, &a);\n}",o:["u = x + 10 và v = y","u = x + 10 và v != y","u + 10 = x và v = y","u + 10 = x và v != y"],a:2,e:"Con: a+5, cha: a−5 ⇒ x = u + 10. Địa chỉ ảo của a giống nhau ở hai tiến trình ⇒ v = y."},
+
+/* 2020-2021 GK1 */
+{s:"20-21 GK1",c:1,q:"Lựa chọn nào KHÔNG phải là một đặc điểm của hệ thống phân tán?",o:["Người dùng chỉ nhìn thấy một hệ thống đơn nhất","Độ sẵn sàng cao vì dịch vụ được cung cấp liên tục dù có phần cứng hỏng","Mỗi processor có bộ nhớ riêng, giao tiếp qua mạng, bus tốc độ cao","Master processor định thời và phân công việc cho các slave processors"],a:3,e:"Master–slave là đa xử lý bất đối xứng (hệ song song)."},
+{s:"20-21 GK1",c:2,q:"Đặc điểm nào dưới đây là của cấu trúc vi nhân (microkernels)?",o:["Một số chức năng của HĐH được chuyển từ kernel space sang user space","HĐH được phân chia thành nhiều lớp, lớp trên chỉ phụ thuộc lớp dưới","Các module giao tiếp trực tiếp với nhau qua thanh ghi","Mỗi module như là một phần của nhân"],a:0,e:"B là layered, D là modules."},
+{s:"20-21 GK1",c:1,q:"Chọn phát biểu SAI về hệ điều hành?",o:["HĐH là chương trình trung gian giữa phần cứng và người sử dụng","HĐH cung cấp các dịch vụ cơ bản cho các ứng dụng","HĐH sử dụng hệ thống tài nguyên để giải quyết một bài toán nào đó của người sử dụng","HĐH có chức năng điều khiển và phối hợp việc sử dụng phần cứng"],a:2,e:"Giải quyết bài toán của người dùng là việc của chương trình ứng dụng."},
+{s:"20-21 GK1",c:2,q:"Lời gọi hệ thống được sử dụng để giao tiếp giữa hệ điều hành và đối tượng nào?",o:["Người dùng","Tiến trình","Phần cứng","Hệ điều hành khác"],a:1,e:"System call: tiến trình ↔ HĐH."},
+{s:"20-21 GK1",c:1,q:"Hệ thống song song được phân loại như thế nào?",o:["Đa xử lý đối xứng và bất đối xứng","Đơn chương và đa chương","Client-server và peer-to-peer","Hard real-time và soft real-time"],a:0,e:"C là phân tán, D là thời gian thực."},
+{s:"20-21 GK1",c:3,q:"Khi tiến trình được nạp vào bộ nhớ, stack section của nó KHÔNG chứa thành phần nào?",o:["Biến cục bộ","Địa chỉ trả về","Biến toàn cục","Tham số truyền cho hàm"],a:2,e:"Biến toàn cục nằm ở data section."},
+{s:"20-21 GK1",c:4,q:"Định thời “xổ số”: cộng dồn số vé từ P1 đến P4, tiến trình đầu tiên có tổng lớn hơn số ngẫu nhiên được chọn. Số vé lần lượt 5, 6, 2, 7 và số ngẫu nhiên là 10. Tiến trình nào được chọn?",o:["P1","P2","P3","P4"],a:1,e:"Tổng dồn: P1 = 5, P2 = 11 > 10 ⇒ P2."},
+{s:"20-21 GK1",c:3,q:"Khi chạy chương trình này, bao nhiêu từ hello sẽ được in ra?",code:"int main() {\n  int i;\n  fork();\n  for (i = 0; i < 2; i++) {\n    int k = fork();\n    if (k > 0)\n      printf(\"hello\\n\");\n  }\n  return 0;\n}",o:["10","8","6","4"],a:2,e:"Sau fork đầu: 2 tiến trình. i=0: 2 cha in (→ 4 tiến trình). i=1: 4 cha in (→ 8). Tổng 2 + 4 = 6."},
+{s:"20-21 GK1",c:4,q:"Chọn phát biểu SAI về giải thuật định thời?",o:["Trong SJF có thể xảy ra “đói” đối với các tiến trình có CPU-burst nhỏ khi có nhiều tiến trình burst lớn đến","Multilevel Queue chia ready thành nhiều hàng đợi, mỗi hàng đợi dùng giải thuật riêng","Multilevel Feedback Queue cho phép tiến trình di chuyển giữa các hàng đợi","Không thể sử dụng Round Robin nếu muốn các tiến trình có độ ưu tiên khác nhau"],a:0,e:"Trong SJF, tiến trình burst LỚN mới bị đói."},
+{s:"20-21 GK1",c:4,q:"Round Robin với quantum = 10 ms, thời gian lâu nhất một tiến trình phải chờ đến khi được đáp ứng là 120 ms. Có bao nhiêu tiến trình trong ready queue?",o:["10","11","12","13"],a:3,e:"(n−1)·10 = 120 ⇒ n = 13."},
+{s:"20-21 GK1",c:3,q:"Tiến trình ở trạng thái running KHÔNG THỂ chuyển sang trạng thái nào?",o:["new","ready","waiting","terminated"],a:0,e:"Không có chuyển running → new."},
+{s:"20-21 GK1",c:2,q:"“Cấp phát không gian lưu trữ (storage allocation)” là chức năng của thành phần nào?",o:["Quản lý bộ nhớ chính","Quản lý hệ thống lưu trữ thứ cấp","Quản lý hệ thống I/O","Quản lý tiến trình"],a:1,e:"Lưu trữ thứ cấp: free space management, storage allocation, disk scheduling."},
+{s:"20-21 GK1",c:3,q:"Chọn phát biểu SAI?",o:["Một tiến trình có thể tạo nhiều tiến trình mới thông qua system call create-process","Một tiến trình có thể tự kết thúc hoặc bị tiến trình khác kết thúc","Tiến trình con có thể nhận tài nguyên từ HĐH hoặc từ tiến trình cha","Tiến trình cha và tiến trình con luôn được thực thi đồng thời"],a:3,e:"Có thể đồng thời hoặc cha đợi con kết thúc."},
+{s:"20-21 GK1",c:4,q:"Chọn phát biểu đúng về chế độ trưng dụng (preemptive)?",o:["Tiến trình đang thực thi có thể bị ngắt nửa chừng và chuyển về waiting","Chi phí thấp hơn chế độ không trưng dụng","Thời gian đáp ứng tốt hơn chế độ không trưng dụng","Thời gian hoàn thành tương đương chế độ không trưng dụng"],a:2,e:"Bị ngắt thì về ready; chi phí cao hơn; đổi lại đáp ứng tốt hơn."},
+{s:"20-21 GK1",c:4,q:"“Xác định chương trình nào được chấp nhận nạp vào hệ thống để thực thi” là chức năng của bộ định thời nào?",o:["Bộ định thời dài","Bộ định thời ngắn","Bộ định thời trung gian","Cả 3 bộ định thời"],a:0,e:"Long-term (job) scheduler."},
+
+/* 2020-2021 GK2 */
+{s:"20-21 GK2",c:1,q:"Hệ thống phân tán được phân loại như thế nào?",o:["Đa xử lý đối xứng và bất đối xứng","Đơn chương và đa chương","Client-server và peer-to-peer","Hard real-time và soft real-time"],a:2,e:"Đối xứng/bất đối xứng là của hệ song song."},
+{s:"20-21 GK2",c:3,q:"Tiến trình có thể giao tiếp với nhau thông qua mô hình nào?",o:["Shared memory","PCB","TCB","Lời gọi hệ thống"],a:0,e:"IPC: shared memory hoặc message passing."},
+{s:"20-21 GK2",c:4,q:"Chọn phát biểu SAI về giải thuật định thời?",o:["SJF là định thời theo độ ưu tiên với độ ưu tiên là thời gian sử dụng CPU dự đoán","Trong Multilevel Queue, ready được chia nhiều hàng đợi, tiến trình gán cố định vào một hàng đợi","Định thời theo độ ưu tiên: tiến trình có độ ưu tiên thấp nhất được cấp CPU trước","Trong FCFS, tiến trình yêu cầu CPU trước được cấp CPU trước"],a:2,e:"Tiến trình độ ưu tiên CAO nhất được cấp CPU."},
+{s:"20-21 GK2",c:3,q:"Lựa chọn nào KHÔNG phải là yêu cầu cho lời giải của vấn đề vùng tranh chấp?",o:["Khi P đang trong vùng tranh chấp thì không có Q nào khác cũng trong vùng tranh chấp","Tiến trình dừng bên ngoài vùng tranh chấp không được ngăn cản tiến trình khác vào","Mỗi tiến trình chỉ chờ trong khoảng thời gian có hạn định; không xảy ra đói","Tất cả tiến trình phải được đối xử như nhau"],a:3,e:"Ba yêu cầu: loại trừ tương hỗ, progress, chờ đợi giới hạn. (Phần đồng bộ, không có trong slide GK1 2025.)"},
+{s:"20-21 GK2",c:1,q:"Lựa chọn nào là một đặc điểm của hệ thống song song?",o:["Người dùng chỉ nhìn thấy một hệ thống đơn nhất","Độ sẵn sàng cao vì dịch vụ được cung cấp liên tục dù phần cứng hỏng","Mỗi processor có bộ nhớ riêng, giao tiếp qua mạng, bus tốc độ cao","Hai hay nhiều bộ xử lý cùng chia sẻ một bộ nhớ"],a:3,e:"A, B, C là đặc điểm hệ phân tán."},
+{s:"20-21 GK2",c:4,q:"Chọn phát biểu ĐÚNG về Round Robin?",o:["Quantum ngắn thì thời gian đáp ứng chậm","Quantum ngắn thì ít chuyển ngữ cảnh nên phí tổn thấp","Quantum dài thì throughput kém hơn do tăng OS overhead","Nếu quantum quá lớn, Round Robin trở thành FCFS"],a:3,e:"Quantum ngắn: đáp ứng nhanh, nhiều chuyển ngữ cảnh."},
+{s:"20-21 GK2",c:2,q:"Lựa chọn nào KHÔNG phải phương pháp truyền tham số khi dùng lời gọi hệ thống?",o:["Thanh ghi","Vùng nhớ","Stack","Heap"],a:3,e:"Ba cách: thanh ghi, vùng nhớ, stack."},
+{s:"20-21 GK2",c:3,q:"Tiến trình ở trạng thái ready khi nào?",o:["Tiến trình vừa được tạo","Tiến trình đã có đủ tài nguyên, chỉ còn cần CPU","Tiến trình đã kết thúc","Các lệnh của tiến trình đang được thực thi"],a:1,e:"A là new, C terminated, D running."},
+{s:"20-21 GK2",c:2,q:"Lựa chọn nào KHÔNG phải nhiệm vụ của thành phần quản lý bộ nhớ chính?",o:["Theo dõi, quản lý các vùng nhớ trống và đã cấp phát","Quyết định sẽ nạp chương trình nào khi có vùng nhớ trống","Cấp phát và thu hồi các vùng nhớ khi cần thiết","Cung cấp giao diện chung đến các trình điều khiển thiết bị"],a:3,e:"D là quản lý hệ thống I/O."},
+{s:"20-21 GK2",c:2,q:"HĐH theo cấu trúc phân lớp (layer) KHÔNG có đặc điểm nào?",o:["Lớp trên cùng là lớp giao tiếp với người dùng","HĐH chia thành nhiều lớp, lớp trên chỉ phụ thuộc lớp dưới","Các user module giao tiếp với nhau qua cơ chế truyền thông điệp","Một lớp chỉ có thể gọi các hàm của lớp dưới và các hàm của nó được gọi bởi lớp trên"],a:2,e:"Truyền thông điệp giữa user module là microkernel."},
+{s:"20-21 GK2",c:3,q:"Chọn phát biểu ĐÚNG về quá trình tạo tiến trình mới?",o:["Mỗi tiến trình chỉ có thể tạo một tiến trình mới qua một lời gọi create-process","Tiến trình cha luôn phải đợi tiến trình con kết thúc trước","Tiến trình con có thể chia sẻ một phần tài nguyên của tiến trình cha","Tiến trình được tạo là cha của tiến trình tạo"],a:2,e:"Con chia sẻ toàn bộ hoặc một phần tài nguyên của cha."},
+{s:"20-21 GK2",c:4,q:"Hai yếu tố của giải thuật định thời là gì?",o:["Hàm lựa chọn và thời gian đáp ứng","Chế độ quyết định và hàm lựa chọn","Bộ định thời và hàm lựa chọn","Thời gian hoàn thành và chế độ quyết định"],a:1,e:"Selection function + decision mode."},
+{s:"20-21 GK2",c:3,q:"Khi chạy chương trình này, bao nhiêu từ hello sẽ được in ra?",code:"int x = 15;\nint main() {\n  int i;\n  fork();\n  printf(\"hi\\n\");\n  for (i = 0; i < 2; i++) {\n    int k = fork();\n    if (k > 0)\n      printf(\"hello\\n\");\n  }\n  return 0;\n}",o:["10","8","6","4"],a:2,e:"2 tiến trình vào vòng lặp. i=0: 2 cha in; i=1: 4 cha in ⇒ 6."},
+{s:"20-21 GK2",c:3,q:"Với chương trình ở câu trên, tất cả các tiến trình nằm trong hàng đợi waiting bao nhiêu lần?",code:"fork();\nprintf(\"hi\\n\");\nfor (i = 0; i < 2; i++) {\n  int k = fork();\n  if (k > 0) printf(\"hello\\n\");\n}",o:["12","10","8","6"],a:2,e:"Mỗi printf là 1 lần waiting: “hi” in 2 lần + “hello” in 6 lần = 8."},
+{s:"20-21 GK2",c:3,q:"Khi chương trình trên được nạp vào bộ nhớ, biến i sẽ nằm ở đâu?",o:["Stack section","Heap section","Data section","Text section"],a:0,e:"i là biến cục bộ trong main."},
+
+/* 2022-2023 GK1 */
+{s:"22-23 GK1",c:2,q:"Đặc điểm của cấu trúc vi nhân là gì?",o:["Một số chức năng của HĐH được chuyển từ kernel space sang user space","HĐH được chia thành nhiều lớp (layer)","Sử dụng cách tiếp cận hướng đối tượng, mỗi core thành phần tách biệt nhau","Các module trao đổi với nhau thông qua các interfaces"],a:0,e:"C, D là cấu trúc modules."},
+{s:"22-23 GK1",c:1,q:"Điền vào chỗ trống: HĐH là chương trình trung gian giữa … máy tính và người sử dụng, có chức năng điều khiển và phối hợp việc sử dụng phần cứng và cung cấp các dịch vụ cơ bản cho các …",o:["phần mềm – ứng dụng","phần mềm – phần cứng","chương trình – phần cứng","phần cứng – ứng dụng"],a:3,e:"Thuộc lòng định nghĩa."},
+{s:"22-23 GK1",c:1,q:"Đặc điểm nào KHÔNG phải của hệ thống đa chương?",o:["Nhiều công việc được nạp đồng thời vào bộ nhớ chính","Tận dụng thời gian rảnh, tăng hiệu suất sử dụng CPU","Khi một tiến trình thực hiện I/O, một tiến trình khác được thực thi","Tác vụ được thi hành tuần tự"],a:3,e:"Thi hành tuần tự là đơn chương."},
+{s:"22-23 GK1",c:4,q:"Bộ định thời nào xác định chương trình được chấp nhận nạp vào hệ thống để thực thi?",o:["Bộ định thời ngắn","Bộ định thời dài","Bộ định thời trung gian","Bộ định thời thiết bị"],a:1,e:"Long-term scheduler."},
+{s:"22-23 GK1",c:4,q:"Đặc điểm của chế độ quyết định không trưng dụng là gì?",o:["Khi running, tiến trình thực thi đến khi kết thúc hoặc bị blocked do I/O","Tiến trình đang running có thể bị ngắt nửa chừng và về ready","Chi phí cao hơn trưng dụng nhưng thời gian đáp ứng tốt hơn","Tiến trình nào yêu cầu CPU trước sẽ được cấp CPU trước"],a:0,e:"B là trưng dụng; D là hàm chọn của FCFS."},
+{s:"22-23 GK1",c:2,q:"Chọn phát biểu SAI?",o:["Lời gọi hệ thống cung cấp giao diện giữa tiến trình và HĐH","Chương trình trở thành tiến trình khi một tập tin thực thi được nạp vào bộ nhớ","Ba phương pháp truyền tham số system call: qua thanh ghi, qua một tiến trình và qua stack","Hệ thống thông dịch lệnh là giao diện chủ yếu của người dùng và HĐH"],a:2,e:"Là qua vùng nhớ, không phải qua một tiến trình."},
+{s:"22-23 GK1",c:4,q:"Loại hàng đợi nào được dùng khi hiện thực FCFS?",o:["FIFO","LIFO","FINO","FILO"],a:0,e:"First In, First Out."},
+{s:"22-23 GK1",c:1,q:"Hai hoặc nhiều bộ xử lý cùng chia sẻ một bộ nhớ; phân thành đa xử lý đối xứng và bất đối xứng. Đây là hệ thống nào?",o:["Distributed system","Real-time system","Loosely-coupled system","Parallel system"],a:3,e:"Parallel = tightly-coupled."},
+{s:"22-23 GK1",c:3,q:"Khi chạy đoạn chương trình, có tất cả bao nhiêu tiến trình (kể cả cha)?",code:"int x = 10;\nint main() {\n  int i;\n  int f = fork();\n  if (f > 0)\n    printf(\"%d\\n\", x);\n  else\n    fork();\n  for (i = 0; i < 2; i++) {\n    int k = fork();\n    if (i > 0)\n      fork();\n  }\n  printf(\"hello\\n\");\n  return 0;\n}",o:["28","16","12","24"],a:3,e:"Sau if/else: cha + con + cháu = 3. i=0: ×2 → 6. i=1: fork → 12, i>0 nên fork tiếp → 24."},
+{s:"22-23 GK1",c:3,q:"Khi chương trình trên được nạp vào bộ nhớ, biến i được lưu ở đâu?",o:["Text section","Heap section","Stack section","Data section"],a:2,e:"Biến cục bộ ⇒ stack. (Biến x toàn cục ⇒ data.)"},
+{s:"22-23 GK1",c:4,q:"Lựa chọn nào là tiêu chuẩn định thời CPU theo hướng hệ thống?",o:["Thời gian từ lúc nhận yêu cầu đến khi đáp ứng lần đầu là cực đại","Số tiến trình hoàn tất trong một đơn vị thời gian là cực đại","Tổng thời gian đợi trong hàng đợi ready là cực tiểu","Thời gian một tiến trình nằm trong hệ thống là cực đại"],a:1,e:"Throughput cực đại. Đáp ứng, chờ, hoàn thành là hướng người dùng."},
+{s:"22-23 GK1",c:3,q:"Mô hình đa tiểu trình nào cho phép nhiều tiểu trình người dùng ánh xạ đến một tiểu trình hạt nhân?",o:["Many-to-One","One-to-One","Many-to-Many","One-to-Many"],a:0,e:"Nhiều user thread → 1 kernel thread."},
+{s:"22-23 GK1",c:4,q:"Chọn phát biểu SAI về giải thuật định thời?",o:["SJF là định thời theo độ ưu tiên với ưu tiên là thời gian sử dụng CPU dự đoán","Không thể sử dụng Round Robin nếu muốn các tiến trình có độ ưu tiên khác nhau","Định thời theo độ ưu tiên: tiến trình ưu tiên thấp có thể không bao giờ được thực thi","Multilevel Queue cho phép tiến trình di chuyển giữa các hàng đợi khác nhau"],a:3,e:"Chỉ Multilevel Feedback Queue cho di chuyển."},
+
+/* 2022-2023 GK2 */
+{s:"22-23 GK2",c:2,q:"“Cung cấp giao diện chung đến các trình điều khiển thiết bị” là chức năng của thành phần nào?",o:["Quản lý bộ nhớ chính","Quản lý hệ thống lưu trữ thứ cấp","Quản lý hệ thống I/O","Quản lý tiến trình"],a:2,e:"I/O: che dấu khác biệt thiết bị, giao diện chung, buffering/caching/spooling."},
+{s:"22-23 GK2",c:2,q:"Kiểu cấu trúc nào kết hợp nhiều cách tiếp cận để giải quyết nhu cầu hiệu suất, bảo mật, sử dụng?",o:["Cấu trúc modules","Cấu trúc phân lớp","Cấu trúc vi nhân","Cấu trúc lai (hybrid)"],a:3,e:"Hybrid."},
+{s:"22-23 GK2",c:1,q:"Chọn phát biểu SAI?",o:["HĐH là chương trình trung gian giữa phần cứng và người sử dụng…","HĐH giúp người dùng dễ dàng sử dụng hệ thống","Hệ thống song song được phân chia thành hệ thống đơn chương và đa chương","Chương trình ứng dụng sử dụng tài nguyên để giải quyết bài toán của người dùng"],a:2,e:"Song song: đối xứng và bất đối xứng."},
+{s:"22-23 GK2",c:3,q:"Chọn phát biểu SAI?",o:["Chuyển ngữ cảnh là quá trình CPU chuyển từ tiến trình này sang tiến trình khác","Chương trình trở thành tiến trình khi tập tin thực thi được nạp vào bộ nhớ","Ba phương pháp truyền tham số: qua thanh ghi, qua một vùng nhớ và qua stack","Lời gọi hệ thống cung cấp giao diện giữa người dùng và HĐH"],a:3,e:"Giữa tiến trình và HĐH."},
+{s:"22-23 GK2",c:4,q:"Đặc điểm của chế độ quyết định trưng dụng là gì?",o:["Khi running, tiến trình chạy đến khi kết thúc hoặc bị blocked do I/O","Tiến trình đang running có thể bị ngắt nửa chừng và chuyển về ready","Chi phí thấp hơn không trưng dụng, đổi lại thời gian hoàn thành tốt hơn","Tiến trình nào yêu cầu CPU trước được cấp CPU trước"],a:1,e:"Trưng dụng: chi phí cao hơn, đáp ứng tốt hơn."},
+{s:"22-23 GK2",c:4,q:"Dispatch latency là gì?",o:["Thời gian từ lúc nhận yêu cầu đến khi được đáp ứng lần đầu","Thời gian mà bộ định thời dừng một tiến trình và khởi động một tiến trình khác","Tổng thời gian một tiến trình đợi trong ready","Thời điểm thực thi hàm lựa chọn"],a:1,e:"A là response time, C là waiting time."},
+{s:"22-23 GK2",c:3,q:"Lựa chọn nào KHÔNG phải là một mô hình đa tiểu trình?",o:["Many-to-One","One-to-One","Many-to-Many","One-to-Many"],a:3,e:"Chỉ có 3 mô hình A, B, C."},
+{s:"22-23 GK2",c:3,q:"Tiến trình ở trạng thái terminated khi nào?",o:["Vừa được tạo","Đã có đủ tài nguyên, chỉ còn cần CPU","Đã kết thúc","Các lệnh đang được thực thi"],a:2,e:""},
+{s:"22-23 GK2",c:4,q:"Bộ định thời nào chuyển tiến trình từ bộ nhớ sang đĩa và từ đĩa vào bộ nhớ?",o:["Medium-term scheduler","Short-term scheduler","Long-term scheduler","Job scheduler"],a:0,e:"Swap out/in. Job scheduler = long-term."},
+{s:"22-23 GK2",c:3,q:"Chọn phát biểu ĐÚNG về quá trình tạo tiến trình mới?",o:["Tiến trình con nhận tài nguyên từ HĐH hoặc từ tiến trình cha","Tiến trình cha và con luôn thực thi đồng thời","Tiến trình tạo là con của tiến trình được tạo","Tiến trình con chỉ có thể sử dụng một phần tài nguyên của cha"],a:0,e:"B: không luôn; D: một phần hoặc toàn bộ."},
+{s:"22-23 GK2",c:1,q:"Các máy tính ngang hàng nhau, không có cơ sở dữ liệu tập trung. Đây là mô hình phân tán nào?",o:["Client-server","Peer-to-peer","Symmetric multiprocessor","Master-slave"],a:1,e:""},
+{s:"22-23 GK2",c:4,q:"Chọn phát biểu SAI về giải thuật định thời?",o:["SJF là định thời theo độ ưu tiên với ưu tiên là thời gian CPU dự đoán","Round Robin giả thiết ngầm mọi tiến trình quan trọng ngang nhau","Highest Response Ratio Next chọn tiến trình có response ratio nhỏ nhất để thực thi tiếp","Multilevel Feedback Queue cho phép tiến trình di chuyển giữa các hàng đợi"],a:2,e:"HRRN chọn response ratio LỚN nhất."},
+{s:"22-23 GK2",c:4,q:"Giản đồ nào biểu diễn kết quả SRTF?",t:"g2223b",sim:{preset:"g2223b",algo:"SRTF"},o:["P1 | P2 | P5 | P2 | P3 | P1 | P4 — mốc 0, 4, 5, 9, 14, 21, 31, 42","P1 | P5 | P2 | P3 | P4 — mốc 0, 14, 18, 24, 31, 42","P1 | P2 | P5 | P3 | P1 | P4 — mốc 0, 4, 10, 14, 21, 31, 42","P1 | P5 | P2 | P3 | P1 | P4 — mốc 0, 5, 9, 15, 22, 31, 42"],a:0,e:"t=4 P2 (6) &lt; P1 còn 10 ⇒ P2 chiếm. t=5 P5 (4) &lt; P2 còn 5 ⇒ P5. t=9 P2 (5) nhỏ nhất. t=14 P3 (7), rồi P1 (10), P4 (11)."},
+{s:"22-23 GK2",c:4,q:"Tiến trình nào có thời gian chờ lớn nhất khi thực hiện SRTF?",t:"g2223b",sim:{preset:"g2223b",algo:"SRTF"},o:["P1","P2","P3","P4"],a:3,e:"Chờ: P1 = 17, P2 = 4, P3 = 5, P4 = 20, P5 = 0."},
+{s:"22-23 GK2",c:4,q:"Thời gian chờ trung bình khi thực hiện Round Robin (quantum = 6) là bao nhiêu?",t:"g2223b",sim:{preset:"g2223b",algo:"RR",q:6},o:["5","22.4","14.6","9.2"],a:2,e:"Tính lại: chờ P1 = 22, P2 = 2, P3 = 21, P4 = 20, P5 = 7 ⇒ 72/5 = 14.4. Không có 14.4 nên chọn phương án gần nhất C (đề có thể in sai)."},
+{s:"22-23 GK2",c:4,q:"Tiến trình nào có thời gian hoàn thành nhỏ nhất khi thực hiện Round Robin (quantum = 6)?",t:"g2223b",sim:{preset:"g2223b",algo:"RR",q:6},o:["P5","P2","P3","P4"],a:1,e:"Gantt: P1 0–6, P2 6–12, P5 12–16, … Hoàn thành P2 = 12 − 4 = 8, P5 = 16 − 5 = 11."},
+
+/* 2023-2024 GK1 */
+{s:"23-24 GK1",c:3,q:"Chọn phát biểu SAI về các tác vụ đối với tiến trình?",o:["Tiến trình con nhận tài nguyên từ HĐH hoặc từ tiến trình cha","Không gian địa chỉ của tiến trình con luôn được nhân bản từ tiến trình cha","Tiến trình có thể tự kết thúc hoặc bị kết thúc bởi tiến trình khác","Tiến trình con có thể sử dụng một phần hoặc toàn bộ tài nguyên của cha"],a:1,e:"Không “luôn”: với exec() không gian địa chỉ bị thay bằng chương trình mới."},
+{s:"23-24 GK1",c:1,q:"Chọn phát biểu SAI?",o:["HĐH là chương trình trung gian giữa phần cứng và người sử dụng…","HĐH hoạt động định hướng theo ngắt","Có hai chế độ hoạt động cơ bản là chế độ người dùng và chế độ hạt nhân","Hệ thống đơn chương cho phép nhiều công việc được nạp đồng thời vào bộ nhớ"],a:3,e:"Đó là đa chương."},
+{s:"23-24 GK1",c:2,q:"Kiểu cấu trúc nào dùng cách tiếp cận hướng đối tượng với mỗi core thành phần tách biệt nhau?",o:["Cấu trúc modules","Cấu trúc phân lớp","Cấu trúc vi nhân","Cấu trúc Monolithic"],a:0,e:""},
+{s:"23-24 GK1",c:1,q:"Một dạng hệ thống đa bộ xử lý nhưng gồm nhiều hệ thống làm việc với nhau, thường chia sẻ lưu trữ qua storage-area network. Đây là kiến trúc nào?",o:["Clustered Systems","Single Purpose Systems","Single-Processor Systems","Hybrid Systems"],a:0,e:"Hệ thống gom cụm."},
+{s:"23-24 GK1",c:4,q:"Định thời theo cách tiếp cận đa xử lý đối xứng có đặc điểm nào?",o:["Chỉ một bộ xử lý truy xuất dữ liệu hệ thống, không cần chia sẻ dữ liệu","Mỗi bộ xử lý tự định thời cho chính nó","Tất cả thao tác lập lịch, xử lý I/O do một bộ xử lý (master server) thực hiện","Master server có thể bị nghẽn cổ chai, làm giảm hiệu năng"],a:1,e:"A, C, D mô tả đa xử lý bất đối xứng."},
+{s:"23-24 GK1",c:4,q:"Giản đồ nào biểu diễn kết quả Round Robin (quantum = 5)?",t:"g2324a",sim:{preset:"g2324a",algo:"RR",q:5},o:["P1|P4|P5|P1|P4|P3|P2 — 0, 4, 9, 13, 17, 21, 28, 40","P1|P4|P2|P5|P3 — 0, 8, 17, 29, 33, 40","P1|P4|P1|P2|P5|P4|P3|P2|P3|P2 — 0, 5, 10, 13, 18, 22, 26, 31, 36, 38, 40","P1|P4|P2|P5|P3|P1|P4|P2|P3|P2 — 0, 5, 10, 15, 19, 24, 27, 31, 36, 38, 40"],a:2,e:"t=5 P1 hết quantum, hàng đợi [P4, P1]. t=10 P4 hết quantum; P2 (7), P5 (9) đã vào trước ⇒ [P1, P2, P5, P4]. Tiếp tục như phương án C."},
+{s:"23-24 GK1",c:4,q:"Tiến trình nào có thời gian đáp ứng lớn nhất khi thực hiện Round Robin (quantum = 5)?",t:"g2324a",sim:{preset:"g2324a",algo:"RR",q:5},o:["P1","P2","P3","P4"],a:2,e:"Đáp ứng: P1 = 0, P4 = 1, P2 = 6, P5 = 9, P3 = 26 − 12 = 14."},
+{s:"23-24 GK1",c:4,q:"Thời gian hoàn thành trung bình khi thực hiện SJF (không trưng dụng)?",t:"g2324a",sim:{preset:"g2324a",algo:"SJF"},o:["6","16.4","21.4","8.4"],a:1,e:"P1 0–8, P4 8–17, P5 17–21, P3 21–28, P2 28–40. Hoàn thành 8 + 13 + 12 + 16 + 33 = 82 ⇒ 16.4."},
+{s:"23-24 GK1",c:4,q:"Tiến trình nào có thời gian chờ nhỏ nhất khi thực hiện SJF (không trưng dụng)? (chọn trong 4 phương án)",t:"g2324a",sim:{preset:"g2324a",algo:"SJF"},o:["P5","P2","P3","P4"],a:3,e:"Chờ: P4 = 4, P5 = 8, P3 = 9, P2 = 21 (P1 = 0 không có trong phương án)."},
+{s:"23-24 GK1",c:3,q:"Chọn phát biểu SAI?",o:["Trạng thái tiến trình được lưu trong PCB","Tiến trình chuyển sang trạng thái ready khi có thao tác nhập/xuất diễn ra","Khi tiến trình kết thúc, HĐH thu hồi tất cả tài nguyên của nó","HĐH cung cấp cơ chế IPC giúp các tiến trình giao tiếp"],a:1,e:"Có I/O thì vào waiting."},
+{s:"23-24 GK1",c:3,q:"Khi tiến trình được nạp vào bộ nhớ, các biến cục bộ được chứa ở đâu?",o:["Stack section","Data section","Text section","Heap section"],a:0,e:""},
+{s:"23-24 GK1",c:4,q:"Bộ định thời ngắn được sử dụng để làm gì?",o:["Quyết định swap in / swap out","Xác định tiến trình nào trong ready queue được chiếm CPU kế tiếp","Xác định chương trình nào được chấp nhận nạp vào hệ thống","Xử lý các thao tác nhập/xuất"],a:1,e:"A là bộ định thời vừa, C là bộ định thời dài."},
+{s:"23-24 GK1",c:3,q:"Trong tiến trình đa luồng, các tiểu trình KHÔNG chia sẻ chung thành phần nào?",o:["Code","Data","Registers","Resources (files)"],a:2,e:"Riêng: ID, PC, registers, stack."},
+{s:"23-24 GK1",c:2,q:"Lời gọi hệ thống chủ yếu được truy cập thông qua phương tiện nào?",o:["Graphics User Interface","Command Line Interface","Application Programming Interface","Command Line Interpreter"],a:2,e:"Qua API."},
+{s:"23-24 GK1",c:2,q:"“Cung cấp cơ chế kiểm soát đăng nhập/xuất” là nhiệm vụ của thành phần nào?",o:["Quản lý bộ nhớ chính","Hệ thống thông dịch lệnh","Quản lý tiến trình","Hệ thống bảo vệ"],a:3,e:""},
+{s:"23-24 GK1",c:4,q:"Chọn phát biểu ĐÚNG về giải thuật định thời?",o:["Định thời theo độ ưu tiên: tiến trình ưu tiên thấp có thể không bao giờ được thực thi","Hạn chế của Round Robin là thời gian đáp ứng trung bình và hoàn thành trung bình khá lớn","Trong HRRN, các tiến trình dài (service time lớn) được ưu tiên hơn","Multilevel Queue cho phép tiến trình di chuyển giữa các hàng đợi"],a:0,e:"RR đáp ứng tốt; HRRN ưu tiên tiến trình ngắn; Multilevel Queue gán cố định."},
+
+/* 2023-2024 GK2 */
+{s:"23-24 GK2",c:4,q:"Loại bộ định thời nào có thể làm giảm mức độ đa chương của hệ thống?",o:["Bộ định thời ngắn","Bộ định thời vừa","Bộ định thời dài","Bộ định thời dài và bộ định thời vừa"],a:3,e:"Cả bộ định thời dài và vừa đều ảnh hưởng mức độ đa chương; chọn phương án đầy đủ nhất."},
+{s:"23-24 GK2",c:1,q:"Chọn phát biểu ĐÚNG?",o:["HĐH là trung gian giữa phần mềm máy tính và người sử dụng…","Bộ nhớ chính là thiết bị lưu trữ không bay hơi có dung lượng lớn duy nhất mà CPU truy xuất trực tiếp","Hệ thống đa chương cho phép nhiều công việc được nạp đồng thời vào bộ nhớ","Hệ thống gom cụm là một dạng hệ thống đơn bộ xử lý"],a:2,e:"A: phần cứng. B: bộ nhớ chính bay hơi. D: đa bộ xử lý."},
+{s:"23-24 GK2",c:2,q:"Lựa chọn nào KHÔNG phải đặc điểm của cấu trúc phân lớp?",o:["Lớp dưới cùng là phần cứng","Lớp trên chỉ phụ thuộc lớp dưới","Lớp trên cùng là giao tiếp với người dùng","Một lớp chỉ có thể gọi các hàm của lớp trên và các hàm của nó được gọi bởi lớp dưới"],a:3,e:"Ngược lại: gọi lớp dưới, được gọi bởi lớp trên."},
+{s:"23-24 GK2",c:4,q:"Thời gian đáp ứng, thời gian hoàn thành, thời gian chờ là tiêu chuẩn định thời theo hướng nào?",o:["Người dùng","Hệ thống","Giải thuật","Tài nguyên"],a:0,e:""},
+{s:"23-24 GK2",c:3,q:"Tập tin thực thi được nạp vào bộ nhớ nhờ công cụ nào?",o:["Loader","Linker","Compiler","Assembler"],a:0,e:""},
+{s:"23-24 GK2",c:4,q:"Đa xử lý đối xứng, nếu mỗi bộ xử lý tự tổ chức hàng đợi riêng thì có thể xuất hiện vấn đề nào?",o:["Nhiều bộ xử lý chọn định thời cùng một tiểu trình","Có tiểu trình không được bộ xử lý nào chọn","Khối lượng công việc của các bộ xử lý khác nhau","Các bộ xử lý luôn quá tải"],a:2,e:"A, B là vấn đề của hàng đợi chung. Hàng đợi riêng gây mất cân bằng tải."},
+{s:"23-24 GK2",c:4,q:"Chọn phát biểu SAI về SJF không trưng dụng?",o:["Hàm chọn lựa được thực thi khi CPU trống","Tiến trình được cấp CPU sẽ thực thi đến khi kết thúc","Khi một tiến trình kết thúc, tiến trình có thời gian thực thi ngắn nhất được chọn","SJF không trưng dụng còn gọi là SRTF"],a:3,e:"SRTF là SJF trưng dụng."},
+{s:"23-24 GK2",c:3,q:"Quá trình khởi tạo tiến trình KHÔNG bao gồm bước nào?",o:["Cấp phát định danh duy nhất","Cấp phát không gian nhớ để nạp tiến trình","Đưa tiến trình vào hàng đợi công việc để thực thi","Khởi tạo PCB cho tiến trình"],a:2,e:"Các bước: PID, không gian nhớ, PCB, thiết lập quan hệ."},
+{s:"23-24 GK2",c:2,q:"Lựa chọn nào KHÔNG phải là một loại giao diện người dùng?",o:["Command Line (CLI)","Graphics User Interface (GUI)","Touch Screen","System Call"],a:3,e:""},
+
+/* 2024-2025 GK1 */
+{s:"24-25 GK1",c:3,q:"Tiến trình ở trạng thái waiting khi nào?",o:["Vừa được tạo","Các lệnh đang được thực thi","Đã kết thúc","Đợi I/O hoàn tất hoặc đợi tín hiệu"],a:3,e:""},
+{s:"24-25 GK1",c:1,q:"Hệ thống lưu trữ được tổ chức phân cấp dựa theo đặc điểm nào? (1) Tốc độ truy xuất (2) Chi phí (3) Khả năng thực thi tập lệnh đa dụng (4) Khả năng lưu dữ liệu khi không có nguồn điện",o:["(1), (2)","(1), (4)","(1), (2), (3)","(1), (2), (4)"],a:3,e:"Tốc độ, chi phí, tính bay hơi."},
+{s:"24-25 GK1",c:2,q:"“Ánh xạ file/thư mục vào thiết bị thứ cấp tương ứng” là dịch vụ của thành phần nào?",o:["Quản lý bộ nhớ chính","Quản lý file","Quản lý tiến trình","Quản lý hệ thống I/O"],a:1,e:""},
+{s:"24-25 GK1",c:2,q:"Dịch vụ bảo vệ (protection) và an ninh (security) KHÔNG nhằm mục đích nào?",o:["Lưu vết người dùng để tính phí hoặc thống kê","Kiểm soát được các truy xuất tài nguyên của hệ thống","Hai tiến trình khác nhau không được ảnh hưởng nhau","Chỉ người dùng được phép mới truy cập được tài nguyên"],a:0,e:"Lưu vết để tính phí là dịch vụ kế toán (accounting)."},
+{s:"24-25 GK1",c:4,q:"Bộ định thời CPU chọn tiến trình trong hàng đợi nào để thực thi kế tiếp?",o:["Hàng đợi công việc","Hàng đợi I/O","Hàng đợi sẵn sàng","Hàng đợi thiết bị"],a:2,e:""},
+{s:"24-25 GK1",c:3,q:"Chuyển ngữ cảnh là gì?",o:["Quá trình nạp tập tin thực thi vào bộ nhớ chính","Quá trình CPU chuyển từ tiến trình này đến tiến trình khác","Quá trình chuyển tiến trình từ bộ nhớ sang đĩa","Quá trình khởi tạo PCB"],a:1,e:""},
+{s:"24-25 GK1",c:1,q:"Chọn phát biểu SAI về hệ thống đa chương?",o:["Công việc/chương trình được thi hành tuần tự","Một công việc đang thực thi được gọi là một tiến trình","Khi một công việc phải chờ, HĐH chuyển sang thực thi công việc khác","Nhiều công việc được nạp đồng thời vào bộ nhớ"],a:0,e:""},
+{s:"24-25 GK1",c:4,q:"Chọn phát biểu ĐÚNG về Multilevel Feedback Queue?",o:["Sử dụng chế độ quyết định không trưng dụng","Tiến trình được gán cố định vào một hàng đợi","Tiến trình có Response Ratio nhỏ nhất được chọn","Tiến trình chờ quá lâu ở hàng đợi ưu tiên thấp có thể được chuyển lên hàng đợi ưu tiên cao hơn (aging)"],a:3,e:"MLFQ dùng trưng dụng; B là Multilevel Queue; C sai cả với HRRN."},
+{s:"24-25 GK1",c:4,q:"Trên hệ thống đa xử lý đối xứng, sử dụng cân bằng tải sẽ ảnh hưởng đến tính chất gì?",o:["Target latency","Virtual run time","Processor affinity","Dispatch latency"],a:2,e:"Di chuyển thread sang CPU khác làm mất lợi thế cache ⇒ ảnh hưởng processor affinity."},
+{s:"24-25 GK1",c:4,q:"Chọn phát biểu SAI về FCFS?",o:["Tiến trình yêu cầu CPU trước được cấp CPU trước","Tiến trình được cấp CPU thực thi đến khi kết thúc hoặc bị blocked do I/O","Dùng hàng đợi FIFO, tiến trình mới thêm vào cuối","Khi CPU trống, HĐH chọn tiến trình có CPU burst ngắn nhất"],a:3,e:"D là SJF."},
+
+/* slide bài giảng của thầy (nội dung trong đề cương Week 08) */
+{s:"Slide thầy",c:1,q:"Ngắt được tạo ra bởi phần mềm do một lỗi hoặc do yêu cầu của người dùng được gọi là gì?",o:["Interrupt vector","Trap hoặc exception","Device driver","Service routine"],a:1,e:"Interrupt vector là bảng địa chỉ các service routine."},
+{s:"Slide thầy",c:1,q:"Processor (bộ xử lý) là gì?",o:["Thành phần phần cứng thực thi các lệnh","Một con chip vật lý chứa một hoặc nhiều CPU","Đơn vị tính toán cơ bản của CPU","Nhiều lõi tính toán trên cùng một CPU"],a:1,e:"A là CPU, C là core, D là multicore."},
+{s:"Slide thầy",c:1,q:"Khi mã trong hạt nhân đang thực thi, bit chế độ (mode bit) có giá trị nào?",o:["1","0","2","Tùy hệ điều hành"],a:1,e:"User mode = 1, kernel mode = 0."},
+{s:"Slide thầy",c:1,q:"Trong gom cụm bất đối xứng (asymmetric clustering):",o:["Mọi nút đều chạy ứng dụng và giám sát lẫn nhau","Một máy ở chế độ hot-standby, các máy còn lại chạy ứng dụng","Các bộ xử lý chia sẻ chung một bộ nhớ","Mỗi bộ xử lý tự định thời cho chính nó"],a:1,e:"A là gom cụm đối xứng."},
+{s:"Slide thầy",c:4,q:"Tiểu trình người dùng được định thời trong phạm vi nào?",o:["System-contention scope (SCS)","Process-contention scope (PCS)","Toàn bộ các CPU khả dụng","Hàng đợi thiết bị"],a:1,e:"Kernel thread mới định thời theo SCS trên mọi CPU."},
+{s:"Slide thầy",c:4,q:"Cân bằng tải theo kiểu pull migration là gì?",o:["Tác vụ đặc biệt kiểm tra định kỳ và đẩy việc từ CPU quá tải sang CPU khác","CPU rỗi kéo tác vụ đang chờ từ CPU bận","Tiến trình tự chọn tập CPU mà nó được chạy","Hệ thống cố giữ tác vụ trên một CPU"],a:1,e:"A là push migration; C là hard affinity; D là soft affinity."},
+{s:"Slide thầy",c:4,q:"Bộ định thời CFS trên Linux chọn tác vụ nào để thực thi kế tiếp?",o:["Tác vụ có giá trị nice lớn nhất","Tác vụ có virtual run time nhỏ nhất","Tác vụ có quantum time còn lại lớn nhất","Tác vụ đến hệ thống sớm nhất"],a:1,e:"nice thấp hơn mới ưu tiên cao hơn; CFS không dùng quantum cố định."},
+{s:"Slide thầy",c:4,q:"Windows sử dụng bao nhiêu mức độ ưu tiên và phân lớp ra sao?",o:["32 mức: variable 1–15, real-time 16–31","140 mức: real-time 0–99, normal 100–139","32 mức: real-time 1–15, variable 16–31","40 mức nice từ −20 đến 19"],a:0,e:"Mức 0 dành cho quản lý bộ nhớ. B là Linux, D là giá trị nice của Linux."},
+{s:"Slide thầy",c:4,q:"Trong định thời Rate Monotonic, độ ưu tiên được gán thế nào?",o:["Theo deadline sớm nhất","Theo nghịch đảo của chu kỳ: chu kỳ ngắn thì ưu tiên cao","Theo thời gian xử lý C lớn nhất","Ngẫu nhiên theo số vé"],a:1,e:"A là EDF."},
+
+/* slide BHT */
+{s:"Slide BHT",c:1,q:"Hệ điều hành được định nghĩa dưới góc độ cơ bản là:",o:["Một phần mềm chạy trên máy tính","Một chương trình quản lý phần cứng máy tính","Một chương trình bảo vệ phần cứng máy tính","Một phần mềm quản lý các phần mềm khác"],a:1,e:""},
+{s:"Slide BHT",c:1,q:"Đặc điểm nào KHÔNG phải là đặc điểm của hệ thống đa chương?",o:["Có bộ giám sát thường trực","Tận dụng thời gian rảnh, tăng hiệu suất sử dụng CPU","Khi một tiến trình thực hiện I/O, một tiến trình khác được thực thi","Nhiều công việc được nạp đồng thời vào bộ nhớ chính"],a:0,e:"Bộ giám sát thường trực gắn với hệ thống đơn chương (xử lý theo lô)."},
+{s:"Slide BHT",c:2,q:"Đâu KHÔNG phải là đặc điểm của cấu trúc Microkernels?",o:["Sử dụng cách tiếp cận hướng đối tượng","Giao tiếp giữa các user module qua cơ chế truyền thông điệp","Chuyển một số chức năng của OS từ kernel space sang user space","Phân chia module theo microkernel"],a:0,e:"Hướng đối tượng là cấu trúc modules."},
+{s:"Slide BHT",c:2,q:"Đâu KHÔNG phải là cơ chế trao đổi thông tin giữa các tiến trình?",o:["Message passing","Shared message","Shared memory"],a:1,e:""},
+{s:"Slide BHT",c:2,q:"Đâu không phải là phương pháp truyền tham số khi sử dụng lời gọi hệ thống?",o:["Qua stack","Qua thanh ghi","Qua một vùng nhớ, địa chỉ vùng nhớ gửi đến HĐH qua thanh ghi","Qua message"],a:3,e:""}
+];
+const SRC=[...new Set(Q.map(q=>q.s))];
+$("#srcSel").insertAdjacentHTML("beforeend",SRC.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join(""));
+let answers=store.get("hdh-answers",{});
+let order=Q.map((_,i)=>i);
+let fChap=0;
+
+function tableHTML(t){const d=T[t];return `<div class="tablewrap"><table style="max-width:420px"><thead><tr>${d.h.map((x,i)=>`<th class="${i?"num":""}">${x}</th>`).join("")}</tr></thead><tbody>${d.r.map(r=>`<tr>${r.map((x,i)=>`<td class="${i?"num":""}">${x}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`}
+function filtered(){
+  const src=$("#srcSel").value, ow=$("#onlyWrong").checked, on=$("#onlyNew").checked;
+  return order.filter(i=>{const q=Q[i];
+    if(fChap&&q.c!==fChap)return false; if(src&&q.s!==src)return false;
+    const a=answers[i];
+    if(ow&&!(a!==undefined&&a!==q.a))return false;
+    if(on&&a!==undefined)return false;
+    return true;});
+}
+function renderQuiz(){
+  const ids=filtered();
+  let r=0,w=0; ids.forEach(i=>{const a=answers[i];if(a===undefined)return; if(a===Q[i].a)r++;else w++;});
+  $("#scRight").textContent=r; $("#scWrong").textContent=w;
+  $("#scLeft").textContent=`${ids.length-r-w} chưa làm / ${ids.length} câu`;
+  $("#scBar").style.width=ids.length?((r+w)/ids.length*100)+"%":"0%";
+  if(!ids.length){$("#qlist").innerHTML=`<div class="card empty">Không có câu nào khớp bộ lọc. Bỏ bớt điều kiện lọc để xem thêm.</div>`;return;}
+  $("#qlist").innerHTML=ids.map((i,n)=>{
+    const q=Q[i], a=answers[i], done=a!==undefined;
+    const cls=done?(a===q.a?"q correct":"q wrongq"):"q";
+    const opts=q.o.map((o,k)=>{let c="opt";if(done){if(k===q.a)c+=" is-right";else if(k===a)c+=" is-wrong";}
+      return `<button class="${c}" data-q="${i}" data-k="${k}" ${done?"disabled":""}><span class="L">${"ABCDE"[k]}.</span><span>${o}</span></button>`}).join("");
+    const ex=done?`<div class="explain"><b>Đáp án ${"ABCDE"[q.a]}.</b> ${q.e||""}${q.sim?` <button class="btn ghost" style="padding:2px 8px;font-size:13px" data-sim="${i}">Xem Gantt trong mô phỏng</button>`:""}</div>`:"";
+    return `<article class="${cls}"><div class="qhead"><span class="qn">Câu ${n+1}</span><span class="tag">C${q.c}</span><span class="tag">${esc(q.s)}</span></div><div class="qtext">${q.q}</div>${q.code?`<pre>${esc(q.code)}</pre>`:""}${q.t?tableHTML(q.t):""}<div class="opts">${opts}</div>${ex}</article>`;
+  }).join("");
+}
+$("#qlist").addEventListener("click",e=>{
+  const s=e.target.closest("[data-sim]");
+  if(s){const q=Q[+s.dataset.sim];loadPreset(q.sim.preset,q.sim.algo,q.sim.q);show("dinhthoi");try{history.replaceState(null,"","#dinhthoi")}catch(_){}window.scrollTo({top:0});return;}
+  const b=e.target.closest(".opt"); if(!b||b.disabled)return;
+  answers[+b.dataset.q]=+b.dataset.k; store.set("hdh-answers",answers);
+  const y=b.closest("article").getBoundingClientRect().top; renderQuiz();
+});
+document.querySelectorAll("#chapSeg button").forEach(b=>b.addEventListener("click",()=>{fChap=+b.dataset.c;document.querySelectorAll("#chapSeg button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));renderQuiz()}));
+["#srcSel","#onlyWrong","#onlyNew"].forEach(s=>$(s).addEventListener("change",renderQuiz));
+$("#shuffleBtn").addEventListener("click",()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}renderQuiz()});
+$("#resetBtn").addEventListener("click",()=>{const ow=$("#onlyWrong").checked;$("#onlyWrong").checked=false;const ids=filtered();$("#onlyWrong").checked=ow;ids.forEach(i=>delete answers[i]);store.set("hdh-answers",answers);renderQuiz()});
+renderQuiz();
+
+/* ---------- scheduler ---------- */
+const PRESETS={
+ w08:{name:"Ôn tập GK của thầy (= bài tập 2 chương 4)",algos:[["FCFS"],["SRTF"],["RR",10]],rows:[["P1",0,10],["P2",2,29],["P3",4,3],["P4",5,7],["P5",7,12]]},
+ bt1:{name:"Bài tập 1 chương 4 (ưu tiên: giả định số nhỏ = cao)",algos:[["FCFS"],["SJF"],["SRTF"],["PRIO_P"],["RR",10]],rows:[["P1",0,20,20],["P2",25,25,30],["P3",20,25,15],["P4",35,15,35],["P5",10,35,5],["P6",15,50,10]]},
+ bt3:{name:"Bài tập 3 chương 4",algos:[["SRTF"],["RR",2],["PRIO_N"]],rows:[["P1",0,10,3],["P2",1,3,2],["P3",2,2,1],["P4",3,1,2],["P5",4,5,4]]},
+ bt4:{name:"Bài tập 4 chương 4",algos:[["FCFS"],["SJF"],["RR",10]],rows:[["P1",5,10],["P2",2,29],["P3",0,3],["P4",1,7],["P5",7,12]]},
+ g1819:{name:"2018-19 GK1",algos:[["FCFS"],["PRIO_P"],["RR",2]],rows:[["P1",0,10,5],["P2",2,7,2],["P3",3,4,3],["P4",6,1,1],["P5",7,5,4]]},
+ g2021a:{name:"2020-21 GK1",algos:[["RR",7],["SRTF"]],rows:[["P1",0,11],["P2",6,4],["P3",2,8],["P4",5,16],["P5",11,6]]},
+ g2021b:{name:"2020-21 GK2",algos:[["RR",5],["SRTF"]],rows:[["P1",0,13],["P2",8,7],["P3",3,6],["P4",6,2],["P5",11,16]]},
+ g2223a:{name:"2022-23 GK1",algos:[["RR",6],["SRTF"]],rows:[["P1",0,12],["P2",3,8],["P3",9,5],["P4",13,16],["P5",7,7]]},
+ g2223b:{name:"2022-23 GK2 (câu 13–16)",algos:[["SRTF"],["RR",6]],rows:[["P1",0,14],["P2",4,6],["P3",9,7],["P4",11,11],["P5",5,4]]},
+ g2324a:{name:"2023-24 GK1 (câu 6–9)",algos:[["RR",5],["SJF"]],rows:[["P1",0,8],["P2",7,12],["P3",12,7],["P4",4,9],["P5",9,4]]},
+ g2324b:{name:"2023-24 GK2",algos:[["RR",6],["PRIO_P"]],rows:[["P1",2,11,1],["P2",0,8,4],["P3",7,5,5],["P4",9,10,3],["P5",13,6,2]]},
+ g2425:{name:"2024-25 GK1",algos:[["SRTF"],["RR",7]],rows:[["P1",8,5],["P2",3,4],["P3",0,10],["P4",6,12],["P5",11,11]]},
+ slide:{name:"Slide BHT (ví dụ)",algos:[["FCFS"],["SJF"],["SRTF"]],rows:[["P1",0,1],["P2",1,4],["P3",2,2],["P4",3,3],["P5",4,5]]}
+};
+const ALGOS={FCFS:"FCFS",SJF:"SJF",SRTF:"SRTF",PRIO_N:"Priority (không trưng dụng)",PRIO_P:"Priority (trưng dụng)",RR:"Round Robin",HRRN:"HRRN"};
+let algo="RR";
+let rows=PRESETS.w08.rows.map(r=>r.slice());
+$("#quantum").value=10;
+
+$("#presets").innerHTML=Object.entries(PRESETS).map(([k,p])=>`<div class="preset"><span class="nm">${esc(p.name)}</span><span class="algo-btns">${p.algos.map(([a,q])=>`<button data-p="${k}" data-a="${a}" data-qq="${q||""}">${a==="PRIO_P"?"Priority trưng dụng":a==="PRIO_N"?"Priority độc quyền":a==="RR"?"RR q="+q:a}</button>`).join("")}</span></div>`).join("");
+$("#presets").addEventListener("click",e=>{const b=e.target.closest("button[data-p]");if(!b)return;loadPreset(b.dataset.p,b.dataset.a,b.dataset.qq?+b.dataset.qq:undefined)});
+function loadPreset(k,a,q){rows=PRESETS[k].rows.map(r=>r.slice());if(q)$("#quantum").value=q;algo=a;renderRows();renderSim()}
+
+$("#algoBtns").innerHTML=Object.entries(ALGOS).map(([k,v])=>`<button data-algo="${k}">${v}</button>`).join("");
+$("#algoBtns").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;algo=b.dataset.algo;renderSim()});
+
+function renderRows(){
+  $("#ptbody").innerHTML=rows.map((r,i)=>`<tr><td><input type="text" id="pn${i}" value="${esc(r[0])}" data-i="${i}" data-f="0" aria-label="Tên"></td><td><input type="number" id="pa${i}" min="0" value="${r[1]}" data-i="${i}" data-f="1" aria-label="Arrival"></td><td><input type="number" id="pb${i}" min="1" value="${r[2]}" data-i="${i}" data-f="2" aria-label="Burst"></td><td><input type="number" id="pp${i}" value="${r[3]??""}" data-i="${i}" data-f="3" aria-label="Ưu tiên" placeholder="–"></td><td><button class="del" data-del="${i}" aria-label="Xóa">×</button></td></tr>`).join("");
+}
+$("#ptbody").addEventListener("input",e=>{const t=e.target;if(t.dataset.i===undefined)return;const f=+t.dataset.f;rows[+t.dataset.i][f]=f===0?t.value:(t.value===""?undefined:Number(t.value));renderSim()});
+$("#ptbody").addEventListener("click",e=>{const b=e.target.closest("[data-del]");if(!b||rows.length<=1)return;rows.splice(+b.dataset.del,1);renderRows();renderSim()});
+$("#addRow").addEventListener("click",()=>{if(rows.length>=8)return;rows.push(["P"+(rows.length+1),0,1]);renderRows();renderSim()});
+$("#quantum").addEventListener("input",renderSim);$("#prioDir").addEventListener("change",renderSim);
+
+function schedule(list,al,q,dir){
+  const P=list.map((r,i)=>({name:r[0]||("P"+(i+1)),at:+r[1]||0,bt:Math.max(1,+r[2]||1),pr:r[3]===undefined||r[3]===""||isNaN(r[3])?0:+r[3]*(dir==="desc"?-1:1),i,rem:0,start:null,fin:null}));
+  P.forEach(p=>p.rem=p.bt);
+  const n=P.length,seg=[],log=[];let t=0,done=0,guard=0;
+  const fmtQ=a=>"["+a.map(p=>p.name+"("+p.rem+")").join(", ")+"]";
+  if(al==="RR"){
+    q=Math.max(1,q|0);
+    const byArr=[...P].sort((a,b)=>a.at-b.at||a.i-b.i);let k=0;const rq=[];
+    const admit=tm=>{while(k<n&&byArr[k].at<=tm){rq.push(byArr[k]);k++}};
+    admit(t);
+    while(done<n&&guard++<5000){
+      if(!rq.length){const nt=byArr[k].at;seg.push({id:-1,s:t,e:nt});log.push([t,`CPU rảnh đến ${nt}`]);t=nt;admit(t);continue}
+      const c=rq.shift();if(c.start===null)c.start=t;
+      const d=Math.min(q,c.rem),s=t;t+=d;c.rem-=d;admit(t);
+      if(c.rem>0)rq.push(c);else{c.fin=t;done++}
+      seg.push({id:c.i,s,e:t});
+      log.push([s,`${c.name} chạy ${s}→${t}`+(c.rem>0?`, hết quantum, còn ${c.rem}`:", xong")+`. Hàng đợi: ${fmtQ(rq)}`]);
+    }
+  }else{
+    const pre=al==="SRTF"||al==="PRIO_P";let cur=null;
+    while(done<n&&guard++<5000){
+      const ready=P.filter(p=>p.at<=t&&p.rem>0);
+      if(!ready.length){const nt=Math.min(...P.filter(p=>p.rem>0).map(p=>p.at));seg.push({id:-1,s:t,e:nt});log.push([t,`CPU rảnh đến ${nt}`]);t=nt;cur=null;continue}
+      const key=p=>{const c=p===cur?0:1;switch(al){
+        case"FCFS":return[p.at,p.i];case"SJF":return[p.bt,p.at,p.i];case"SRTF":return[p.rem,c,p.at,p.i];
+        case"PRIO_N":return[p.pr,p.at,p.i];case"PRIO_P":return[p.pr,c,p.at,p.i];
+        case"HRRN":return[-((t-p.at+p.bt)/p.bt),p.at,p.i]}};
+      ready.sort((a,b)=>{const x=key(a),y=key(b);for(let j=0;j<x.length;j++)if(x[j]!==y[j])return x[j]-y[j];return 0});
+      const c=ready[0];if(c.start===null)c.start=t;
+      let end=t+c.rem;
+      if(pre){const na=P.filter(p=>p.at>t&&p.rem>0).map(p=>p.at);if(na.length)end=Math.min(end,Math.min(...na))}
+      const s=t,others=ready.slice(1);
+      let why="";
+      if(al==="SRTF")why=` (còn ${c.rem} nhỏ nhất)`;else if(al==="SJF")why=` (burst ${c.bt} nhỏ nhất)`;else if(al.startsWith("PRIO"))why=` (ưu tiên ${list[c.i][3]??"–"})`;else if(al==="HRRN")why=` (RR = ${((t-c.at+c.bt)/c.bt).toFixed(2)}${others.length?"; "+others.map(p=>p.name+" "+((t-p.at+p.bt)/p.bt).toFixed(2)).join(", "):""})`;
+      c.rem-=end-t;t=end;if(c.rem===0){c.fin=t;done++}
+      const last=log[log.length-1];
+      if(pre&&cur===c&&last&&last.pid===c.i){last.e=t;last[1]=`${c.name} chạy ${last.s0}→${t}`+(c.rem?`, còn ${c.rem}`:", xong")+last.tail}
+      else{const tail=`. Đang chờ: ${fmtQ(others)}`;const L=[s,`${c.name} chạy ${s}→${t}${why}`+(c.rem?`, bị ngắt, còn ${c.rem}`:", xong")+tail];L.pid=c.i;L.s0=s;L.tail=why+tail;log.push(L)}
+      seg.push({id:c.i,s,e:t});cur=c.rem>0?c:null;
+    }
+  }
+  const m=[];seg.forEach(g=>{const l=m[m.length-1];if(l&&l.id===g.id&&l.e===g.s&&al!=="RR")l.e=g.e;else m.push({...g})});
+  P.forEach(p=>{p.resp=p.start-p.at;p.tat=p.fin-p.at;p.wait=p.tat-p.bt});
+  const avg=f=>P.reduce((s,p)=>s+p[f],0)/n;
+  return{P,seg:m,log,avg:{resp:avg("resp"),wait:avg("wait"),tat:avg("tat")}};
+}
+const fmt=x=>Number.isInteger(x)?String(x):(Math.round(x*100)/100).toString();
+function renderSim(){
+  document.querySelectorAll("#algoBtns button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.algo===algo?"true":"false"));
+  const q=+$("#quantum").value||1,dir=$("#prioDir").value;
+  const R=schedule(rows,algo,q,dir);
+  const total=R.seg.length?R.seg[R.seg.length-1].e:1;
+  $("#ganttTitle").textContent=`Giản đồ Gantt · ${ALGOS[algo]}${algo==="RR"?" · q = "+q:""}`;
+  const g=$("#gantt");g.style.minWidth=Math.max(total*24,300)+"px";
+  const ticks=new Set([0]);
+  g.innerHTML=R.seg.map(s=>{ticks.add(s.e);const l=s.s/total*100,w=(s.e-s.s)/total*100;
+    return s.id<0?`<div class="bar idle" style="left:${l}%;width:${w}%">rảnh</div>`:`<div class="bar" style="left:${l}%;width:${w}%;background:var(--p${s.id%8+1})" title="${esc(R.P[s.id].name)}: ${s.s}–${s.e}">${esc(R.P[s.id].name)}</div>`}).join("")
+    +[...ticks].map(x=>`<span class="tick" style="left:${x/total*100}%">${x}</span>`).join("");
+  const usesPr=algo.startsWith("PRIO");
+  $("#resTable").innerHTML=`<thead><tr><th>Tiến trình</th><th class="num">Arrival</th><th class="num">Burst</th>${usesPr?'<th class="num">Ưu tiên</th>':""}<th class="num">Bắt đầu</th><th class="num">Kết thúc</th><th class="num">Đáp ứng</th><th class="num">Chờ</th><th class="num">Hoàn thành</th></tr></thead><tbody>`+
+   R.P.map(p=>`<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--p${p.i%8+1});margin-right:6px"></span>${esc(p.name)}</td><td class="num">${p.at}</td><td class="num">${p.bt}</td>${usesPr?`<td class="num">${rows[p.i][3]??"–"}</td>`:""}<td class="num">${p.start}</td><td class="num">${p.fin}</td><td class="num">${p.resp}</td><td class="num">${p.wait}</td><td class="num">${p.tat}</td></tr>`).join("")+
+   `<tr><td><b>Trung bình</b></td><td></td><td></td>${usesPr?"<td></td>":""}<td></td><td></td><td class="num"><b>${fmt(R.avg.resp)}</b></td><td class="num"><b>${fmt(R.avg.wait)}</b></td><td class="num"><b>${fmt(R.avg.tat)}</b></td></tr></tbody>`;
+  $("#logHint").textContent=algo==="RR"?"Hàng đợi ready sau mỗi lượt, số trong ngoặc là thời gian còn lại.":"Mỗi dòng là một lần hàm chọn lựa được gọi; danh sách chờ có thời gian còn lại trong ngoặc.";
+  $("#log").innerHTML=R.log.map(([t,s])=>`<div><span class="t">t=${t}</span> ${esc(s)}</div>`).join("");
+  const keys=["FCFS","SJF","SRTF","PRIO_N","PRIO_P","RR","HRRN"].filter(k=>!k.startsWith("PRIO")||rows.some(r=>r[3]!==undefined&&r[3]!==""));
+  const res=keys.map(k=>[k,schedule(rows,k,q,dir).avg]);
+  const best=f=>Math.min(...res.map(r=>r[1][f]));
+  const cell=(v,f)=>`<td class="num ${Math.abs(v-best(f))<1e-9?"best":""}">${fmt(v)}</td>`;
+  $("#cmpTable").innerHTML=`<thead><tr><th>Giải thuật</th><th class="num">Chờ TB</th><th class="num">Đáp ứng TB</th><th class="num">Hoàn thành TB</th></tr></thead><tbody>`+res.map(([k,a])=>`<tr><td>${ALGOS[k]}${k==="RR"?" (q = "+q+")":""}</td>${cell(a.wait,"wait")}${cell(a.resp,"resp")}${cell(a.tat,"tat")}</tr>`).join("")+"</tbody>";
+}
+renderRows();renderSim();
+$("#w08res").innerHTML=[["FCFS","FCFS"],["SRTF","SJF preemptive"],["RR","RR q = 10"]].map(([k,l])=>{const a=schedule(PRESETS.w08.rows,k,10,"asc").avg;return `<tr><td>${l}</td><td class="num">${fmt(a.wait)}</td><td class="num">${fmt(a.resp)}</td><td class="num">${fmt(a.tat)}</td></tr>`}).join("");
+
+/* ---------- fork examples ---------- */
+const FORKS=[
+{t:"Slide BHT VD1 · cũng là 23-24 GK2 câu 2b",code:`int x = 20;
+int main() {
+  int i;
+  printf("hello\\n");
+  int f = fork();
+  if (f < 0) {
+    printf("%d\\n", f);
+    fork();
+  }
+  for (i = 0; i <= 2; i++) {
+    int k = fork();
+    printf("%d\\n", f + i);
+    if (k == 0)
+      fork();
+    else
+      printf("hi\\n");
+  }
+  printf("hi\\n");
+  return 0;
+}`,qs:["Có bao nhiêu tiến trình được tạo ra?","Tiến trình in “hello” chuyển sang running bao nhiêu lần?"],
+a:`<p><b>Đếm tiến trình.</b> <code>fork()</code> thành công nên nhánh <code>f &lt; 0</code> không chạy: 2 tiến trình vào vòng lặp. Mỗi vòng: <code>k = fork()</code> nhân đôi, sau đó các con (<code>k == 0</code>) fork thêm một lần, nên mỗi vòng nhân 3.</p>
+<p>i = 0: 2 → 6 · i = 1: 6 → 18 · i = 2: 18 → <b>54 tiến trình</b>.</p>
+<p><b>Số lần running của P0</b> (chỉ P0 in “hello”): P0 gọi printf “hello” (1), mỗi vòng P0 là cha nên in <code>f+i</code> và “hi” (2 × 3 = 6), cuối cùng in “hi” (1). Tổng 8 lần I/O ⇒ 8 lần waiting ⇒ running = 8 + 1 = <b>9 lần</b>.</p>`},
+{t:"23-24 GK1 · tự luận (cũng là Slide BHT VD2)",code:`int x = 10;
+int main() {
+  int i;
+  printf("hello\\n");
+  int f = fork();
+  if (f > 0) {
+    printf("%d\\n", f);
+    x = f;
+  }
+  for (i = 0; i < 2; i++) {
+    int k = fork();
+    printf("%d\\n", f);       // in đậm
+    if (k == 0)
+      fork();
+    else {
+      printf("hi\\n");        // in đậm
+      x = i + 1;
+      fork();
+    }
+  }
+  printf("hi\\n");
+  return 0;
+}`,qs:["Có tất cả bao nhiêu tiến trình (kể cả cha)?","Có tất cả bao nhiêu từ “hi” được in ra?","Trong các tiến trình in “hello”, giá trị cuối cùng của x là bao nhiêu?","Có bao nhiêu tiến trình thực hiện cả hai lệnh in đậm?"],
+a:`<p>Sau <code>f = fork()</code>: 2 tiến trình. Mỗi vòng: <code>k = fork()</code> nhân đôi, rồi <i>cả hai nhánh</i> đều fork ⇒ nhân 4.</p>
+<ol class="tight"><li>i = 0: 2 → 8 · i = 1: 8 → <b>32 tiến trình</b>.</li>
+<li>“hi” trong else: số cha của <code>k = fork()</code> là 2 (i = 0) + 8 (i = 1) = 10. “hi” cuối: 32. Tổng <b>42</b>.</li>
+<li>Chỉ P0 in “hello”. P0: <code>x = f</code>, vòng i = 0 là cha ⇒ <code>x = 1</code>, vòng i = 1 là cha ⇒ <code>x = 2</code>. Đáp án <b>2</b>.</li>
+<li>Mọi tiến trình có mặt trong vòng lặp đều chạy <code>printf f</code>. Tiến trình chạy <code>printf("hi")</code> trong else là cha của <code>k = fork()</code>. Ở i = 1 có đúng 8 cha, và cả 2 cha ở i = 0 cũng nằm trong 8 tiến trình này ⇒ <b>8 tiến trình</b>.</li></ol>`},
+{t:"22-23 GK2 · tự luận",code:`int x = 15;
+int main() {
+  int i;
+  printf("hi\\n");
+  int f = fork();
+  if (f > 0)
+    printf("%d\\n", f);
+  for (i = 0; i < 2; i++) {
+    int k = fork();
+    printf("%d\\n", k);       // lệnh in đậm (giả định)
+    if (i == 0)
+      fork();
+    printf("hello\\n");
+  }
+  printf("bye\\n");
+  return 0;
+}`,qs:["Có tất cả bao nhiêu tiến trình (kể cả cha)?","Có tất cả bao nhiêu từ “hello”?","Tiến trình in “hi” chuyển sang waiting bao nhiêu lần?","Có bao nhiêu giá trị khác nhau được in bởi lệnh in đậm?"],
+a:`<ol class="tight"><li>2 tiến trình vào vòng. i = 0: fork → 4, <code>i == 0</code> fork tiếp → 8. i = 1: fork → <b>16</b>.</li>
+<li>“hello”: 8 (i = 0) + 16 (i = 1) = <b>24</b>.</li>
+<li>Chỉ P0 in “hi”. P0 gọi printf: “hi”, <code>f</code>, (k, hello) × 2, “bye” = <b>7 lần waiting</b>.</li>
+<li>Bản PDF không giữ được chữ đậm; nếu lệnh in đậm là <code>printf("%d\\n", k)</code>: k = 0 ở mọi con, còn mỗi cha in PID riêng. Số lần gọi <code>k = fork()</code>: 4 (i = 0) + 8 (i = 1) = 12 PID khác nhau, cộng giá trị 0 ⇒ <b>13</b>.</li></ol>`},
+{t:"24-25 GK1 · câu 1c",code:`int x = 24;
+int main() {
+  int i;
+  printf("hello\\n");
+  int f = fork();
+  for (i = 0; i <= 2; i++) {
+    int k = fork();
+    printf("%d\\n", f + i);
+    x = x + i;
+  }
+  printf("hi\\n");
+  if (f == 0) {
+    printf("%d\\n", x);
+    fork();
+    x = x + 2;
+  }
+  return 0;
+}`,qs:["Có bao nhiêu tiến trình mà giá trị cuối cùng của x là 25?"],
+a:`<p>Lệnh <code>x = x + i</code> nằm <i>sau</i> <code>fork()</code> trong cùng vòng, nên tiến trình con vừa tạo cũng cộng i của vòng đó. Mọi tiến trình đều cộng đủ 0 + 1 + 2 ⇒ ra khỏi vòng x = <b>27</b>.</p>
+<p>Các tiến trình có <code>f == 0</code> fork rồi cộng thêm 2 ⇒ 29. Không tiến trình nào có x = 25 ⇒ đáp án <b>0</b>.</p>
+<p class="small muted">Thêm: tổng 2 × 2³ = 16 tiến trình sau vòng; 8 tiến trình có f == 0 fork tiếp ⇒ 24 tiến trình.</p>`},
+{t:"22-23 GK1 · câu 11",code:`int x = 10;
+int main() {
+  int i;
+  int f = fork();
+  if (f > 0)
+    printf("%d\\n", x);
+  else
+    fork();
+  for (i = 0; i < 2; i++) {
+    int k = fork();
+    if (i > 0)
+      fork();
+  }
+  printf("hello\\n");
+  return 0;
+}`,qs:["Có bao nhiêu tiến trình (kể cả cha)? Bao nhiêu “hello”?"],
+a:`<p>if/else: cha in x, con fork ⇒ 3 tiến trình. i = 0: 3 → 6. i = 1: 6 → 12 → 24 (vì i &gt; 0 fork thêm). <b>24 tiến trình</b>, mỗi tiến trình in 1 “hello” ⇒ 24 “hello”.</p>`}
+];
+$("#forkList").innerHTML=FORKS.map(f=>`<div class="card" style="display:grid;gap:8px"><div class="eyebrow">${esc(f.t)}</div><div class="grid2"><pre style="margin:0">${esc(f.code)}</pre><div><h3>Câu hỏi</h3><ol class="tight">${f.qs.map(x=>`<li>${x}</li>`).join("")}</ol><details class="ans"><summary>Xem lời giải</summary><div>${f.a}</div></details></div></div></div>`).join("");
+})();
+</script>
+
+</body></html>

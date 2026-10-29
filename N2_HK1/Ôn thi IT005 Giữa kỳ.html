@@ -1,0 +1,536 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ôn thi IT005 Giữa kỳ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&family=Roboto+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: single reading column; sticky score bar; cheat-sheet grid that stacks on phones */
+:root{
+  --bg:#F3F6F7; --surface:#FFFFFF; --fg:#13212B; --muted:#5A6B76; --line:#D6E0E5;
+  --accent:#0B6A88; --accent-soft:#E0EFF4; --mark:#B85C00; --mark-soft:#FBEBDB;
+  --ok:#1E7A46; --ok-soft:#E1F3E8; --bad:#B42323; --bad-soft:#FBE4E4;
+  --display:"Be Vietnam Pro",system-ui,"Segoe UI",sans-serif;
+  --body:"Be Vietnam Pro",system-ui,"Segoe UI",sans-serif;
+  --mono:"Roboto Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D151A; --surface:#141F26; --fg:#E2EAEE; --muted:#93A5AF; --line:#24343D;
+  --accent:#5DB8D6; --accent-soft:#16303B; --mark:#F0A04B; --mark-soft:#33240F;
+  --ok:#5BC98A; --ok-soft:#12301F; --bad:#F07A7A; --bad-soft:#3A1717; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D151A; --surface:#141F26; --fg:#E2EAEE; --muted:#93A5AF; --line:#24343D;
+  --accent:#5DB8D6; --accent-soft:#16303B; --mark:#F0A04B; --mark-soft:#33240F;
+  --ok:#5BC98A; --ok-soft:#12301F; --bad:#F07A7A; --bad-soft:#3A1717; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:880px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.25;margin:0}
+h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:22px;font-weight:800;margin-bottom:14px}
+h3{font-size:15px;font-weight:600}
+p{margin:0}
+code,.mono{font-family:var(--mono);font-size:.92em}
+section{margin-top:44px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.lede{color:var(--muted);max-width:62ch;margin-top:8px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.fact{font-family:var(--mono);font-size:13px;padding:5px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.fact b{color:var(--mark);font-weight:600}
+
+/* frequent question types */
+.types{width:100%;border-collapse:collapse;font-size:14px}
+.types th,.types td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.types th{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.tbl{overflow-x:auto}
+.ch{font-family:var(--mono);font-size:12px;color:var(--accent);white-space:nowrap}
+.heat{font-family:var(--mono);color:var(--mark);white-space:nowrap}
+
+/* cheat sheet */
+.sheet{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+.card h3{margin-bottom:8px;display:flex;gap:8px;align-items:baseline}
+.card h3 .ch{font-weight:500}
+.card ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.card li::marker{color:var(--muted)}
+.formula{font-family:var(--mono);background:var(--accent-soft);border-radius:6px;padding:8px 10px;margin:8px 0;font-size:13.5px;overflow-x:auto;white-space:nowrap}
+.trap{color:var(--mark);font-weight:600}
+
+/* worked examples */
+details.ex{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-top:10px}
+details.ex summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details.ex summary::after{content:"+";font-family:var(--mono);color:var(--accent)}
+details.ex[open] summary::after{content:"−"}
+details.ex .body{padding:0 16px 16px;display:grid;gap:10px}
+.bits{font-family:var(--mono);font-size:13px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.bits div{border:1px solid var(--line);border-radius:6px;padding:6px;text-align:center;overflow-wrap:anywhere}
+.bits small{display:block;color:var(--muted);font-size:11px}
+.chart{overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:520px;height:auto}
+
+/* quiz */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.score{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
+.score b{color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip,.btn{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:999px;padding:4px 12px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn{border-radius:6px}
+.chip:focus-visible,.btn:focus-visible,.opt:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.qs{display:grid;gap:12px;margin-top:14px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+.q .meta{display:flex;gap:10px;font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:6px}
+.q .stem{font-weight:500}
+.q pre{font-family:var(--mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px;overflow-x:auto;margin:10px 0 0}
+.opts{display:grid;gap:6px;margin-top:12px}
+.opt{font:inherit;text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:8px;padding:8px 12px;cursor:pointer;display:flex;gap:10px}
+.opt .k{font-family:var(--mono);color:var(--muted)}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--ok-soft);border-color:var(--ok)}
+.opt.right .k{color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt.wrong .k{color:var(--bad)}
+.why{margin-top:10px;padding:10px 12px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 6px 6px 0;font-size:14px}
+.empty{color:var(--muted);padding:20px;text-align:center}
+footer{margin-top:48px;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:no-preference){.opt{transition:border-color .15s,background .15s}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">IT005 · Nhập môn Mạng máy tính</div>
+    <h1>Ôn thi Giữa kỳ</h1>
+    <p class="lede">Tổng hợp từ đề giữa kỳ 2019, 2020, 2021, 2022–2023, Quiz-GK, bộ đáp án trắc nghiệm 64 câu, bộ đề phát triển 2023–2024, ngân hàng câu hỏi Chương 2–3 và slide bài giảng. Đọc tờ tóm tắt, xem cách giải các dạng tính toán, rồi làm bộ trắc nghiệm ở cuối.</p>
+    <div class="facts">
+      <span class="fact"><b>30</b> câu trắc nghiệm</span>
+      <span class="fact"><b>60</b> phút</span>
+      <span class="fact">Không dùng tài liệu</span>
+      <span class="fact">Phạm vi: <b>Chương 1–3</b></span>
+    </div>
+  </header>
+
+  <section id="dang-bai">
+    <h2>Dạng câu hay ra</h2>
+    <div class="tbl">
+    <table class="types">
+      <thead><tr><th>Dạng</th><th>Chương</th><th>Tần suất</th><th>Ghi nhớ</th></tr></thead>
+      <tbody>
+        <tr><td>Đọc đồ thị cwnd TCP Reno (ssthresh, pha, segment thứ n)</td><td class="ch">C3</td><td class="heat">●●●●● cụm 4–5 câu</td><td>Slow start nhân đôi, CA +1, 3 dup ACK → ½, timeout → 1</td></tr>
+        <tr><td>Sequence/ACK number, Go-Back-N trên sơ đồ</td><td class="ch">C3</td><td class="heat">●●●● cụm 2–3 câu</td><td>seq tiếp = seq + số byte; ACK = byte kế tiếp mong đợi</td></tr>
+        <tr><td>Giải mã UDP header từ chuỗi bit</td><td class="ch">C3</td><td class="heat">●●● cụm 3 câu</td><td>4 trường × 16 bit; payload = length − 8</td></tr>
+        <tr><td>Độ trễ đầu cuối, tìm R<sub>new</sub></td><td class="ch">C1</td><td class="heat">●●● năm nào cũng có</td><td>d = L/R + d/s</td></tr>
+        <tr><td>Sơ đồ gửi mail Alice → Bob (bước 2, 4, 6)</td><td class="ch">C2</td><td class="heat">●●● cụm 2 câu</td><td>Gửi: SMTP; Bob lấy thư: POP3/IMAP/HTTP</td></tr>
+        <tr><td>Sơ đồ rdt / GBN có ký hiệu S1…S7, R1…R5: bên nhận làm gì, gửi lại gói nào</td><td class="ch">C3</td><td class="heat">●●●● Quiz nhiều câu</td><td>GBN bỏ gói sai thứ tự, gửi lại ACK cũ; timeout gửi lại cả cửa sổ</td></tr>
+        <tr><td>Đọc gói Wireshark (TCP Seq/Ack/Len, cờ SYN/ACK, UDP Length)</td><td class="ch">C3</td><td class="heat">●●● 2019, 2020, Quiz</td><td>ACK trả lời = Seq + Len; SYN/ACK: ack = ISN bên kia + 1</td></tr>
+        <tr><td>Trễ qua nhiều liên kết, tìm băng thông/khoảng cách, web cache</td><td class="ch">C1</td><td class="heat">●●● 2019, 2020</td><td>Store-and-forward: cộng L/R từng chặng; cache: chỉ (1 − hit) đi qua access link</td></tr>
+        <tr><td>Ghép giao thức ↔ nhiệm vụ ↔ cổng</td><td class="ch">C2</td><td class="heat">●●● 2019, 2020, Quiz</td><td>FTP 21 · SSH 22 · SMTP 25 · DNS 53 · HTTP 80 · IMAP 143 · HTTPS 443</td></tr>
+        <tr><td>Đọc HTTP request, mã trạng thái, conditional GET</td><td class="ch">C2</td><td class="heat">●●●</td><td>304 không có body; URL = Host + path</td></tr>
+        <tr><td>Nhận diện code socket (TCP/UDP, client/server)</td><td class="ch">C2</td><td class="heat">●●</td><td>STREAM = TCP, DGRAM = UDP; listen/accept = server</td></tr>
+        <tr><td>Mô hình 5 tầng/OSI, đơn vị dữ liệu, encapsulation</td><td class="ch">C1</td><td class="heat">●●●</td><td>Message → Segment → Datagram → Frame</td></tr>
+        <tr><td>HTTP bền vững / không bền vững</td><td class="ch">C2</td><td class="heat">●●</td><td>Non-persistent: 2 RTT/đối tượng</td></tr>
+        <tr><td>DNS lặp / đệ quy, rdt 2.x–3.0, thông lượng</td><td class="ch">C1–3</td><td class="heat">●●</td><td>Thông lượng = min(R<sub>s</sub>, R<sub>c</sub>, R/n)</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section id="tom-tat">
+    <h2>Tóm tắt kiến thức</h2>
+    <div class="sheet">
+      <div class="card">
+        <h3><span class="ch">C1</span> Độ trễ &amp; thông lượng</h3>
+        <div class="formula">d<sub>nodal</sub> = d<sub>proc</sub> + d<sub>queue</sub> + L/R + d/s</div>
+        <ul>
+          <li><b>L/R</b>: trễ truyền (đẩy bit ra đường truyền)</li>
+          <li><b>d/s</b>: trễ lan truyền (bit đi hết quãng đường)</li>
+          <li>Cường độ lưu lượng <code>La/R</code>: gần 1 thì trễ hàng đợi tăng vọt, &gt;1 thì vô hạn</li>
+          <li>Thông lượng đầu cuối = <b>min</b> các liên kết (nút cổ chai); n kết nối chia đều R → R/n</li>
+          <li class="trap">Đổi đơn vị: 1 Mbps = 10⁶ bps; km → m</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ch">C1</span> Mô hình phân tầng</h3>
+        <ul>
+          <li><b>OSI 7 tầng</b> (trên → dưới): Application, Presentation, Session, Transport, Network, Data Link, Physical</li>
+          <li><b>Internet 5 tầng</b>: bỏ Presentation và Session</li>
+          <li>PDU: Message → <b>Segment</b> → <b>Datagram</b> → <b>Frame</b></li>
+          <li>Thêm header khi đi xuống = <b>Encapsulation</b></li>
+          <li>Switch xử lý tới tầng 2 (Link), Router tới tầng 3 (Network)</li>
+          <li>Mã hóa, nén dữ liệu: Presentation. Mở/duy trì/đóng phiên: Session</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ch">C1</span> Chuyển mạch gói vs kênh</h3>
+        <ul>
+          <li><b>Kênh</b>: tài nguyên dành riêng, phải thiết lập cuộc gọi, hiệu năng đảm bảo (điện thoại)</li>
+          <li><b>Gói</b>: chia sẻ tài nguyên, store-and-forward, <b>không cần thiết lập</b>, có thể mất gói và trễ hàng đợi</li>
+          <li>Phân kênh: FDM (tần số), TDM (khe thời gian)</li>
+          <li>Store-and-forward qua N liên kết: N·L/R</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ch">C2</span> HTTP</h3>
+        <ul>
+          <li>TCP cổng 80; <b>stateless</b> (trạng thái giữ bằng cookie)</li>
+          <li>Không bền vững (HTTP/1.0): <b>2 RTT + thời gian truyền</b> mỗi đối tượng, mỗi đối tượng một kết nối</li>
+          <li>Bền vững (HTTP/1.1): giữ kết nối, ~1 RTT mỗi đối tượng (pipeline: 1 RTT cho tất cả)</li>
+          <li>Mã: 200 OK · 301 Moved Permanently · 304 Not Modified · 400 Bad Request · 404 Not Found · 505 Version Not Supported</li>
+          <li><code>If-Modified-Since</code>: client đã có bản cache; 304 trả về <b>không có dữ liệu</b></li>
+          <li>URL đối tượng = <code>Host</code> + đường dẫn trong dòng GET</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ch">C2</span> Email, FTP</h3>
+        <ul>
+          <li>SMTP: TCP cổng 25, <b>push</b>; client: HELO → MAIL FROM → RCPT TO → DATA → QUIT</li>
+          <li>Agent → server, server → server: SMTP. Server → agent của người nhận: POP3 / IMAP / HTTP</li>
+          <li>POP3: tải về, không giữ trạng thái giữa các phiên. IMAP: thư và thư mục ở server, giữ trạng thái</li>
+          <li>FTP: điều khiển cổng 21, dữ liệu cổng 20, <b>out-of-band</b>, server giữ trạng thái</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ch">C2</span> DNS, P2P, Socket</h3>
+        <ul>
+          <li>DNS: <b>UDP cổng 53</b>; phân cấp Root → TLD → Authoritative; Local DNS không thuộc phân cấp</li>
+          <li>Lặp: server trả “hỏi tiếp ở X”. Đệ quy: server hỏi giúp đến khi có đáp án</li>
+          <li>Bản ghi: A (tên → IP), NS, CNAME (bí danh), MX (mail server)</li>
+          <li>Phân phối file: D<sub>C-S</sub> ≥ max(NF/u<sub>s</sub>, F/d<sub>min</sub>); D<sub>P2P</sub> ≥ max(F/u<sub>s</sub>, F/d<sub>min</sub>, NF/(u<sub>s</sub>+Σu<sub>i</sub>))</li>
+          <li><code>SOCK_STREAM</code> = TCP, <code>SOCK_DGRAM</code> = UDP; <code>bind/listen/accept</code> = server TCP; <code>connect</code> = client TCP; <code>recvfrom/sendto</code> = UDP</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ch">C3</span> UDP &amp; dồn/phân kênh</h3>
+        <ul>
+          <li>Header 8 byte: <b>Source port · Dest port · Length · Checksum</b> (mỗi trường 16 bit)</li>
+          <li>Length tính cả header → payload = Length − 8</li>
+          <li>Checksum: cộng bù 1 các word 16 bit, có <b>bit tràn cộng vòng</b>, rồi đảo bit</li>
+          <li>Socket UDP xác định bởi (IP đích, port đích); TCP bởi bộ 4 (IP nguồn, port nguồn, IP đích, port đích)</li>
+          <li>Tầng vận chuyển <b>không</b> đảm bảo độ trễ hay băng thông</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ch">C3</span> rdt, GBN, SR</h3>
+        <ul>
+          <li>rdt1.0 kênh tin cậy · rdt2.0 lỗi bit (ACK/NAK) · rdt2.1 thêm số thứ tự (ACK/NAK hỏng) · rdt2.2 bỏ NAK · <b>rdt3.0</b> thêm timer → xử lý <b>mất gói</b></li>
+          <li><b>GBN</b>: ACK tích lũy, bên nhận bỏ gói sai thứ tự và gửi lại ACK gói đúng gần nhất; timeout → gửi lại <b>mọi</b> gói chưa ACK</li>
+          <li><b>SR</b>: ACK từng gói, đệm gói sai thứ tự, chỉ gửi lại gói bị mất</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ch">C3</span> TCP</h3>
+        <ul>
+          <li>Seq = số thứ tự byte đầu tiên; ACK = byte <b>kế tiếp</b> mong đợi (tích lũy)</li>
+          <li>Bắt tay 3 bước: SYN(seq=x) → SYNACK(seq=y, ack=x+1) → ACK(ack=y+1). ISN ngẫu nhiên 0…2³²−1</li>
+          <li>3 ACK trùng → fast retransmit</li>
+          <li>EstimatedRTT = 0.875·Est + 0.125·Sample; Timeout = Est + 4·DevRTT</li>
+          <li><b>Reno</b>: slow start ×2 mỗi RTT tới ssthresh; CA +1 MSS/RTT; 3 dup ACK → ssthresh = cwnd/2, cwnd = ssthresh; timeout → ssthresh = cwnd/2, cwnd = 1</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="giai-mau">
+    <h2>Cách giải các dạng tính toán</h2>
+
+    <details class="ex" open>
+      <summary>Tìm R<sub>new</sub> để giảm một nửa độ trễ đầu cuối</summary>
+      <div class="body">
+        <p>Đề: L = 30 000 bit, R = 10 Mbps, d = 300 km, s = 3·10⁸ m/s. Khoảng cách mới d/2, muốn độ trễ còn một nửa.</p>
+        <div class="formula">trễ cũ = 30000/10⁷ + 3·10⁵/3·10⁸ = 3 ms + 1 ms = 4 ms</div>
+        <div class="formula">trễ mới cần = 2 ms; lan truyền mới = 0.5 ms → truyền = 1.5 ms</div>
+        <div class="formula">R<sub>new</sub> = 30000 / 1.5 ms = 20 Mbps = 2R</div>
+        <p>Luôn tính riêng hai phần, trừ phần lan truyền ra, rồi mới suy R.</p>
+      </div>
+    </details>
+
+    <details class="ex">
+      <summary>Giải mã UDP header từ 64 bit</summary>
+      <div class="body">
+        <p>Cắt chuỗi 64 bit thành 4 cụm 16 bit theo thứ tự <b>Source · Dest · Length · Checksum</b>, đổi sang thập phân.</p>
+        <div class="bits">
+          <div>11101001 00110001<small>Source = 59697</small></div>
+          <div>00000000 00110101<small>Dest = 53 (DNS)</small></div>
+          <div>00000000 00101111<small>Length = 47</small></div>
+          <div>11111110 00010111<small>Checksum</small></div>
+        </div>
+        <p>Payload = 47 − 8 = <b>39 byte</b>. Bẫy hay gặp: chọn 47 (quên trừ header) hoặc lấy nhầm cụm đầu làm cổng đích.</p>
+      </div>
+    </details>
+
+    <details class="ex">
+      <summary>Sequence number và ACK trên sơ đồ</summary>
+      <div class="body">
+        <p>ISN = 161, mỗi segment 281 byte. Dãy seq: 161, 442, 723, 1004, 1285 (cộng dồn 281).</p>
+        <p>ACK luôn là byte kế tiếp bên nhận đang chờ. Nếu segment 1 mất, mọi segment đến sau đều nhận ACK = 161 (ACK trùng). Nếu segment 1 và 2 đến, ACK = 723.</p>
+        <p>Go-Back-N: bên nhận chỉ chấp nhận đúng thứ tự, nên một gói mất kéo theo gửi lại gói đó và mọi gói phía sau trong cửa sổ.</p>
+      </div>
+    </details>
+
+    <details class="ex">
+      <summary>Đọc đồ thị cwnd TCP Reno</summary>
+      <div class="body">
+        <p>Đồ thị mẫu dưới đây được dùng cho các câu Reno trong phần trắc nghiệm.</p>
+        <div class="chart" id="reno"></div>
+        <ul>
+          <li>Đoạn nhân đôi (1, 2, 4, 8, 16): <b>slow start</b>. Điểm chuyển sang tăng tuyến tính là <b>ssthresh</b> (ở đây 16).</li>
+          <li>Đoạn tăng +1 mỗi vòng: <b>congestion avoidance</b>.</li>
+          <li>Rớt còn một nửa: 3 ACK trùng. Rớt về 1: timeout. Cả hai đều đặt ssthresh = cwnd/2 lúc mất gói.</li>
+          <li>Segment thứ n: cộng dồn cwnd từng vòng (1, 3, 7, 15, 31, 48…) tới khi vượt n.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <section id="trac-nghiem">
+    <h2>Trắc nghiệm luyện tập</h2>
+    <p class="lede" style="margin:-6px 0 14px">Chọn một đáp án để xem giải thích. Kết quả được lưu trên trình duyệt này.</p>
+    <div class="bar">
+      <div class="score" id="score">Đúng <b>0</b>/0 · đã làm 0/0</div>
+      <div class="chips" id="chips">
+        <button class="chip" data-f="all" aria-pressed="true">Tất cả</button>
+        <button class="chip" data-f="C1" aria-pressed="false">Chương 1</button>
+        <button class="chip" data-f="C2" aria-pressed="false">Chương 2</button>
+        <button class="chip" data-f="C3" aria-pressed="false">Chương 3</button>
+        <button class="chip" data-f="wrong" aria-pressed="false">Câu làm sai</button>
+        <button class="chip" data-f="todo" aria-pressed="false">Chưa làm</button>
+      </div>
+      <button class="btn" id="reset">Làm lại từ đầu</button>
+    </div>
+    <div class="qs" id="qs"></div>
+  </section>
+
+  <footer>Câu hỏi luyện tập được viết lại theo dạng của đề các năm; số liệu đã được tính lại. Đồ thị Reno là ví dụ minh họa, không lấy từ đề.</footer>
+</div>
+
+<script>
+const RENO=[1,2,4,8,16,17,18,19,20,10,11,12,1,2,4,6,7];
+const Q=[
+{c:"C1",q:"Gói tin dài L = 12 000 bit truyền trên liên kết R = 6 Mbps, dài 600 km, tốc độ lan truyền 2·10⁸ m/s. Bỏ qua trễ xử lý và hàng đợi. Độ trễ đầu cuối là:",o:["2 ms","3 ms","5 ms","8 ms"],a:2,e:"Truyền L/R = 12000/6·10⁶ = 2 ms; lan truyền 6·10⁵/2·10⁸ = 3 ms; tổng 5 ms."},
+{c:"C1",q:"L = 30 000 bit, R = 10 Mbps, d = 300 km, s = 3·10⁸ m/s. Nếu d giảm còn d/2, cần chỉnh R như thế nào để độ trễ đầu cuối giảm một nửa?",o:["R_new = 3R","R_new = R","R_new = 2R","R_new = R + R/2"],a:2,e:"Cũ: 3 + 1 = 4 ms. Mới cần 2 ms, lan truyền còn 0.5 ms nên truyền 1.5 ms → R_new = 30000/1.5 ms = 20 Mbps = 2R."},
+{c:"C1",q:"L = 40 000 bit, R = 20 Mbps, d = 600 km, s = 3·10⁸ m/s. Khoảng cách giảm một nửa. Muốn độ trễ đầu cuối giữ nguyên thì R_new bằng:",o:["R","2R","2R/3","R/2"],a:2,e:"Cũ: 2 ms + 2 ms = 4 ms. Lan truyền mới 1 ms nên truyền được phép 3 ms → R_new = 40000/3 ms ≈ 13.3 Mbps = 2R/3."},
+{c:"C1",q:"4 kết nối chia sẻ công bằng một đường trục R = 10 Mbps. Mỗi server có R_s = 4 Mbps, mỗi client có R_c = 3 Mbps. Thông lượng đầu cuối mỗi kết nối:",o:["2.5 Mbps","3 Mbps","4 Mbps","10 Mbps"],a:0,e:"Mỗi kết nối được R/4 = 2.5 Mbps trên đường trục. Thông lượng = min(4, 3, 2.5) = 2.5 Mbps."},
+{c:"C1",q:"Liên kết 1 Mbps. Mỗi người dùng cần 100 kbps khi hoạt động và chỉ hoạt động 10% thời gian. Dùng chuyển mạch kênh, tối đa bao nhiêu người dùng?",o:["1","10","35","100"],a:1,e:"Chuyển mạch kênh dành riêng 100 kbps cho mỗi người: 1 Mbps / 100 kbps = 10. Chuyển mạch gói mới phục vụ được nhiều hơn (khoảng 35) nhờ thống kê."},
+{c:"C1",q:"Ưu điểm của chuyển mạch gói so với chuyển mạch kênh là:",o:["Không bị mất gói","Không bị trễ","Đơn giản, không cần thiết lập cuộc gọi","Dễ triển khai cho mạng điện thoại truyền thống"],a:2,e:"Chuyển mạch gói không cần thiết lập kênh trước và chia sẻ tài nguyên tốt hơn. Nó vẫn có thể mất gói và trễ hàng đợi."},
+{c:"C1",q:"Thứ tự đúng các tầng OSI từ trên xuống:",o:["Application – Transport – Session – Presentation – Network – Physical – Data Link","Application – Presentation – Session – Transport – Network – Data Link – Physical","Application – Session – Presentation – Transport – Network – Data Link – Physical","Application – Presentation – Session – Transport – Internet – Data Link – Physical"],a:1,e:"Mẹo nhớ: All People Seem To Need Data Processing. “Internet” không phải tầng OSI."},
+{c:"C1",q:"So với OSI, chồng giao thức Internet 5 tầng không có tầng nào?",o:["Transport và Network","Presentation và Session","Session và Data Link","Physical và Presentation"],a:1,e:"Chức năng của Presentation và Session do ứng dụng tự đảm nhận nếu cần."},
+{c:"C1",q:"Trên sơ đồ truyền từ Source đến Destination, ô có nội dung “H_n H_t M” nằm ở tầng nào và đơn vị dữ liệu là gì?",o:["Transport – Segment","Network – Datagram","Link – Frame","Application – Message"],a:1,e:"M là message; thêm H_t thành segment; thêm H_n thành datagram (tầng Network); thêm H_l thành frame."},
+{c:"C1",q:"Quá trình thông điệp đi xuống các tầng và được thêm header điều khiển gọi là:",o:["Compress","Encapsulation","De-encapsulation","Header-adding"],a:1,e:"Đóng gói (encapsulation). Đi lên và bóc header là de-encapsulation."},
+{c:"C1",q:"Tầng OSI nào chịu trách nhiệm chuyển đổi định dạng, mã hóa và nén dữ liệu?",o:["Session","Network","Application","Presentation"],a:3,e:"Presentation lo biểu diễn dữ liệu: mã hóa, nén, chuyển đổi. Session lo thiết lập, duy trì, đồng bộ phiên."},
+{c:"C1",s:"Dạng đề 2020",q:"Gói 10 000 bit đi qua 3 liên kết store-and-forward: L1 50 Mbps dài 2 km, L2 10 Mbps dài 400 km, L3 20 Mbps dài 4 km. Tốc độ lan truyền 2·10⁸ m/s, bỏ qua xử lý và hàng đợi. Độ trễ từ lúc gửi bit đầu đến lúc bit cuối tới đích:",o:["1.7 ms","2.03 ms","3.73 ms","3.0 ms"],a:2,e:"Mỗi router phải nhận đủ gói mới chuyển tiếp, nên cộng trễ truyền cả 3 liên kết: 0.2 + 1 + 0.5 = 1.7 ms. Lan truyền: 406 km / 2·10⁸ = 2.03 ms. Tổng 3.73 ms."},
+{c:"C1",s:"Dạng đề 2020",q:"File đi từ A đến B qua 3 liên kết nối tiếp có tốc độ R1 = 500 kbps, R2 = 2 Mbps, R3 = 1 Mbps. Thông lượng truyền file là:",o:["3.5 Mbps","1 Mbps","2 Mbps","500 kbps"],a:3,e:"Thông lượng bằng liên kết chậm nhất (nút cổ chai): min(500 kbps, 2 Mbps, 1 Mbps) = 500 kbps."},
+{c:"C1",s:"Dạng đề 2020",q:"Gói tin dài 500 byte, liên kết R = 2 Mbps. Trong 1 giây truyền được tối đa bao nhiêu gói?",o:["250 gói","500 gói","4 000 gói","2 000 gói"],a:1,e:"Mỗi gói 500 × 8 = 4 000 bit. 2·10⁶ / 4 000 = 500 gói. Bẫy: quên đổi byte sang bit."},
+{c:"C1",s:"Dạng đề 2019",q:"Gói tin L = 1 000 byte đi từ router A đến B cách 400 km, tốc độ lan truyền 2·10⁸ m/s. Tổng thời gian (truyền + lan truyền) đo được là 2.1 ms. Băng thông liên kết là:",o:["8 Mbps","40 Mbps","80 Mbps","800 Mbps"],a:2,e:"Lan truyền 400 km / 2·10⁸ = 2 ms, nên truyền mất 0.1 ms. R = 8 000 bit / 0.1 ms = 80 Mbps."},
+{c:"C1",s:"Dạng đề 2019",q:"Liên kết A–B dài M mét, tốc độ R, lan truyền S. A bắt đầu gửi gói L bit tại t = 0. Tại thời điểm t = d_trans, bit cuối cùng của gói ở đâu?",o:["Vừa đến B","Đang trên đường, cách A M/2 mét","Vừa rời khỏi A","Đang trên đường, cách A 2M/3 mét"],a:2,e:"d_trans = L/R là thời gian đẩy hết bit ra đường truyền. Đúng lúc đó bit cuối vừa rời A, còn phải lan truyền thêm d_prop mới tới B."},
+{c:"C1",s:"Dạng đề 2019",q:"Với S = 2.5·10⁸ m/s, L = 200 bit, R = 100 kbps. Khoảng cách M bao nhiêu thì d_prop = d_trans?",o:["50 km","500 km","5 km","2 000 km"],a:1,e:"d_trans = 200 / 10⁵ = 2 ms. M = S · 2 ms = 2.5·10⁸ × 0.002 = 500 000 m = 500 km."},
+{c:"C1",s:"Dạng Quiz-GK",q:"Gói 1 500 byte gửi từ router A đến B trên liên kết 4 Mbps dài 600 km, lan truyền 2·10⁸ m/s. Router A xử lý mất 1 ms, hàng đợi không đáng kể. Tổng độ trễ là:",o:["6 ms","7 ms","4 ms","3 ms"],a:1,e:"Xử lý 1 ms + truyền 12 000/4·10⁶ = 3 ms + lan truyền 600 km/2·10⁸ = 3 ms = 7 ms."},
+{c:"C1",s:"Dạng đề 2019",q:"Mạng tổ chức: LAN 100 Mbps, access link 15 Mbps ra Internet. Đối tượng trung bình 100 kbit, trình duyệt gửi 150 request/giây tới máy chủ gốc. Đặt web cache với tỉ lệ đáp ứng (hit rate) 0.4. Hiệu suất sử dụng access link và LAN lần lượt là:",o:["100% và 15%","60% và 15%","40% và 6%","60% và 9%"],a:1,e:"Tổng lưu lượng 100 kbit × 150 = 15 Mbps. Chỉ 60% đi qua access link: 9/15 = 60%. LAN vẫn chở toàn bộ 15 Mbps: 15/100 = 15%."},
+{c:"C1",s:"Dạng đề 2020",q:"Trong chồng giao thức Internet, tầng nào chuyển dữ liệu từ tiến trình này đến tiến trình kia (process-to-process)?",o:["Application","Transport","Network","Link"],a:1,e:"Tầng Network chuyển giữa các host; Transport dùng số cổng để đưa dữ liệu đến đúng tiến trình."},
+{c:"C1",s:"Dạng đề 2019, 2020",q:"Đơn vị dữ liệu các tầng TCP/IP theo thứ tự từ trên xuống:",o:["Data, Packet, Segment, Bit, Frame","Data, Packet, Segment, Frame, Bit","Data, Segment, Frame, Packet, Bit","Data, Segment, Packet, Frame, Bit"],a:3,e:"Application: data/message → Transport: segment → Network: packet (datagram) → Link: frame → Physical: bit."},
+{c:"C1",s:"Dạng Quiz-GK",q:"Loại kết nối nào đáp ứng tốc độ và băng thông tốt nhất?",o:["Mạng 5G","Vệ tinh","ADSL","Cáp quang"],a:3,e:"Cáp quang có băng thông lớn nhất, suy hao và nhiễu thấp."},
+{c:"C1",s:"Ngân hàng đáp án",q:"Độ trễ nào liên quan đến băng thông (bandwidth) của đường liên kết?",o:["Độ trễ xếp hàng","Độ trễ xử lý","Độ trễ truyền","Độ trễ lan truyền"],a:2,e:"d_trans = L/R, với R là băng thông. Lan truyền phụ thuộc khoảng cách và tốc độ lan truyền."},
+{c:"C2",q:"Trang web gồm 1 file HTML và 5 ảnh. Dùng HTTP không bền vững, không mở kết nối song song, bỏ qua thời gian truyền. Tổng thời gian là bao nhiêu RTT?",o:["6 RTT","7 RTT","12 RTT","3 RTT"],a:2,e:"Mỗi đối tượng 2 RTT (1 RTT mở TCP, 1 RTT request/response). 6 đối tượng × 2 = 12 RTT."},
+{c:"C2",q:"Cùng trang trên (1 HTML + 5 ảnh) nhưng dùng HTTP bền vững có pipelining. Tổng thời gian khoảng:",o:["3 RTT","6 RTT","7 RTT","12 RTT"],a:0,e:"2 RTT cho kết nối TCP và file HTML, sau đó gửi liên tiếp 5 request ảnh trên cùng kết nối: thêm 1 RTT. Tổng 3 RTT."},
+{c:"C2",q:"Phát biểu nào SAI về HTTP không bền vững?",o:["Cần 2 RTT cho mỗi đối tượng","Có thể gửi nhiều đối tượng trên một kết nối","Tải nhiều đối tượng cần nhiều kết nối","Mỗi đối tượng mở một kết nối TCP rồi đóng"],a:1,e:"Gửi nhiều đối tượng trên một kết nối là đặc điểm của HTTP bền vững."},
+{c:"C2",q:"Ghép mã trạng thái với ý nghĩa: (1) 301 (2) 400 (3) 404 (4) 505 — (a) Not Found (b) Bad Request (c) Moved Permanently (d) HTTP Version Not Supported",o:["1c, 2b, 3a, 4d","1b, 2c, 3a, 4d","1c, 2a, 3b, 4d","1d, 2b, 3a, 4c"],a:0,e:"301 Moved Permanently, 400 Bad Request, 404 Not Found, 505 HTTP Version Not Supported."},
+{c:"C2",q:"Alice truy cập một trang HTML 150 byte 4 lần, nhận mã lần lượt 200, 304, 304, 200. Tổng dữ liệu (không tính header) server đã gửi là:",o:["150 byte","300 byte","600 byte","Server không gửi dữ liệu"],a:1,e:"Chỉ phản hồi 200 mang nội dung. 304 Not Modified không có body. 2 × 150 = 300 byte."},
+{c:"C2",q:"Request có dòng “If-Modified-Since: Sun, 16 Oct 2022 …”. Kết luận đúng:",o:["Trang này chưa từng được tải về client","Trang này đã được tải về client ít nhất 1 lần","Server bắt buộc trả về 200","Client chỉ đọc được file văn bản"],a:1,e:"Conditional GET: client có bản cache và hỏi server xem trang có thay đổi kể từ thời điểm đó không."},
+{c:"C2",q:"Với request dưới đây, URL đầy đủ của đối tượng là:",pre:"GET /images/logo.png HTTP/1.1\r\nHost: www.uit.edu.vn\r\nReferer: http://www.uit.edu.vn/\r\nConnection: keep-alive",o:["/images/logo.png","www.uit.edu.vn/images/logo.png","http://www.uit.edu.vn/","www.uit.edu.vn/"],a:1,e:"URL = giá trị Host + đường dẫn trong dòng GET. Referer là trang dẫn tới, không phải đối tượng được yêu cầu."},
+{c:"C2",q:"Trình tự lệnh phía client trong một phiên SMTP:",o:["HELO, RCPT TO, DATA, QUIT, MAIL FROM","HELO, DATA, MAIL FROM, QUIT, RCPT TO","HELO, MAIL FROM, DATA, RCPT TO, QUIT","HELO, MAIL FROM, RCPT TO, DATA, QUIT"],a:3,e:"Chào (HELO), khai người gửi (MAIL FROM), người nhận (RCPT TO), nội dung (DATA), kết thúc (QUIT)."},
+{c:"C2",q:"Alice’s agent → (2) → Alice’s mail server → (4) → Bob’s mail server → (6) → Bob’s agent. Ở bước 2 dùng giao thức nào?",o:["TCP","IMAP","POP3","SMTP"],a:3,e:"Agent đẩy thư lên mail server bằng SMTP. TCP là tầng vận chuyển, không phải đáp án giao thức ứng dụng."},
+{c:"C2",q:"Cùng sơ đồ, ở bước 6 (Bob lấy thư về) có thể dùng giao thức nào?",o:["SMTP","IMAP","Cả SMTP và IMAP","Không giao thức nào ở trên"],a:1,e:"SMTP chỉ dùng để đẩy thư (bước 2 và 4). Lấy thư dùng POP3, IMAP hoặc HTTP."},
+{c:"C2",q:"Điểm khác của IMAP so với POP3:",o:["IMAP tải thư về rồi xóa trên server","IMAP giữ thư và thư mục trên server, giữ trạng thái giữa các phiên","IMAP dùng UDP","IMAP dùng để gửi thư giữa các server"],a:1,e:"POP3 kiểu tải về và (thường) xóa, không giữ trạng thái giữa các phiên. IMAP lưu mọi thứ ở server."},
+{c:"C2",q:"Local DNS server lần lượt hỏi Root, TLD, rồi Authoritative; mỗi server chỉ trả về địa chỉ server cần hỏi tiếp. Đây là:",o:["Truy vấn đệ quy","Truy vấn lặp (iterative)","Truy vấn ngược","Truy vấn cache"],a:1,e:"Lặp: bên hỏi tự đi hỏi từng cấp. Đệ quy: server được hỏi tự hỏi tiếp thay cho bên hỏi và trả về kết quả cuối."},
+{c:"C2",q:"DNS chủ yếu chạy trên giao thức và cổng nào?",o:["TCP 53","UDP 53","UDP 67","TCP 25"],a:1,e:"DNS truy vấn dùng UDP cổng 53."},
+{c:"C2",q:"FTP được gọi là out-of-band vì:",o:["Dùng UDP","Thông tin điều khiển gửi trên kết nối riêng (cổng 21), dữ liệu trên kết nối khác (cổng 20)","Không có trạng thái","Mã hóa dữ liệu"],a:1,e:"Điều khiển và dữ liệu tách ra hai kết nối TCP. Ngược lại HTTP, SMTP gửi điều khiển chung kết nối với dữ liệu (in-band)."},
+{c:"C2",q:"Đoạn mã sau dùng cho ứng dụng nào?",pre:"serverSocket = socket(AF_INET, SOCK_DGRAM)\nserverSocket.bind(('', 12000))\nwhile True:\n    message, clientAddress = serverSocket.recvfrom(2048)\n    serverSocket.sendto(message.upper(), clientAddress)",o:["UDP socket phía server","TCP socket phía server","TCP socket phía client","UDP socket phía client"],a:0,e:"SOCK_DGRAM là UDP; bind cổng cố định rồi chờ recvfrom là phía server."},
+{c:"C2",q:"Chọn đáp án đúng cho đoạn mã:",pre:"clientSocket = socket(AF_INET, SOCK_STREAM)\nclientSocket.connect((serverName, serverPort))",o:["Dùng kết nối TCP, phía client","Dùng cho phía máy chủ","Dùng kết nối UDP","Tất cả đều sai"],a:0,e:"SOCK_STREAM là TCP; connect() là phía client khởi tạo kết nối."},
+{c:"C2",q:"Phân phối file F = 100 Mbit cho N = 10 peer. Server u_s = 50 Mbps, mỗi peer tải lên u_i = 10 Mbps, d_min = 20 Mbps. Thời gian tối thiểu theo P2P:",o:["2 s","5 s","6.67 s","20 s"],a:2,e:"max(F/u_s = 2, F/d_min = 5, NF/(u_s+Σu_i) = 1000/150 ≈ 6.67) = 6.67 s. Client-server cần max(1000/50, 5) = 20 s."},
+{c:"C2",s:"Dạng đề 2019, 2020",q:"Ghép giao thức với nhiệm vụ: (a) POP3 (b) TCP (c) FTP (d) DNS (e) SMTP (f) UDP — (1) gửi e-mail giữa các server (2) tải e-mail từ server về client (3) dịch vụ hướng kết nối (4) dịch vụ phi kết nối (5) phân giải tên thành IP (6) truyền tập tin",o:["a1, b3, c6, d5, e2, f4","a2, b4, c6, d5, e1, f3","a2, b3, c6, d5, e1, f4","a2, b3, c5, d6, e1, f4"],a:2,e:"POP3 lấy thư (2), TCP hướng kết nối (3), FTP truyền file (6), DNS phân giải tên (5), SMTP gửi giữa server (1), UDP phi kết nối (4)."},
+{c:"C2",s:"Dạng đề 2019, 2020",q:"Ghép cổng mặc định: (1) HTTP (2) DNS (3) FTP (4) SMTP — (a) 25 (b) 21 (c) 80 (d) 53",o:["1c, 2a, 3d, 4b","1c, 2d, 3b, 4a","1c, 2b, 3a, 4d","1c, 2a, 3b, 4d"],a:1,e:"HTTP 80, DNS 53, FTP 21 (điều khiển), SMTP 25."},
+{c:"C2",s:"Dạng Quiz-GK",q:"Sắp xếp theo cổng mặc định tăng dần: HTTP, HTTPS, SMTP, IMAP, SSH, FTP",o:["FTP, SSH, SMTP, HTTP, IMAP, HTTPS","FTP, SSH, SMTP, HTTP, HTTPS, IMAP","SSH, FTP, SMTP, HTTP, IMAP, HTTPS","SSH, SMTP, FTP, HTTP, IMAP, HTTPS"],a:0,e:"FTP 21 < SSH 22 < SMTP 25 < HTTP 80 < IMAP 143 < HTTPS 443."},
+{c:"C2",s:"Dạng đề 2020",q:"Server trả về: “HTTP/1.1 301 Moved Permanently … Location: https://portal.uit.edu.vn/images/logo.png”. Phát biểu đúng:",o:["Đối tượng đã bị xóa khỏi server","URL của đối tượng đã chuyển sang URL mới trong trường Location","Phiên bản HTTP của client khác server","Tất cả đều đúng"],a:1,e:"301: đối tượng đã chuyển vĩnh viễn, URL mới nằm ở header Location. Bị xóa/không có là 404; sai phiên bản là 505."},
+{c:"C2",s:"Dạng đề 2020",q:"Đọc cặp request/response dưới đây. Phát biểu nào SAI?",pre:"GET /labs/lab2.html HTTP/1.1\nHost: gaia.cs.umass.edu\nConnection: keep-alive\n\nHTTP/1.1 404 Not Found\nServer: Apache/2.0.40 (Red Hat Linux)\nConnection: Keep-Alive",o:["Trình duyệt dùng HTTP/1.1","Server trả về nội dung được yêu cầu cho trình duyệt","Server dùng Apache/2.0.40","Server dùng kết nối bền vững"],a:1,e:"404 Not Found: server không tìm thấy đối tượng nên không trả nội dung. keep-alive cho thấy kết nối bền vững."},
+{c:"C2",s:"Dạng đề 2019",q:"Response là “HTTP/1.1 304 Not Modified” cho request có If-Modified-Since. Điều nào đúng?",o:["Trình duyệt không lưu nội dung trong cache","If-Modified-Since xuất hiện khi trình duyệt yêu cầu trang lần đầu","Server trả 304 vì nội dung không đổi kể từ thời điểm trong If-Modified-Since","Server gửi kèm trang HTML mới"],a:2,e:"Trình duyệt đã có bản cache (không phải lần đầu). Nội dung không đổi nên server trả 304 không kèm dữ liệu."},
+{c:"C2",s:"Dạng Quiz-GK",q:"Muốn tải file abc.txt từ uit.edu.vn bằng kết nối bền vững, request đúng là:",o:["GET uit.edu.vn/abc.txt HTTP/1.1","GET uit.edu.vn/abc.txt HTTP/1.0","GET /abc.txt HTTP/1.0 + Host: uit.edu.vn","GET /abc.txt HTTP/1.1 + Host: uit.edu.vn"],a:3,e:"Dòng GET chỉ chứa đường dẫn, tên miền đặt ở header Host (bắt buộc từ HTTP/1.1). Bền vững mặc định là HTTP/1.1."},
+{c:"C2",s:"Dạng đề 2019",q:"Client gửi request HTTP không bền vững để lấy 1 ảnh 10 KB. RTT = 2 ms, băng thông 40 Mbps. Thời gian phản hồi tổng cộng (lấy 1 KB = 1000 byte):",o:["4 ms","6 ms","2 ms","8 ms"],a:1,e:"2 RTT (mở TCP + request) = 4 ms, cộng thời gian truyền 80 000 bit / 4·10⁷ = 2 ms. Tổng 6 ms."},
+{c:"C2",s:"Dạng đề 2019",q:"Phát biểu nào SAI?",o:["HTTP/1.1 yêu cầu header Host, HTTP/1.0 thì không","HTTP/1.0 đóng kết nối TCP sau khi gửi một đối tượng, HTTP/1.1 thì không","HTTP/1.1 cần 2 RTT cho mỗi đối tượng, HTTP/1.0 chỉ cần 1 RTT","Cả HTTP/1.0 và 1.1 đều dùng TCP"],a:2,e:"Ngược lại: HTTP/1.0 không bền vững mới cần 2 RTT mỗi đối tượng; HTTP/1.1 bền vững chỉ ~1 RTT."},
+{c:"C2",s:"Dạng Quiz-GK",q:"Phát biểu nào SAI về HTTP?",o:["Có 2 loại thông điệp: request và response","HTTP không lưu trạng thái (stateless)","HTTP không bền vững hiệu quả hơn vì không giữ kết nối TCP","HTTP dùng TCP ở tầng vận chuyển"],a:2,e:"Không bền vững tốn thêm 1 RTT và tài nguyên mở kết nối cho mỗi đối tượng, nên kém hiệu quả hơn."},
+{c:"C2",s:"Dạng đề 2019",q:"Khi truyền bằng SMTP, nội dung thư phải ở dạng:",o:["Mã ASCII 8 bit","Dạng nào cũng được","Chỉ chữ cái và chữ số","Mã ASCII 7 bit"],a:3,e:"SMTP yêu cầu thông điệp (header và body) là ASCII 7 bit; dữ liệu nhị phân phải được mã hóa (MIME) trước."},
+{c:"C2",s:"Dạng đề 2020",q:"Phát biểu nào SAI về kiến trúc client-server?",o:["Server luôn hoạt động, có IP cố định","Client có thể kết nối không liên tục","Các client giao tiếp trực tiếp với nhau","Client có thể thay đổi địa chỉ IP"],a:2,e:"Trong client-server, client chỉ nói chuyện với server. Giao tiếp trực tiếp giữa các máy là đặc điểm của P2P."},
+{c:"C2",s:"Dạng đề 2019",q:"Phát biểu nào đúng về DNS records?",o:["Loại A: name = hostname, value = địa chỉ IP","Có 4 loại cơ bản: A, NS, CNAME, MX","Mỗi bản ghi có name, value, type, ttl","Tất cả đều đúng"],a:3,e:"Bản ghi DNS là bộ (name, value, type, ttl); A, NS, CNAME, MX là 4 loại cơ bản."},
+{c:"C2",s:"Dạng đề 2020",q:"Đoạn mã sau viết cho?",pre:"while 1:\n    connectionSocket, addr = serverSocket.accept()\n    sentence = connectionSocket.recv(1024)\n    connectionSocket.close()",o:["TCP client","UDP client","UDP server","TCP server"],a:3,e:"accept() tạo socket kết nối mới cho mỗi client: chỉ có ở TCP server."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Cặp giao thức – cổng nào đúng?",o:["HTTP: UDP port 80","SMTP: TCP port 110","FTP: TCP port 21","Telnet: UDP port 23"],a:2,e:"HTTP dùng TCP 80, SMTP TCP 25 (110 là POP3), Telnet TCP 23."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Cặp giao thức – cổng nào SAI?",o:["DNS với UDP port 53","HTTP với TCP port 80","SMTP với TCP port 25","FTP với UDP port 22"],a:3,e:"FTP dùng TCP 21 (dữ liệu 20). Cổng 22 là SSH."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Nhóm dịch vụ nào dùng UDP?",o:["DHCP, SNMP, TFTP","SMTP, FTP","DHCP, SMTP, FTP","DHCP, SMTP"],a:0,e:"DHCP, SNMP, TFTP (Trivial FTP) đều chạy trên UDP. SMTP và FTP dùng TCP."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Nhóm dịch vụ nào dùng TCP?",o:["FTP, HTTP, TFTP","HTTP, SMTP, FTP","DHCP, SMTP, TFTP","DHCP, SMTP"],a:1,e:"HTTP, SMTP, FTP cần tin cậy nên dùng TCP. TFTP và DHCP dùng UDP."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Tất cả thuê bao FPT truy cập google.com đều bị chuyển sang trang khác, thuê bao ISP khác thì bình thường. Nguyên nhân khả dĩ nhất:",o:["Router ra ngoài của FPT bị lỗi","Các máy tính bị nhiễm virus","DNS server của FPT bị lỗi","Website Google bị lỗi"],a:2,e:"Chỉ khách hàng FPT bị, và bị dẫn sang trang khác (không phải mất kết nối): tên miền đang được phân giải sai bởi DNS của FPT."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Response: “HTTP/1.1 200 OK … Last-Modified: Tue, 1 June 2014 … Content-Length: 8347 … Connection: Keep-Alive”. Phát biểu nào SAI?",o:["Trường Date cho biết thời điểm server gửi phản hồi","Server dùng HTTP/1.1","Server đồng ý kết nối bền vững","Server trả về cho trình duyệt 8 327 byte dữ liệu"],a:3,e:"Content-Length là 8 347 byte, không phải 8 327. Đọc kỹ con số là bẫy hay gặp."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Response “HTTP/1.1 200 OK … Content-Type: text/html” rồi một dòng trống, sau đó là “<!doctype html public …><html><head>…”. 7 byte đầu tiên của nội dung trang web là:",o:["<meta","<!docty","text/ht","HTTP/1."],a:1,e:"Nội dung (body) bắt đầu sau dòng trống kết thúc header. 7 ký tự đầu là “<!docty”. “HTTP/1.” là đầu của cả thông điệp phản hồi."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Để giảm lưu lượng trên đường truy cập Internet của một tổ chức, người ta thường dùng:",o:["Load balancing","Cookies","Web caching","DNS"],a:2,e:"Web cache (proxy server) trả lời các request lặp lại ngay trong mạng nội bộ, nên ít request đi qua access link."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Lý do dùng Web caching:",o:["Giảm thời gian đáp ứng cho client","Giảm lưu lượng trên access link của tổ chức","Giúp nhà cung cấp nội dung “nghèo” phân phối nội dung hiệu quả","Tất cả đều đúng"],a:3,e:"Cả ba đều là lợi ích của web cache."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Client muốn lấy trang web theo URL nhưng chưa biết IP của server. Những giao thức lớp Ứng dụng nào được dùng?",o:["HTTP, TCP","DNS, UDP, HTTP","DNS, HTTP","DNS, TCP, HTTP"],a:2,e:"Câu hỏi chỉ hỏi lớp Ứng dụng: DNS để phân giải tên, HTTP để lấy trang. TCP và UDP thuộc lớp Vận chuyển."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Nhấn vào link, IP của trang chưa có trong cache nên phải hỏi lần lượt n DNS server, mất RTT1 … RTTn. Lấy một đối tượng text nhỏ từ server mất RTT0 mỗi vòng. Thời gian từ khi nhấn đến khi nhận được đối tượng:",o:["2·RTT0 + RTT1 + … + RTTn","RTT0 + RTT1 + … + RTTn","2·(RTT0 + RTT1 + … + RTTn)","2·RTT0 + RTT1 + … + 2·RTTn"],a:0,e:"DNS: RTT1 + … + RTTn. Sau đó 1 RTT0 mở TCP và 1 RTT0 cho request/response."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Trang web gồm 1 text và 3 hình ảnh. Client gửi bao nhiêu thông điệp yêu cầu và nhận bao nhiêu thông điệp phản hồi?",o:["4 yêu cầu, 4 phản hồi","1 yêu cầu, 3 phản hồi","1 yêu cầu, 1 phản hồi","1 yêu cầu, 4 phản hồi"],a:0,e:"Mỗi đối tượng cần 1 request và 1 response riêng, dù kết nối bền vững hay không."},
+{c:"C2",s:"Ngân hàng đáp án",q:"HTTP không bền vững (non-persistent) có nghĩa là:",o:["Tối đa một đối tượng được gửi qua một kết nối TCP, sau đó kết nối đóng","Nhiều trang web gửi qua một kết nối TCP","Nhiều đối tượng gửi qua một kết nối TCP","Tối đa một trang web gửi qua một kết nối TCP, sau đó kết nối đóng"],a:0,e:"Đơn vị là đối tượng (object), không phải trang web. Một trang có nhiều đối tượng thì cần nhiều kết nối."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Phát biểu nào đúng?",o:["Trường Date trong HTTP response là thời điểm đối tượng được sửa lần cuối","Hai trang khác nhau trên cùng host (www.mit.edu/research.html và www.mit.edu/students.html) có thể gửi trên cùng một kết nối bền vững","Với kết nối không bền vững, một segment TCP có thể mang 2 HTTP request khác nhau","HTTP response không bao giờ có body rỗng"],a:1,e:"Kết nối bền vững dùng chung cho mọi đối tượng trên cùng server. Date là lúc gửi phản hồi (Last-Modified mới là lúc sửa); 304 có body rỗng."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Phương thức nào KHÔNG có trong HTTP/1.0?",o:["HEAD","POST","GET","DELETE"],a:3,e:"HTTP/1.0 có GET, POST, HEAD. HTTP/1.1 thêm PUT, DELETE."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Mô tả đúng về cookie:",o:["Là tập tin lưu trên server","Là chuỗi ký tự trong thanh địa chỉ","Là một tập tin XML","Là tập tin lưu ở client"],a:3,e:"Cookie được trình duyệt lưu ở máy client và gửi kèm request; server lưu thông tin tương ứng trong cơ sở dữ liệu của mình."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Nhiệm vụ của giao thức HTTP là:",o:["Hiển thị trang web và giúp người dùng tương tác","Cung cấp cơ chế lấy dữ liệu từ server chuyển đến client","Cung cấp giao diện như nút bấm, thanh trượt","Cung cấp dữ liệu bằng giao thức truyền file"],a:1,e:"HTTP chỉ là giao thức truyền thông điệp request/response. Hiển thị là việc của trình duyệt."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Giao thức truyền thư giữa các mail server là:",o:["HTTP","SMTP","FTP","POP"],a:1,e:"SMTP đẩy thư từ agent lên server và giữa các server với nhau."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Dịch vụ nào cho phép dùng tên miền thay cho địa chỉ IP khi duyệt web?",o:["HTTP","POST","DNS","FTP"],a:2,e:"DNS ánh xạ tên miền sang địa chỉ IP."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Có bản ghi DNS (uit.edu.vn, 123.4.5.6, NS). Chọn đáp án đúng nhất:",o:["123.4.5.6 là IP của máy uit.edu.vn","123.4.5.6 là mail server của uit.edu.vn","uit.edu.vn là tên miền phụ","uit.edu.vn là tên miền, không phải tên một máy"],a:3,e:"Với bản ghi NS, Name là tên miền và Value là máy chủ DNS có thẩm quyền cho miền đó. Bản ghi IP của máy là loại A, mail server là MX."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Phát biểu đúng về kiến trúc peer-to-peer:",o:["Các hệ thống đầu cuối bất kỳ truyền thông trực tiếp với nhau","Quản lý tập trung","Có máy chủ luôn hoạt động","Các máy có IP cố định"],a:0,e:"P2P không có server luôn hoạt động; các peer kết nối không liên tục và có thể đổi IP."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Máy tính vừa làm server vừa làm client có trong mạng nào?",o:["Client/Server","Peer to Peer","Ethernet","LAN"],a:1,e:"Mỗi peer vừa yêu cầu vừa phục vụ dữ liệu cho peer khác."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Giao thức nào KHÔNG thuộc tầng ứng dụng?",o:["HTTP","POP","ARP","FTP"],a:2,e:"ARP phân giải IP sang MAC, thuộc tầng liên kết/mạng."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Giao thức nào hoạt động ở lớp Ứng dụng?",o:["HTTP","ICMP","IP","TCP"],a:0,e:"ICMP, IP thuộc tầng Mạng; TCP thuộc tầng Vận chuyển."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Định danh của một tiến trình trên hệ thống đầu cuối gồm:",o:["Địa chỉ IP và địa chỉ MAC","Địa chỉ MAC và số hiệu cổng","Địa chỉ IP và số hiệu cổng","Địa chỉ IP và giao thức"],a:2,e:"IP xác định host, số cổng xác định tiến trình trên host đó."},
+{c:"C2",s:"Ngân hàng đáp án",q:"Những ứng dụng nào KHÔNG chấp nhận mất dữ liệu?",o:["Audio, video, game trực tuyến","Audio, video, hội thảo trực tuyến","Gửi file, email, nhắn tin","Gửi file, email"],a:2,e:"Truyền file, email, nhắn tin cần toàn vẹn dữ liệu. Đáp án “Gửi file, email” đúng nhưng chưa đủ. Đa phương tiện chịu được mất mát một phần."},
+{c:"C3",q:"Các giao thức tầng vận chuyển KHÔNG cung cấp dịch vụ nào?",o:["Đảm bảo độ trễ (delay guarantees)","Demultiplexing tại bên nhận","Kiểm tra lỗi (checksum)","Multiplexing tại bên gửi"],a:0,e:"Internet là best-effort: cả TCP và UDP đều không đảm bảo độ trễ hay băng thông."},
+{c:"C3",q:"UDP header: 00010011 10001000 00000000 00110101 00000000 00011100 10101010 01010101. Cổng đích là:",o:["5000","53","28","4992"],a:1,e:"Cụm 16 bit thứ hai: 00000000 00110101 = 53. Cụm đầu (5000) là cổng nguồn."},
+{c:"C3",q:"Cùng header trên, phần payload dài bao nhiêu?",o:["28 byte","20 byte","36 byte","8 byte"],a:1,e:"Length = 00000000 00011100 = 28 byte, đã gồm 8 byte header → payload 20 byte."},
+{c:"C3",q:"Thứ tự các trường UDP header từ trái sang phải:",o:["Length – Source Port – Destination Port – Checksum","Destination Port – Source Port – Checksum – Length","Source Port – Destination Port – Length – Checksum","Source Port – Destination Port – Checksum – Length"],a:2,e:"Source port, Dest port, Length, Checksum, mỗi trường 16 bit."},
+{c:"C3",q:"Tính checksum UDP của 3 word: 0110011001100000, 0101010101010101, 1000111100001100.",o:["0100101011000010","1011010100111101","1011010100111100","0100101011000001"],a:1,e:"Tổng 3 word tràn 1 bit: 1 0100101011000001 → cộng vòng = 0100101011000010. Đảo bit được checksum 1011010100111101."},
+{c:"C3",q:"Phiên bản rdt nào đầu tiên xử lý được việc mất gói (kể cả mất ACK)?",o:["rdt2.1","rdt2.2","rdt3.0","Không thể xử lý"],a:2,e:"rdt3.0 thêm bộ định thời (timer) để gửi lại khi không nhận được ACK. rdt2.x chỉ xử lý lỗi bit."},
+{c:"C3",q:"rdt2.1 bổ sung gì so với rdt2.0?",o:["Bộ định thời","Số thứ tự gói để xử lý ACK/NAK bị hỏng","Bỏ NAK","Cửa sổ trượt"],a:1,e:"ACK/NAK có thể hỏng, nên bên gửi phát lại và bên nhận cần số thứ tự (0/1) để loại gói trùng. rdt2.2 mới bỏ NAK."},
+{c:"C3",q:"Go-Back-N, cửa sổ 4. Bên gửi gửi PK0–PK3, PK1 bị mất. Bên nhận gửi về những ACK nào?",o:["ACK0, ACK2, ACK3","ACK0, ACK0, ACK0","ACK0, NAK1, ACK3","ACK0, ACK1, ACK1"],a:1,e:"GBN bỏ gói sai thứ tự và gửi lại ACK của gói đúng thứ tự gần nhất (PK0) cho mỗi gói đến sau."},
+{c:"C3",q:"Tiếp câu trên, khi timeout bên gửi GBN sẽ gửi lại:",o:["Chỉ PK1","PK1, PK2, PK3","PK0 đến PK3","PK2, PK3"],a:1,e:"GBN gửi lại mọi gói chưa được ACK kể từ gói mất. Selective Repeat mới chỉ gửi lại PK1."},
+{c:"C3",q:"ISN = 200, mỗi segment 500 byte, gửi 4 segment. Segment thứ 3 có sequence number:",o:["202","1200","1500","700"],a:1,e:"Dãy seq: 200, 700, 1200, 1700."},
+{c:"C3",q:"Tiếp câu trên, segment 3 bị mất. Khi segment 4 đến, bên nhận gửi ACK bằng:",o:["1200","1700","2200","700"],a:0,e:"ACK tích lũy chỉ byte kế tiếp còn thiếu: 1200 (ACK trùng). Nhận đủ 3 ACK trùng thì bên gửi fast retransmit."},
+{c:"C3",q:"Client gửi SYN với seq = x. SYNACK của server có giá trị ACK bằng:",o:["x","x + 1","0","y + 1"],a:1,e:"SYN chiếm 1 số thứ tự nên server ACK x+1, kèm seq = y của riêng nó. Client đáp lại ack = y+1."},
+{c:"C3",q:"TCP SYN dùng sequence number khởi tạo nào?",o:["0","−1","Số nguyên tố ngẫu nhiên 0…65 535","Số ngẫu nhiên trong khoảng 0…4 294 967 295"],a:3,e:"ISN là số 32 bit chọn ngẫu nhiên, tức 0 … 2³² − 1."},
+{c:"C3",q:"Định danh socket TCP phía server gồm:",o:["IP đích và port đích","IP và MAC","Bộ 4: IP nguồn, port nguồn, IP đích, port đích","IP và user ID"],a:2,e:"TCP dùng bộ 4 nên hai client tới cùng cổng 80 được đưa vào hai socket khác nhau. UDP chỉ dùng (IP đích, port đích)."},
+{c:"C3",q:"Sự kiện nào kích hoạt TCP fast retransmit?",o:["Timeout","Nhận 3 ACK trùng","Nhận 1 NAK","cwnd đạt ssthresh"],a:1,e:"3 ACK trùng (tức 4 ACK giống nhau) báo hiệu gói mất trong khi các gói sau vẫn tới."},
+{c:"C3",q:"EstimatedRTT hiện tại 100 ms, SampleRTT mới 120 ms, α = 0.125. EstimatedRTT mới:",o:["110 ms","102.5 ms","120 ms","117.5 ms"],a:1,e:"0.875·100 + 0.125·120 = 87.5 + 15 = 102.5 ms."},
+{c:"C3",s:"Dạng đề 2020",q:"Wireshark bắt được segment từ server: “Src Port: 80, Dst Port: 50123, Seq: 1, Ack: 97, Len: 512”. Nếu bên nhận nhận đúng segment này, nó phản hồi với ACK bằng bao nhiêu?",o:["98","512","513","609"],a:2,e:"ACK = Seq + Len = 1 + 512 = 513. Ack: 97 là số của chiều ngược lại, không liên quan."},
+{c:"C3",s:"Dạng đề 2019",q:"Gói TCP bắt được có Flags = 0x12 (SYN và ACK được bật), Sequence = 70 000, Acknowledgement = 5 001. Initial Sequence Number trong gói SYN của bên kia là:",o:["0","5 000","70 000","5 001"],a:1,e:"Đây là SYN/ACK. ACK = ISN bên kia + 1 nên ISN = 5 000. Gói tiếp theo bên kia gửi là ACK (bước 3 bắt tay)."},
+{c:"C3",s:"Dạng đề 2020",q:"Host A gửi 2 400 byte cho B bằng TCP. Segment đầu chứa 1 460 byte và có Sequence Number 300. Segment thứ hai có Sequence Number:",o:["301","1 460","1 760","1 761"],a:2,e:"Seq tiếp = 300 + 1 460 = 1 760 (đánh số theo byte)."},
+{c:"C3",s:"Dạng Quiz-GK",q:"Kết nối TCP có MSS = 1 000 byte, client gửi 3 500 byte (seq tương đối bắt đầu từ 0). Số segment và dãy sequence number:",o:["3 segment: 0, 1000, 2000","4 segment: 0, 1000, 2000, 3000","4 segment: 1, 1001, 2001, 3001","4 segment: 0, 1, 2, 3"],a:1,e:"3 500 / 1 000 làm tròn lên = 4 segment (segment cuối 500 byte). Seq: 0, 1000, 2000, 3000."},
+{c:"C3",s:"Dạng đề 2019",q:"Ước lượng RTT với α = 0.2, lấy SampleRTT đầu tiên làm EstimatedRTT ban đầu. SampleRTT1 = 80 ms, SampleRTT2 = 100 ms. EstimatedRTT sau ACK thứ hai:",o:["84 ms","90 ms","96 ms","100 ms"],a:0,e:"(1 − 0.2)·80 + 0.2·100 = 64 + 20 = 84 ms."},
+{c:"C3",s:"Dạng đề 2020",q:"Trường Length trong UDP header ghi 600 byte. Payload là:",o:["600 byte","592 byte","580 byte","520 byte"],a:1,e:"Length gồm cả 8 byte header: 600 − 8 = 592."},
+{c:"C3",s:"Dạng đề 2020",q:"Phát biểu nào ĐÚNG về trường Length trong UDP header?",o:["Chỉ là độ dài payload","Chỉ là độ dài header","Trường này dài 16 byte","Có giá trị tối thiểu là 8"],a:3,e:"Length = header + payload (byte), dài 16 bit. Datagram rỗng vẫn có 8 byte header nên tối thiểu là 8."},
+{c:"C3",s:"Dạng Quiz-GK",q:"Wireshark: “User Datagram Protocol, Src Port: 56158, Dst Port: 53, Length: 36”. Phần header tầng vận chuyển dài bao nhiêu và gói này thuộc giao thức ứng dụng nào?",o:["36 byte, DNS","8 byte, DNS","28 byte, SMTP","8 byte, HTTP"],a:1,e:"Header UDP luôn 8 byte (payload 28 byte). Cổng đích 53 là DNS."},
+{c:"C3",s:"Dạng đề 2020",q:"6 cờ trong TCP header là:",o:["SYN, ACK, PSH, RST, FIN, URG","SYN, ACK, PSH, DAT, CON, URG","SYN, DAT, PSH, RST, FIN, URG","CON, ACK, PSH, RST, FIN, URG"],a:0,e:"URG, ACK, PSH, RST, SYN, FIN."},
+{c:"C3",s:"Dạng Quiz-GK",q:"Có bao nhiêu đặc điểm đúng với UDP: (1) không cần thiết lập kết nối (2) không điều khiển tắc nghẽn (3) truyền tin cậy (4) header nhỏ gọn (5) không xảy ra lỗi",o:["1","2","3","4"],a:2,e:"Đúng: 1, 2, 4. UDP không đảm bảo tin cậy và vẫn có thể lỗi (checksum chỉ phát hiện)."},
+{c:"C3",s:"Dạng Quiz-GK",q:"Có bao nhiêu phát biểu đúng: (1) FTP, HTTP, DNS đều dùng TCP (2) UDP và TCP đều đảm bảo độ trễ (3) UDP nhanh và an toàn hơn TCP (4) UDP đảm bảo băng thông nên hợp với streaming",o:["Không có phát biểu nào đúng","1","2","3"],a:0,e:"DNS dùng UDP; không giao thức nào đảm bảo độ trễ hay băng thông; UDP nhanh hơn nhưng không an toàn/tin cậy hơn."},
+{c:"C3",s:"Dạng đề 2020",q:"TCP KHÔNG hỗ trợ tính năng nào?",o:["Điều khiển luồng (flow control)","Hướng kết nối","Đảm bảo thông lượng tối thiểu","Truyền tin cậy"],a:2,e:"TCP có flow control, congestion control, tin cậy, hướng kết nối; không đảm bảo thông lượng hay độ trễ."},
+{c:"C3",s:"Dạng đề 2019",q:"Điều khiển luồng (flow control) là:",o:["Bên nhận kiểm soát bên gửi để không làm tràn bộ đệm bên nhận","Cơ chế đảm bảo độ trễ và băng thông","Cơ chế tránh nhiều nguồn gửi quá nhanh vượt khả năng của mạng","Đáp án khác"],a:0,e:"Flow control bảo vệ bộ đệm bên nhận (trường rwnd). Đáp án C là congestion control (bảo vệ mạng)."},
+{c:"C3",s:"Dạng Quiz-GK",q:"Tính checksum của 2 word 16 bit: 10110011 01010101 và 01101100 11001010",o:["00100000 00100000","11011111 11100000","11011111 11011111","00100000 00011111"],a:2,e:"Tổng có bit tràn: 1 00100000 00011111 → cộng vòng 1 = 00100000 00100000. Đảo bit: 11011111 11011111. A là chưa đảo bit, B là quên cộng vòng."},
+{c:"C3",s:"Dạng Quiz-GK",q:"Hai word bị lỗi đúng cùng một vị trí bit, một bit 0→1 và một bit 1→0. Checksum UDP có phát hiện được lỗi không?",o:["Có","Không","Chỉ khi bit lỗi ở cuối","Phát hiện và sửa được"],a:1,e:"Hai thay đổi bù trừ nhau nên tổng không đổi, checksum vẫn khớp. Checksum không phát hiện được mọi lỗi và không sửa lỗi."},
+{c:"C3",s:"Dạng đề 2020",q:"Sơ đồ: gửi pkt0 → nhận ack0; gửi pkt1, ack1 bị mất; timeout, gửi lại pkt1, bên nhận phát hiện trùng và gửi ack1. Đây là nguyên lý nào?",o:["rdt1.0","Go-Back-N","rdt2.0","rdt3.0"],a:3,e:"Có timer và phát lại khi mất ACK, kết hợp số thứ tự 0/1 để loại gói trùng: rdt3.0 (alternating bit)."},
+{c:"C3",s:"Dạng Quiz-GK",q:"Sơ đồ: bên gửi pkt1, pkt1 bị lỗi; bên nhận gửi lại ack0 thay vì NAK; bên gửi thấy ACK trùng thì gửi lại pkt1. Phiên bản rdt nào?",o:["rdt2.0","rdt2.1","rdt2.2","rdt3.0"],a:2,e:"Không dùng NAK, thay bằng ACK của gói đúng gần nhất kèm số thứ tự: rdt2.2. rdt2.1 vẫn dùng NAK."},
+{c:"C3",s:"Dạng Quiz-GK",q:"Những phiên bản rdt nào dùng NAK để báo lỗi gói?",o:["rdt2.0 và rdt2.1","rdt2.2 và rdt3.0","Chỉ rdt2.0","rdt2.1 và rdt2.2"],a:0,e:"rdt2.0 và rdt2.1 dùng ACK/NAK. Từ rdt2.2 trở đi bỏ NAK."},
+{c:"C3",s:"Dạng đề 2019",q:"rdt2.0, bên gửi đang ở trạng thái “chờ ACK hoặc NAK”. Phát biểu nào SAI?",o:["Nếu không nhận được ACK/NAK thì bên gửi phải gửi lại dữ liệu","Nhận ACK thì về trạng thái “chờ gọi từ tầng trên”","Nhận ACK thì không có hành động nào khác","Nhận NAK thì gửi lại dữ liệu"],a:0,e:"rdt2.0 không có timer nên không xử lý được trường hợp mất ACK/NAK. Đó là lỗ hổng của nó."},
+{c:"C3",s:"Dạng Quiz-GK",q:"rdt3.0: bên gửi gửi pkt0, nhận ack0, gửi pkt1 và pkt1 bị mất. Khi timeout, bên nhận làm gì?",o:["Yêu cầu bên gửi truyền lại pkt1","Không làm gì cả","Gửi lại ack1 báo mất gói","Gửi lại ack0"],a:1,e:"Timer nằm ở bên gửi. Bên nhận không biết pkt1 bị mất nên không làm gì; bên gửi tự phát lại pkt1."},
+{c:"C3",s:"Dạng đề 2020",q:"Đặc tính nào đúng với Go-Back-N?",o:["Bên nhận ACK riêng từng gói","Bên nhận gửi ACK tích lũy","Bên gửi chỉ gửi lại gói không nhận được ACK","Mỗi gói có một timer riêng"],a:1,e:"GBN: ACK tích lũy, một timer cho gói cũ nhất, timeout gửi lại cả cửa sổ. A, C, D là đặc điểm của Selective Repeat."},
+{c:"C3",s:"Dạng Quiz-GK",q:"Đặc điểm nào KHÔNG đúng với Selective Repeat?",o:["Mỗi gói có timer riêng","Chỉ gửi lại gói bị lỗi","Chỉ gửi lại gói bị mất","Dùng ACK tích lũy"],a:3,e:"SR ACK riêng từng gói và đệm gói sai thứ tự. ACK tích lũy là của GBN (và TCP)."},
+{c:"C3",s:"Dạng Quiz-GK",q:"GBN, N = 4, cần gửi pkt0–pkt7. Bên gửi gửi pkt0–pkt3, pkt2 mất. Khi pkt3 đến, bên nhận làm gì?",pre:"sender (N=4)                 receiver\nsend pkt0  ───────────────▶  R1: nhận pkt0, gửi ack0\nsend pkt1  ───────────────▶  R2: nhận pkt1, gửi ack1\nsend pkt2  ─────── ✕ loss\nsend pkt3  ───────────────▶  R3: nhận pkt3, ?\nrcv ack0 → send pkt4  ────▶  R4: nhận pkt4\nrcv ack1 → send pkt5  ────▶  R5: nhận pkt5\nignore dup ACK\npkt2 timeout",o:["Bỏ pkt3, gửi ack3","Lưu pkt3 vào bộ đệm, gửi lại ack1","Lưu pkt3, gửi ack3","Bỏ pkt3, gửi lại ack1"],a:3,e:"GBN không có bộ đệm cho gói sai thứ tự: bỏ pkt3 và gửi lại ACK gói đúng gần nhất (ack1)."},
+{c:"C3",s:"Dạng đề 2019, Quiz-GK",q:"Cùng sơ đồ GBN trên. Khi pkt2 timeout, bên gửi làm gì?",o:["Gửi pkt6, pkt7","Gửi lại pkt2, pkt3, pkt4, pkt5","Gửi lại pkt2, pkt3, pkt6, pkt7","Chỉ gửi lại pkt2"],a:1,e:"Cửa sổ lúc đó là pkt2–pkt5 (đã gửi, chưa ACK). GBN gửi lại toàn bộ."},
+{c:"C3",s:"Dạng Quiz-GK",q:"Cùng sơ đồ GBN trên. Khi nhận ack0 (thời điểm S5), bên gửi gửi gói nào?",o:["pkt1","pkt4","pkt2","pkt3"],a:1,e:"ack0 làm cửa sổ trượt sang pkt1–pkt4, gói mới được phép gửi là pkt4."},
+{c:"C3",s:"Dạng Quiz-GK",q:"Cùng sơ đồ GBN trên. Bên gửi được phép có tối đa bao nhiêu gói đang gửi mà chưa ACK?",o:["3","4","5","8"],a:1,e:"Bằng kích thước cửa sổ N = 4."},
+{c:"C3",s:"Dạng đề 2019",q:"Host A gửi Seq=92 (8 byte) và Seq=100 (20 byte); gói Seq=100 mất. B gửi ACK=100 bốn lần (1 ACK gốc + 3 trùng). A gửi lại Seq=100 trước khi timeout. Đây là:",o:["Mất ACK","Truyền lại nhanh (fast retransmit)","Timeout sớm","ACK tích lũy"],a:1,e:"3 ACK trùng khiến bên gửi phát lại ngay, không chờ timer: fast retransmit."},
+{c:"C3",s:"Dạng đề 2020",q:"A gửi Seq=92 (8 byte), Seq=100 (20 byte). B trả ACK1, ACK2 nhưng cả hai đến trễ; A timeout và gửi lại Seq=92; B trả ACK3. Giá trị các ACK:",o:["100, 120, 120","100, 100, 120","92, 100, 100","100, 120, 100"],a:0,e:"ACK1 = 92 + 8 = 100, ACK2 = 100 + 20 = 120. B đã có đủ tới byte 119 nên gói 92 trùng vẫn nhận ACK3 = 120 (tích lũy)."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Lớp Vận chuyển cung cấp truyền thông logic giữa:",o:["Host và tiến trình","Các host","Các tiến trình","Các router"],a:2,e:"Vận chuyển: giữa các tiến trình. Mạng: giữa các host."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Mục đích của số port trong header TCP và UDP:",o:["Số segment gửi cùng lúc không cần ACK","Sắp xếp segment đúng thứ tự","Bắt đầu bắt tay 3 bước","Xác định tiến trình đang gửi/nhận dữ liệu"],a:3,e:"Port dùng để dồn kênh/phân kênh tới đúng socket của tiến trình."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Gom dữ liệu từ nhiều socket và thêm header tầng Vận chuyển vào segment gọi là:",o:["Routing","Demultiplexing","Multiplexing","Segmentation"],a:2,e:"Multiplexing ở bên gửi. Demultiplexing là đưa segment tới đúng socket ở bên nhận."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Đặc điểm nào KHÔNG được TCP hỗ trợ?",o:["Điều khiển tắc nghẽn","Định thì (đảm bảo thời gian)","Hướng kết nối","Điều khiển luồng"],a:1,e:"TCP không đảm bảo thời gian/độ trễ."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Tại sao HTTP, FTP, SMTP dùng TCP?",o:["Cần giao thức best effort","Tầng vận chuyển chỉ có TCP","Cần đảm bảo tin cậy","Để tải nhanh hơn"],a:2,e:"Các ứng dụng này không chấp nhận mất dữ liệu nên cần truyền tin cậy."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Ứng dụng nào KHÔNG dùng UDP?",o:["Ứng dụng đa phương tiện trực tuyến","SNMP","DNS","Ứng dụng cần truyền nhận tin cậy"],a:3,e:"Cần tin cậy thì dùng TCP (trừ khi ứng dụng tự xây cơ chế tin cậy trên UDP)."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Giao thức ứng dụng nào dùng UDP ở lớp Vận chuyển?",o:["HTTP","DNS","FTP","SMTP"],a:1,e:"DNS dùng UDP cổng 53."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Ưu điểm của UDP so với TCP:",o:["Truyền tin cậy","Có cơ chế đồng bộ chống tràn bên nhận","Dùng ít tài nguyên hơn vì không duy trì trạng thái kết nối","Đảm bảo gói đến đúng thứ tự"],a:2,e:"UDP không bắt tay, không giữ trạng thái, header 8 byte. A, B, D là đặc điểm của TCP."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Phát biểu đúng về UDP:",o:["UDP truyền dữ liệu tin cậy","UDP chuyển gói theo đúng thứ tự","UDP là dịch vụ best effort","UDP là giao thức hướng kết nối"],a:2,e:"UDP chỉ cố gắng tốt nhất: có thể mất, sai thứ tự, không kết nối."},
+{c:"C3",s:"Ngân hàng đáp án",q:"UDP checksum dùng để:",o:["Lưu kích thước gói","Kiểm tra thứ tự gói tại bên nhận","Kiểm tra lỗi trong gói tại bên nhận","Lưu IP nguồn và đích"],a:2,e:"Checksum chỉ phát hiện lỗi bit, không sửa lỗi và không kiểm tra thứ tự."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Tính checksum của 2 word 16 bit: 10101100 01010001 và 01001001 11001100",o:["00001001 11100010","01001001 11100010","00001001 11110010","11110110 00011101"],a:0,e:"Tổng = 11110110 00011101 (không tràn bit). Đảo bit: 00001001 11100010. D là tổng chưa đảo."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Nếu ACK number trong segment là 200, bên nhận đã nhận đến byte thứ:",o:["Không xác định được","201","200","199"],a:3,e:"ACK là byte kế tiếp đang chờ. ACK = 200 nghĩa là đã nhận đủ đến byte 199."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Sequence number trong TCP header thể hiện:",o:["Tổng số byte đã gửi","Số thứ tự của segment","Số byte bên nhận đang mong đợi","Số thứ tự của byte đầu tiên trong dữ liệu của segment"],a:3,e:"TCP đánh số theo byte, không theo segment. C là ý nghĩa của ACK number."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Trường Receive window trong TCP header liên quan đến:",o:["Kích thước màn hình","Số byte bên nhận sẵn sàng chấp nhận","Số byte gửi trong segment","Hệ điều hành"],a:1,e:"rwnd là chỗ trống trong bộ đệm bên nhận, dùng cho flow control."},
+{c:"C3",s:"Ngân hàng đáp án",q:"SYN segment trong bắt tay 3 bước có Seq và cờ SYN là:",o:["Seq = ISN, SYN = 1","Seq = ISN, SYN = 0","Seq = 1, SYN = 1","Seq = 0, SYN = 0"],a:0,e:"SYN mang ISN do client chọn ngẫu nhiên và bật cờ SYN."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Gói yêu cầu kết nối (bước 1 bắt tay 3 bước) có các cờ:",o:["ACK=1, SYN=1","RST=1, SYN=1","ACK=0, SYN=1","ACK=1, SYN=0"],a:2,e:"Bước 1 chỉ SYN. Bước 2 là SYN=1, ACK=1. Bước 3 chỉ ACK."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Nhận được segment có cờ FIN, TCP phản hồi bằng gói có cờ gì để xác nhận?",o:["SYN","FIN","RST","ACK"],a:3,e:"Bên nhận FIN gửi ACK, sau đó mới gửi FIN của riêng mình khi sẵn sàng đóng."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Cơ chế TCP dùng để quản lý (thiết lập) kết nối:",o:["TCP port number","Bắt tay 3 bước","TCP header length","UDP checksum"],a:1,e:"Thiết lập bằng bắt tay 3 bước (SYN, SYNACK, ACK), đóng bằng trao đổi FIN/ACK."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Trong slow start, trước khi cwnd đạt ngưỡng, cwnd tăng theo cách nào?",o:["Tuyến tính","Không tăng","Bình phương","Cấp số nhân"],a:3,e:"Gấp đôi mỗi RTT (tăng 1 MSS cho mỗi ACK)."},
+{c:"C3",s:"Ngân hàng đáp án",q:"Khác biệt giữa TCP Tahoe và TCP Reno:",o:["Chỉ Tahoe có slow start, CA và fast retransmit","Reno có thêm fast recovery, Tahoe thì không","Reno chưa được hiện thực","Tahoe chỉ có slow start và CA"],a:1,e:"Tahoe gặp 3 ACK trùng cũng đưa cwnd về 1. Reno dùng fast recovery: cwnd còn một nửa."},
+{c:"C3",q:"Theo đồ thị Reno mẫu (phần cách giải), ssthresh ban đầu là bao nhiêu?",o:["8","16","20","32"],a:1,e:"cwnd nhân đôi 1, 2, 4, 8, 16 rồi chuyển sang +1 từ vòng 6: ngưỡng là 16."},
+{c:"C3",q:"Theo đồ thị Reno mẫu, vòng 7 thuộc pha nào?",o:["Slow start","Congestion avoidance","Fast recovery","Fast retransmission"],a:1,e:"Từ vòng 6 đến 9 cwnd tăng 1 mỗi vòng: congestion avoidance."},
+{c:"C3",q:"Theo đồ thị Reno mẫu, cwnd từ 20 (vòng 9) xuống 10 (vòng 10) do đâu?",o:["Timeout","3 ACK trùng","Bên nhận hết bộ đệm","Đạt ssthresh"],a:1,e:"Reno giảm một nửa khi nhận 3 ACK trùng. Timeout thì cwnd về 1 như ở vòng 13."},
+{c:"C3",q:"Theo đồ thị Reno mẫu, ssthresh ở vòng 14 bằng:",o:["16","10","6","1"],a:2,e:"Vòng 12 cwnd = 12 thì timeout → ssthresh = 12/2 = 6, cwnd = 1. Vì vậy vòng 16 slow start dừng ở 6."},
+{c:"C3",q:"Theo đồ thị Reno mẫu, segment thứ 50 được gửi ở vòng nào?",o:["Vòng 5","Vòng 6","Vòng 7","Vòng 8"],a:2,e:"Cộng dồn: vòng 1–5 gửi 31 segment, vòng 6 thêm 17 (đến 48), vòng 7 thêm 18 (49–66). Segment 50 ở vòng 7."}
+];
+
+// Shuffle options with a fixed seed per question so the answer letter is not predictable,
+// but keep the original order when options are numbers or refer to each other.
+Q.forEach((q,i)=>{
+  if(q.o.every(o=>/^[\d−-]/.test(o))||q.o.some(o=>/Tất cả|Đáp án khác|Không có phát biểu|Không giao thức|^Cả /.test(o)))return;
+  let s=(i+1)*2654435761%4294967296;
+  const rnd=()=>(s=(s*1664525+1013904223)%4294967296)/4294967296;
+  const p=[0,1,2,3];
+  for(let k=3;k>0;k--){const j=Math.floor(rnd()*(k+1));[p[k],p[j]]=[p[j],p[k]]}
+  q.o=p.map(k=>q.o[k]);q.a=p.indexOf(q.a);
+});
+const KEY="it005-gk-answers-v4";
+let ans={};
+try{ans=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){ans={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ans))}catch(e){}};
+let filter="all";
+const L="ABCD";
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+function render(){
+  const box=document.getElementById("qs");
+  box.innerHTML="";
+  let shown=0;
+  Q.forEach((q,i)=>{
+    const a=ans[i];
+    if(filter==="C1"||filter==="C2"||filter==="C3"){if(q.c!==filter)return}
+    if(filter==="wrong"&&!(a!==undefined&&a!==q.a))return;
+    if(filter==="todo"&&a!==undefined)return;
+    shown++;
+    const el=document.createElement("article");
+    el.className="q";
+    const done=a!==undefined;
+    el.innerHTML=`<div class="meta"><span>Câu ${i+1}</span><span>${q.c.replace("C","Chương ")}</span>${q.s?`<span>${q.s}</span>`:""}</div>
+      <p class="stem">${esc(q.q)}</p>${q.pre?`<pre>${esc(q.pre)}</pre>`:""}
+      <div class="opts">${q.o.map((o,j)=>{
+        let cls="opt";
+        if(done&&j===q.a)cls+=" right";
+        else if(done&&j===a)cls+=" wrong";
+        return `<button class="${cls}" data-i="${i}" data-j="${j}" ${done?"disabled":""}><span class="k">${L[j]}.</span><span>${esc(o)}</span></button>`}).join("")}</div>
+      ${done?`<div class="why">${a===q.a?"<b>Đúng.</b> ":`<b>Sai.</b> Đáp án ${L[q.a]}. `}${esc(q.e)}</div>`:""}`;
+    box.appendChild(el);
+  });
+  if(!shown)box.innerHTML=`<p class="empty">${filter==="wrong"?"Chưa có câu nào làm sai.":filter==="todo"?"Bạn đã làm hết các câu.":"Không có câu nào."}</p>`;
+  const n=Object.keys(ans).length;
+  const r=Object.entries(ans).filter(([i,v])=>Q[i]&&Q[i].a===v).length;
+  document.getElementById("score").innerHTML=`Đúng <b>${r}</b>/${n} · đã làm ${n}/${Q.length}`;
+}
+document.getElementById("qs").addEventListener("click",e=>{
+  const b=e.target.closest(".opt");if(!b||b.disabled)return;
+  ans[b.dataset.i]=+b.dataset.j;save();
+  const y=window.scrollY;render();window.scrollTo(0,y);
+});
+document.getElementById("chips").addEventListener("click",e=>{
+  const c=e.target.closest(".chip");if(!c)return;
+  filter=c.dataset.f;
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c?"true":"false"));
+  render();
+});
+document.getElementById("reset").addEventListener("click",()=>{ans={};save();render()});
+
+(function drawReno(){
+  const W=620,H=260,pl=40,pr=14,pt=14,pb=36,max=24;
+  const x=i=>pl+(i)*(W-pl-pr)/(RENO.length-1);
+  const y=v=>pt+(H-pt-pb)*(1-v/max);
+  let g="";
+  for(let v=0;v<=max;v+=4){g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${pl-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="var(--mono)">${v}</text>`}
+  RENO.forEach((v,i)=>{if((i+1)%2===1)g+=`<text x="${x(i)}" y="${H-pb+16}" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="var(--mono)">${i+1}</text>`});
+  g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(16)}" y2="${y(16)}" stroke="var(--mark)" stroke-dasharray="4 4"/><text x="${W-pr}" y="${y(16)-6}" text-anchor="end" font-size="11" fill="var(--mark)" font-family="var(--mono)">ssthresh ban đầu = 16</text>`;
+  const pts=RENO.map((v,i)=>`${x(i)},${y(v)}`).join(" ");
+  g+=`<polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2.2"/>`;
+  RENO.forEach((v,i)=>{g+=`<circle cx="${x(i)}" cy="${y(v)}" r="3.2" fill="var(--accent)"/><text x="${x(i)}" y="${y(v)-8}" text-anchor="middle" font-size="10.5" fill="var(--fg)" font-family="var(--mono)">${v}</text>`});
+  g+=`<text x="${(W+pl)/2}" y="${H-4}" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="var(--body)">Vòng truyền (transmission round) · trục dọc: cwnd (segment)</text>`;
+  document.getElementById("reno").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Đồ thị cwnd TCP Reno mẫu">${g}</svg>`;
+})();
+render();
+</script>
+
+</body></html>
