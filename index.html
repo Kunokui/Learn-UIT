@@ -5,53 +5,136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Learn UIT</title>
 <style>
-  :root { --bg:#fafafa; --fg:#1a1a1a; --muted:#666; --card:#fff; --border:#e3e3e3; --accent:#2563eb; }
+  :root { --bg:#fafafa; --fg:#1a1a1a; --muted:#666; --card:#fff; --border:#e3e3e3; --accent:#2563eb; --soft:#eef3fd; }
   @media (prefers-color-scheme: dark) {
-    :root { --bg:#111; --fg:#eee; --muted:#999; --card:#1b1b1b; --border:#2c2c2c; --accent:#60a5fa; }
+    :root { --bg:#111; --fg:#eee; --muted:#999; --card:#1b1b1b; --border:#2c2c2c; --accent:#60a5fa; --soft:#1a2436; }
   }
+  * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui, sans-serif; }
   main { max-width:760px; margin:0 auto; padding:32px 16px; }
   h1 { margin:0 0 4px; }
   p.sub { color:var(--muted); margin:0 0 24px; }
-  input { width:100%; box-sizing:border-box; padding:10px 12px; border:1px solid var(--border); border-radius:8px; background:var(--card); color:var(--fg); font:inherit; margin-bottom:20px; }
-  h2 { font-size:14px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:24px 0 8px; }
-  ul { list-style:none; padding:0; margin:0; }
-  li a { display:block; padding:10px 14px; margin-bottom:6px; background:var(--card); border:1px solid var(--border); border-radius:8px; color:var(--accent); text-decoration:none; }
-  li a:hover { border-color:var(--accent); }
+  input { width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:8px; background:var(--card); color:var(--fg); font:inherit; margin-bottom:20px; }
   .empty { color:var(--muted); }
+
+  /* Môn học: thẻ xổ xuống */
+  details.subject { background:var(--card); border:1px solid var(--border); border-radius:10px; margin-bottom:10px; }
+  details.subject > summary { cursor:pointer; list-style:none; padding:12px 16px; display:flex; gap:12px; align-items:baseline; }
+  details.subject > summary::-webkit-details-marker { display:none; }
+  details.subject > summary::before { content:"▸"; color:var(--accent); transition:transform .15s; }
+  details.subject[open] > summary::before { transform:rotate(90deg); }
+  .code { font-weight:700; color:var(--accent); font-family:ui-monospace, Consolas, monospace; }
+  .name { flex:1; }
+  .count { color:var(--muted); font-size:13px; }
+  .terms { padding:0 16px 12px 40px; }
+  .term h3 { font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:10px 0 6px; }
+  .term ul { list-style:none; padding:0; margin:0; }
+  .term li a { display:block; padding:8px 12px; margin-bottom:6px; border:1px solid var(--border); border-radius:8px; color:var(--accent); text-decoration:none; }
+  .term li a:hover { border-color:var(--accent); background:var(--soft); }
+  .term .none { color:var(--muted); font-size:14px; margin:0 0 6px; }
+
+  /* Trang xem bài */
+  #viewer { display:none; position:fixed; inset:0; flex-direction:column; background:var(--bg); }
+  #viewer.on { display:flex; }
+  .topbar { display:flex; align-items:center; gap:12px; padding:8px 12px; background:var(--card); border-bottom:1px solid var(--border); }
+  .topbar button { font:inherit; font-size:14px; padding:6px 12px; border:1px solid var(--border); border-radius:8px; background:var(--bg); color:var(--fg); cursor:pointer; white-space:nowrap; }
+  .topbar button:hover { border-color:var(--accent); color:var(--accent); }
+  .topbar .title { font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  #frame { flex:1; width:100%; border:0; background:#fff; }
 </style>
 </head>
 <body>
-<main>
+<main id="home">
   <h1>Learn UIT</h1>
   <p class="sub">Các file HTML ôn tập</p>
-  <input id="q" type="search" placeholder="Tìm bài...">
+  <input id="q" type="search" placeholder="Tìm môn hoặc bài, ví dụ IT007...">
   <div id="list"><p class="empty">Đang tải...</p></div>
 </main>
+
+<div id="viewer">
+  <div class="topbar">
+    <button id="back" type="button">← Quay về</button>
+    <span class="title" id="vtitle"></span>
+  </div>
+  <iframe id="frame" title="Bài ôn tập"></iframe>
+</div>
+
 <script>
 const REPO = "Kunokui/Learn-UIT";
+const SUBJECTS = {
+  IT004: "Cơ sở dữ liệu",
+  IT005: "Nhập môn mạng máy tính",
+  IT007: "Hệ điều hành",
+};
+const TERMS = ["Giữa kỳ", "Cuối kỳ", "Khác"];
 let files = [];
 
+// Bỏ dấu để so khớp "giữa kỳ" / "giua ki" / "Giữa kì"
+const plain = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/gi, "d").toLowerCase();
+const titleOf = p => p.split("/").pop().replace(/\.html$/i, "").normalize("NFC");
+
+function parse(path) {
+  const t = titleOf(path);
+  const m = t.match(/\b([A-Z]{2,4}\d{3})\b/i);
+  const p = plain(t);
+  const term = /giua\s*k[iy]/.test(p) ? "Giữa kỳ" : /cuoi\s*k[iy]/.test(p) ? "Cuối kỳ" : "Khác";
+  return { path, title: t, code: m ? m[1].toUpperCase() : "Khác", term };
+}
+
 function render() {
-  const q = document.getElementById("q").value.toLowerCase();
+  const q = plain(document.getElementById("q").value.trim());
   const groups = {};
-  for (const path of files) {
-    if (q && !path.toLowerCase().includes(q)) continue;
-    const i = path.lastIndexOf("/");
-    const dir = i < 0 ? "Chung" : path.slice(0, i);
-    (groups[dir] ||= []).push(path);
+  for (const f of files) {
+    const name = SUBJECTS[f.code] || "";
+    if (q && !plain(f.path + " " + f.code + " " + name).includes(q)) continue;
+    (groups[f.code] ||= []).push(f);
   }
   const el = document.getElementById("list");
-  const dirs = Object.keys(groups).sort();
-  if (!dirs.length) { el.innerHTML = '<p class="empty">Chưa có bài nào.</p>'; return; }
-  el.innerHTML = dirs.map(dir =>
-    `<h2>${dir}</h2><ul>` +
-    groups[dir].map(p => {
-      const name = p.split("/").pop().replace(/\.html$/i, "").replace(/[-_]/g, " ");
-      return `<li><a href="${encodeURI(p)}">${name}</a></li>`;
-    }).join("") + "</ul>"
-  ).join("");
+  const codes = Object.keys(groups).sort((a, b) => (a === "Khác") - (b === "Khác") || a.localeCompare(b));
+  if (!codes.length) { el.innerHTML = '<p class="empty">Không có bài nào.</p>'; return; }
+  el.innerHTML = codes.map(code => {
+    const items = groups[code];
+    const terms = TERMS.filter(t => t !== "Khác" || items.some(f => f.term === "Khác")).map(t => {
+      const list = items.filter(f => f.term === t);
+      return `<div class="term"><h3>${t}</h3>` + (list.length
+        ? "<ul>" + list.map(f => `<li><a href="#view=${encodeURIComponent(f.path)}">${f.title}</a></li>`).join("") + "</ul>"
+        : '<p class="none">Chưa có bài.</p>') + "</div>";
+    }).join("");
+    return `<details class="subject"${q ? " open" : ""}><summary>` +
+      `<span class="code">${code}</span><span class="name">${SUBJECTS[code] || ""}</span>` +
+      `<span class="count">${items.length} bài</span></summary><div class="terms">${terms}</div></details>`;
+  }).join("");
 }
+
+// Điều hướng bằng hash để nút Back của trình duyệt cũng quay về được
+let fromHome = false;  // bài được mở từ danh sách (không phải mở thẳng bằng link)
+function route() {
+  const m = location.hash.match(/^#view=(.+)$/);
+  const viewer = document.getElementById("viewer");
+  const frame = document.getElementById("frame");
+  fromHome = !!m && !viewer.classList.contains("on") && document.getElementById("list").childElementCount > 0 && files.length > 0;
+  if (m) {
+    const path = decodeURIComponent(m[1]);
+    document.getElementById("vtitle").textContent = titleOf(path);
+    document.title = titleOf(path) + " · Learn UIT";
+    if (frame.dataset.path !== path) { frame.src = encodeURI(path); frame.dataset.path = path; }
+    viewer.classList.add("on");
+    document.getElementById("home").style.display = "none";
+  } else {
+    viewer.classList.remove("on");
+    frame.removeAttribute("src"); delete frame.dataset.path;
+    document.getElementById("home").style.display = "";
+    document.title = "Learn UIT";
+  }
+}
+
+document.getElementById("back").addEventListener("click", () => {
+  if (fromHome) history.back();
+  else location.hash = "";
+});
+document.getElementById("q").addEventListener("input", render);
+window.addEventListener("hashchange", route);
+route();
 
 fetch(`https://api.github.com/repos/${REPO}/git/trees/main?recursive=1`)
   .then(r => r.json())
@@ -59,14 +142,13 @@ fetch(`https://api.github.com/repos/${REPO}/git/trees/main?recursive=1`)
     files = (data.tree || [])
       .map(t => t.path)
       .filter(p => /\.html$/i.test(p) && p !== "index.html")
-      .sort();
+      .sort()
+      .map(parse);
     render();
   })
   .catch(() => {
     document.getElementById("list").innerHTML = '<p class="empty">Không tải được danh sách.</p>';
   });
-
-document.getElementById("q").addEventListener("input", render);
 </script>
 </body>
 </html>
