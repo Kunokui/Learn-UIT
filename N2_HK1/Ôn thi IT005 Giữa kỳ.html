@@ -141,6 +141,31 @@ section{margin-top:44px}
 .sv-none{fill:none}
 .sv-t{font-family:var(--mono);font-size:11px}
 .sv-tb{font-family:var(--body);font-size:12px;font-weight:600}
+/* formula handbook */
+.legend-lv{display:flex;flex-wrap:wrap;gap:6px}
+.badge{font-family:var(--mono);font-size:12px;padding:2px 9px;border-radius:999px;white-space:nowrap;border:1px solid transparent}
+.badge.lv3{background:var(--mark-soft);color:var(--mark);border-color:var(--mark)}
+.badge.lv2{background:var(--accent-soft);color:var(--accent)}
+.badge.lv1{background:var(--bg);color:var(--muted);border-color:var(--line)}
+h3 .badge{font-family:var(--mono);font-weight:500;margin-left:6px;vertical-align:2px}
+.fx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:14px}
+.fx{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:10px;align-content:start;min-width:0}
+.fx-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px}
+.fx-top h3{font-size:16px;font-weight:800}
+.seen{font-size:12.5px;color:var(--muted);margin-top:-6px}
+.eq{font-family:var(--mono);font-size:17px;line-height:1.3;padding:12px 16px;background:var(--accent-soft);border-radius:8px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;overflow-x:auto}
+.eq.small{font-size:15px;padding:9px 14px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.2;margin:0 2px}
+.frac>span:first-child{border-bottom:1.5px solid currentColor;padding:0 4px 2px}
+.frac>span:last-child{padding:2px 4px 0}
+.vars{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-size:13.5px;margin:0}
+.vars dt{font-family:var(--mono);font-weight:600;color:var(--accent)}
+.vars dd{margin:0}
+.fx-ex,.alt{border:1px dashed var(--line);border-radius:8px;padding:10px 12px;font-size:14px;display:grid;gap:4px;min-width:0}
+.alt{border-style:solid;background:var(--bg)}
+.fx-ex .lbl,.alt .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fx-ex code{font-size:13px;overflow-wrap:anywhere}
+.formula{font-size:14.5px;padding:10px 14px;border-radius:8px}
 /* worked examples */
 details.ex{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-top:10px}
 details.ex summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
@@ -220,9 +245,241 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
     </div>
   </section>
 
+  <section id="cong-thuc">
+    <h2>Sổ tay công thức</h2>
+    <p class="lede" style="margin:-6px 0 12px">Mỗi công thức có ký hiệu, cách hiểu, ví dụ có số và mức độ hay ra (thống kê từ đề 2019, 2020, 2021, 2022–2023, 2023–2024, Quiz-GK và ngân hàng câu hỏi).</p>
+    <div class="ctrl" style="margin-bottom:12px">
+      <div class="chips" id="fx-filter">
+        <button class="chip" data-f="all" aria-pressed="true">Tất cả</button>
+        <button class="chip" data-f="lv3" aria-pressed="false">★★★ Rất hay ra</button>
+        <button class="chip" data-f="C1" aria-pressed="false">Chương 1</button>
+        <button class="chip" data-f="C2" aria-pressed="false">Chương 2</button>
+        <button class="chip" data-f="C3" aria-pressed="false">Chương 3</button>
+      </div>
+      <span class="legend-lv"><span class="badge lv3">★★★ Rất hay ra</span><span class="badge lv2">★★ Hay ra</span><span class="badge lv1">★ Thỉnh thoảng</span></span>
+    </div>
+
+    <div class="fx-grid" id="fx-list">
+
+      <article class="fx" data-c="C1" data-lv="lv3">
+        <div class="fx-top"><h3>Độ trễ đầu cuối trên một liên kết</h3><span class="badge lv3">★★★ Rất hay ra</span></div>
+        <p class="seen">Gặp trong: 2019 · 2020 · 2022 · 2023–2024 (5 câu) · Quiz-GK — năm nào cũng có</p>
+        <div class="eq">d<sub>end-end</sub> = d<sub>proc</sub> + d<sub>queue</sub> + <span class="frac"><span>L</span><span>R</span></span> + <span class="frac"><span>d</span><span>s</span></span></div>
+        <dl class="vars">
+          <dt>L</dt><dd>độ dài gói (bit) · nhớ đổi byte × 8</dd>
+          <dt>R</dt><dd>tốc độ truyền / băng thông (bit/s)</dd>
+          <dt>d</dt><dd>độ dài đường truyền (m)</dd>
+          <dt>s</dt><dd>tốc độ lan truyền, 2·10⁸ – 3·10⁸ m/s</dd>
+        </dl>
+        <p><b>Hiểu nhanh:</b> L/R là thời gian <b>đẩy</b> hết bit ra dây, chỉ phụ thuộc băng thông. d/s là thời gian <b>một bit đi</b> hết quãng đường, không phụ thuộc R. Đề thường cho bỏ qua xử lý và hàng đợi.</p>
+        <div class="fx-ex"><span class="lbl">Dạng hay gặp: tìm R<sub>new</sub></span>
+          <span>L = 30 000 bit, R = 10 Mbps, d = 300 km, s = 3·10⁸. Khoảng cách còn d/2, muốn trễ còn một nửa.</span>
+          <code>① Trễ cũ = 3 ms + 1 ms = 4 ms</code>
+          <code>② Trễ mới cần 2 ms; d/2 cho lan truyền 0.5 ms</code>
+          <code>③ L/R<sub>new</sub> = 2 − 0.5 = 1.5 ms → R<sub>new</sub> = 20 Mbps = <b>2R</b></code>
+        </div>
+        <div class="alt"><span class="lbl">Các dạng biến đổi</span>
+          <span>Tìm băng thông khi biết tổng trễ: <b>R = L / (d<sub>total</sub> − d/s)</b></span>
+          <span>Khoảng cách để d<sub>prop</sub> = d<sub>trans</sub>: <b>d = s · L / R</b></span>
+          <span>Tại t = L/R: bit cuối <b>vừa rời</b> bên gửi (chưa tới đích)</span>
+        </div>
+        <div class="tip"><b>Bẫy</b>Mbps = 10⁶ (không phải 2²⁰), km → m, byte → bit. Kết quả thường là ms: nhân 1 000.</div>
+      </article>
+
+      <article class="fx" data-c="C1" data-lv="lv2">
+        <div class="fx-top"><h3>Độ trễ qua nhiều chặng (store-and-forward)</h3><span class="badge lv2">★★ Hay ra</span></div>
+        <p class="seen">Gặp trong: 2020 (3 liên kết khác tốc độ) · slide Chương 1</p>
+        <div class="eq">d = <span class="frac"><span>L</span><span>R<sub>1</sub></span></span> + <span class="frac"><span>L</span><span>R<sub>2</sub></span></span> + … + <span class="frac"><span>d<sub>1</sub> + d<sub>2</sub> + …</span><span>s</span></span></div>
+        <div class="eq small">N liên kết giống nhau: d = N · <span class="frac"><span>L</span><span>R</span></span> + <span class="frac"><span>N·d</span><span>s</span></span></div>
+        <p><b>Hiểu nhanh:</b> router phải nhận <b>đủ cả gói</b> rồi mới đẩy sang chặng sau, nên trễ truyền bị cộng ở <b>mỗi</b> chặng. Lan truyền thì cộng tổng chiều dài.</p>
+        <div class="fx-ex"><span class="lbl">Ví dụ</span>
+          <span>L = 10 000 bit qua 50 Mbps (2 km), 10 Mbps (400 km), 20 Mbps (4 km); s = 2·10⁸.</span>
+          <code>Truyền: 0.2 + 1 + 0.5 = 1.7 ms</code>
+          <code>Lan truyền: 406 km / 2·10⁸ = 2.03 ms → tổng 3.73 ms</code>
+        </div>
+        <div class="tip"><b>Bẫy</b>Chỉ lấy L/R của liên kết chậm nhất là sai; đó là cách tính thông lượng, không phải độ trễ.</div>
+      </article>
+
+      <article class="fx" data-c="C1" data-lv="lv3">
+        <div class="fx-top"><h3>Thông lượng đầu cuối</h3><span class="badge lv3">★★★ Rất hay ra</span></div>
+        <p class="seen">Gặp trong: 2019 · 2020 · 2022 · ngân hàng câu hỏi</p>
+        <div class="eq">Thông lượng = min( R<sub>s</sub> , R<sub>c</sub> , <span class="frac"><span>R</span><span>n</span></span> )</div>
+        <dl class="vars">
+          <dt>R<sub>s</sub>, R<sub>c</sub></dt><dd>tốc độ liên kết của server, của client</dd>
+          <dt>R</dt><dd>đường trục dùng chung</dd>
+          <dt>n</dt><dd>số kết nối chia sẻ công bằng đường trục</dd>
+        </dl>
+        <p><b>Hiểu nhanh:</b> dữ liệu chảy như nước qua ống, đoạn hẹp nhất (nút cổ chai) quyết định. Các liên kết nối tiếp: lấy min.</p>
+        <div class="fx-ex"><span class="lbl">Ví dụ</span>
+          <span>4 cặp client-server, R = 100 Mbps, R<sub>s</sub> = 40, R<sub>c</sub> = 30 Mbps.</span>
+          <code>R/n = 100/4 = 25 → min(40, 30, 25) = <b>25 Mbps</b></code>
+        </div>
+        <div class="alt"><span class="lbl">Liên quan</span><span>Số gói truyền được mỗi giây = <b>R / L</b> (2020: 1 000 byte, 1 000 kbps → 125 gói)</span></div>
+        <div class="tip"><b>Bẫy</b>Quên chia R cho n; hoặc cộng các tốc độ lại (thông lượng không bao giờ là tổng).</div>
+      </article>
+
+      <article class="fx" data-c="C1" data-lv="lv1">
+        <div class="fx-top"><h3>Cường độ lưu lượng và chuyển mạch gói</h3><span class="badge lv1">★ Thỉnh thoảng</span></div>
+        <p class="seen">Gặp trong: slide Chương 1, câu lý thuyết</p>
+        <div class="eq">Cường độ lưu lượng = <span class="frac"><span>L · a</span><span>R</span></span></div>
+        <dl class="vars"><dt>a</dt><dd>số gói đến mỗi giây (tốc độ đến trung bình)</dd></dl>
+        <p><b>Hiểu nhanh:</b> ≈ 0 thì trễ hàng đợi nhỏ; → 1 thì trễ tăng vọt; &gt; 1 thì hàng đợi dài vô hạn (mất gói).</p>
+        <div class="fx-ex"><span class="lbl">Ví dụ chuyển mạch kênh</span>
+          <code>Liên kết 1 Mbps, mỗi user 100 kbps → tối đa 1 000/100 = 10 user</code>
+          <span>Chuyển mạch gói (user hoạt động 10% thời gian) phục vụ được khoảng 35 user.</span>
+        </div>
+      </article>
+
+      <article class="fx" data-c="C2" data-lv="lv2">
+        <div class="fx-top"><h3>Thời gian tải trang HTTP</h3><span class="badge lv2">★★ Hay ra</span></div>
+        <p class="seen">Gặp trong: 2019 (thời gian phản hồi) · 2022–2024 (câu lý thuyết 2 RTT) · ngân hàng (chuỗi DNS)</p>
+        <div class="eq">Một đối tượng, không bền vững: 2·RTT + <span class="frac"><span>L</span><span>R</span></span></div>
+        <div class="tbl"><table class="mini">
+          <thead><tr><th>1 HTML + n ảnh</th><th>Số RTT (bỏ qua L/R)</th></tr></thead>
+          <tbody>
+            <tr><td>Không bền vững, tuần tự</td><td><b>2(n + 1)</b></td></tr>
+            <tr><td>Không bền vững, song song</td><td>2 + 2 = 4</td></tr>
+            <tr><td>Bền vững, không pipelining</td><td>2 + n</td></tr>
+            <tr><td>Bền vững, pipelining</td><td>2 + 1 = 3</td></tr>
+          </tbody>
+        </table></div>
+        <p><b>Hiểu nhanh:</b> 1 RTT mở TCP (SYN, SYN-ACK) + 1 RTT gửi GET và nhận đối tượng. Bền vững bỏ được RTT mở kết nối cho các đối tượng sau.</p>
+        <div class="fx-ex"><span class="lbl">Ví dụ</span>
+          <span>RTT = 2 ms, ảnh 10 KB, băng thông 40 Mbps, không bền vững.</span>
+          <code>2·2 + 80 000/4·10⁷ = 4 + 2 = <b>6 ms</b></code>
+        </div>
+        <div class="alt"><span class="lbl">Có thêm DNS</span><span>Hỏi n DNS server rồi lấy 1 đối tượng: <b>RTT<sub>1</sub> + … + RTT<sub>n</sub> + 2·RTT<sub>0</sub></b></span></div>
+      </article>
+
+      <article class="fx" data-c="C2" data-lv="lv1">
+        <div class="fx-top"><h3>Hiệu suất đường truyền khi có web cache</h3><span class="badge lv1">★ Thỉnh thoảng</span></div>
+        <p class="seen">Gặp trong: 2019 (2 câu cùng sơ đồ)</p>
+        <div class="eq">U<sub>access</sub> = <span class="frac"><span>(1 − h) · λ · L</span><span>R<sub>access</sub></span></span></div>
+        <div class="eq small">U<sub>LAN</sub> = <span class="frac"><span>λ · L</span><span>R<sub>LAN</sub></span></span></div>
+        <dl class="vars">
+          <dt>h</dt><dd>tỉ lệ cache đáp ứng được (hit rate)</dd>
+          <dt>λ</dt><dd>số request mỗi giây</dd>
+          <dt>L</dt><dd>kích thước trung bình đối tượng (bit)</dd>
+        </dl>
+        <p><b>Hiểu nhanh:</b> chỉ phần cache không đáp ứng mới phải đi ra Internet qua access link. LAN vẫn chở toàn bộ lưu lượng.</p>
+        <div class="fx-ex"><span class="lbl">Ví dụ</span>
+          <code>λ·L = 150 × 100 kbit = 15 Mbps; h = 0.4</code>
+          <code>Access 15 Mbps: 0.6 × 15/15 = 60% · LAN 100 Mbps: 15%</code>
+        </div>
+      </article>
+
+      <article class="fx" data-c="C2" data-lv="lv1">
+        <div class="fx-top"><h3>Thời gian phân phối file</h3><span class="badge lv1">★ Thỉnh thoảng</span></div>
+        <p class="seen">Gặp trong: slide Chương 2 (chưa thấy trong đề các năm)</p>
+        <div class="eq">D<sub>C-S</sub> ≥ max( <span class="frac"><span>N·F</span><span>u<sub>s</sub></span></span> , <span class="frac"><span>F</span><span>d<sub>min</sub></span></span> )</div>
+        <div class="eq small">D<sub>P2P</sub> ≥ max( <span class="frac"><span>F</span><span>u<sub>s</sub></span></span> , <span class="frac"><span>F</span><span>d<sub>min</sub></span></span> , <span class="frac"><span>N·F</span><span>u<sub>s</sub> + Σu<sub>i</sub></span></span> )</div>
+        <dl class="vars"><dt>F</dt><dd>kích thước file</dd><dt>u<sub>s</sub>, u<sub>i</sub></dt><dd>tốc độ upload của server, của peer i</dd><dt>d<sub>min</sub></dt><dd>tốc độ download nhỏ nhất của các client</dd></dl>
+        <div class="fx-ex"><span class="lbl">Ví dụ</span><code>F = 100 Mbit, N = 10, u<sub>s</sub> = 50, u<sub>i</sub> = 10, d<sub>min</sub> = 20 → C-S 20 s, P2P 6.67 s</code></div>
+      </article>
+
+      <article class="fx" data-c="C3" data-lv="lv3">
+        <div class="fx-top"><h3>Giải mã UDP header</h3><span class="badge lv3">★★★ Rất hay ra</span></div>
+        <p class="seen">Gặp trong: 2020 · 2022 (3 câu cùng chuỗi bit) · Quiz-GK (Wireshark) · ngân hàng</p>
+        <div class="eq">Payload = Length − 8</div>
+        <div class="hdr" style="max-width:420px">
+          <div>bit 0–15<small>Source port</small></div><div>bit 16–31<small>Dest port</small></div>
+          <div>bit 32–47<small>Length (header + data)</small></div><div>bit 48–63<small>Checksum</small></div>
+        </div>
+        <p><b>Hiểu nhanh:</b> cắt 64 bit thành 4 cụm 16 bit, đổi từng cụm sang thập phân theo đúng thứ tự trên.</p>
+        <div class="fx-ex"><span class="lbl">Ví dụ (dạng đề 2022)</span>
+          <code>11101001 00110001 → source = 59 697</code>
+          <code>00000000 00110101 → dest = 53 (DNS)</code>
+          <code>00000000 00101111 → length = 47 → payload = <b>39 byte</b></code>
+        </div>
+        <div class="tip"><b>Bẫy</b>Chọn 47 (quên trừ 8); lấy nhầm cụm đầu làm cổng đích. Header UDP luôn 8 byte, Length tối thiểu là 8.</div>
+      </article>
+
+      <article class="fx" data-c="C3" data-lv="lv3">
+        <div class="fx-top"><h3>Checksum (Internet checksum)</h3><span class="badge lv3">★★★ Rất hay ra</span></div>
+        <p class="seen">Gặp trong: 2020 · Quiz-GK (2 câu) · ngân hàng</p>
+        <div class="eq">checksum = NOT( w<sub>1</sub> ⊕<sub>1</sub> w<sub>2</sub> ⊕<sub>1</sub> … )</div>
+        <dl class="vars"><dt>⊕<sub>1</sub></dt><dd>cộng nhị phân 16 bit, <b>bit tràn cộng vòng</b> vào bit thấp nhất</dd><dt>NOT</dt><dd>đảo tất cả bit (bù 1)</dd></dl>
+        <div class="fx-ex"><span class="lbl">Ví dụ (đề 2020)</span>
+          <code>  0110011001100000 + 0101010101010101 = 1011101110110101</code>
+          <code>+ 1000111100001100 = <span class="trap">1</span>0100101011000001 → cộng vòng = 0100101011000010</code>
+          <code>Đảo bit → <b>1011010100111101</b></code>
+        </div>
+        <p><b>Kiểm tra ở bên nhận:</b> cộng tất cả word và checksum, ra 16 bit 1 là không phát hiện lỗi. Hai bit cùng cột đổi ngược chiều nhau sẽ lọt.</p>
+        <div class="tip"><b>Bẫy</b>Các đáp án nhiễu thường là tổng chưa đảo bit, hoặc kết quả quên cộng vòng. Thử ngay ở tab Tính checksum phần Mô phỏng.</div>
+      </article>
+
+      <article class="fx" data-c="C3" data-lv="lv3">
+        <div class="fx-top"><h3>Sequence number và ACK của TCP</h3><span class="badge lv3">★★★ Rất hay ra</span></div>
+        <p class="seen">Gặp trong: 2019 · 2020 · 2021 · 2022 · Quiz-GK · ngân hàng — luôn đi kèm sơ đồ</p>
+        <div class="eq">seq<sub>k+1</sub> = seq<sub>k</sub> + (số byte dữ liệu)</div>
+        <div class="eq small">ACK = seq + Len  ·  (byte kế tiếp đang chờ)</div>
+        <div class="eq small">Số segment = ⌈ Dữ liệu / MSS ⌉</div>
+        <p><b>Hiểu nhanh:</b> TCP đánh số <b>từng byte</b>. ACK là <b>tích lũy</b>: báo byte đầu tiên còn thiếu, nên khi một segment mất, mọi segment sau đều nhận cùng một ACK (ACK trùng).</p>
+        <div class="fx-ex"><span class="lbl">Ví dụ</span>
+          <code>ISN = 161, mỗi segment 281 byte → 161, 442, 723, 1004, 1285</code>
+          <code>Segment 1 mất → các segment sau đều nhận ACK = 161</code>
+          <code>Wireshark Seq = 1, Len = 305 → ACK trả lời = <b>306</b></code>
+          <code>5 000 byte, MSS 1 460 → 4 segment: 0, 1460, 2920, 4380</code>
+        </div>
+        <div class="alt"><span class="lbl">Bắt tay 3 bước</span><span>SYN seq = x → SYN-ACK seq = y, ack = <b>x + 1</b> → ACK ack = <b>y + 1</b>. Gói SYN/ACK có ack = 5 001 thì ISN bên kia = 5 000.</span></div>
+        <div class="tip"><b>Bẫy</b>ACK = 200 nghĩa là đã nhận tới byte <b>199</b>. Không cộng thêm 1 khi tính seq tiếp (161 + 281 = 442, không phải 443).</div>
+      </article>
+
+      <article class="fx" data-c="C3" data-lv="lv3">
+        <div class="fx-top"><h3>Cửa sổ tắc nghẽn TCP (Reno/Tahoe)</h3><span class="badge lv3">★★★ Rất hay ra</span></div>
+        <p class="seen">Gặp trong: 2022 (5 câu trên một đồ thị) · ngân hàng (slow start, Tahoe/Reno)</p>
+        <div class="tbl"><table class="mini">
+          <thead><tr><th>Sự kiện</th><th>ssthresh mới</th><th>cwnd mới</th></tr></thead>
+          <tbody>
+            <tr><td>Slow start (cwnd &lt; ssthresh)</td><td>giữ</td><td>cwnd × 2 mỗi RTT</td></tr>
+            <tr><td>Congestion avoidance</td><td>giữ</td><td>cwnd + 1 mỗi RTT</td></tr>
+            <tr><td>3 ACK trùng (Reno)</td><td><b>cwnd / 2</b></td><td>= ssthresh mới</td></tr>
+            <tr><td>3 ACK trùng (Tahoe)</td><td>cwnd / 2</td><td>1</td></tr>
+            <tr><td>Timeout</td><td><b>cwnd / 2</b></td><td>1</td></tr>
+          </tbody>
+        </table></div>
+        <div class="eq small">Sau k vòng slow start đã gửi: 1 + 2 + 4 + … + 2<sup>k−1</sup> = 2<sup>k</sup> − 1 segment</div>
+        <div class="fx-ex"><span class="lbl">Ví dụ (đề 2022)</span>
+          <code>cwnd: 1, 2, 4, 8, 16, 32, 33 … → ssthresh ban đầu = 32</code>
+          <code>Segment 100: tích lũy 1, 3, 7, 15, 31, 63, 96, 130 → vòng <b>8</b></code>
+          <code>Mất gói khi cwnd = 8 do 3 ACK trùng → ssthresh = <b>4</b></code>
+        </div>
+        <div class="tip"><b>Bẫy</b>ssthresh tính theo cwnd <b>lúc mất gói</b>, không phải ssthresh cũ. Đường nhân đôi là slow start dù cwnd đã lớn.</div>
+      </article>
+
+      <article class="fx" data-c="C3" data-lv="lv2">
+        <div class="fx-top"><h3>Ước lượng RTT và timeout</h3><span class="badge lv2">★★ Hay ra</span></div>
+        <p class="seen">Gặp trong: 2019 · ngân hàng câu hỏi (cùng dạng α = 0.2)</p>
+        <div class="eq">EstimatedRTT = (1 − α)·EstimatedRTT + α·SampleRTT</div>
+        <div class="eq small">DevRTT = (1 − β)·DevRTT + β·| SampleRTT − EstimatedRTT |</div>
+        <div class="eq small">TimeoutInterval = EstimatedRTT + 4·DevRTT</div>
+        <dl class="vars"><dt>α</dt><dd>thường 0.125 (đề có thể cho 0.2)</dd><dt>β</dt><dd>thường 0.25</dd></dl>
+        <p><b>Hiểu nhanh:</b> trung bình động: giá trị cũ chiếm phần lớn, mẫu mới chỉ chiếm α. Timeout cộng thêm biên an toàn 4 lần độ lệch.</p>
+        <div class="fx-ex"><span class="lbl">Ví dụ (đề 2019)</span>
+          <code>α = 0.2, SampleRTT1 = 90 (làm giá trị đầu), SampleRTT2 = 110</code>
+          <code>0.8·90 + 0.2·110 = 72 + 22 = <b>94 ms</b></code>
+        </div>
+        <div class="tip"><b>Bẫy</b>Hỏi “sau ACK thứ hai” chỉ dùng 2 mẫu đầu; mẫu đầu tiên được lấy làm EstimatedRTT ban đầu.</div>
+      </article>
+
+      <article class="fx" data-c="C3" data-lv="lv1">
+        <div class="fx-top"><h3>Hiệu suất bên gửi và kích thước cửa sổ</h3><span class="badge lv1">★ Thỉnh thoảng</span></div>
+        <p class="seen">Gặp trong: slide Chương 3, câu lý thuyết GBN/SR</p>
+        <div class="eq">U<sub>sender</sub> = <span class="frac"><span>N · L/R</span><span>RTT + L/R</span></span></div>
+        <dl class="vars"><dt>N</dt><dd>số gói gửi liên tiếp (stop-and-wait: N = 1)</dd></dl>
+        <div class="fx-ex"><span class="lbl">Ví dụ</span>
+          <code>L = 8 000 bit, R = 1 Gbps → L/R = 0.008 ms; RTT = 30 ms</code>
+          <code>Stop-and-wait: 0.008 / 30.008 ≈ 0.00027 · pipeline 3 gói ≈ 0.0008</code>
+        </div>
+        <div class="alt"><span class="lbl">Cửa sổ với k bit số thứ tự</span><span>GBN: N ≤ 2<sup>k</sup> − 1 · SR: N ≤ 2<sup>k−1</sup> (k = 3 → GBN 7, SR 4)</span></div>
+      </article>
+    </div>
+  </section>
+
   <section id="tom-tat">
     <h2>Tóm tắt lý thuyết</h2>
     <nav class="toc" aria-label="Chọn chương">
+      <a href="#cong-thuc">Sổ tay công thức</a>
       <a href="#c1">Chương 1 · Tổng quan</a>
       <a href="#c2">Chương 2 · Tầng Ứng dụng</a>
       <a href="#c3">Chương 3 · Tầng Vận chuyển</a>
@@ -254,7 +511,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>Chuyển mạch gói và chuyển mạch kênh</h3>
+          <h3>Chuyển mạch gói và chuyển mạch kênh <span class="badge lv1">★ Thỉnh thoảng</span></h3>
           <div class="tbl"><table class="mini">
             <thead><tr><th></th><th>Chuyển mạch kênh</th><th>Chuyển mạch gói</th></tr></thead>
             <tbody>
@@ -270,7 +527,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>Bốn loại độ trễ</h3>
+          <h3>Bốn loại độ trễ <span class="badge lv3">★★★ Rất hay ra</span></h3>
           <div class="formula">d<sub>nodal</sub> = d<sub>proc</sub> + d<sub>queue</sub> + d<sub>trans</sub> + d<sub>prop</sub></div>
           <div class="tbl"><table class="mini">
             <thead><tr><th>Loại</th><th>Công thức</th><th>Phụ thuộc</th></tr></thead>
@@ -289,7 +546,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>Thông lượng</h3>
+          <h3>Thông lượng <span class="badge lv3">★★★ Rất hay ra</span></h3>
           <div class="formula">Thông lượng đầu cuối = min(R<sub>1</sub>, R<sub>2</sub>, …, R<sub>n</sub>)</div>
           <ul>
             <li>Liên kết chậm nhất là <b>nút cổ chai</b> (bottleneck).</li>
@@ -304,7 +561,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card wide">
-          <h3>Mô hình phân tầng</h3>
+          <h3>Mô hình phân tầng <span class="badge lv2">★★ Hay ra</span></h3>
           <div class="tbl"><table class="mini">
             <thead><tr><th>Tầng OSI</th><th>Internet (5 tầng)</th><th>Chức năng</th><th>Đơn vị dữ liệu</th><th>Giao thức / thiết bị</th></tr></thead>
             <tbody>
@@ -354,7 +611,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>Cổng và giao thức vận chuyển</h3>
+          <h3>Cổng và giao thức vận chuyển <span class="badge lv2">★★ Hay ra</span></h3>
           <div class="tbl"><table class="mini">
             <thead><tr><th>Ứng dụng</th><th>Cổng</th><th>Vận chuyển</th></tr></thead>
             <tbody>
@@ -373,7 +630,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card wide">
-          <h3>HTTP</h3>
+          <h3>HTTP <span class="badge lv3">★★★ Rất hay ra</span></h3>
           <ul>
             <li>Mô hình client-server, chạy trên <b>TCP cổng 80</b>, <b>không trạng thái</b> (server không nhớ request cũ).</li>
             <li>Trang web gồm nhiều <b>đối tượng</b> (file HTML, ảnh…), mỗi đối tượng có URL = <code>host + đường dẫn</code>. Mỗi đối tượng cần 1 request và 1 response.</li>
@@ -428,7 +685,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>Thư điện tử</h3>
+          <h3>Thư điện tử <span class="badge lv3">★★★ Rất hay ra</span></h3>
           <p>3 thành phần: <b>user agent</b>, <b>mail server</b> (hộp thư + hàng đợi), giao thức <b>SMTP</b>.</p>
           <div class="flow"><span>Alice agent</span><i>→ SMTP →</i><span>Server Alice</span><i>→ SMTP →</i><span>Server Bob</span><i>→ POP3 / IMAP / HTTP →</i><span>Bob agent</span></div>
           <ul>
@@ -447,7 +704,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>DNS</h3>
+          <h3>DNS <span class="badge lv2">★★ Hay ra</span></h3>
           <ul>
             <li>Dịch tên miền ↔ IP; ngoài ra: bí danh host, bí danh mail server, <b>phân tải</b>. Chạy trên <b>UDP 53</b>.</li>
             <li>Phân cấp: <b>Root</b> → <b>TLD</b> (.com, .edu, .vn) → <b>Authoritative</b>. <b>Local DNS</b> nhận truy vấn từ host nhưng không thuộc phân cấp.</li>
@@ -473,7 +730,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>FTP và P2P</h3>
+          <h3>FTP và P2P <span class="badge lv1">★ Thỉnh thoảng</span></h3>
           <ul>
             <li>FTP: kết nối điều khiển <b>TCP 21</b> (giữ suốt phiên), kết nối dữ liệu <b>TCP 20</b> (mở mới cho mỗi file).</li>
             <li>Gọi là <b>out-of-band</b> vì lệnh điều khiển đi trên kết nối riêng. HTTP, SMTP là in-band.</li>
@@ -486,7 +743,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>Lập trình socket</h3>
+          <h3>Lập trình socket <span class="badge lv2">★★ Hay ra</span></h3>
           <div class="tbl"><table class="mini">
             <thead><tr><th>Loại</th><th>Chuỗi lời gọi đặc trưng</th></tr></thead>
             <tbody>
@@ -549,7 +806,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>UDP header và checksum</h3>
+          <h3>UDP header và checksum <span class="badge lv3">★★★ Rất hay ra</span></h3>
           <div class="hdr">
             <div>Source port<small>16 bit</small></div>
             <div>Dest port<small>16 bit</small></div>
@@ -571,7 +828,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>Truyền tin cậy rdt</h3>
+          <h3>Truyền tin cậy rdt <span class="badge lv2">★★ Hay ra</span></h3>
           <div class="tbl"><table class="mini">
             <thead><tr><th>Phiên bản</th><th>Giả định kênh</th><th>Cơ chế thêm vào</th></tr></thead>
             <tbody>
@@ -590,7 +847,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card wide">
-          <h3>Pipelining: Go-Back-N và Selective Repeat</h3>
+          <h3>Pipelining: Go-Back-N và Selective Repeat <span class="badge lv3">★★★ Rất hay ra</span></h3>
           <div class="tbl"><table class="mini">
             <thead><tr><th></th><th>Go-Back-N</th><th>Selective Repeat</th></tr></thead>
             <tbody>
@@ -605,7 +862,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>TCP segment</h3>
+          <h3>TCP segment <span class="badge lv3">★★★ Rất hay ra</span></h3>
           <div class="hdr">
             <div>Source port<small>16</small></div>
             <div>Dest port<small>16</small></div>
@@ -626,7 +883,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card">
-          <h3>Kết nối, RTT và luồng</h3>
+          <h3>Kết nối, RTT và luồng <span class="badge lv2">★★ Hay ra</span></h3>
           <h4>Bắt tay 3 bước</h4>
           <div class="flow"><span>SYN=1 · seq=x</span><i>→</i><span>SYN=1 ACK=1 · seq=y · ack=x+1</span><i>→</i><span>ACK=1 · ack=y+1</span></div>
           <ul>
@@ -646,7 +903,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
 
         <div class="card wide">
-          <h3>Điều khiển tắc nghẽn TCP</h3>
+          <h3>Điều khiển tắc nghẽn TCP <span class="badge lv3">★★★ Rất hay ra</span></h3>
           <div class="tbl"><table class="mini">
             <thead><tr><th>Pha / sự kiện</th><th>cwnd</th><th>ssthresh</th><th>Nhận ra trên đồ thị</th></tr></thead>
             <tbody>
@@ -1501,6 +1758,13 @@ window.runARQ=function(mode,N,total,lost,ackLost){
   calc();
 })();
 })();
+</script>
+<script>
+document.getElementById("fx-filter").addEventListener("click",e=>{
+  const b=e.target.closest(".chip");if(!b)return;const f=b.dataset.f;
+  document.querySelectorAll("#fx-filter .chip").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+  document.querySelectorAll("#fx-list .fx").forEach(c=>c.hidden=!(f==="all"||c.dataset.lv===f||c.dataset.c===f));
+});
 </script>
 
 </body></html>
