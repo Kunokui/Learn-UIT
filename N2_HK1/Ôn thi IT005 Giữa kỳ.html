@@ -83,6 +83,64 @@ section{margin-top:44px}
 .flow{font-family:var(--mono);font-size:13px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .flow span{border:1px solid var(--line);border-radius:6px;padding:3px 8px;background:var(--bg)}
 .flow i{font-style:normal;color:var(--muted)}
+/* simulations */
+.sim-tabs{display:flex;flex-wrap:wrap;gap:6px}
+.sim-tabs .chip[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.sim{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:12px;display:grid;gap:12px;min-width:0}
+.sim h3{font-size:16px;font-weight:800}
+.sim h4{font-size:13px;font-weight:600;color:var(--accent);margin:0}
+.sim h4 small{color:var(--muted);font-weight:400;margin-left:6px}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;font-size:14px}
+.ctrl label{display:flex;gap:8px;align-items:center}
+.ctrl output,.mono{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums}
+.ctrl .lbl{color:var(--muted);font-size:13px}
+.ctrl input[type=range]{width:130px;accent-color:var(--accent)}
+.sim select,.sim input[type=number],.sim input[type=text]{font:inherit;font-size:14px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
+.sim input[type=text]{font-family:var(--mono);width:12.5em;max-width:100%}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn:disabled{opacity:.45;cursor:default}
+.stage{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--bg);min-width:0}
+.stage svg{display:block;width:100%;min-width:540px;height:auto}
+.stage.tall{max-height:520px;overflow:auto}
+.readout{display:flex;flex-wrap:wrap;gap:6px}
+.readout span{font-family:var(--mono);font-size:13px;padding:4px 8px;border-radius:6px;background:var(--accent-soft)}
+.readout span.hot{background:var(--mark-soft);color:var(--fg)}
+.caption{font-size:14px;min-height:2.8em}
+.pk{display:flex;flex-wrap:wrap;gap:0;font-family:var(--mono);font-size:13px;min-height:34px}
+.pk span{padding:6px 10px;border:1px solid var(--line);margin-left:-1px}
+.pk .Hl{background:var(--ok-soft)} .pk .Hn{background:var(--mark-soft)} .pk .Ht{background:var(--accent-soft)} .pk .M{background:var(--surface)}
+.pk .bits{background:var(--bg);letter-spacing:.15em}
+.steps{margin:0;padding-left:22px;display:grid;gap:4px;font-size:14px}
+.steps li{color:var(--muted)}
+.steps li.done{color:var(--fg)}
+.steps li.now{color:var(--fg);font-weight:600}
+.gbn{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,250px);gap:12px}
+@media (max-width:720px){.gbn{grid-template-columns:1fr}}
+.side{display:grid;gap:8px;align-content:start;min-width:0}
+.boxes{display:flex;flex-wrap:wrap;gap:4px}
+.boxes span{min-width:30px;text-align:center;font-family:var(--mono);font-size:12px;padding:4px 2px;border:1px solid var(--line);border-radius:4px;background:var(--bg)}
+.boxes .inwin{box-shadow:inset 0 0 0 2px var(--accent)}
+.boxes .sent,.sw.sent{background:var(--accent-soft)}
+.boxes .acked,.sw.acked{background:var(--ok-soft);border-color:var(--ok)}
+.boxes .buf,.sw.buf{background:var(--mark-soft);border-color:var(--mark)}
+.legend{font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.sw{display:inline-block;width:12px;height:12px;border:1px solid var(--line);border-radius:3px;vertical-align:middle}
+.log{font-family:var(--mono);font-size:12.5px;display:grid;gap:3px;max-height:220px;overflow:auto}
+.log div{padding:2px 0;border-bottom:1px dashed var(--line)}
+.err{color:var(--bad);font-size:13px;min-height:1.2em}
+.cs{font-family:var(--mono);font-size:13.5px;padding:12px;display:grid;gap:2px;min-width:420px}
+.cs .row{display:grid;grid-template-columns:150px auto;gap:12px;white-space:pre}
+.cs .row .k{color:var(--muted);font-family:var(--body);font-size:13px}
+.cs .rule{border-top:1px solid var(--fg);margin:2px 0}
+.cs .carry{color:var(--mark);font-weight:600}
+.cs .res{color:var(--accent);font-weight:600}
+/* svg paint classes */
+.sv-line{stroke:var(--line)} .sv-fgs{stroke:var(--fg)} .sv-accs{stroke:var(--accent)} .sv-marks{stroke:var(--mark)} .sv-oks{stroke:var(--ok)} .sv-bads{stroke:var(--bad)} .sv-muteds{stroke:var(--muted)}
+.sv-fg{fill:var(--fg)} .sv-muted{fill:var(--muted)} .sv-acc{fill:var(--accent)} .sv-mark{fill:var(--mark)} .sv-ok{fill:var(--ok)} .sv-bad{fill:var(--bad)}
+.sv-surf{fill:var(--surface)} .sv-soft{fill:var(--accent-soft)} .sv-msoft{fill:var(--mark-soft)} .sv-oksoft{fill:var(--ok-soft)} .sv-bg{fill:var(--bg)}
+.sv-none{fill:none}
+.sv-t{font-family:var(--mono);font-size:11px}
+.sv-tb{font-family:var(--body);font-size:12px;font-weight:600}
 /* worked examples */
 details.ex{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-top:10px}
 details.ex summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
@@ -611,6 +669,148 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
     </div>
   </section>
 
+  <section id="mo-phong">
+    <h2>Mô phỏng</h2>
+    <p class="lede" style="margin:-6px 0 14px">Chọn một chủ đề, chỉnh thông số rồi bấm Chạy hoặc đi từng bước để xem cơ chế hoạt động.</p>
+    <div class="sim-tabs" role="tablist" aria-label="Chọn mô phỏng">
+      <button class="chip" role="tab" data-sim="delay" aria-selected="true">Độ trễ truyền / lan truyền</button>
+      <button class="chip" role="tab" data-sim="encap" aria-selected="false">Đóng gói qua các tầng</button>
+      <button class="chip" role="tab" data-sim="http" aria-selected="false">HTTP và RTT</button>
+      <button class="chip" role="tab" data-sim="dns" aria-selected="false">DNS lặp / đệ quy</button>
+      <button class="chip" role="tab" data-sim="gbn" aria-selected="false">Go-Back-N / Selective Repeat</button>
+      <button class="chip" role="tab" data-sim="cc" aria-selected="false">Tắc nghẽn TCP</button>
+      <button class="chip" role="tab" data-sim="cs" aria-selected="false">Tính checksum</button>
+    </div>
+
+    <!-- 1. Delay -->
+    <div class="sim" id="sim-delay" role="tabpanel">
+      <h3>Một gói tin đi từ A sang B</h3>
+      <div class="ctrl">
+        <label for="d-L">L <input type="range" id="d-L" min="1000" max="100000" step="1000" value="30000"><output id="d-Lv"></output></label>
+        <label for="d-R">R <select id="d-R"><option value="1">1 Mbps</option><option value="10" selected>10 Mbps</option><option value="100">100 Mbps</option></select></label>
+        <label for="d-D">d <input type="range" id="d-D" min="50" max="3000" step="50" value="300"><output id="d-Dv"></output></label>
+        <label for="d-S">s <select id="d-S"><option value="200000000">2·10⁸ m/s</option><option value="300000000" selected>3·10⁸ m/s</option></select></label>
+      </div>
+      <div class="ctrl">
+        <button class="btn primary" id="d-play">Chạy</button>
+        <button class="btn" id="d-jump">Tới t = L/R</button>
+        <button class="btn" id="d-reset">Đặt lại</button>
+      </div>
+      <div class="stage"><svg id="d-svg" viewBox="0 0 640 210" role="img" aria-label="Mô phỏng gói tin trên đường truyền"></svg></div>
+      <div class="readout" id="d-read"></div>
+      <p class="caption" id="d-cap"></p>
+    </div>
+
+    <!-- 2. Encapsulation -->
+    <div class="sim" id="sim-encap" role="tabpanel" hidden>
+      <h3>Dữ liệu đi qua switch và router</h3>
+      <div class="ctrl">
+        <button class="btn" id="e-prev">← Lùi</button>
+        <button class="btn primary" id="e-play">Chạy</button>
+        <button class="btn" id="e-next">Tiếp →</button>
+        <button class="btn" id="e-reset">Đặt lại</button>
+        <span class="mono" id="e-step"></span>
+      </div>
+      <div class="stage"><svg id="e-svg" viewBox="0 0 680 250" role="img" aria-label="Sơ đồ các tầng của nguồn, switch, router và đích"></svg></div>
+      <div class="pk" id="e-pk"></div>
+      <p class="caption" id="e-cap"></p>
+    </div>
+
+    <!-- 3. HTTP -->
+    <div class="sim" id="sim-http" role="tabpanel" hidden>
+      <h3>Tải 1 file HTML và n ảnh</h3>
+      <div class="ctrl">
+        <label for="h-n">Số ảnh <input type="range" id="h-n" min="0" max="8" value="3"><output id="h-nv"></output></label>
+        <label for="h-mode">Kiểu <select id="h-mode">
+          <option value="np">Không bền vững, tuần tự</option>
+          <option value="npp">Không bền vững, kết nối song song</option>
+          <option value="p">Bền vững, không pipelining</option>
+          <option value="pp">Bền vững, có pipelining</option>
+        </select></label>
+        <button class="btn primary" id="h-play">Chạy</button>
+        <button class="btn" id="h-reset">Đặt lại</button>
+      </div>
+      <div class="stage tall"><svg id="h-svg" viewBox="0 0 640 300" role="img" aria-label="Biểu đồ thời gian HTTP"></svg></div>
+      <div class="readout" id="h-read"></div>
+    </div>
+
+    <!-- 4. DNS -->
+    <div class="sim" id="sim-dns" role="tabpanel" hidden>
+      <h3>cis.poly.edu hỏi địa chỉ gaia.cs.umass.edu</h3>
+      <div class="ctrl">
+        <label for="n-mode">Kiểu truy vấn <select id="n-mode"><option value="it">Lặp (iterative)</option><option value="rc">Đệ quy (recursive)</option></select></label>
+        <button class="btn" id="n-prev">← Lùi</button>
+        <button class="btn primary" id="n-play">Chạy</button>
+        <button class="btn" id="n-next">Tiếp →</button>
+        <button class="btn" id="n-reset">Đặt lại</button>
+      </div>
+      <div class="stage"><svg id="n-svg" viewBox="0 0 640 310" role="img" aria-label="Sơ đồ phân giải DNS"></svg></div>
+      <ol class="steps" id="n-list"></ol>
+    </div>
+
+    <!-- 5. GBN / SR -->
+    <div class="sim" id="sim-gbn" role="tabpanel" hidden>
+      <h3>Truyền 8 gói qua kênh có mất gói</h3>
+      <div class="ctrl">
+        <label for="g-mode">Giao thức <select id="g-mode"><option value="gbn">Go-Back-N</option><option value="sr">Selective Repeat</option></select></label>
+        <label for="g-N">Cửa sổ N <input type="range" id="g-N" min="2" max="6" value="4"><output id="g-Nv"></output></label>
+      </div>
+      <div class="ctrl"><span class="lbl">Gói bị mất (lần gửi đầu):</span><div class="chips" id="g-lost"></div></div>
+      <div class="ctrl"><span class="lbl">ACK bị mất:</span><div class="chips" id="g-alost"></div></div>
+      <div class="ctrl">
+        <button class="btn" id="g-prev">← Lùi</button>
+        <button class="btn primary" id="g-play">Chạy</button>
+        <button class="btn" id="g-next">Tiếp →</button>
+        <button class="btn" id="g-reset">Đặt lại</button>
+        <span class="mono" id="g-t"></span>
+      </div>
+      <div class="gbn">
+        <div class="stage tall"><svg id="g-svg" viewBox="0 0 520 400" role="img" aria-label="Biểu đồ thời gian gửi gói và ACK"></svg></div>
+        <div class="side">
+          <h4>Bên gửi <small>khung xanh là cửa sổ</small></h4>
+          <div class="boxes" id="g-snd"></div>
+          <h4>Bên nhận</h4>
+          <div class="boxes" id="g-rcv"></div>
+          <div class="legend"><span class="sw sent"></span>đã gửi chờ ACK <span class="sw acked"></span>đã ACK / đã giao <span class="sw buf"></span>đệm (SR)</div>
+          <h4>Diễn biến</h4>
+          <div class="log" id="g-log"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Congestion control -->
+    <div class="sim" id="sim-cc" role="tabpanel" hidden>
+      <h3>Tự tạo đồ thị cwnd</h3>
+      <div class="ctrl">
+        <label for="c-var">Phiên bản <select id="c-var"><option value="reno">TCP Reno</option><option value="tahoe">TCP Tahoe</option></select></label>
+        <label for="c-th">ssthresh ban đầu <input type="number" id="c-th" min="2" max="64" value="16" style="width:70px"></label>
+      </div>
+      <div class="ctrl">
+        <button class="btn primary" id="c-ok">Vòng tiếp (đủ ACK)</button>
+        <button class="btn" id="c-dup">3 ACK trùng</button>
+        <button class="btn" id="c-to">Timeout</button>
+        <button class="btn" id="c-demo">Kịch bản mẫu</button>
+        <button class="btn" id="c-reset">Đặt lại</button>
+      </div>
+      <div class="stage"><svg id="c-svg" viewBox="0 0 640 280" role="img" aria-label="Đồ thị cwnd theo vòng truyền"></svg></div>
+      <div class="readout" id="c-read"></div>
+      <div class="log" id="c-log"></div>
+    </div>
+
+    <!-- 7. Checksum -->
+    <div class="sim" id="sim-cs" role="tabpanel" hidden>
+      <h3>Checksum UDP từng bước</h3>
+      <div class="ctrl cs-in">
+        <label for="s-w1">Word 1 <input type="text" id="s-w1" value="0110011001100000" spellcheck="false"></label>
+        <label for="s-w2">Word 2 <input type="text" id="s-w2" value="0101010101010101" spellcheck="false"></label>
+        <label for="s-w3">Word 3 <input type="text" id="s-w3" value="1000111100001100" spellcheck="false" placeholder="để trống nếu chỉ có 2"></label>
+        <button class="btn" id="s-rand">Số ngẫu nhiên</button>
+      </div>
+      <p class="err" id="s-err"></p>
+      <div class="stage"><div class="cs" id="s-out"></div></div>
+    </div>
+  </section>
+
   <section id="giai-mau">
     <h2>Cách giải các dạng tính toán</h2>
 
@@ -912,6 +1112,395 @@ document.getElementById("reset").addEventListener("click",()=>{ans={};save();ren
   document.getElementById("reno").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Đồ thị cwnd TCP Reno mẫu">${g}</svg>`;
 })();
 render();
+</script>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const T=(x,y,s,c="sv-t sv-fg",a="")=>`<text x="${x}" y="${y}" class="${c}" ${a}>${s}</text>`;
+const L=(x1,y1,x2,y2,c="sv-line",w=1.5,a="")=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${c}" stroke-width="${w}" ${a}/>`;
+const R=(x,y,w,h,c,a="")=>`<rect x="${x}" y="${y}" width="${Math.max(0,w)}" height="${Math.max(0,h)}" class="${c}" ${a}/>`;
+const ARROW=`<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="sv-acc"/></marker><marker id="ahm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="sv-mark"/></marker></defs>`;
+
+/* step player: calls render(i) for i in 0..max, auto-advances while playing */
+function Stepper(o){
+  let i=0,timer=null;
+  const set=v=>{i=Math.max(0,Math.min(o.max(),v));o.render(i);sync()};
+  const stop=()=>{clearInterval(timer);timer=null;sync()};
+  const sync=()=>{if(o.play)o.play.textContent=timer?"Tạm dừng":(i>=o.max()?"Chạy lại":"Chạy")};
+  if(o.play)o.play.onclick=()=>{
+    if(timer){stop();return}
+    if(i>=o.max())set(0);
+    timer=setInterval(()=>{if(i>=o.max())stop();else set(i+1)},o.ms||900);sync();
+  };
+  if(o.next)o.next.onclick=()=>{stop();set(i+1)};
+  if(o.prev)o.prev.onclick=()=>{stop();set(i-1)};
+  if(o.reset)o.reset.onclick=()=>{stop();set(0)};
+  return {set,stop,get:()=>i};
+}
+
+/* tabs */
+const tabs=[...document.querySelectorAll(".sim-tabs .chip")];
+tabs.forEach(b=>b.addEventListener("click",()=>{
+  tabs.forEach(x=>x.setAttribute("aria-selected",x===b?"true":"false"));
+  document.querySelectorAll(".sim").forEach(p=>p.hidden=p.id!=="sim-"+b.dataset.sim);
+}));
+
+/* ---------- 1. transmission vs propagation ---------- */
+(function(){
+  const Lin=$("d-L"),Rin=$("d-R"),Din=$("d-D"),Sin=$("d-S"),svg=$("d-svg"),btn=$("d-play");
+  let t=0,play=false,raf=0,last=0,P={};
+  const fmt=s=>{const ms=s*1000;return ms>=0.1?(ms<10?ms.toFixed(3):ms.toFixed(2))+" ms":(s*1e6).toFixed(1)+" µs"};
+  function params(){
+    const L=+Lin.value,R=+Rin.value*1e6,d=+Din.value*1000,s=+Sin.value;
+    P={L,R,d,s,dt:L/R,dp:d/s};P.T=P.dt+P.dp;
+    $("d-Lv").textContent=L.toLocaleString("vi-VN")+" bit";$("d-Dv").textContent=Din.value+" km";
+  }
+  function draw(){
+    const {d,s,dt,dp,T:TT}=P,x0=100,len=440;
+    const front=Math.min(s*t,d)/d,rear=t>dt?Math.min(s*(t-dt),d)/d:0;
+    const sent=Math.min(1,t/dt),recv=Math.max(0,Math.min(1,(t-dp)/dt));
+    let g="";
+    g+=R(20,40,70,60,"sv-surf sv-muteds",'rx="6" stroke-width="1"')+T(55,30,"A","sv-tb sv-fg",'text-anchor="middle"');
+    g+=R(550,40,70,60,"sv-surf sv-muteds",'rx="6" stroke-width="1"')+T(585,30,"B","sv-tb sv-fg",'text-anchor="middle"');
+    g+=R(30,50+40*sent,50,40*(1-sent),"sv-acc")+T(55,116,"còn ở A","sv-t sv-muted",'text-anchor="middle"');
+    g+=R(560,90-40*recv,50,40*recv,"sv-ok")+T(585,116,"đã tới B","sv-t sv-muted",'text-anchor="middle"');
+    g+=L(x0,70,x0+len,70,"sv-muteds",2);
+    if(front>rear)g+=R(x0+rear*len,61,(front-rear)*len,18,"sv-acc",'rx="3"');
+    if(t>0&&front>rear){
+      g+=T(x0+front*len,56,"bit đầu","sv-t sv-fg",'text-anchor="end"');
+      if(t>dt)g+=T(x0+rear*len,94,"bit cuối","sv-t sv-fg");
+    }
+    g+=T(x0+len/2,30,`${(d/1000).toLocaleString("vi-VN")} km`,"sv-t sv-muted",'text-anchor="middle"');
+    // time axis
+    const ax=100,aw=440,ty=150,sx=v=>ax+aw*v/TT;
+    g+=T(20,ty+4,"Truyền","sv-t sv-muted")+R(ax,ty-7,sx(dt)-ax,10,"sv-msoft")+T(sx(dt)+4,ty+2,"L/R = "+fmt(dt),"sv-t sv-fg");
+    g+=T(20,ty+26,"Lan truyền","sv-t sv-muted")+R(sx(dt),ty+15,sx(TT)-sx(dt),10,"sv-soft")+T(ax,ty+44,"bit cuối đi thêm d/s = "+fmt(dp),"sv-t sv-fg");
+    const mx=sx(Math.min(t,TT));g+=L(mx,ty-14,mx,ty+30,"sv-bads",2);
+    g+=L(ax,ty+32,ax+aw,ty+32,"sv-line",1)+T(ax,200,"0","sv-t sv-muted",'text-anchor="middle"')+T(ax+aw,200,fmt(TT),"sv-t sv-muted",'text-anchor="middle"');
+    svg.innerHTML=g;
+    $("d-read").innerHTML=`<span class="hot">t = ${fmt(t)}</span><span>d_trans = L/R = ${fmt(dt)}</span><span>d_prop = d/s = ${fmt(dp)}</span><span>Tổng = ${fmt(TT)}</span>`;
+    let c;
+    if(t===0)c="Bấm Chạy. Thanh cam bên trái là phần gói còn chờ đẩy ra; thanh xanh bên phải là phần đã tới B.";
+    else if(t<dt)c=s*t>=d?"Bit đầu đã tới B nhưng A vẫn đang đẩy bit ra: d_trans > d_prop, gói trải dài cả đường truyền.":"A đang đẩy từng bit ra đường truyền (trễ truyền). Bit đầu đang lan truyền về phía B.";
+    else if(t<TT)c=Math.abs(t-dt)<TT*0.004?"t = L/R: bit cuối vừa rời A. Nó còn cần d/s nữa để tới B.":"Toàn bộ gói đã rời A; bit cuối đang lan truyền (trễ lan truyền).";
+    else c=`Bit cuối tới B tại t = L/R + d/s = ${fmt(TT)}.`+(dt>dp?" Ở đây trễ truyền lớn hơn: tăng R sẽ có tác dụng nhiều hơn.":" Ở đây trễ lan truyền lớn hơn: tăng R ít tác dụng.");
+    $("d-cap").textContent=c;
+  }
+  function loop(ts){
+    if(!play)return;
+    if(last)t=Math.min(P.T,t+(ts-last)*P.T/6000);
+    last=ts;draw();
+    if(t>=P.T){play=false;btn.textContent="Chạy lại";return}
+    raf=requestAnimationFrame(loop);
+  }
+  btn.onclick=()=>{
+    if(play){play=false;btn.textContent="Chạy";return}
+    if(t>=P.T)t=0;
+    play=true;last=0;btn.textContent="Tạm dừng";raf=requestAnimationFrame(loop);
+  };
+  $("d-jump").onclick=()=>{play=false;btn.textContent="Chạy";t=P.dt;draw()};
+  $("d-reset").onclick=()=>{play=false;btn.textContent="Chạy";t=0;draw()};
+  [Lin,Rin,Din,Sin].forEach(el=>el.addEventListener("input",()=>{play=false;btn.textContent="Chạy";t=0;params();draw()}));
+  params();draw();
+})();
+
+/* ---------- 2. encapsulation ---------- */
+(function(){
+  const names=["Application","Transport","Network","Link","Physical"];
+  const cols=[{x:20,t:"Nguồn",l:[0,1,2,3,4]},{x:195,t:"Switch",l:[3,4]},{x:355,t:"Router",l:[2,3,4]},{x:520,t:"Đích",l:[0,1,2,3,4]}];
+  const F=["Hl","Hn","Ht","M"],D=["Hn","Ht","M"],S=["Ht","M"],B=["bits"];
+  const st=[
+    [0,0,["M"],"Tầng Ứng dụng tạo message M (ví dụ HTTP request)."],
+    [0,1,S,"Transport thêm header Ht (port nguồn, port đích, checksum…) → segment."],
+    [0,2,D,"Network thêm Hn (IP nguồn, IP đích) → datagram."],
+    [0,3,F,"Link thêm Hl (địa chỉ MAC) → frame."],
+    [0,4,B,"Physical biến frame thành tín hiệu bit trên đường truyền."],
+    [1,4,B,"Switch nhận chuỗi bit."],
+    [1,3,F,"Switch chỉ đọc Hl để chuyển frame sang cổng đúng. Switch không xem Hn: nó chỉ làm việc tới tầng 2."],
+    [1,4,B,"Switch phát frame ra cổng hướng về router."],
+    [2,4,B,"Router nhận chuỗi bit."],
+    [2,3,F,"Router bóc Hl của chặng vừa qua."],
+    [2,2,D,"Router đọc IP đích trong Hn để chọn đường (tầng 3). Không xem Ht và M."],
+    [2,3,F,"Router gắn Hl mới cho chặng kế tiếp."],
+    [2,4,B,"Router phát bit ra liên kết tới máy đích."],
+    [3,4,B,"Máy đích nhận chuỗi bit."],
+    [3,3,F,"Link bóc Hl."],
+    [3,2,D,"Network kiểm tra IP đích là mình, bóc Hn."],
+    [3,1,S,"Transport bóc Ht và dùng port đích để demultiplex tới đúng socket."],
+    [3,0,["M"],"Ứng dụng nhận đúng message M ban đầu. Đi xuống: đóng gói; đi lên: bóc gói."]
+  ];
+  const pos=(c,l)=>[cols[c].x+70,40+l*40+16];
+  function render(i){
+    let g="";
+    cols.forEach((c,ci)=>{
+      g+=T(c.x+70,22,c.t,"sv-tb sv-fg",'text-anchor="middle"');
+      c.l.forEach(l=>{
+        const on=st[i][0]===ci&&st[i][1]===l;
+        g+=R(c.x,40+l*40,140,32,on?"sv-acc":"sv-surf sv-muteds",'rx="5" stroke-width="1"');
+        g+=T(c.x+70,40+l*40+20,names[l],on?"sv-t sv-surf":"sv-t sv-fg",'text-anchor="middle"');
+      });
+    });
+    // wires between physical layers
+    [[160,195],[335,355],[495,520]].forEach(([a,b])=>g+=L(a,256-40,b,256-40,"sv-muteds",2));
+    const pts=st.slice(0,i+1).map(s=>pos(s[0],s[1]));
+    if(pts.length>1)g+=`<polyline points="${pts.map(p=>p.join(",")).join(" ")}" class="sv-none sv-marks" stroke-width="2" stroke-dasharray="4 3"/>`;
+    const p=pos(st[i][0],st[i][1]);g+=`<circle cx="${p[0]}" cy="${p[1]}" r="6" class="sv-mark"/>`;
+    $("e-svg").innerHTML=g;
+    $("e-pk").innerHTML=st[i][2].map(h=>h==="bits"?`<span class="bits">0110 1001 0111…</span>`:`<span class="${h}">${h}</span>`).join("");
+    $("e-cap").textContent=st[i][3];
+    $("e-step").textContent=`Bước ${i+1}/${st.length}`;
+  }
+  Stepper({max:()=>st.length-1,render,play:$("e-play"),next:$("e-next"),prev:$("e-prev"),reset:$("e-reset"),ms:1300}).set(0);
+})();
+
+/* ---------- 3. HTTP timeline ---------- */
+(function(){
+  const nIn=$("h-n"),mIn=$("h-mode"),svg=$("h-svg"),btn=$("h-play");
+  let rounds=[],p=0,raf=0,play=false,last=0;
+  function build(){
+    const n=+nIn.value,m=mIn.value;$("h-nv").textContent=n;rounds=[];
+    const obj=i=>i?"ảnh "+i:"HTML";
+    if(m==="np")for(let i=0;i<=n;i++){rounds.push({l:"Mở TCP cho "+obj(i),k:1,tcp:1},{l:"GET "+obj(i),k:1})}
+    else{
+      rounds.push({l:"Mở TCP",k:1,tcp:1},{l:"GET HTML",k:1});
+      if(n){
+        if(m==="npp")rounds.push({l:`Mở ${n} kết nối TCP song song`,k:n,tcp:1},{l:`GET ${n} ảnh song song`,k:n});
+        if(m==="p")for(let i=1;i<=n;i++)rounds.push({l:"GET ảnh "+i,k:1});
+        if(m==="pp")rounds.push({l:`GET ${n} ảnh liên tiếp (pipelining)`,k:n});
+      }
+    }
+    const f={np:`2 × (${n}+1) = ${2*(n+1)} RTT`,npp:n?`2 + 2 = 4 RTT`:"2 RTT",p:`2 + ${n} = ${2+n} RTT`,pp:n?`2 + 1 = 3 RTT`:"2 RTT"}[m];
+    $("h-read").innerHTML=`<span class="hot">Tổng (bỏ qua thời gian truyền): ${f}</span><span>${{np:"Mỗi đối tượng: 1 RTT mở TCP + 1 RTT request/response",npp:"Trình duyệt mở nhiều kết nối cùng lúc cho các ảnh",p:"Giữ kết nối; mỗi ảnh vẫn chờ xong mới gửi request kế",pp:"Gửi liên tiếp mọi request, nhận tất cả trong 1 RTT"}[m]}</span>`;
+    p=0;draw();
+  }
+  function draw(){
+    const xc=230,xs=590,rh=40,top=34,H=top+rounds.length*rh+20;
+    svg.setAttribute("viewBox",`0 0 640 ${H}`);
+    let g=ARROW+T(xc,20,"Client","sv-tb sv-fg",'text-anchor="middle"')+T(xs,20,"Server","sv-tb sv-fg",'text-anchor="middle"');
+    g+=L(xc,28,xc,H-6,"sv-muteds",1.5)+L(xs,28,xs,H-6,"sv-muteds",1.5);
+    rounds.forEach((r,k)=>{
+      const y0=top+k*rh,f=Math.max(0,Math.min(1,p-k));if(p<k)return;
+      g+=T(10,y0+rh/2+4,`RTT ${k+1}`,"sv-t sv-muted")+T(64,y0+rh/2+4,r.l,"sv-t sv-fg");
+      const c=r.tcp?"sv-marks":"sv-accs",mk=r.tcp?"url(#ahm)":"url(#ah)";
+      for(let j=0;j<Math.min(r.k,4);j++){
+        const o=j*4;
+        if(f<=.5){const q=f/.5;g+=L(xc,y0+o,xc+(xs-xc)*q,y0+o+rh/2*q,c,1.5)}
+        else{
+          g+=L(xc,y0+o,xs,y0+o+rh/2,c,1.5,`marker-end="${mk}"`);
+          const q=(f-.5)/.5;g+=L(xs,y0+o+rh/2,xs-(xs-xc)*q,y0+o+rh/2+rh/2*q,c,1.5,q>=1?`marker-end="${mk}"`:"");
+        }
+      }
+    });
+    svg.innerHTML=g;
+  }
+  function loop(ts){
+    if(!play)return;
+    if(last)p=Math.min(rounds.length,p+(ts-last)/700);
+    last=ts;draw();
+    if(p>=rounds.length){play=false;btn.textContent="Chạy lại";return}
+    raf=requestAnimationFrame(loop);
+  }
+  btn.onclick=()=>{if(play){play=false;btn.textContent="Chạy";return}if(p>=rounds.length)p=0;play=true;last=0;btn.textContent="Tạm dừng";raf=requestAnimationFrame(loop)};
+  $("h-reset").onclick=()=>{play=false;btn.textContent="Chạy";p=0;draw()};
+  [nIn,mIn].forEach(e=>e.addEventListener("input",()=>{play=false;btn.textContent="Chạy";build();p=rounds.length;draw()}));
+  build();p=rounds.length;draw();
+})();
+
+/* ---------- 4. DNS ---------- */
+(function(){
+  const N={host:[130,270,"Host yêu cầu","cis.poly.edu"],local:[130,150,"DNS cục bộ","dns.poly.edu"],root:[330,45,"Root DNS",""],tld:[540,120,"TLD DNS",".edu"],auth:[500,250,"DNS có thẩm quyền","dns.umass.edu"]};
+  const S={
+    it:[["host","local","Host hỏi DNS cục bộ địa chỉ gaia.cs.umass.edu."],["local","root","DNS cục bộ hỏi Root."],["root","local","Root không biết, chỉ trả lời: hỏi TLD .edu tại địa chỉ X."],["local","tld","DNS cục bộ tự hỏi TLD .edu."],["tld","local","TLD trả lời: hỏi dns.umass.edu."],["local","auth","DNS cục bộ hỏi DNS có thẩm quyền."],["auth","local","Trả về địa chỉ IP của gaia.cs.umass.edu."],["local","host","DNS cục bộ trả IP cho host và lưu vào cache."]],
+    rc:[["host","local","Host hỏi DNS cục bộ."],["local","root","DNS cục bộ hỏi Root."],["root","tld","Root tự hỏi tiếp TLD .edu thay cho DNS cục bộ."],["tld","auth","TLD tự hỏi tiếp DNS có thẩm quyền."],["auth","tld","DNS có thẩm quyền trả IP cho TLD."],["tld","root","TLD chuyển câu trả lời về Root."],["root","local","Root chuyển câu trả lời về DNS cục bộ."],["local","host","DNS cục bộ trả IP cho host."]]
+  };
+  const mIn=$("n-mode");let st;
+  function render(i){
+    const steps=S[mIn.value];let g=ARROW;
+    Object.values(N).forEach(([x,y,a,b])=>{g+=R(x-62,y-20,124,40,"sv-surf sv-muteds",'rx="6" stroke-width="1"')+T(x,y-2,a,"sv-tb sv-fg",'text-anchor="middle"')+(b?T(x,y+13,b,"sv-t sv-muted",'text-anchor="middle"'):"")});
+    steps.slice(0,i).forEach(([a,b],k)=>{
+      let [x1,y1]=N[a],[x2,y2]=N[b];
+      const dx=x2-x1,dy=y2-y1,l=Math.hypot(dx,dy),nx=-dy/l*7,ny=dx/l*7,sh=Math.min(.42,26/l*1.6);
+      const ax=x1+dx*sh+nx,ay=y1+dy*sh+ny,bx=x2-dx*sh+nx,by=y2-dy*sh+ny,now=k===i-1;
+      g+=L(ax,ay,bx,by,now?"sv-marks":"sv-accs",now?2.5:1.5,`marker-end="url(#${now?"ahm":"ah"})"`);
+      g+=`<circle cx="${(ax+bx)/2+nx*1.6}" cy="${(ay+by)/2+ny*1.6}" r="9" class="${now?"sv-mark":"sv-acc"}"/>`+T((ax+bx)/2+nx*1.6,(ay+by)/2+ny*1.6+4,k+1,"sv-t sv-surf",'text-anchor="middle"');
+    });
+    $("n-svg").innerHTML=g;
+    $("n-list").innerHTML=steps.map((s,k)=>`<li class="${k<i-1?"done":k===i-1?"now":""}">${s[2]}</li>`).join("")+(i===steps.length?`<li class="now" style="list-style:none;margin-left:-22px;color:var(--accent)">${mIn.value==="it"?"Lặp: DNS cục bộ tự đi hỏi từng cấp; các server khác chỉ chỉ đường.":"Đệ quy: mỗi server hỏi tiếp thay cho bên hỏi; tải dồn lên các cấp trên."}</li>`:"");
+  }
+  st=Stepper({max:()=>8,render,play:$("n-play"),next:$("n-next"),prev:$("n-prev"),reset:$("n-reset"),ms:1100});
+  mIn.addEventListener("input",()=>{st.stop();st.set(8)});
+  st.set(8);
+})();
+
+/* ---------- 5. Go-Back-N / Selective Repeat ---------- */
+window.runARQ=function(mode,N,total,lost,ackLost){
+  const P=3,TO=9,msgs=[],logs=[],snaps=[],timeouts=[];
+  let base=0,next=0,q=[],timer=null;const timers={},acked=Array(total).fill(false),sentOnce=Array(total).fill(false);
+  let exp=0,rbase=0;const buf=Array(total).fill(false),dlv=Array(total).fill(false);
+  const lostUsed=new Set(),ackUsed=new Set();
+  for(let t=0;t<160;t++){
+    const ev=[];
+    // arrivals at receiver
+    msgs.filter(m=>m.k==="pkt"&&!m.lost&&m.t1===t).forEach(m=>{
+      const s=m.n;let a=null;
+      if(mode==="gbn"){
+        if(s===exp){dlv[s]=true;exp++;a=s;ev.push(`Nhận pkt${s} đúng thứ tự → giao, gửi ack${s}`)}
+        else{a=exp-1;ev.push(`Nhận pkt${s} sai thứ tự (chờ pkt${exp}) → bỏ, `+(a>=0?`gửi lại ack${a}`:"chưa có gì để ACK"))}
+      }else{
+        if(s>=rbase&&s<rbase+N){
+          if(!buf[s]&&!dlv[s]){buf[s]=true}
+          a=s;let txt=`Nhận pkt${s} → gửi ack${s}`;
+          if(s!==rbase)txt+=", đệm lại";
+          const d0=rbase;while(rbase<total&&buf[rbase]){buf[rbase]=false;dlv[rbase]=true;rbase++}
+          if(rbase>d0)txt+=`, giao pkt${d0}${rbase-1>d0?"–"+(rbase-1):""}`;
+          ev.push(txt);
+        }else if(s<rbase){a=s;ev.push(`Nhận lại pkt${s} (đã có) → gửi lại ack${s}`)}
+      }
+      if(a!==null&&a>=0){
+        const l=ackLost.includes(a)&&!ackUsed.has(a);if(l)ackUsed.add(a);
+        msgs.push({k:"ack",n:a,t0:t,t1:t+P,lost:l});if(l)ev.push(`ack${a} bị mất trên đường về`);
+      }
+    });
+    // acks at sender
+    msgs.filter(m=>m.k==="ack"&&!m.lost&&m.t1===t).forEach(m=>{
+      if(mode==="gbn"){
+        if(m.n>=base){for(let k=base;k<=m.n;k++)acked[k]=true;base=m.n+1;ev.push(`Bên gửi nhận ack${m.n} → base = ${base}`);timer=base<next?t:null}
+        else ev.push(`Bên gửi nhận ack${m.n} trùng → bỏ qua`);
+      }else{
+        if(!acked[m.n]){acked[m.n]=true;delete timers[m.n];while(base<total&&acked[base])base++;ev.push(`Bên gửi nhận ack${m.n}`+(base>m.n?` → base = ${base}`:", gói này đánh dấu đã ACK"))}
+        else ev.push(`ack${m.n} trùng → bỏ qua`);
+      }
+    });
+    // timeouts
+    if(mode==="gbn"){
+      if(timer!==null&&t-timer>=TO&&base<next){
+        q=[];for(let k=base;k<next;k++)q.push(k);timer=t;timeouts.push({t,n:base});
+        ev.push(`Timeout pkt${base} → gửi lại pkt${base}–pkt${next-1}`);
+      }
+    }else{
+      Object.keys(timers).map(Number).forEach(k=>{if(!acked[k]&&t-timers[k]>=TO&&!q.includes(k)){q.push(k);timers[k]=Infinity;timeouts.push({t,n:k});ev.push(`Timeout pkt${k} → chỉ gửi lại pkt${k}`)}});
+    }
+    // send one
+    let s=null,re=false;
+    q=q.filter(k=>mode==="gbn"?k>=base:!acked[k]);
+    if(q.length){s=q.shift();re=true}
+    else if(next<base+N&&next<total){s=next++}
+    if(s!==null){
+      const l=lost.includes(s)&&!lostUsed.has(s);if(l)lostUsed.add(s);
+      msgs.push({k:"pkt",n:s,t0:t,t1:t+P,lost:l,re});sentOnce[s]=true;
+      if(mode==="gbn"){if(timer===null)timer=t}else timers[s]=t;
+      ev.push(`${re?"Gửi lại":"Gửi"} pkt${s}`+(l?" (sẽ bị mất)":""));
+    }
+    logs.push(ev);
+    snaps.push({base,next,acked:acked.slice(),sent:sentOnce.slice(),buf:buf.slice(),dlv:dlv.slice()});
+    if(base>=total&&!msgs.some(m=>m.t1>t)){return {msgs,logs,snaps,timeouts,end:t}}
+  }
+  return {msgs,logs,snaps,timeouts,end:159};
+};
+(function(){
+  const total=8,mIn=$("g-mode"),nIn=$("g-N");let lost=[2],alost=[],sim,st;
+  const chips=(el,arr,pre)=>{el.innerHTML="";for(let k=0;k<total;k++){const b=document.createElement("button");b.className="chip";b.textContent=pre+k;b.setAttribute("aria-pressed",arr.includes(k));b.onclick=()=>{const i=arr.indexOf(k);i<0?arr.push(k):arr.splice(i,1);b.setAttribute("aria-pressed",arr.includes(k));rebuild()};el.appendChild(b)}};
+  function rebuild(){$("g-Nv").textContent=nIn.value;sim=runARQ(mIn.value,+nIn.value,total,lost,alost);if(st){st.stop();st.set(sim.end)}}
+  function render(t){
+    const rh=12,top=24,H=top+(sim.end+4)*rh,xs=70,xr=450;
+    const svg=$("g-svg");svg.setAttribute("viewBox",`0 0 520 ${H}`);
+    let g=ARROW+T(xs,14,"Bên gửi","sv-tb sv-fg",'text-anchor="middle"')+T(xr,14,"Bên nhận","sv-tb sv-fg",'text-anchor="middle"');
+    g+=L(xs,20,xs,H,"sv-muteds")+L(xr,20,xr,H,"sv-muteds");
+    g+=R(0,top+t*rh-1,520,rh,"sv-msoft",'opacity=".6"');
+    sim.timeouts.filter(o=>o.t<=t).forEach(o=>g+=T(xs-6,top+o.t*rh+9,"⏰ pkt"+o.n,"sv-t sv-bad",'text-anchor="end"'));
+    sim.msgs.filter(m=>m.t0<=t).forEach(m=>{
+      const fromX=m.k==="pkt"?xs:xr,toX=m.k==="pkt"?xr:xs,y0=top+m.t0*rh+5,y1=top+m.t1*rh+5;
+      const f=Math.min(1,(t-m.t0+1)/(m.t1-m.t0)),c=m.k==="pkt"?(m.re?"sv-marks":"sv-accs"):"sv-oks";
+      const lim=m.lost?Math.min(f,.55):f,ex=fromX+(toX-fromX)*lim,ey=y0+(y1-y0)*lim;
+      g+=L(fromX,y0,ex,ey,c,1.4,f>=1&&!m.lost?'marker-end="url(#ah)"':"");
+      if(m.lost&&f>=.55)g+=T(ex,ey+4,"✕","sv-tb sv-bad",'text-anchor="middle"');
+      if(m.k==="pkt")g+=T(fromX+6,y0-1,(m.re?"↻":"")+"pkt"+m.n,"sv-t sv-fg");
+      else g+=T(fromX-6,y0-1,"ack"+m.n,"sv-t sv-ok",'text-anchor="end"');
+    });
+    svg.innerHTML=g;
+    const sn=sim.snaps[t],N=+nIn.value;
+    $("g-snd").innerHTML=Array.from({length:total},(_,k)=>`<span class="${sn.acked[k]?"acked":sn.sent[k]?"sent":""} ${k>=sn.base&&k<sn.base+N?"inwin":""}">${k}</span>`).join("");
+    $("g-rcv").innerHTML=Array.from({length:total},(_,k)=>`<span class="${sn.dlv[k]?"acked":sn.buf[k]?"buf":""}">${k}</span>`).join("");
+    $("g-log").innerHTML=sim.logs.slice(0,t+1).map((e,k)=>e.length?`<div>t=${k}: ${e.join("; ")}</div>`:"").filter(Boolean).reverse().slice(0,8).join("");
+    $("g-t").textContent=`t = ${t} / ${sim.end}`;
+  }
+  chips($("g-lost"),lost,"pkt");chips($("g-alost"),alost,"ack");
+  rebuild();
+  st=Stepper({max:()=>sim.end,render,play:$("g-play"),next:$("g-next"),prev:$("g-prev"),reset:$("g-reset"),ms:450});
+  [mIn,nIn].forEach(e=>e.addEventListener("input",rebuild));
+  st.set(sim.end);
+})();
+
+/* ---------- 6. congestion control ---------- */
+(function(){
+  const vIn=$("c-var"),thIn=$("c-th");let h,demo=null;
+  function reset(){clearInterval(demo);demo=null;$("c-demo").textContent="Kịch bản mẫu";const th=Math.max(2,Math.min(64,+thIn.value||16));h=[{r:1,cwnd:1,th,ev:"start"}];draw()}
+  function act(type){
+    const c=h[h.length-1];if(h.length>=40)return;
+    let cwnd,th=c.th,ev=type;
+    if(type==="ok")cwnd=c.cwnd<th?Math.min(c.cwnd*2,th):c.cwnd+1;
+    else{th=Math.max(2,Math.floor(c.cwnd/2));cwnd=type==="dup"&&vIn.value==="reno"?th:1}
+    h.push({r:c.r+1,cwnd,th,ev});draw();
+  }
+  const phase=e=>e.cwnd<e.th?"Slow start":"Congestion avoidance";
+  function draw(){
+    const W=640,Hh=280,pl=40,pr=16,pt=16,pb=34,maxR=Math.max(20,h.length+2),maxY=Math.max(...h.map(e=>Math.max(e.cwnd,e.th)))+4;
+    const x=r=>pl+(r-1)*(W-pl-pr)/(maxR-1),y=v=>pt+(Hh-pt-pb)*(1-v/maxY);
+    let g="",step=maxY>40?10:maxY>20?5:2;
+    for(let v=0;v<=maxY;v+=step)g+=L(pl,y(v),W-pr,y(v),"sv-line",1)+T(pl-6,y(v)+4,v,"sv-t sv-muted",'text-anchor="end"');
+    for(let r=1;r<=maxR;r+=maxR>24?4:2)g+=T(x(r),Hh-pb+16,r,"sv-t sv-muted",'text-anchor="middle"');
+    g+=T(W/2,Hh-4,"Vòng truyền (RTT)","sv-t sv-muted",'text-anchor="middle"');
+    let d="";h.forEach((e,i)=>{d+=(i?"L":"M")+x(e.r)+","+y(e.th)+(i<h.length-1?"H"+x(e.r+1):"")});
+    g+=`<path d="${d}" class="sv-none sv-marks" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+    g+=`<polyline points="${h.map(e=>x(e.r)+","+y(e.cwnd)).join(" ")}" class="sv-none sv-accs" stroke-width="2.2"/>`;
+    h.forEach(e=>{g+=`<circle cx="${x(e.r)}" cy="${y(e.cwnd)}" r="3.4" class="${e.ev==="dup"?"sv-mark":e.ev==="to"?"sv-bad":"sv-acc"}"/>`;if(h.length<=24)g+=T(x(e.r),y(e.cwnd)-7,e.cwnd,"sv-t sv-fg",'text-anchor="middle"')});
+    g+=T(W-pr,y(h[h.length-1].th)-5,"ssthresh","sv-t sv-mark",'text-anchor="end"');
+    $("c-svg").innerHTML=g;
+    const e=h[h.length-1],ph=e.ev==="dup"&&vIn.value==="reno"?"Fast recovery → Congestion avoidance":phase(e);
+    $("c-read").innerHTML=`<span class="hot">Vòng ${e.r}</span><span>cwnd = ${e.cwnd} MSS</span><span>ssthresh = ${e.th}</span><span>${ph}</span>`;
+    const txt={start:"Bắt đầu: cwnd = 1",ok:"Đủ ACK",dup:"3 ACK trùng",to:"Timeout"};
+    $("c-log").innerHTML=h.slice(1).map((e,i)=>{const p=h[i];return `<div>Vòng ${p.r} → ${e.r}: ${txt[e.ev]}`+(e.ev==="ok"?(p.cwnd<p.th?` · slow start ${p.cwnd} × 2 → ${e.cwnd}`:` · CA ${p.cwnd} + 1 → ${e.cwnd}`):` · ssthresh = ${p.cwnd}/2 = ${e.th}, cwnd = ${e.cwnd}`)+"</div>"}).reverse().join("");
+  }
+  $("c-ok").onclick=()=>act("ok");$("c-dup").onclick=()=>act("dup");$("c-to").onclick=()=>act("to");
+  $("c-reset").onclick=reset;thIn.addEventListener("change",reset);vIn.addEventListener("input",reset);
+  $("c-demo").onclick=()=>{
+    if(demo){clearInterval(demo);demo=null;$("c-demo").textContent="Kịch bản mẫu";return}
+    reset();const plan="ok ok ok ok ok ok ok ok dup ok ok ok ok to ok ok ok ok ok".split(" ");let i=0;
+    $("c-demo").textContent="Dừng";
+    demo=setInterval(()=>{if(i>=plan.length){clearInterval(demo);demo=null;$("c-demo").textContent="Kịch bản mẫu";return}act(plan[i++])},600);
+  };
+  reset();
+  ["ok","ok","ok","ok","ok","ok","ok","ok","dup","ok","ok","ok","to","ok","ok","ok","ok"].forEach(act);
+})();
+
+/* ---------- 7. checksum ---------- */
+(function(){
+  const ins=[$("s-w1"),$("s-w2"),$("s-w3")];
+  const b16=v=>v.toString(2).padStart(16,"0"),sp=s=>s.slice(0,8)+" "+s.slice(8);
+  function calc(){
+    const w=[];let err="";
+    ins.forEach((el,i)=>{const v=el.value.replace(/\s/g,"");if(!v&&i===2)return;if(!/^[01]{16}$/.test(v)){err=`Word ${i+1} cần đúng 16 chữ số 0/1 (hiện có ${v.length}).`;return}w.push(parseInt(v,2))});
+    $("s-err").textContent=err;if(err||w.length<2){if(!err)$("s-err").textContent="Cần ít nhất 2 word.";return}
+    let rows=`<div class="row"><span class="k">Word 1</span><span>  ${sp(b16(w[0]))}</span></div>`,s=w[0];
+    for(let i=1;i<w.length;i++){
+      const raw=s+w[i];
+      rows+=`<div class="row"><span class="k">+ Word ${i+1}</span><span>  ${sp(b16(w[i]))}</span></div><div class="rule"></div>`;
+      if(raw>0xffff){
+        const wr=(raw&0xffff)+1;
+        rows+=`<div class="row"><span class="k">Tổng có tràn</span><span><span class="carry">1</span> ${sp(b16(raw&0xffff))}</span></div>`;
+        rows+=`<div class="row"><span class="k">Cộng vòng bit tràn</span><span>  ${sp(b16(wr))}</span></div>`;s=wr;
+      }else{rows+=`<div class="row"><span class="k">Tổng</span><span>  ${sp(b16(raw))}</span></div>`;s=raw}
+    }
+    const c=~s&0xffff;
+    rows+=`<div class="rule"></div><div class="row"><span class="k">Đảo bit (bù 1)</span><span class="res">  ${sp(b16(c))}</span></div>`;
+    rows+=`<div class="row"><span class="k">Bên nhận kiểm tra</span><span>  tổng + checksum = ${sp(b16((s+c)&0xffff))} → ${((s+c)&0xffff)===0xffff?"toàn bit 1, không phát hiện lỗi":"có lỗi"}</span></div>`;
+    $("s-out").innerHTML=rows;
+  }
+  ins.forEach(el=>el.addEventListener("input",calc));
+  $("s-rand").onclick=()=>{ins.forEach((el,i)=>el.value=b16(Math.floor(Math.random()*65536)));calc()};
+  calc();
+})();
+})();
 </script>
 
 </body></html>
