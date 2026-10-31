@@ -226,7 +226,6 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
     <table class="types">
       <thead><tr><th>Dạng</th><th>Chương</th><th>Tần suất</th><th>Ghi nhớ</th></tr></thead>
       <tbody>
-        <tr><td>Đọc đồ thị cwnd TCP Reno (ssthresh, pha, segment thứ n)</td><td class="ch">C3</td><td class="heat">●●●●● cụm 4–5 câu</td><td>Slow start nhân đôi, CA +1, 3 dup ACK → ½, timeout → 1</td></tr>
         <tr><td>Sequence/ACK number, Go-Back-N trên sơ đồ</td><td class="ch">C3</td><td class="heat">●●●● cụm 2–3 câu</td><td>seq tiếp = seq + số byte; ACK = byte kế tiếp mong đợi</td></tr>
         <tr><td>Giải mã UDP header từ chuỗi bit</td><td class="ch">C3</td><td class="heat">●●● cụm 3 câu</td><td>4 trường × 16 bit; payload = length − 8</td></tr>
         <tr><td>Độ trễ đầu cuối, tìm R<sub>new</sub></td><td class="ch">C1</td><td class="heat">●●● năm nào cũng có</td><td>d = L/R + d/s</td></tr>
@@ -423,28 +422,6 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
         </div>
         <div class="alt"><span class="lbl">Bắt tay 3 bước</span><span>SYN seq = x → SYN-ACK seq = y, ack = <b>x + 1</b> → ACK ack = <b>y + 1</b>. Gói SYN/ACK có ack = 5 001 thì ISN bên kia = 5 000.</span></div>
         <div class="tip"><b>Bẫy</b>ACK = 200 nghĩa là đã nhận tới byte <b>199</b>. Không cộng thêm 1 khi tính seq tiếp (161 + 281 = 442, không phải 443).</div>
-      </article>
-
-      <article class="fx" data-c="C3" data-lv="lv3">
-        <div class="fx-top"><h3>Cửa sổ tắc nghẽn TCP (Reno/Tahoe)</h3><span class="badge lv3">★★★ Rất hay ra</span></div>
-        <p class="seen">Gặp trong: 2022 (5 câu trên một đồ thị) · ngân hàng (slow start, Tahoe/Reno)</p>
-        <div class="tbl"><table class="mini">
-          <thead><tr><th>Sự kiện</th><th>ssthresh mới</th><th>cwnd mới</th></tr></thead>
-          <tbody>
-            <tr><td>Slow start (cwnd &lt; ssthresh)</td><td>giữ</td><td>cwnd × 2 mỗi RTT</td></tr>
-            <tr><td>Congestion avoidance</td><td>giữ</td><td>cwnd + 1 mỗi RTT</td></tr>
-            <tr><td>3 ACK trùng (Reno)</td><td><b>cwnd / 2</b></td><td>= ssthresh mới</td></tr>
-            <tr><td>3 ACK trùng (Tahoe)</td><td>cwnd / 2</td><td>1</td></tr>
-            <tr><td>Timeout</td><td><b>cwnd / 2</b></td><td>1</td></tr>
-          </tbody>
-        </table></div>
-        <div class="eq small">Sau k vòng slow start đã gửi: 1 + 2 + 4 + … + 2<sup>k−1</sup> = 2<sup>k</sup> − 1 segment</div>
-        <div class="fx-ex"><span class="lbl">Ví dụ (đề 2022)</span>
-          <code>cwnd: 1, 2, 4, 8, 16, 32, 33 … → ssthresh ban đầu = 32</code>
-          <code>Segment 100: tích lũy 1, 3, 7, 15, 31, 63, 96, 130 → vòng <b>8</b></code>
-          <code>Mất gói khi cwnd = 8 do 3 ACK trùng → ssthresh = <b>4</b></code>
-        </div>
-        <div class="tip"><b>Bẫy</b>ssthresh tính theo cwnd <b>lúc mất gói</b>, không phải ssthresh cũ. Đường nhân đôi là slow start dù cwnd đã lớn.</div>
       </article>
 
       <article class="fx" data-c="C3" data-lv="lv2">
@@ -766,7 +743,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
     <div class="chapter" id="c3">
       <div class="chapter-head">
         <span class="num">Chương 3</span><h3>Tầng Vận chuyển</h3>
-        <p>Chiếm khoảng 12–15 câu, nhiều nhất: UDP header, rdt, GBN, seq/ACK, đồ thị cwnd.</p>
+        <p>Chiếm khoảng 12–15 câu, nhiều nhất: UDP header, checksum, rdt, GBN, seq/ACK.</p>
       </div>
       <div class="sheet">
 
@@ -902,26 +879,6 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
           </ul>
         </div>
 
-        <div class="card wide">
-          <h3>Điều khiển tắc nghẽn TCP <span class="badge lv3">★★★ Rất hay ra</span></h3>
-          <div class="tbl"><table class="mini">
-            <thead><tr><th>Pha / sự kiện</th><th>cwnd</th><th>ssthresh</th><th>Nhận ra trên đồ thị</th></tr></thead>
-            <tbody>
-              <tr><td>Slow start</td><td>Bắt đầu 1 MSS, <b>nhân đôi</b> mỗi RTT</td><td>Giữ nguyên</td><td>1, 2, 4, 8, 16…</td></tr>
-              <tr><td>Congestion avoidance</td><td><b>+1 MSS</b> mỗi RTT (khi cwnd ≥ ssthresh)</td><td>Giữ nguyên</td><td>Đường thẳng tăng đều</td></tr>
-              <tr><td>3 ACK trùng · Reno</td><td>cwnd = ssthresh (+3), vào <b>fast recovery</b> rồi tăng tuyến tính</td><td>cwnd / 2</td><td>Rớt còn <b>một nửa</b></td></tr>
-              <tr><td>3 ACK trùng · Tahoe</td><td>cwnd = 1, slow start lại</td><td>cwnd / 2</td><td>Rớt về 1</td></tr>
-              <tr><td>Timeout (cả hai)</td><td>cwnd = 1, slow start lại</td><td>cwnd / 2</td><td>Rớt về 1</td></tr>
-            </tbody>
-          </table></div>
-          <ul>
-            <li>Reno khác Tahoe ở chỗ có <b>fast recovery</b>. Cơ chế chung gọi là AIMD: tăng cộng, giảm nhân.</li>
-            <li>ssthresh ban đầu = giá trị cwnd mà tại đó đường cong chuyển từ nhân đôi sang tăng đều.</li>
-            <li>Segment thứ n gửi ở vòng nào: cộng dồn cwnd từng vòng (1, 3, 7, 15, 31…) tới khi vượt n.</li>
-            <li>Slow start sau timeout dừng tại ssthresh mới, không vượt qua.</li>
-          </ul>
-          <div class="tip"><b>Đề hay hỏi</b>ssthresh ở vòng k, vòng k thuộc pha nào, nguyên nhân rớt cwnd, ssthresh sau lần mất gói cuối, segment thứ n ở vòng nào.</div>
-        </div>
       </div>
     </div>
   </section>
@@ -935,7 +892,6 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
       <button class="chip" role="tab" data-sim="http" aria-selected="false">HTTP và RTT</button>
       <button class="chip" role="tab" data-sim="dns" aria-selected="false">DNS lặp / đệ quy</button>
       <button class="chip" role="tab" data-sim="gbn" aria-selected="false">Go-Back-N / Selective Repeat</button>
-      <button class="chip" role="tab" data-sim="cc" aria-selected="false">Tắc nghẽn TCP</button>
       <button class="chip" role="tab" data-sim="cs" aria-selected="false">Tính checksum</button>
     </div>
 
@@ -1035,25 +991,6 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
       </div>
     </div>
 
-    <!-- 6. Congestion control -->
-    <div class="sim" id="sim-cc" role="tabpanel" hidden>
-      <h3>Tự tạo đồ thị cwnd</h3>
-      <div class="ctrl">
-        <label for="c-var">Phiên bản <select id="c-var"><option value="reno">TCP Reno</option><option value="tahoe">TCP Tahoe</option></select></label>
-        <label for="c-th">ssthresh ban đầu <input type="number" id="c-th" min="2" max="64" value="16" style="width:70px"></label>
-      </div>
-      <div class="ctrl">
-        <button class="btn primary" id="c-ok">Vòng tiếp (đủ ACK)</button>
-        <button class="btn" id="c-dup">3 ACK trùng</button>
-        <button class="btn" id="c-to">Timeout</button>
-        <button class="btn" id="c-demo">Kịch bản mẫu</button>
-        <button class="btn" id="c-reset">Đặt lại</button>
-      </div>
-      <div class="stage"><svg id="c-svg" viewBox="0 0 640 280" role="img" aria-label="Đồ thị cwnd theo vòng truyền"></svg></div>
-      <div class="readout" id="c-read"></div>
-      <div class="log" id="c-log"></div>
-    </div>
-
     <!-- 7. Checksum -->
     <div class="sim" id="sim-cs" role="tabpanel" hidden>
       <h3>Checksum UDP từng bước</h3>
@@ -1105,19 +1042,6 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
       </div>
     </details>
 
-    <details class="ex">
-      <summary>Đọc đồ thị cwnd TCP Reno</summary>
-      <div class="body">
-        <p>Đồ thị mẫu dưới đây được dùng cho các câu Reno trong phần trắc nghiệm.</p>
-        <div class="chart" id="reno"></div>
-        <ul>
-          <li>Đoạn nhân đôi (1, 2, 4, 8, 16): <b>slow start</b>. Điểm chuyển sang tăng tuyến tính là <b>ssthresh</b> (ở đây 16).</li>
-          <li>Đoạn tăng +1 mỗi vòng: <b>congestion avoidance</b>.</li>
-          <li>Rớt còn một nửa: 3 ACK trùng. Rớt về 1: timeout. Cả hai đều đặt ssthresh = cwnd/2 lúc mất gói.</li>
-          <li>Segment thứ n: cộng dồn cwnd từng vòng (1, 3, 7, 15, 31, 48…) tới khi vượt n.</li>
-        </ul>
-      </div>
-    </details>
   </section>
 
   <section id="trac-nghiem">
@@ -1138,11 +1062,10 @@ footer{margin-top:48px;color:var(--muted);font-size:13px}
     <div class="qs" id="qs"></div>
   </section>
 
-  <footer>Câu hỏi luyện tập được viết lại theo dạng của đề các năm; số liệu đã được tính lại. Đồ thị Reno là ví dụ minh họa, không lấy từ đề.</footer>
+  <footer>Câu hỏi luyện tập được viết lại theo dạng của đề các năm; số liệu đã được tính lại.</footer>
 </div>
 
 <script>
-const RENO=[1,2,4,8,16,17,18,19,20,10,11,12,1,2,4,6,7];
 const Q=[
 {c:"C1",q:"Gói tin dài L = 12 000 bit truyền trên liên kết R = 6 Mbps, dài 600 km, tốc độ lan truyền 2·10⁸ m/s. Bỏ qua trễ xử lý và hàng đợi. Độ trễ đầu cuối là:",o:["2 ms","3 ms","5 ms","8 ms"],a:2,e:"Truyền L/R = 12000/6·10⁶ = 2 ms; lan truyền 6·10⁵/2·10⁸ = 3 ms; tổng 5 ms."},
 {c:"C1",q:"L = 30 000 bit, R = 10 Mbps, d = 300 km, s = 3·10⁸ m/s. Nếu d giảm còn d/2, cần chỉnh R như thế nào để độ trễ đầu cuối giảm một nửa?",o:["R_new = 3R","R_new = R","R_new = 2R","R_new = R + R/2"],a:2,e:"Cũ: 3 + 1 = 4 ms. Mới cần 2 ms, lan truyền còn 0.5 ms nên truyền 1.5 ms → R_new = 30000/1.5 ms = 20 Mbps = 2R."},
@@ -1238,7 +1161,7 @@ const Q=[
 {c:"C3",q:"Client gửi SYN với seq = x. SYNACK của server có giá trị ACK bằng:",o:["x","x + 1","0","y + 1"],a:1,e:"SYN chiếm 1 số thứ tự nên server ACK x+1, kèm seq = y của riêng nó. Client đáp lại ack = y+1."},
 {c:"C3",q:"TCP SYN dùng sequence number khởi tạo nào?",o:["0","−1","Số nguyên tố ngẫu nhiên 0…65 535","Số ngẫu nhiên trong khoảng 0…4 294 967 295"],a:3,e:"ISN là số 32 bit chọn ngẫu nhiên, tức 0 … 2³² − 1."},
 {c:"C3",q:"Định danh socket TCP phía server gồm:",o:["IP đích và port đích","IP và MAC","Bộ 4: IP nguồn, port nguồn, IP đích, port đích","IP và user ID"],a:2,e:"TCP dùng bộ 4 nên hai client tới cùng cổng 80 được đưa vào hai socket khác nhau. UDP chỉ dùng (IP đích, port đích)."},
-{c:"C3",q:"Sự kiện nào kích hoạt TCP fast retransmit?",o:["Timeout","Nhận 3 ACK trùng","Nhận 1 NAK","cwnd đạt ssthresh"],a:1,e:"3 ACK trùng (tức 4 ACK giống nhau) báo hiệu gói mất trong khi các gói sau vẫn tới."},
+{c:"C3",q:"Sự kiện nào kích hoạt TCP fast retransmit?",o:["Timeout","Nhận 3 ACK trùng","Nhận 1 NAK","Bộ đệm bên nhận đầy"],a:1,e:"3 ACK trùng (tức 4 ACK giống nhau) báo hiệu gói mất trong khi các gói sau vẫn tới."},
 {c:"C3",q:"EstimatedRTT hiện tại 100 ms, SampleRTT mới 120 ms, α = 0.125. EstimatedRTT mới:",o:["110 ms","102.5 ms","120 ms","117.5 ms"],a:1,e:"0.875·100 + 0.125·120 = 87.5 + 15 = 102.5 ms."},
 {c:"C3",s:"Dạng đề 2020",q:"Wireshark bắt được segment từ server: “Src Port: 80, Dst Port: 50123, Seq: 1, Ack: 97, Len: 512”. Nếu bên nhận nhận đúng segment này, nó phản hồi với ACK bằng bao nhiêu?",o:["98","512","513","609"],a:2,e:"ACK = Seq + Len = 1 + 512 = 513. Ack: 97 là số của chiều ngược lại, không liên quan."},
 {c:"C3",s:"Dạng đề 2019",q:"Gói TCP bắt được có Flags = 0x12 (SYN và ACK được bật), Sequence = 70 000, Acknowledgement = 5 001. Initial Sequence Number trong gói SYN của bên kia là:",o:["0","5 000","70 000","5 001"],a:1,e:"Đây là SYN/ACK. ACK = ISN bên kia + 1 nên ISN = 5 000. Gói tiếp theo bên kia gửi là ACK (bước 3 bắt tay)."},
@@ -1286,13 +1209,6 @@ const Q=[
 {c:"C3",s:"Ngân hàng đáp án",q:"Gói yêu cầu kết nối (bước 1 bắt tay 3 bước) có các cờ:",o:["ACK=1, SYN=1","RST=1, SYN=1","ACK=0, SYN=1","ACK=1, SYN=0"],a:2,e:"Bước 1 chỉ SYN. Bước 2 là SYN=1, ACK=1. Bước 3 chỉ ACK."},
 {c:"C3",s:"Ngân hàng đáp án",q:"Nhận được segment có cờ FIN, TCP phản hồi bằng gói có cờ gì để xác nhận?",o:["SYN","FIN","RST","ACK"],a:3,e:"Bên nhận FIN gửi ACK, sau đó mới gửi FIN của riêng mình khi sẵn sàng đóng."},
 {c:"C3",s:"Ngân hàng đáp án",q:"Cơ chế TCP dùng để quản lý (thiết lập) kết nối:",o:["TCP port number","Bắt tay 3 bước","TCP header length","UDP checksum"],a:1,e:"Thiết lập bằng bắt tay 3 bước (SYN, SYNACK, ACK), đóng bằng trao đổi FIN/ACK."},
-{c:"C3",s:"Ngân hàng đáp án",q:"Trong slow start, trước khi cwnd đạt ngưỡng, cwnd tăng theo cách nào?",o:["Tuyến tính","Không tăng","Bình phương","Cấp số nhân"],a:3,e:"Gấp đôi mỗi RTT (tăng 1 MSS cho mỗi ACK)."},
-{c:"C3",s:"Ngân hàng đáp án",q:"Khác biệt giữa TCP Tahoe và TCP Reno:",o:["Chỉ Tahoe có slow start, CA và fast retransmit","Reno có thêm fast recovery, Tahoe thì không","Reno chưa được hiện thực","Tahoe chỉ có slow start và CA"],a:1,e:"Tahoe gặp 3 ACK trùng cũng đưa cwnd về 1. Reno dùng fast recovery: cwnd còn một nửa."},
-{c:"C3",q:"Theo đồ thị Reno mẫu (phần cách giải), ssthresh ban đầu là bao nhiêu?",o:["8","16","20","32"],a:1,e:"cwnd nhân đôi 1, 2, 4, 8, 16 rồi chuyển sang +1 từ vòng 6: ngưỡng là 16."},
-{c:"C3",q:"Theo đồ thị Reno mẫu, vòng 7 thuộc pha nào?",o:["Slow start","Congestion avoidance","Fast recovery","Fast retransmission"],a:1,e:"Từ vòng 6 đến 9 cwnd tăng 1 mỗi vòng: congestion avoidance."},
-{c:"C3",q:"Theo đồ thị Reno mẫu, cwnd từ 20 (vòng 9) xuống 10 (vòng 10) do đâu?",o:["Timeout","3 ACK trùng","Bên nhận hết bộ đệm","Đạt ssthresh"],a:1,e:"Reno giảm một nửa khi nhận 3 ACK trùng. Timeout thì cwnd về 1 như ở vòng 13."},
-{c:"C3",q:"Theo đồ thị Reno mẫu, ssthresh ở vòng 14 bằng:",o:["16","10","6","1"],a:2,e:"Vòng 12 cwnd = 12 thì timeout → ssthresh = 12/2 = 6, cwnd = 1. Vì vậy vòng 16 slow start dừng ở 6."},
-{c:"C3",q:"Theo đồ thị Reno mẫu, segment thứ 50 được gửi ở vòng nào?",o:["Vòng 5","Vòng 6","Vòng 7","Vòng 8"],a:2,e:"Cộng dồn: vòng 1–5 gửi 31 segment, vòng 6 thêm 17 (đến 48), vòng 7 thêm 18 (49–66). Segment 50 ở vòng 7."}
 ];
 
 // Shuffle options with a fixed seed per question so the answer letter is not predictable,
@@ -1305,7 +1221,7 @@ Q.forEach((q,i)=>{
   for(let k=3;k>0;k--){const j=Math.floor(rnd()*(k+1));[p[k],p[j]]=[p[j],p[k]]}
   q.o=p.map(k=>q.o[k]);q.a=p.indexOf(q.a);
 });
-const KEY="it005-gk-answers-v4";
+const KEY="it005-gk-answers-v5";
 let ans={};
 try{ans=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){ans={}}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ans))}catch(e){}};
@@ -1354,20 +1270,6 @@ document.getElementById("chips").addEventListener("click",e=>{
 });
 document.getElementById("reset").addEventListener("click",()=>{ans={};save();render()});
 
-(function drawReno(){
-  const W=620,H=260,pl=40,pr=14,pt=14,pb=36,max=24;
-  const x=i=>pl+(i)*(W-pl-pr)/(RENO.length-1);
-  const y=v=>pt+(H-pt-pb)*(1-v/max);
-  let g="";
-  for(let v=0;v<=max;v+=4){g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${pl-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="var(--mono)">${v}</text>`}
-  RENO.forEach((v,i)=>{if((i+1)%2===1)g+=`<text x="${x(i)}" y="${H-pb+16}" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="var(--mono)">${i+1}</text>`});
-  g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(16)}" y2="${y(16)}" stroke="var(--mark)" stroke-dasharray="4 4"/><text x="${W-pr}" y="${y(16)-6}" text-anchor="end" font-size="11" fill="var(--mark)" font-family="var(--mono)">ssthresh ban đầu = 16</text>`;
-  const pts=RENO.map((v,i)=>`${x(i)},${y(v)}`).join(" ");
-  g+=`<polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2.2"/>`;
-  RENO.forEach((v,i)=>{g+=`<circle cx="${x(i)}" cy="${y(v)}" r="3.2" fill="var(--accent)"/><text x="${x(i)}" y="${y(v)-8}" text-anchor="middle" font-size="10.5" fill="var(--fg)" font-family="var(--mono)">${v}</text>`});
-  g+=`<text x="${(W+pl)/2}" y="${H-4}" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="var(--body)">Vòng truyền (transmission round) · trục dọc: cwnd (segment)</text>`;
-  document.getElementById("reno").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Đồ thị cwnd TCP Reno mẫu">${g}</svg>`;
-})();
 render();
 </script>
 <script>
@@ -1686,48 +1588,6 @@ window.runARQ=function(mode,N,total,lost,ackLost){
   st=Stepper({max:()=>sim.end,render,play:$("g-play"),next:$("g-next"),prev:$("g-prev"),reset:$("g-reset"),ms:450});
   [mIn,nIn].forEach(e=>e.addEventListener("input",rebuild));
   st.set(sim.end);
-})();
-
-/* ---------- 6. congestion control ---------- */
-(function(){
-  const vIn=$("c-var"),thIn=$("c-th");let h,demo=null;
-  function reset(){clearInterval(demo);demo=null;$("c-demo").textContent="Kịch bản mẫu";const th=Math.max(2,Math.min(64,+thIn.value||16));h=[{r:1,cwnd:1,th,ev:"start"}];draw()}
-  function act(type){
-    const c=h[h.length-1];if(h.length>=40)return;
-    let cwnd,th=c.th,ev=type;
-    if(type==="ok")cwnd=c.cwnd<th?Math.min(c.cwnd*2,th):c.cwnd+1;
-    else{th=Math.max(2,Math.floor(c.cwnd/2));cwnd=type==="dup"&&vIn.value==="reno"?th:1}
-    h.push({r:c.r+1,cwnd,th,ev});draw();
-  }
-  const phase=e=>e.cwnd<e.th?"Slow start":"Congestion avoidance";
-  function draw(){
-    const W=640,Hh=280,pl=40,pr=16,pt=16,pb=34,maxR=Math.max(20,h.length+2),maxY=Math.max(...h.map(e=>Math.max(e.cwnd,e.th)))+4;
-    const x=r=>pl+(r-1)*(W-pl-pr)/(maxR-1),y=v=>pt+(Hh-pt-pb)*(1-v/maxY);
-    let g="",step=maxY>40?10:maxY>20?5:2;
-    for(let v=0;v<=maxY;v+=step)g+=L(pl,y(v),W-pr,y(v),"sv-line",1)+T(pl-6,y(v)+4,v,"sv-t sv-muted",'text-anchor="end"');
-    for(let r=1;r<=maxR;r+=maxR>24?4:2)g+=T(x(r),Hh-pb+16,r,"sv-t sv-muted",'text-anchor="middle"');
-    g+=T(W/2,Hh-4,"Vòng truyền (RTT)","sv-t sv-muted",'text-anchor="middle"');
-    let d="";h.forEach((e,i)=>{d+=(i?"L":"M")+x(e.r)+","+y(e.th)+(i<h.length-1?"H"+x(e.r+1):"")});
-    g+=`<path d="${d}" class="sv-none sv-marks" stroke-width="1.5" stroke-dasharray="5 4"/>`;
-    g+=`<polyline points="${h.map(e=>x(e.r)+","+y(e.cwnd)).join(" ")}" class="sv-none sv-accs" stroke-width="2.2"/>`;
-    h.forEach(e=>{g+=`<circle cx="${x(e.r)}" cy="${y(e.cwnd)}" r="3.4" class="${e.ev==="dup"?"sv-mark":e.ev==="to"?"sv-bad":"sv-acc"}"/>`;if(h.length<=24)g+=T(x(e.r),y(e.cwnd)-7,e.cwnd,"sv-t sv-fg",'text-anchor="middle"')});
-    g+=T(W-pr,y(h[h.length-1].th)-5,"ssthresh","sv-t sv-mark",'text-anchor="end"');
-    $("c-svg").innerHTML=g;
-    const e=h[h.length-1],ph=e.ev==="dup"&&vIn.value==="reno"?"Fast recovery → Congestion avoidance":phase(e);
-    $("c-read").innerHTML=`<span class="hot">Vòng ${e.r}</span><span>cwnd = ${e.cwnd} MSS</span><span>ssthresh = ${e.th}</span><span>${ph}</span>`;
-    const txt={start:"Bắt đầu: cwnd = 1",ok:"Đủ ACK",dup:"3 ACK trùng",to:"Timeout"};
-    $("c-log").innerHTML=h.slice(1).map((e,i)=>{const p=h[i];return `<div>Vòng ${p.r} → ${e.r}: ${txt[e.ev]}`+(e.ev==="ok"?(p.cwnd<p.th?` · slow start ${p.cwnd} × 2 → ${e.cwnd}`:` · CA ${p.cwnd} + 1 → ${e.cwnd}`):` · ssthresh = ${p.cwnd}/2 = ${e.th}, cwnd = ${e.cwnd}`)+"</div>"}).reverse().join("");
-  }
-  $("c-ok").onclick=()=>act("ok");$("c-dup").onclick=()=>act("dup");$("c-to").onclick=()=>act("to");
-  $("c-reset").onclick=reset;thIn.addEventListener("change",reset);vIn.addEventListener("input",reset);
-  $("c-demo").onclick=()=>{
-    if(demo){clearInterval(demo);demo=null;$("c-demo").textContent="Kịch bản mẫu";return}
-    reset();const plan="ok ok ok ok ok ok ok ok dup ok ok ok ok to ok ok ok ok ok".split(" ");let i=0;
-    $("c-demo").textContent="Dừng";
-    demo=setInterval(()=>{if(i>=plan.length){clearInterval(demo);demo=null;$("c-demo").textContent="Kịch bản mẫu";return}act(plan[i++])},600);
-  };
-  reset();
-  ["ok","ok","ok","ok","ok","ok","ok","ok","dup","ok","ok","ok","to","ok","ok","ok","ok"].forEach(act);
 })();
 
 /* ---------- 7. checksum ---------- */
