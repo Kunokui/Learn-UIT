@@ -112,6 +112,10 @@ pre .k { color: var(--accent); font-weight: 600; }
 .pattern .when { color: var(--muted); font-size: 14px; margin: 0 0 6px; }
 .pattern pre { margin-bottom: 6px; }
 .pattern ul { margin: 6px 0 0; padding-left: 20px; font-size: 14.5px; }
+.trap { background: var(--bad-soft); border-radius: 8px; padding: 8px 14px; margin-top: 10px; font-size: 14px; }
+.trap > b { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .07em; color: var(--bad); }
+.trap ul { margin: 4px 0 0; padding-left: 18px; }
+.trap li { margin: 3px 0; }
 
 .time { display: grid; gap: 6px; margin: 12px 0; max-width: 560px; }
 .time .row { display: grid; grid-template-columns: minmax(0, 1fr) 46px; gap: 10px; align-items: center; font-size: 14px; }
@@ -610,87 +614,207 @@ Mamh ℑ max(Diem), min(Diem), avg(Diem) (KETQUATHI)</pre>
     <!-- 4 -->
     <section id="dsqh">
       <h2>Câu 2.2: Đại số quan hệ <span class="pts">6đ</span></h2>
-      <p class="sub">Đây là phần quyết định điểm. Nhận dạng câu qua từ khóa trong đề:</p>
+      <p class="sub">Đây là phần quyết định điểm. Mỗi câu a–f gần như cố định một dạng. Nhận dạng qua từ khóa, viết theo mẫu, rồi soát lại danh sách bẫy của dạng đó.</p>
+
+      <h3>Nhận dạng nhanh: từ khóa → dạng</h3>
       <div class="tbl"><table>
-        <thead><tr><th>Câu</th><th>Từ khóa trong đề</th><th>Phép toán</th><th>Đã xuất hiện</th></tr></thead>
+        <thead><tr><th>Câu</th><th>Từ khóa trong đề</th><th>Dạng</th><th>Đã xuất hiện</th></tr></thead>
         <tbody>
-          <tr><td class="num">a</td><td>điều kiện đơn giản trên 1 bảng</td><td><span class="op">σ</span> <span class="op">π</span></td><td>mọi năm</td></tr>
-          <tr><td class="num">b</td><td>thông tin nằm ở 2–3 bảng</td><td><span class="op">⋈</span></td><td>mọi năm</td></tr>
-          <tr><td class="num">c</td><td><b>"(nếu có)"</b></td><td><span class="op">⟕</span> kết ngoài trái</td><td>2020, 2023, 2024, 2025</td></tr>
-          <tr><td class="num">d</td><td><b>"chưa / không có / không bất kỳ"</b></td><td><span class="op">−</span></td><td>2019, 2020, 2024, 2025 Đ1</td></tr>
-          <tr><td class="num">d</td><td><b>"cả hai X và Y", "cùng lúc"</b></td><td><span class="op">∩</span></td><td>2020, 2023, HK2 2024, 2025 Đ2</td></tr>
-          <tr><td class="num">e/f</td><td><b>"tất cả"</b></td><td><span class="op">÷</span></td><td>mọi năm</td></tr>
-          <tr><td class="num">e/f</td><td><b>"mỗi / với từng / bao nhiêu / số lượng"</b></td><td><span class="op">ℑ</span> count, sum</td><td>mọi năm</td></tr>
-          <tr><td class="num">f</td><td><b>"chiếm từ 80%", "lớn nhất"</b></td><td><span class="op">ℑ</span> hai lần, rồi kết và so sánh</td><td>2025</td></tr>
+          <tr><td class="num">a</td><td>điều kiện đơn giản trên 1 bảng</td><td>D1 <span class="op">σ π</span></td><td>mọi năm</td></tr>
+          <tr><td class="num">b</td><td>thông tin nằm ở 2–3 bảng</td><td>D2 <span class="op">⋈</span></td><td>mọi năm</td></tr>
+          <tr><td class="num">c</td><td><b>"(nếu có)"</b></td><td>D3 <span class="op">⟕</span></td><td>2020, 2023, 2024, 2025</td></tr>
+          <tr><td class="num">d</td><td><b>"chưa / không / nhưng không / không bất kỳ"</b></td><td>D4 <span class="op">−</span></td><td>2019, 2020, 2023 Đ2, 2024, 2025 Đ1</td></tr>
+          <tr><td class="num">d</td><td><b>"cả hai X và Y", "cùng lúc", "vừa … vừa …"</b></td><td>D5 <span class="op">∩</span></td><td>2020, 2023 Đ1, HK2 2024, 2024, 2025 Đ2</td></tr>
+          <tr><td class="num">e/f</td><td><b>"tất cả", "mọi"</b></td><td>D6 <span class="op">÷</span></td><td>mọi năm</td></tr>
+          <tr><td class="num">e/f</td><td><b>"mỗi / với từng / bao nhiêu / số lượng / tổng"</b></td><td>D7 <span class="op">ℑ</span></td><td>mọi năm</td></tr>
+          <tr><td class="num">f</td><td><b>"chiếm từ 80%", "nhiều nhất", "lớn nhất"</b></td><td>D8 <span class="op">ℑ ℑ</span></td><td>2025</td></tr>
+          <tr><td class="num">f</td><td><b>"lần đầu tiên", "gần nhất", "không phải lần đầu"</b></td><td>D9 <span class="op">ℑ min/max</span></td><td>2024</td></tr>
+          <tr><td class="num">b/d</td><td><b>"cùng … với X", "khác … của chính nó"</b></td><td>D10 <span class="op">ρ</span> tự kết</td><td>chưa ra, dễ ra</td></tr>
         </tbody>
       </table></div>
-      <p class="sub">Ký hiệu: <span class="mono">σ đk (R)</span> có thể viết theo kiểu của lớp là <span class="mono">R : (đk)</span>; <span class="mono">π A,B (R)</span> viết là <span class="mono">R[A,B]</span>; đổi tên dùng ρ; gom nhóm viết <span class="mono">G1 ℑ count(A) (E)</span>.</p>
+      <p class="sub">Ký hiệu: <span class="mono">σ đk (R)</span> viết theo kiểu của lớp là <span class="mono">R : (đk)</span>; <span class="mono">π A,B (R)</span> viết là <span class="mono">R[A,B]</span>; đổi tên dùng ρ; gom nhóm viết <span class="mono">G1 ℑ count(A) (E)</span>.</p>
 
-      <h3>Mẫu lời giải theo dạng</h3>
+      <h3>Các dạng, mẫu lời giải và bẫy</h3>
 
       <div class="pattern">
-        <h4><span class="op">σ ⋈ π</span> Chọn, kết, chiếu (câu a, b)</h4>
-        <p class="when">Thứ tự làm: lọc trước, kết sau, chiếu cuối cùng.</p>
-<pre>A  ← σ đk1 (R1) ⋈ R1.k = R2.k σ đk2 (R2)
+        <h4><span class="op">D1</span> Chọn và chiếu trên 1 bảng (câu a)</h4>
+<pre>KQ ← π cột_yêu_cầu ( σ đk1 ∧ đk2 (R) )</pre>
+        <div class="trap"><b>Bẫy</b><ul>
+          <li>"Giá bán <b>cao hơn giá nhập 10%</b>" là <span class="mono">GIABAN = GIANHAP*1.1</span>, không phải <span class="mono">GIABAN &gt; GIANHAP</span> hay <span class="mono">GIANHAP + 10</span>.</li>
+          <li>"Không đạt" là <span class="mono">KQ = 0</span>, "đã giao thành công" là <span class="mono">DAGIAO = 1</span>. Đọc tân từ để biết mã hóa 0/1.</li>
+          <li>"Trong năm 2025" viết <span class="mono">year(Ngay) = 2025</span>. "Tháng 11/2025" phải có <b>cả</b> <span class="mono">month = 11 ∧ year = 2025</span>; thiếu năm là lấy tháng 11 của mọi năm.</li>
+          <li>Chữ "và" trong đề là ∧. Chỉ dùng ∨ khi đề nói "hoặc".</li>
+        </ul></div>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">D2</span> Kết nhiều bảng (câu b)</h4>
+        <p class="when">Lọc trước rồi kết, hoặc kết hết rồi σ một lần đều đúng, vì điều kiện chỉ dính đến một bảng.</p>
+<pre>A  ← σ đk1 (R1) ⋈ R1.k = R2.k σ đk2 (R2) ⋈ R2.m = R3.m R3
 KQ ← π cột_yêu_cầu (A)</pre>
-        <ul><li>Trước khi kết, vẽ nhanh đường đi khóa ngoại giữa các bảng. Ví dụ: KHACHHANG ← HOPDONG ← CHITIETHD → LOAIBAOHIEM.</li></ul>
+        <div class="trap"><b>Bẫy</b><ul>
+          <li><b>Bỏ sót bảng trung gian.</b> Hai bảng không có khóa ngoại nối trực tiếp thì phải đi qua bảng giữa. Ví dụ GIAOHANG không có MASP, phải đi GIAOHANG → CTDH → SANPHAM.</li>
+          <li><b>Điều kiện đặt nhầm bảng.</b> "Đơn bán ngày 19/10, giao ngày 20/10": ngày bán thuộc DONHANG, ngày giao thuộc GIAOHANG.</li>
+          <li><b>Một bảng đóng hai vai trò.</b> HOPDONG có khách hàng đại diện, CHITIETHD có khách hàng thụ hưởng. Đề hỏi "khách hàng thụ hưởng" thì phải kết qua <span class="mono">MaKHThuHuong</span>, không qua <span class="mono">MaKHDaiDien</span>.</li>
+          <li><b>Cột trùng tên.</b> Sau khi kết có hai cột <span class="mono">MaSP</span>; khi chiếu hoặc so sánh phải ghi <span class="mono">SANPHAM.MaSP</span>.</li>
+          <li>Kết mà không ghi điều kiện kết là <b>tích Descartes</b>, sai hoàn toàn.</li>
+        </ul></div>
       </div>
 
       <div class="pattern">
-        <h4><span class="op">⟕</span> Câu có "(nếu có)"</h4>
+        <h4><span class="op">D3</span> "(nếu có)": kết ngoài trái (câu c)</h4>
         <p class="when">Bên trái là đối tượng phải hiện đủ. Bên phải là phần "nếu có".</p>
-<pre>KQ ← π ... ( σ đk_trái (TRAI) ⟕ đk_kết σ đk_phải (PHAI) )</pre>
-        <ul><li><b>Lọc điều kiện ở bên phải trước khi kết.</b> Nếu lọc sau khi kết, các dòng null bị loại mất và câu lại thành kết thường.</li></ul>
+<pre>T  ← σ đk_trái (TRAI)
+P  ← σ đk_phải (PHAI)                     <span class="c">-- lọc bên phải TRƯỚC</span>
+KQ ← π cột_trái, PHAI.cột ( T ⟕ T.k = P.k P )
+
+<span class="c">-- phần "nếu có" đi qua 2 bảng: kết 2 bảng đó trước, rồi mới ⟕</span>
+P  ← σ đk (B) ⋈ B.m = C.m C
+KQ ← π ... ( A ⟕ A.k = P.k P )</pre>
+        <div class="trap"><b>Bẫy</b><ul>
+          <li><b>Lọc bên phải sau khi kết:</b> <span class="mono">σ SaiSo&gt;200 (SP ⟕ TC)</span>. Dòng NULL không thỏa điều kiện nên bị loại, câu biến thành kết thường.</li>
+          <li><b>Kết ngoài rồi kết thường tiếp:</b> <span class="mono">(A ⟕ B) ⋈ C</span>. Dòng có B là NULL không kết được với C nên cũng bị mất. Phải viết <span class="mono">A ⟕ (B ⋈ C)</span>.</li>
+          <li><b>Đặt ngược bên.</b> Đối tượng cần hiện đủ ("tất cả khách hàng", "sản phẩm … và nhà vườn của nó") phải nằm bên trái.</li>
+          <li><b>Chiếu cột khóa của bảng trái thay vì bảng phải</b> khi đề hỏi "mã X của nó (nếu có)". Muốn hiện NULL thì phải lấy cột của bảng phải.</li>
+          <li>Điều kiện lọc của <b>bên trái</b> thì đặt trước hay sau ⟕ đều được.</li>
+        </ul></div>
       </div>
 
       <div class="pattern">
-        <h4><span class="op">−</span> Câu "chưa / không có"</h4>
-<pre>TatCa ← π Ma (R)
-Co    ← π Ma ( σ đk (...) )
-KQ    ← (TatCa − Co) ⋈ R        <span class="c">-- kết lại để lấy thêm tên</span></pre>
-        <ul><li>Hai vế của phép trừ phải cùng tập thuộc tính. Vì vậy trừ trên mã trước, rồi mới kết lại để lấy tên.</li></ul>
+        <h4><span class="op">D4</span> "chưa / không / nhưng không": phép trừ (câu d)</h4>
+<pre>Co    ← π Ma ( ... σ có_làm ... )
+Khong ← π Ma ( ... σ có_làm_điều_bị_loại ... )
+KQ    ← (Co − Khong) ⋈ R              <span class="c">-- kết lại để lấy thêm tên</span>
+
+<span class="c">-- "chưa từng": vế trái là TẤT CẢ đối tượng</span>
+KQ ← π Ma (R) − π Ma ( σ đk (HanhDong) )</pre>
+        <div class="trap"><b>Bẫy</b><ul>
+          <li><b>Dùng σ ≠ thay cho phép trừ:</b> <span class="mono">σ TENSP ≠ 'Hoa Cúc'</span>. Đơn mua cả Hồng lẫn Cúc vẫn có dòng Hồng thỏa ≠, nên vẫn lọt vào kết quả. "Không" là điều kiện trên <b>cả tập</b>, không phải trên một dòng.</li>
+          <li><b>Hai vế khác lược đồ.</b> Phải chiếu cả hai về đúng cùng tập thuộc tính (thường là mã) trước khi trừ, rồi mới kết lại lấy tên.</li>
+          <li><b>Thêm điều kiện thừa vào vế bị trừ.</b> "Đơn năm 2023 mua Hồng nhưng không mua Cúc": vế Cúc chỉ cần "có Cúc", không cần lọc năm nữa (thêm cũng không sai, nhưng thêm điều kiện khác đề thì sai).</li>
+          <li><b>"Chưa từng" mà vế trái chỉ lấy đối tượng có giao dịch.</b> Khách hàng chưa từng mua gì sẽ bị mất. Vế trái phải là bảng gốc của đối tượng.</li>
+        </ul></div>
       </div>
 
       <div class="pattern">
-        <h4><span class="op">∩</span> Câu "cả hai X và Y"</h4>
+        <h4><span class="op">D5</span> "cả hai X và Y": phép giao (câu d)</h4>
 <pre>A  ← π Ma ( ... σ Ten='X' ... )
 B  ← π Ma ( ... σ Ten='Y' ... )
 KQ ← (A ∩ B) ⋈ ...</pre>
-        <ul><li><b>Sai rất phổ biến:</b> viết <span class="mono">σ Ten='X' ∧ Ten='Y'</span>. Một bộ không thể có cùng lúc hai giá trị, nên kết quả luôn rỗng.</li></ul>
+        <div class="trap"><b>Bẫy</b><ul>
+          <li><span class="mono">σ Ten='X' ∧ Ten='Y'</span>: một dòng không thể có hai giá trị cùng lúc, kết quả <b>luôn rỗng</b>.</li>
+          <li><span class="mono">σ Ten='X' ∨ Ten='Y'</span>: ra đối tượng có <b>ít nhất một</b> trong hai, không phải cả hai.</li>
+          <li>Giao trên mã. Nếu A, B còn giữ cột riêng của từng dòng (MaTC, MaLBH…) thì hai vế không bao giờ trùng nhau.</li>
+          <li>Điều kiện chung (năm 2025, DanhGia='Tốt') phải có ở <b>cả hai vế</b>, hoặc lọc một lần trên bảng dùng chung.</li>
+        </ul></div>
       </div>
 
       <div class="pattern">
-        <h4><span class="op">÷</span> Câu "tất cả" (câu phân loại điểm)</h4>
+        <h4><span class="op">D6</span> "tất cả": phép chia (câu e/f, phân loại điểm)</h4>
 <pre>R  ← π ĐốiTượng, ThuộcTínhChia ( σ điều_kiện_hành_động (...) )   <span class="c">-- ai đã làm gì</span>
 S  ← π ThuộcTínhChia ( σ điều_kiện_"tất cả" (...) )            <span class="c">-- danh sách cần phủ hết</span>
 KQ ← R ÷ S</pre>
         <ul>
-          <li>R chỉ chứa <b>đúng</b> đối tượng và thuộc tính chia. Thừa một cột là sai kết quả.</li>
-          <li>Điều kiện như "trong năm 2025", "đã giao thành công" thì đặt vào R.</li>
-          <li>Điều kiện như "có kỳ thanh toán hàng năm", "giá từ 1 triệu" thì đặt vào S.</li>
+          <li>Thuộc tính chia là <b>khóa của thực thể đứng sau chữ "tất cả"</b>: "tất cả các loại bảo hiểm" thì chia theo MaLBH.</li>
+          <li>Điều kiện của hành động ("trong năm 2025", "giao thành công") đặt vào R. Điều kiện giới hạn danh sách ("kỳ thanh toán hàng năm", "giá từ 1 triệu") đặt vào S.</li>
         </ul>
+        <div class="trap"><b>Bẫy</b><ul>
+          <li><b>R thừa cột</b> (thêm ngày, mã giao dịch…). Phép chia sẽ gom theo cả cột thừa, hầu như luôn ra rỗng.</li>
+          <li><b>Chọn sai thuộc tính chia.</b> Chia theo MaCTHD thay cho MaLBH: mỗi chi tiết hợp đồng thuộc đúng một hợp đồng, nên không hợp đồng nào chứa hết mọi MaCTHD.</li>
+          <li><b>Đặt điều kiện nhầm chỗ.</b> Đưa "giá từ 1 triệu" vào R thì S là mọi sản phẩm, kết quả quá hẹp. Đưa "năm 2025" vào S thì vô nghĩa.</li>
+          <li><b>Hiểu "tất cả bản ghi đều thỏa" thành phép chia.</b> "Hợp đồng mà mọi lần đóng tiền đều chuyển khoản" không phải ÷; viết <span class="mono">Co − Sai</span> (có đóng tiền, trừ đi những hợp đồng có ít nhất một lần không chuyển khoản).</li>
+          <li><b>Kết quả có nhiều cột</b> (NGGIAO, DT_NGGIAO): giữ đủ trong R, đừng chiếu chỉ một cột rồi mới lấy thêm.</li>
+          <li>Nếu S rỗng thì R ÷ S trả về mọi đối tượng trong R. Không cần xử lý, nhưng nên biết khi giải thích.</li>
+        </ul></div>
       </div>
 
       <div class="pattern">
-        <h4><span class="op">ℑ</span> Câu "mỗi / với từng / bao nhiêu"</h4>
-<pre>KQ ← ρ KQ(MaX, TenX, SoLuong) ( MaX, TenX ℑ count(MaY) (E) )</pre>
-        <ul>
-          <li>Đề yêu cầu xuất tên thì đưa tên vào danh sách thuộc tính nhóm.</li>
-          <li>Đếm "số khách hàng" hay "số đơn hàng" khi E có thể lặp: chiếu bỏ trùng trước rồi mới đếm.</li>
-          <li>Dùng ρ để đặt tên cột kết quả đúng như đề yêu cầu, ví dụ "Ngày bán, Số đơn hàng đã giao".</li>
-        </ul>
+        <h4><span class="op">D7</span> "mỗi / với từng / bao nhiêu": gom nhóm (câu e/f)</h4>
+<pre>B  ← π MaX, TenX, MaY (E)                                   <span class="c">-- bỏ trùng trước khi đếm</span>
+KQ ← ρ KQ(MaX, TenX, SoLuong) ( MaX, TenX ℑ count(MaY) (B) )
+
+<span class="c">-- "với từng X" mà X có thể không có gì: giữ X bằng ⟕, count bỏ qua NULL nên ra 0</span>
+KQ ← MaX, TenX ℑ count(MaY) ( X ⟕ X.k = E.k E )
+
+<span class="c">-- điều kiện trên kết quả gom nhóm (giống HAVING): σ sau ℑ</span>
+T  ← ρ T(MaX, SL) ( MaX ℑ count(MaY) (E) )
+KQ ← σ SL &gt; 5 (T)</pre>
+        <div class="trap"><b>Bẫy</b><ul>
+          <li><b>Đếm trùng.</b> Kết DONHANG với CTDH rồi count(MADH) là đếm số dòng chi tiết, không phải số đơn. Chiếu bỏ trùng trước khi đếm.</li>
+          <li><b>Nhầm count với sum.</b> "Tổng số lượng bán" là <span class="mono">sum(SOLUONG)</span>; "số đơn hàng" là <span class="mono">count(MADH)</span>.</li>
+          <li><b>Thiếu tên trong thuộc tính nhóm.</b> Đề yêu cầu xuất (MaPX, TenPX) thì nhóm theo cả hai, hoặc gom theo mã rồi kết lại lấy tên.</li>
+          <li><b>Gom sai đơn vị.</b> "Với mỗi ngày bán" thì nhóm theo NGAYBAN, không theo MADH.</li>
+          <li><b>Lọc trên cột đếm trước khi gom.</b> Điều kiện "có trên 5 đơn" phải đặt σ <b>sau</b> ℑ.</li>
+          <li>Đặt tên cột kết quả bằng ρ đúng như đề ghi ("Ngày bán, Số đơn hàng đã giao").</li>
+        </ul></div>
       </div>
 
       <div class="pattern">
-        <h4><span class="op">ℑ ℑ</span> Câu "tỉ lệ %" hoặc "lớn nhất"</h4>
-<pre>T1 ← ρ T1(Ma, Tong) ( Ma ℑ count(*) (E) )
-T2 ← ρ T2(Ma, Dat)  ( Ma ℑ count(*) ( σ đk (E) ) )
-KQ ← π Ma ( σ Dat ≥ 0.8 * Tong (T1 ⋈ T2) )
+        <h4><span class="op">D8</span> "tỉ lệ %" hoặc "lớn nhất": gom nhóm hai lần (câu f)</h4>
+<pre>T1 ← ρ T1(Ma, Tong) ( Ma ℑ count(MaGD) (E) )
+T2 ← ρ T2(Ma, Dat)  ( Ma ℑ count(MaGD) ( σ đk (E) ) )
+KQ ← π Ma ( σ Dat ≥ 0.8 * Tong (T1 ⋈ T1.Ma = T2.Ma T2) )
 
 <span class="c">-- lớn nhất</span>
 M  ← ρ M(MaxSL) ( ℑ max(SL) (T) )
 KQ ← T ⋈ T.SL = M.MaxSL M</pre>
+        <div class="trap"><b>Bẫy</b><ul>
+          <li><b>Mẫu số và tử số khác phạm vi.</b> "80% trong tổng số lần đóng tiền <b>trong năm 2025</b>": T1 cũng phải lọc năm 2025, không phải mọi năm.</li>
+          <li><b>Viết <span class="mono">Dat / Tong ≥ 80%</span>.</b> Nên viết <span class="mono">Dat ≥ 0.8 * Tong</span> cho rõ và tránh chia số nguyên.</li>
+          <li><b>"Lớn nhất" mà chỉ lấy max.</b> <span class="mono">ℑ max(SL)</span> chỉ ra con số; phải kết ngược với T để lấy đối tượng, và có thể nhiều đối tượng cùng max.</li>
+          <li>"Lớn nhất <b>trong từng</b> nhóm" thì max cũng phải gom theo nhóm, rồi kết theo cả (Nhom, Max).</li>
+        </ul></div>
       </div>
+
+      <div class="pattern">
+        <h4><span class="op">D9</span> "lần đầu / gần nhất": min, max theo thời gian (câu f)</h4>
+<pre>D  ← ρ D(MaSP, TGDau) ( MaSP ℑ min(ThoiDiemKD) (KIEMDINHSP) )
+L1 ← KIEMDINHSP ⋈ KIEMDINHSP.MaSP = D.MaSP ∧ ThoiDiemKD = D.TGDau D   <span class="c">-- bản ghi lần đầu</span>
+
+<span class="c">-- "đạt nhưng không đạt ở lần đầu"</span>
+KQ ← π MaSP (σ KQKiemDinh=1 (KIEMDINHSP)) − π MaSP (σ KQKiemDinh=1 (L1))
+
+<span class="c">-- cách tắt bằng ∩ khi tân từ cho phép (chỉ kiểm định lại khi lần trước không đạt)</span>
+KQ ← π MaSP (σ KQKiemDinh=1 (KIEMDINHSP)) ∩ π MaSP (σ KQKiemDinh=0 (KIEMDINHSP))</pre>
+        <div class="trap"><b>Bẫy</b><ul>
+          <li><b>Kết lại chỉ theo mã.</b> Phải kết theo <b>cả</b> mã và thời điểm, nếu không sẽ lấy về mọi lần chứ không phải lần đầu.</li>
+          <li><b>Dùng cách ∩ mà không có căn cứ.</b> Chỉ đúng khi tân từ đảm bảo thứ tự (không đạt luôn đứng trước đạt). Nhớ ghi một dòng giải thích.</li>
+          <li>Hai vế ∩ / − phải chiếu về <span class="mono">MaSP</span>, không giữ MaKD.</li>
+        </ul></div>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">D10</span> "cùng … với X": tự kết với ρ (chưa ra, dễ ra)</h4>
+<pre>X  ← ρ X ( σ MaCN='CN001' (CONGNHAN) )
+KQ ← π CONGNHAN.MaCN, CONGNHAN.HoTen ( CONGNHAN ⋈ CONGNHAN.MaPX = X.MaPX ∧ CONGNHAN.MaCN ≠ X.MaCN X )</pre>
+        <div class="trap"><b>Bẫy</b><ul>
+          <li>Không đổi tên bằng ρ thì hai bản của cùng một bảng không phân biệt được cột.</li>
+          <li>Quên loại chính X (<span class="mono">MaCN ≠ X.MaCN</span>) khi đề hỏi "những người khác".</li>
+        </ul></div>
+      </div>
+
+      <h3>Tư duy sai thường gặp → hậu quả</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Nghĩ là…</th><th>Thực ra</th><th>Hậu quả nếu làm theo</th></tr></thead>
+        <tbody>
+          <tr><td>"Cả hai X và Y" thì σ X ∧ Y</td><td>Mỗi dòng chỉ có một giá trị; cần ∩ hai tập mã</td><td>Kết quả luôn rỗng</td></tr>
+          <tr><td>"Không mua Y" thì σ ≠ Y</td><td>"Không" là điều kiện trên cả tập; cần −</td><td>Đối tượng có mua Y vẫn lọt vào</td></tr>
+          <tr><td>"Nếu có" thì kết ngoài rồi lọc</td><td>Phải lọc bên phải trước khi ⟕</td><td>Mất dòng NULL, thành kết thường</td></tr>
+          <tr><td>"Tất cả" là "mọi dòng đều thỏa"</td><td>"Cho tất cả các Y" là ÷; "mọi dòng đều thỏa" là Co − Sai</td><td>Lời giải sai dạng, mất cả câu</td></tr>
+          <tr><td>R của phép chia cứ giữ thêm cột cho đủ thông tin</td><td>R chỉ gồm đúng (kết quả, thuộc tính chia)</td><td>Kết quả rỗng</td></tr>
+          <tr><td>Chia theo khóa của bảng chi tiết</td><td>Chia theo khóa của thực thể sau chữ "tất cả"</td><td>Không đối tượng nào phủ hết, ra rỗng</td></tr>
+          <tr><td>Kết xong count là ra số lượng</td><td>Kết làm nhân dòng; chiếu bỏ trùng trước</td><td>Số đếm bị thổi phồng</td></tr>
+          <tr><td>"Với từng X" thì chỉ cần gom nhóm</td><td>X không có gì sẽ biến mất; muốn hiện 0 thì ⟕</td><td>Thiếu nhóm có giá trị 0</td></tr>
+          <tr><td>Tỉ lệ: tử lọc năm, mẫu lấy hết</td><td>Tử và mẫu cùng phạm vi đề nêu</td><td>Tỉ lệ sai</td></tr>
+          <tr><td>"Lớn nhất" thì ℑ max là xong</td><td>max chỉ ra con số; phải kết ngược lấy đối tượng</td><td>Thiếu thông tin đề hỏi</td></tr>
+          <tr><td>Hai bảng có cột cùng tên thì kết tự nhiên</td><td>Cùng tên chưa chắc cùng nghĩa (MaKHDaiDien / MaKHThuHuong)</td><td>Kết sai vai trò</td></tr>
+          <tr><td>Ngày nào cũng là "ngày"</td><td>Ngày bán, ngày giao, ngày ký nằm ở các bảng khác nhau</td><td>Lọc nhầm bảng, sai kết quả</td></tr>
+          <tr><td>Trừ / giao thẳng hai bảng kết quả</td><td>Hai vế phải cùng lược đồ, thường chiếu về mã</td><td>Phép toán không hợp lệ</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="note ok"><b>Soát lại trước khi nộp (30 giây mỗi câu)</b>
+        Có đủ cột đề yêu cầu chưa, đúng thứ tự không? Mỗi phép ⋈ có điều kiện kết chưa? Điều kiện ngày đặt đúng bảng chưa? Câu ⟕: bên phải đã lọc trước chưa? Câu −, ∩: hai vế cùng lược đồ chưa? Câu ÷: R có đúng 2 phần (kết quả, thuộc tính chia) không? Câu ℑ: có đếm trùng không, đã đặt tên cột bằng ρ chưa?</div>
     </section>
 
     <!-- 5 -->
