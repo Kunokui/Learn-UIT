@@ -441,29 +441,170 @@ Mamh ℑ max(Diem), min(Diem), avg(Diem) (KETQUATHI)</pre>
     <!-- 3 -->
     <section id="sql">
       <h2>Câu 2.1: SQL <span class="pts">1.5đ</span></h2>
-      <p class="sub">Phần này chỉ cần học thuộc mẫu. Các dạng đã xuất hiện qua các năm:</p>
+      <p class="sub">Câu này gồm 2–4 ý nhỏ, mỗi ý 0.5–0.75đ. Mọi ý đều thuộc một trong ba nhóm dưới đây. Cột "Đã ra" ghi các năm dạng đó từng xuất hiện.</p>
+
+      <h3>Nhận dạng nhanh: câu trong đề → dạng</h3>
       <div class="tbl"><table>
-        <thead><tr><th>Yêu cầu</th><th>Mẫu câu lệnh</th></tr></thead>
+        <thead><tr><th>Câu trong đề</th><th>Dạng</th><th>Đã ra</th></tr></thead>
         <tbody>
-          <tr><td>Miền giá trị (trạng thái, loại, bậc thợ, giá trị 0/1)</td><td><code>CHECK (Cot IN (N'..', N'..'))</code> hoặc <code>CHECK (Cot BETWEEN 1 AND 7)</code></td></tr>
-          <tr><td>So sánh giữa các cột (ngày A &lt; ngày B &lt; ngày C; giá bán bằng 1.1 đến 1.4 lần giá nhập)</td><td><code>CHECK (NgKy &lt; NgHieuLuc AND NgHieuLuc &lt; NgHetHan)</code></td></tr>
-          <tr><td>"X <b>cũng là</b> một Y"</td><td><code>FOREIGN KEY (X) REFERENCES Y(MaY)</code></td></tr>
-          <tr><td>Thêm cột / xóa cột</td><td><code>ALTER TABLE T ADD Cot kieu</code> / <code>ALTER TABLE T DROP COLUMN Cot</code></td></tr>
-          <tr><td>Tăng / giảm theo %</td><td><code>UPDATE T SET A = A*1.15, B = B*1.15 WHERE ...</code></td></tr>
-          <tr><td>Cập nhật theo điều kiện nằm ở bảng khác</td><td><code>UPDATE T SET ... WHERE Ma IN (SELECT Ma FROM T2 WHERE ...)</code></td></tr>
-          <tr><td>Xóa</td><td><code>DELETE FROM T WHERE ...</code></td></tr>
+          <tr><td>"Tạo ràng buộc <b>miền giá trị</b> cho …", "chỉ nhận các giá trị …"</td><td>A1. CHECK … IN</td><td>2023, 2024, 2025</td></tr>
+          <tr><td>"… có giá trị từ 1 đến 7", "lớn hơn 0"</td><td>A2. CHECK khoảng</td><td>2024</td></tr>
+          <tr><td>"Ngày A phải lớn hơn ngày B", "giá bán cao hơn giá nhập 10%–40%"</td><td>A3. CHECK liên thuộc tính</td><td>2019, 2025</td></tr>
+          <tr><td>"<b>Nếu</b> … <b>thì</b> …"</td><td>A4. CHECK có điều kiện</td><td>chưa ra, dễ ra</td></tr>
+          <tr><td>"X <b>cũng là</b> một Y", "X phải tồn tại trong Y"</td><td>A5. FOREIGN KEY</td><td>2025</td></tr>
+          <tr><td>"… là duy nhất", "không được trùng"</td><td>A6. UNIQUE</td><td>chưa ra</td></tr>
+          <tr><td>"Mặc định là …", "mới vào làm có bậc 1"</td><td>A7. DEFAULT</td><td>chưa ra (tân từ 2024 có gợi ý)</td></tr>
+          <tr><td>"Thêm / xóa / sửa thuộc tính …"</td><td>B. ALTER cấu trúc</td><td>2019, 2020</td></tr>
+          <tr><td>"Cập nhật / tăng / giảm …"</td><td>C2. UPDATE</td><td>mọi năm</td></tr>
+          <tr><td>"Xóa những … có …"</td><td>C3. DELETE</td><td>2019</td></tr>
+          <tr><td>"Thêm bộ / dòng dữ liệu …"</td><td>C1. INSERT</td><td>chưa ra</td></tr>
         </tbody>
       </table></div>
-<pre><span class="k">ALTER TABLE</span> YEUCAUBAOHIEM <span class="k">ADD CONSTRAINT</span> CK_TrangThai
-  <span class="k">CHECK</span> (TrangThai <span class="k">IN</span> (N'Đang xét duyệt', N'Đã chi trả', N'Đã từ chối', N'Đã hủy'));
 
-<span class="k">ALTER TABLE</span> HOPDONG <span class="k">ADD CONSTRAINT</span> FK_HD_KH
+      <h3>Nhóm A: Ràng buộc toàn vẹn</h3>
+      <p class="sub">Khung chung: <code>ALTER TABLE TenBang ADD CONSTRAINT TenRB &lt;loại ràng buộc&gt;;</code>. Đặt tên theo quy ước <code>CK_</code>, <code>FK_</code>, <code>PK_</code>, <code>UQ_</code>, <code>DF_</code>.</p>
+
+      <div class="pattern">
+        <h4><span class="op">A1</span> Miền giá trị dạng danh sách</h4>
+<pre><span class="k">ALTER TABLE</span> LOAISP <span class="k">ADD CONSTRAINT</span> CK_TrangThai
+  <span class="k">CHECK</span> (TrangThai <span class="k">IN</span> (N'Đang sản xuất', N'Còn hàng', N'Ngừng sản xuất'));
+
+<span class="k">ALTER TABLE</span> GIAOHANG <span class="k">ADD CONSTRAINT</span> CK_DaGiao <span class="k">CHECK</span> (DAGIAO <span class="k">IN</span> (0, 1));</pre>
+        <ul><li>Chuỗi tiếng Việt phải có chữ <code>N</code> đứng trước. Số thì không có dấu nháy.</li></ul>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">A2</span> Miền giá trị dạng khoảng</h4>
+<pre><span class="k">ALTER TABLE</span> CONGNHAN <span class="k">ADD CONSTRAINT</span> CK_BacTho <span class="k">CHECK</span> (BacTho <span class="k">BETWEEN</span> 1 <span class="k">AND</span> 7);
+<span class="k">ALTER TABLE</span> SANPHAM  <span class="k">ADD CONSTRAINT</span> CK_GiaBan <span class="k">CHECK</span> (GiaBan &gt; 0);</pre>
+        <ul><li><code>BETWEEN a AND b</code> lấy cả hai đầu mút, tương đương <code>&gt;= a AND &lt;= b</code>.</li></ul>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">A3</span> Liên thuộc tính trong cùng một bảng</h4>
+<pre><span class="k">ALTER TABLE</span> HOPDONG <span class="k">ADD CONSTRAINT</span> CK_Ngay
+  <span class="k">CHECK</span> (NgHieuLuc &gt; NgKyHD <span class="k">AND</span> NgHieuLuc &lt; NgHetHan);
+
+<span class="c">-- giá bán cao hơn giá nhập từ 10% đến 40%</span>
+<span class="k">ALTER TABLE</span> SANPHAM <span class="k">ADD CONSTRAINT</span> CK_Gia
+  <span class="k">CHECK</span> (GIABAN <span class="k">BETWEEN</span> GIANHAP * 1.1 <span class="k">AND</span> GIANHAP * 1.4);
+
+<span class="c">-- sai số không vượt quá ±10% kết quả mong đợi</span>
+<span class="k">ALTER TABLE</span> TIEUCHUANKD <span class="k">ADD CONSTRAINT</span> CK_SaiSo
+  <span class="k">CHECK</span> (<span class="k">ABS</span>(SaiSo) &lt;= 0.1 * KQMongDoi);
+
+<span class="c">-- đã thanh toán không vượt tổng tiền</span>
+<span class="k">ALTER TABLE</span> DONHANG <span class="k">ADD CONSTRAINT</span> CK_TT <span class="k">CHECK</span> (DATHANHTOAN &lt;= TONGTIEN);</pre>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">A4</span> Có điều kiện "nếu … thì …"</h4>
+        <p class="when">"Nếu P thì Q" viết thành <code>NOT P OR Q</code>.</p>
+<pre><span class="c">-- nếu kiểm định không đạt (0) thì phải có nội dung lỗi</span>
+<span class="k">ALTER TABLE</span> KIEMDINHSP <span class="k">ADD CONSTRAINT</span> CK_NoiDung
+  <span class="k">CHECK</span> (KQKiemDinh = 1 <span class="k">OR</span> NoiDung <span class="k">IS NOT NULL</span>);</pre>
+        <ul><li>So sánh với Null phải dùng <code>IS NULL</code> hoặc <code>IS NOT NULL</code>, không dùng <code>= NULL</code>.</li></ul>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">A5</span> Khóa ngoại: "X cũng là một Y"</h4>
+<pre><span class="k">ALTER TABLE</span> HOPDONG <span class="k">ADD CONSTRAINT</span> FK_HD_KH
   <span class="k">FOREIGN KEY</span> (MaKHDaiDien) <span class="k">REFERENCES</span> KHACHHANG(MaKH);
 
-<span class="k">UPDATE</span> SANPHAM <span class="k">SET</span> TinhTrang = N'Chưa kiểm định'
-<span class="k">WHERE</span> MaSP <span class="k">IN</span> (<span class="k">SELECT</span> MaSP <span class="k">FROM</span> ... <span class="k">WHERE</span> MaPX = 'PX05' <span class="k">AND</span> NgaySX = '2024-10-20');</pre>
+<span class="c">-- khóa ngoại tham chiếu chính bảng đó (người quản lý cũng là nhân viên)</span>
+<span class="k">ALTER TABLE</span> NHANVIEN <span class="k">ADD CONSTRAINT</span> FK_NV_NQL
+  <span class="k">FOREIGN KEY</span> (MA_NQL) <span class="k">REFERENCES</span> NHANVIEN(MANV);</pre>
+        <ul><li>Cột được tham chiếu phải là khóa chính hoặc UNIQUE của bảng kia, và có cùng kiểu dữ liệu.</li></ul>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">A6–A9</span> Khóa chính, UNIQUE, DEFAULT, NOT NULL, xóa ràng buộc</h4>
+<pre><span class="k">ALTER TABLE</span> CTDH      <span class="k">ADD CONSTRAINT</span> PK_CTDH <span class="k">PRIMARY KEY</span> (MADH, MASP);
+<span class="k">ALTER TABLE</span> KHACHHANG <span class="k">ADD CONSTRAINT</span> UQ_CCCD <span class="k">UNIQUE</span> (CCCD);
+<span class="k">ALTER TABLE</span> CONGNHAN  <span class="k">ADD CONSTRAINT</span> DF_BacTho <span class="k">DEFAULT</span> 1 <span class="k">FOR</span> BacTho;
+<span class="k">ALTER TABLE</span> KHACHHANG <span class="k">ALTER COLUMN</span> HoTen <span class="k">nvarchar</span>(50) <span class="k">NOT NULL</span>;
+<span class="k">ALTER TABLE</span> CONGNHAN  <span class="k">DROP CONSTRAINT</span> CK_BacTho;</pre>
+        <ul><li>Cột khóa chính phải NOT NULL trước khi thêm PRIMARY KEY.</li></ul>
+      </div>
+
+      <div class="note warn"><b>Ràng buộc liên bảng</b>Những ràng buộc như "quản đốc phải là công nhân <b>của chính phân xưởng đó</b>", "tổng tiền bằng tổng tiền sản phẩm cộng phí ship", "ngày giao phải sau ngày bán" có điều kiện nằm ở bảng khác, nên <b>CHECK không viết được</b>. Phải dùng trigger (chương 5). Nếu đề giữa kỳ chỉ hỏi phần nằm trong một bảng thì vẫn viết CHECK. Phần liên bảng thì dùng FK nếu là "X cũng là Y".</div>
+
+      <h3>Nhóm B: Thay đổi cấu trúc bảng (DDL)</h3>
+<pre><span class="c">-- thêm cột</span>
+<span class="k">ALTER TABLE</span> HOCVIEN <span class="k">ADD</span> DIACHI <span class="k">varchar</span>(100);
+<span class="k">ALTER TABLE</span> KHACHHANG <span class="k">ADD</span> GIOITINH <span class="k">bit</span>;
+<span class="c">-- xóa cột (nếu cột đang có ràng buộc thì DROP CONSTRAINT trước)</span>
+<span class="k">ALTER TABLE</span> KHACHHANG <span class="k">DROP COLUMN</span> CMND;
+<span class="c">-- đổi kiểu dữ liệu</span>
+<span class="k">ALTER TABLE</span> KHACHHANG <span class="k">ALTER COLUMN</span> SDT <span class="k">varchar</span>(15);
+<span class="c">-- tạo bảng đầy đủ</span>
+<span class="k">CREATE TABLE</span> CTDH (
+  MADH   <span class="k">char</span>(10) <span class="k">NOT NULL</span>,
+  MASP   <span class="k">char</span>(10) <span class="k">NOT NULL</span>,
+  SOLUONG <span class="k">int</span> <span class="k">CHECK</span> (SOLUONG &gt; 0),
+  <span class="k">CONSTRAINT</span> PK_CTDH <span class="k">PRIMARY KEY</span> (MADH, MASP),
+  <span class="k">CONSTRAINT</span> FK_CTDH_DH <span class="k">FOREIGN KEY</span> (MADH) <span class="k">REFERENCES</span> DONHANG(MADH)
+);
+<span class="c">-- xóa bảng</span>
+<span class="k">DROP TABLE</span> CTDH;</pre>
+      <p class="sub">Kiểu dữ liệu hay dùng: <code>char(n)</code> cho mã, <code>nvarchar(n)</code> cho tên tiếng Việt, <code>int</code>, <code>money</code> hoặc <code>decimal(p,s)</code>, <code>date</code> / <code>smalldatetime</code>, <code>bit</code> cho giá trị 0/1.</p>
+
+      <h3>Nhóm C: Thao tác dữ liệu (DML)</h3>
+
+      <div class="pattern">
+        <h4><span class="op">C1</span> Thêm dữ liệu</h4>
+<pre><span class="k">INSERT INTO</span> KHACHHANG (MaKH, HoTen, NgSinh) <span class="k">VALUES</span> ('KH01', N'Nguyễn Văn A', '2000-05-20');</pre>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">C2</span> Cập nhật: dạng hay ra nhất</h4>
+<pre><span class="c">-- tăng/giảm theo %: tăng 15% thì *1.15, giảm 10% thì *0.9</span>
+<span class="k">UPDATE</span> LOAIBAOHIEM
+<span class="k">SET</span> STBaoHiem = STBaoHiem * 0.9, STDongDinhKy = STDongDinhKy * 0.9
+<span class="k">WHERE</span> TenLBH = N'Bảo hiểm sức khỏe nha khoa';
+
+<span class="c">-- tăng/giảm một số tiền cố định</span>
+<span class="k">UPDATE</span> XEDIEN <span class="k">SET</span> GiaBan = GiaBan - 50000000 <span class="k">WHERE</span> DLPin &lt;= 40;
+
+<span class="c">-- gán giá trị, điều kiện ngày</span>
+<span class="k">UPDATE</span> SANPHAM <span class="k">SET</span> TinhTrangSP = N'Chưa kiểm định'
+<span class="k">WHERE</span> MaPX = 'PX05' <span class="k">AND</span> NgaySX = '2024-10-20';
+
+<span class="k">UPDATE</span> DONHANG <span class="k">SET</span> TONGTIEN = TONGTIEN * 0.98 <span class="k">WHERE</span> NGAYBAN &gt;= '2023-11-01';
+
+<span class="c">-- điều kiện nằm ở bảng khác: dùng truy vấn con</span>
+<span class="k">UPDATE</span> CTDK <span class="k">SET</span> DADONGHP = 1
+<span class="k">WHERE</span> MADK <span class="k">IN</span> (<span class="k">SELECT</span> MADK <span class="k">FROM</span> DANGKY <span class="k">WHERE</span> MAHV = 'HV1000');
+
+<span class="c">-- hoặc dùng UPDATE … FROM … JOIN (SQL Server)</span>
+<span class="k">UPDATE</span> SP <span class="k">SET</span> SP.GiaBan = SP.GiaBan * 1.05
+<span class="k">FROM</span> SANPHAM SP <span class="k">JOIN</span> LOAISP L <span class="k">ON</span> SP.MaLSP = L.MaLSP
+<span class="k">WHERE</span> L.TenLSP = N'Máy Rửa Chén PX2';</pre>
+      </div>
+
+      <div class="pattern">
+        <h4><span class="op">C3</span> Xóa dữ liệu</h4>
+<pre><span class="k">DELETE FROM</span> CTDK <span class="k">WHERE</span> SONGAYHT = 0;
+
+<span class="k">DELETE FROM</span> KETQUACT
+<span class="k">WHERE</span> MaKD <span class="k">IN</span> (<span class="k">SELECT</span> MaKD <span class="k">FROM</span> KIEMDINHSP <span class="k">WHERE</span> <span class="k">YEAR</span>(ThoiDiemKD) = 2023);</pre>
+        <ul><li>Nếu dòng đang bị bảng khác tham chiếu qua FK, phải xóa ở bảng con trước.</li></ul>
+      </div>
+
+      <h3>Ngày tháng và hàm hay dùng</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Cần viết</th><th>Cú pháp</th></tr></thead>
+        <tbody>
+          <tr><td>Hằng ngày</td><td><code>'2024-10-20'</code> (dạng yyyy-mm-dd, an toàn nhất)</td></tr>
+          <tr><td>Năm / tháng / ngày</td><td><code>YEAR(Ngay) = 2025</code>, <code>MONTH(Ngay) = 11</code>, <code>DAY(Ngay)</code></td></tr>
+          <tr><td>Khoảng ngày</td><td><code>Ngay BETWEEN '2025-01-01' AND '2025-12-31'</code></td></tr>
+          <tr><td>Ngày hiện tại</td><td><code>GETDATE()</code></td></tr>
+          <tr><td>Giá trị rỗng</td><td><code>IS NULL</code>, <code>IS NOT NULL</code></td></tr>
+          <tr><td>So khớp chuỗi</td><td><code>HoTen LIKE N'Nguyễn%'</code></td></tr>
+        </tbody>
+      </table></div>
       <div class="note bad"><b>Lỗi hay mất điểm</b>
-        Quên đặt tên ràng buộc (<code>ADD CONSTRAINT Ten</code>). Quên chữ <code>N</code> trước chuỗi tiếng Việt. Viết <code>SET A = .. AND B = ..</code>, trong khi phải dùng <b>dấu phẩy</b> để ngăn cách các cột. UPDATE có điều kiện nằm ở bảng khác thì phải dùng truy vấn con <code>IN (SELECT …)</code>.</div>
+        Quên đặt tên ràng buộc (<code>ADD CONSTRAINT Ten</code>). Quên chữ <code>N</code> trước chuỗi tiếng Việt. Viết <code>SET A = .. AND B = ..</code>, trong khi phải dùng <b>dấu phẩy</b> để ngăn cách các cột. UPDATE có điều kiện nằm ở bảng khác thì phải dùng truy vấn con <code>IN (SELECT …)</code>. Viết <code>= NULL</code> thay cho <code>IS NULL</code>. Quên <code>WHERE</code> trong UPDATE hoặc DELETE, làm thay đổi cả bảng. Tăng 15% mà viết <code>*0.15</code> thay cho <code>*1.15</code>.</div>
     </section>
 
     <!-- 4 -->
