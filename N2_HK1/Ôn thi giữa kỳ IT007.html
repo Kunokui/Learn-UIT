@@ -155,7 +155,7 @@ footer{color:var(--muted);font-size:13px;padding-block:20px 40px;border-top:1px 
 <header class="top wrap">
   <div class="eyebrow">IT007 · Hệ điều hành · Giữa kỳ HK1</div>
   <h1>Ôn thi giữa kỳ Hệ điều hành</h1>
-  <p class="lede">Tóm tắt 4 chương (Tổng quan, Cấu trúc HĐH, Tiến trình, Định thời CPU) theo slide bài giảng và slide training BHT CNPM 2025-2026, đề cương ôn tập Week 08 của thầy có lời giải, kèm ngân hàng câu trắc nghiệm lấy từ 8 đề giữa kỳ 2018–2025, bộ mô phỏng giản đồ Gantt và các bài fork() đã giải.</p>
+  <p class="lede">Tóm tắt 4 chương (Tổng quan, Cấu trúc HĐH, Tiến trình, Định thời CPU) theo slide bài giảng và slide training BHT CNPM 2025-2026, đề cương ôn tập Week 08 của thầy có lời giải, kèm ngân hàng câu trắc nghiệm lấy từ 8 đề giữa kỳ 2018–2025 và đề thi thử BHT 2026-27, bộ mô phỏng giản đồ Gantt và các bài fork() đã giải.</p>
   <div class="chips-row"><span class="tag">Trắc nghiệm ~60%</span><span class="tag">Tự luận: Gantt + fork()</span><span class="tag">65 phút · không tài liệu</span></div>
 </header>
 
@@ -638,6 +638,8 @@ footer{color:var(--muted);font-size:13px;padding-block:20px 40px;border-top:1px 
     <div class="tablewrap"><table>
       <thead><tr><th>Câu hỏi</th><th>Đáp án</th><th>Đề</th></tr></thead>
       <tbody>
+        <tr><td>Thư viện tiểu trình hoạt động hoàn toàn ở user space tạo ra loại tiểu trình nào?</td><td><b>Tiểu trình người dùng (user thread)</b></td><td class="mono">Thi thử 26-27</td></tr>
+        <tr><td>Cấu trúc dữ liệu HĐH dùng để lưu toàn bộ thông tin ngữ cảnh của một tiến trình?</td><td><b>PCB</b> (Process Control Block)</td><td class="mono">Thi thử 26-27</td></tr>
         <tr><td>Ba phương pháp truyền tham số cho system call: thanh ghi, vùng nhớ và…?</td><td><b>stack</b></td><td class="mono">24-25 GK1</td></tr>
         <tr><td>Biến toàn cục được chứa ở đâu khi nạp chương trình?</td><td><b>data section</b></td><td class="mono">24-25 GK1</td></tr>
         <tr><td>Hai chế độ hoạt động cơ bản: chế độ người dùng và chế độ…?</td><td><b>hạt nhân (kernel)</b></td><td class="mono">23-24 GK2</td></tr>
@@ -909,7 +911,22 @@ const Q=[
 {s:"Slide BHT",c:1,q:"Đặc điểm nào KHÔNG phải là đặc điểm của hệ thống đa chương?",o:["Có bộ giám sát thường trực","Tận dụng thời gian rảnh, tăng hiệu suất sử dụng CPU","Khi một tiến trình thực hiện I/O, một tiến trình khác được thực thi","Nhiều công việc được nạp đồng thời vào bộ nhớ chính"],a:0,e:"Bộ giám sát thường trực gắn với hệ thống đơn chương (xử lý theo lô)."},
 {s:"Slide BHT",c:2,q:"Đâu KHÔNG phải là đặc điểm của cấu trúc Microkernels?",o:["Sử dụng cách tiếp cận hướng đối tượng","Giao tiếp giữa các user module qua cơ chế truyền thông điệp","Chuyển một số chức năng của OS từ kernel space sang user space","Phân chia module theo microkernel"],a:0,e:"Hướng đối tượng là cấu trúc modules."},
 {s:"Slide BHT",c:2,q:"Đâu KHÔNG phải là cơ chế trao đổi thông tin giữa các tiến trình?",o:["Message passing","Shared message","Shared memory"],a:1,e:""},
-{s:"Slide BHT",c:2,q:"Đâu không phải là phương pháp truyền tham số khi sử dụng lời gọi hệ thống?",o:["Qua stack","Qua thanh ghi","Qua một vùng nhớ, địa chỉ vùng nhớ gửi đến HĐH qua thanh ghi","Qua message"],a:3,e:""}
+{s:"Slide BHT",c:2,q:"Đâu không phải là phương pháp truyền tham số khi sử dụng lời gọi hệ thống?",o:["Qua stack","Qua thanh ghi","Qua một vùng nhớ, địa chỉ vùng nhớ gửi đến HĐH qua thanh ghi","Qua message"],a:3,e:""},
+/* Đề thi thử số 1 BHT CNPM 2026-27 (form đề mới: 12 câu trắc nghiệm 6đ, câu 13 trả lời ngắn 2đ, câu 14 định thời 2đ) */
+{s:"Thi thử BHT 26-27",c:1,q:"Chế độ song hành (dual-mode) dùng mode bit để phân biệt mã người dùng và mã hạt nhân. Phát biểu nào ĐÚNG?",o:["Khi mã hạt nhân thực thi, mode bit được đặt thành 1","Khi ứng dụng người dùng thực thi, mode bit được đặt thành 0","Mode bit được thêm vào phần cứng nhằm giúp bảo vệ hệ điều hành và các thành phần khác của hệ thống","Hệ thống bắt buộc chỉ có đúng 2 chế độ và không thể mở rộng"],a:2,e:"Kernel = 0, user = 1 nên A, B đảo ngược. Có thể có nhiều hơn 2 chế độ (ví dụ chế độ cho VMM)."},
+{s:"Thi thử BHT 26-27",c:1,q:"Trong hệ thống đa chương, khi công việc đang thực thi phải chờ (ví dụ chờ I/O):",o:["CPU rảnh cho đến khi công việc đó hoàn thành I/O","HĐH chuyển sang thực thi một công việc khác trong bộ nhớ","Tiến trình bị ngắt và giải phóng toàn bộ tài nguyên","HĐH tự tăng xung nhịp để hoàn thành I/O nhanh hơn"],a:1,e:"Đây chính là mục đích của đa chương: tận dụng thời gian CPU rảnh."},
+{s:"Thi thử BHT 26-27",c:1,q:"Kiến trúc gom cụm đối xứng (symmetric clustering) có đặc điểm nào?",o:["Một máy ở chế độ hot-standby, các máy còn lại chạy ứng dụng","Nhiều nút cùng chạy ứng dụng và đồng thời giám sát lẫn nhau","Chỉ dùng một bộ xử lý điều phối toàn bộ các nút","Các máy không chia sẻ không gian lưu trữ qua SAN"],a:1,e:"A là gom cụm bất đối xứng. Gom cụm thường chia sẻ lưu trữ qua SAN."},
+{s:"Thi thử BHT 26-27",c:3,q:"Biến cục bộ <code>val</code> và vùng nhớ cấp phát động <code>*p</code> lần lượt nằm ở section nào?",code:"int global_var = 100;\nint main() {\n  int val = 25;\n  int *p = (int*)malloc(sizeof(int));\n  *p = 50;\n  free(p);\n  return 0;\n}",o:["Stack section và Heap section","Heap section và Stack section","Data section và Stack section","Stack section và Data section"],a:0,e:"Biến cục bộ ở stack, malloc cấp phát trên heap, global_var ở data. Bẫy: bản thân con trỏ p nằm ở stack, nhưng vùng *p trỏ tới nằm ở heap."},
+{s:"Thi thử BHT 26-27",c:3,q:"Ưu điểm nổi bật của mô hình đa tiểu trình One-to-One so với Many-to-One?",o:["Tiết kiệm bộ nhớ của hạt nhân","Đồng thời tốt hơn: các tiểu trình khác vẫn chạy khi một tiểu trình bị block","Không giới hạn số tiểu trình người dùng","Không cần hỗ trợ từ kernel"],a:1,e:"One-to-One tốn một kernel thread cho mỗi user thread nên thường bị giới hạn số lượng (A, C sai). D là đặc điểm của Many-to-One."},
+{s:"Thi thử BHT 26-27",c:3,q:"Trong cơ chế giao tiếp bằng bộ nhớ chia sẻ (shared memory):",o:["Mọi thao tác trao đổi dữ liệu đều qua system call","Quá trình giao tiếp do các tiến trình tự điều khiển, không thông qua HĐH","Không cần cơ chế đồng bộ","Dữ liệu chỉ truyền dưới dạng gói thông điệp cố định"],a:1,e:"HĐH chỉ can thiệp lúc thiết lập vùng nhớ chung; tiến trình phải tự đồng bộ. A, D là message passing."},
+{s:"Thi thử BHT 26-27",c:3,q:"Trong truyền thông điệp gián tiếp, các tiến trình trao đổi thông điệp qua:",o:["Địa chỉ IP","Hộp thư (mailbox) hoặc cổng (port)","Tệp tạm trên đĩa","Thanh ghi tổng"],a:1,e:"Gián tiếp: send(A, msg) / receive(A, msg) với A là mailbox."},
+{s:"Thi thử BHT 26-27",c:4,q:"n tiến trình trong ready queue, quantum q (RR). Thời gian chờ tối đa trước khi được cấp CPU?",o:["n × q","(n − 1) × q","n/q","(n + 1) × q"],a:1,e:"Phải chờ n − 1 tiến trình khác, mỗi tiến trình tối đa q."},
+{s:"Thi thử BHT 26-27",c:4,q:"MFQ dùng cơ chế nào để ngăn starvation cho tiến trình chờ lâu ở hàng đợi ưu tiên thấp?",o:["Aging: chuyển tiến trình chờ lâu lên hàng đợi ưu tiên cao hơn","Tăng quantum của mọi hàng đợi lên vô hạn","Tạm ngắt các tiến trình hướng I/O","Chuyển hệ thống về đơn chương"],a:0,e:""},
+{s:"Thi thử BHT 26-27",c:4,q:"Yếu tố nào KHÔNG ảnh hưởng trực tiếp đến việc đánh giá giải thuật định thời CPU nào là tốt nhất?",o:["Tải công việc của hệ thống (workload)","Tương quan trọng số giữa các tiêu chuẩn (response time, CPU utilization, throughput)","Sự hỗ trợ của phần cứng đối với dispatcher","Dung lượng cache L3 của GPU"],a:3,e:"Ba yếu tố đầu có trong slide: giải thuật tốt nhất phụ thuộc workload, trọng số tiêu chuẩn và phần cứng hỗ trợ dispatcher."},
+{s:"Thi thử BHT 26-27",c:4,q:"Đặc điểm nào đúng với chế độ quyết định trưng dụng (preemptive)?",o:["Tiến trình đang chạy không thể bị ngắt cho đến khi xong","Tiến trình đang running có thể bị ngắt giữa chừng và chuyển về ready","Tiến trình vào trước luôn xong trước","Chỉ áp dụng cho hệ thống batch"],a:1,e:"A, C là không trưng dụng (FCFS)."},
+{s:"Thi thử BHT 26-27",c:3,q:"Tiến trình đang Running thực hiện lời gọi I/O (chờ nhập từ bàn phím) sẽ chuyển sang trạng thái nào?",o:["New","Ready","Waiting (Blocked)","Terminated"],a:2,e:"Bẫy: hết quantum hoặc bị ngắt mới về Ready."},
+{s:"Thi thử BHT 26-27",c:4,q:"Câu 14a (P1–P5: arrival 0, 2, 4, 5, 6; burst 7, 4, 1, 4, 2). SRTF: thời gian đợi trung bình là bao nhiêu?",sim:{preset:"bht2627",algo:"SRTF"},o:["3,4","1","7","8,2"],a:0,e:"Gantt: P1 0–2, P2 2–4, P3 4–5, P2 5–7, P5 7–9, P4 9–13, P1 13–18. Đợi = 11, 1, 0, 4, 1 ⇒ 3,4. Đáp ứng TB = 1, turnaround TB = 7."},
+{s:"Thi thử BHT 26-27",c:4,q:"Câu 14b (cùng bảng). RR q = 3: thời gian đáp ứng / đợi / turnaround trung bình là?",sim:{preset:"bht2627",algo:"RR",q:3},o:["3,6 / 8,2 / 11,8","3,4 / 8,2 / 11,8","3,6 / 7,8 / 11,4","1 / 3,4 / 7"],a:0,e:"Gantt: P1 0–3, P2 3–6, P1 6–9, P3 9–10, P4 10–13, P5 13–15, P2 15–16, P1 16–17, P4 17–18. Tại t = 6, P5 vừa đến được xếp trước P2 vừa hết quantum. D là kết quả của SRTF."}
 ];
 const SRC=[...new Set(Q.map(q=>q.s))];
 $("#srcSel").insertAdjacentHTML("beforeend",SRC.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join(""));
@@ -959,6 +976,7 @@ renderQuiz();
 /* ---------- scheduler ---------- */
 const PRESETS={
  w08:{name:"Ôn tập GK của thầy (= bài tập 2 chương 4)",algos:[["FCFS"],["SRTF"],["RR",10]],rows:[["P1",0,10],["P2",2,29],["P3",4,3],["P4",5,7],["P5",7,12]]},
+ bht2627:{name:"Đề thi thử BHT 2026-27 (câu 14)",algos:[["SRTF"],["RR",3]],rows:[["P1",0,7],["P2",2,4],["P3",4,1],["P4",5,4],["P5",6,2]]},
  bt1:{name:"Bài tập 1 chương 4 (ưu tiên: giả định số nhỏ = cao)",algos:[["FCFS"],["SJF"],["SRTF"],["PRIO_P"],["RR",10]],rows:[["P1",0,20,20],["P2",25,25,30],["P3",20,25,15],["P4",35,15,35],["P5",10,35,5],["P6",15,50,10]]},
  bt3:{name:"Bài tập 3 chương 4",algos:[["SRTF"],["RR",2],["PRIO_N"]],rows:[["P1",0,10,3],["P2",1,3,2],["P3",2,2,1],["P4",3,1,2],["P5",4,5,4]]},
  bt4:{name:"Bài tập 4 chương 4",algos:[["FCFS"],["SJF"],["RR",10]],rows:[["P1",5,10],["P2",2,29],["P3",0,3],["P4",1,7],["P5",7,12]]},
@@ -1176,7 +1194,23 @@ int main() {
   printf("hello\\n");
   return 0;
 }`,qs:["Có bao nhiêu tiến trình (kể cả cha)? Bao nhiêu “hello”?"],
-a:`<p>if/else: cha in x, con fork ⇒ 3 tiến trình. i = 0: 3 → 6. i = 1: 6 → 12 → 24 (vì i &gt; 0 fork thêm). <b>24 tiến trình</b>, mỗi tiến trình in 1 “hello” ⇒ 24 “hello”.</p>`}
+a:`<p>if/else: cha in x, con fork ⇒ 3 tiến trình. i = 0: 3 → 6. i = 1: 6 → 12 → 24 (vì i &gt; 0 fork thêm). <b>24 tiến trình</b>, mỗi tiến trình in 1 “hello” ⇒ 24 “hello”.</p>`},
+{t:"Đề thi thử BHT 2026-27 · câu 13c (form mới: chỉ ghi đáp số)",code:`int x = 10;
+int main() {
+  int f = fork();
+  for (int i = 1; i <= 2; i++) {
+    fork();
+    x = x + i;
+  }
+  if (f == 0) {
+    x = x * 2;
+  }
+  return 0;
+}`,qs:["Tổng cộng có bao nhiêu tiến trình (kể cả cha)?","Có bao nhiêu tiến trình mà giá trị cuối cùng của x là 26?"],
+a:`<p><b>Số tiến trình:</b> f = fork(): 1 → 2. i = 1: 2 → 4. i = 2: 4 → <b>8 tiến trình</b>.</p>
+<p><b>Giá trị x:</b> <code>x = x + i</code> nằm <i>sau</i> <code>fork()</code> trong cùng vòng, nên mọi tiến trình (kể cả con vừa tạo) đều cộng đủ 1 + 2 ⇒ x = 13 ở cả 8 tiến trình. Tiến trình có <code>f == 0</code> nhân đôi ⇒ 26.</p>
+<p>f == 0 ở con của lần fork đầu <b>và toàn bộ con cháu của nó</b> (f được sao chép xuống) ⇒ một nửa của 8 = <b>4 tiến trình</b> có x = 26; 4 tiến trình còn lại x = 13.</p>
+<p class="small muted">Bẫy: tưởng chỉ 1 tiến trình có f == 0.</p>`}
 ];
 $("#forkList").innerHTML=FORKS.map(f=>`<div class="card" style="display:grid;gap:8px"><div class="eyebrow">${esc(f.t)}</div><div class="grid2"><pre style="margin:0">${esc(f.code)}</pre><div><h3>Câu hỏi</h3><ol class="tight">${f.qs.map(x=>`<li>${x}</li>`).join("")}</ol><details class="ans"><summary>Xem lời giải</summary><div>${f.a}</div></details></div></div></div>`).join("");
 })();
