@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Trắc nghiệm Lịch sử Đảng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#F5F3EF; --surface:#FFFFFF; --sunk:#ECE8E1; --ink:#1E1A16; --muted:#6B635A; --line:#DDD6CC;
+  --accent:#B3261E; --accent-ink:#FFFFFF; --accent-soft:#F8E3DF;
+  --good:#17703F; --good-soft:#DDF2E5; --bad:#B0281E; --bad-soft:#F9E1DE; --warn:#9A5B06; --warn-soft:#FBEEDD;
+  --f-body:"Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141210; --surface:#1D1A17; --sunk:#26221E; --ink:#EEE8E1; --muted:#A79E93; --line:#36302A;
+  --accent:#F08A7E; --accent-ink:#1A0F0D; --accent-soft:#3A1E1A;
+  --good:#63C78E; --good-soft:#16301F; --bad:#F08A80; --bad-soft:#3A1D1B; --warn:#E6A65C; --warn-soft:#33261A;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141210; --surface:#1D1A17; --sunk:#26221E; --ink:#EEE8E1; --muted:#A79E93; --line:#36302A;
+  --accent:#F08A7E; --accent-ink:#1A0F0D; --accent-soft:#3A1E1A;
+  --good:#63C78E; --good-soft:#16301F; --bad:#F08A80; --bad-soft:#3A1D1B; --warn:#E6A65C; --warn-soft:#33261A;
+  color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--f-body)}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.muted{color:var(--muted)} .small{font-size:13px} .mono{font-family:var(--f-mono)}
+[hidden]{display:none!important}
+
+header.top{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+header.top .wrap{display:flex;align-items:center;gap:12px;min-height:56px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:17px;letter-spacing:-.01em;flex:1;min-width:180px}
+.brand small{display:block;font-weight:500;font-size:12px;color:var(--muted);letter-spacing:0}
+nav.tabs{display:flex;gap:4px}
+nav.tabs button{border:0;background:none;padding:8px 12px;border-radius:8px;font-weight:600;color:var(--muted)}
+nav.tabs button[aria-selected="true"]{background:var(--accent-soft);color:var(--accent)}
+.iconbtn{border:1px solid var(--line);background:var(--surface);border-radius:8px;width:36px;height:36px;display:grid;place-items:center}
+
+main{padding-block:24px 80px}
+h1{font-size:clamp(24px,4vw,34px);line-height:1.15;margin:0 0 6px;letter-spacing:-.015em}
+h2{font-size:19px;margin:0 0 12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.grid{display:grid;gap:16px}
+@media (min-width:860px){.grid.two{grid-template-columns:1.3fr 1fr}}
+
+.btn{border:1px solid var(--line);background:var(--surface);padding:9px 16px;border-radius:9px;font-weight:600;display:inline-flex;align-items:center;gap:6px;justify-content:center}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--bad)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* Setup */
+.field{margin-bottom:16px}
+.field > label.lbl,.lbl{display:block;font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:6px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;inset:0}
+.seg span{display:block;border:1px solid var(--line);border-radius:9px;padding:7px 12px;font-weight:500;cursor:pointer;background:var(--surface)}
+.seg input:checked + span{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
+.seg input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.seg input:disabled + span{opacity:.4;cursor:not-allowed}
+input[type=number],input[type=search]{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:7px 10px;width:90px}
+input[type=search]{width:100%}
+.check{display:flex;gap:8px;align-items:flex-start;margin:6px 0;cursor:pointer}
+.check input{margin-top:4px;accent-color:var(--accent)}
+.hint{font-size:13px;color:var(--muted);margin-top:4px}
+.resume{border-color:var(--warn);background:var(--warn-soft)}
+.stats-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.stat{background:var(--sunk);border-radius:10px;padding:10px 12px}
+.stat b{display:block;font-size:22px;line-height:1.2}
+.stat span{font-size:12px;color:var(--muted)}
+.kbd{font-family:var(--f-mono);font-size:12px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 5px;background:var(--surface)}
+ul.keys{margin:0;padding-left:18px;font-size:14px} ul.keys li{margin:3px 0}
+
+/* Quiz */
+.quizbar{position:sticky;top:56px;z-index:10;background:var(--bg);padding:10px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.progress{flex:1;min-width:140px;height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--accent);width:0;transition:width .2s}
+.pill{font-family:var(--f-mono);font-size:13px;padding:4px 10px;border-radius:99px;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+.pill.timer.low{color:var(--bad);border-color:var(--bad)}
+.qlayout{display:grid;gap:16px}
+@media (min-width:900px){.qlayout{grid-template-columns:minmax(0,1fr) 290px;align-items:start}.navcard{position:sticky;top:116px}}
+.qhead{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}
+.qnum{font-family:var(--f-mono);font-size:13px;color:var(--accent);font-weight:600;letter-spacing:.04em}
+.qtext{font-size:18px;font-weight:600;line-height:1.5;margin:0 0 16px;text-wrap:pretty}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:11px 14px;width:100%;line-height:1.5}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .let{flex:0 0 26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--sunk);font-weight:700;font-size:13px}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.sel .let{background:var(--accent);color:var(--accent-ink)}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.right .let{background:var(--good);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.wrong .let{background:var(--bad);color:#fff}
+.opt:disabled{cursor:default}
+.feedback{margin-top:14px;padding:10px 14px;border-radius:10px;font-weight:600}
+.feedback.ok{background:var(--good-soft);color:var(--good)}
+.feedback.no{background:var(--bad-soft);color:var(--bad)}
+.qnav{display:flex;justify-content:space-between;gap:8px;margin-top:18px;flex-wrap:wrap}
+.flag{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 10px;font-size:13px;font-weight:600}
+.flag.on{border-color:var(--warn);background:var(--warn-soft);color:var(--warn)}
+.navgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:5px;max-height:50vh;overflow:auto;padding:2px}
+.navgrid button{height:34px;border:1px solid var(--line);border-radius:7px;background:var(--surface);font-family:var(--f-mono);font-size:12px;position:relative;padding:0}
+.navgrid button.ans{background:var(--accent-soft);border-color:var(--accent)}
+.navgrid button.ok{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+.navgrid button.no{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.navgrid button.cur{outline:2px solid var(--ink);outline-offset:1px}
+.navgrid button.fl::after{content:"";position:absolute;top:2px;right:2px;width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px;border:1px solid var(--line)}
+details.navwrap > summary{cursor:pointer;font-weight:600;list-style:none}
+details.navwrap > summary::-webkit-details-marker{display:none}
+
+/* Result & bank */
+.score{font-size:52px;font-weight:800;line-height:1;letter-spacing:-.02em}
+.review{display:grid;gap:10px;margin-top:14px}
+.ritem{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--surface)}
+.ritem.ok{border-left:4px solid var(--good)} .ritem.no{border-left:4px solid var(--bad)} .ritem.skip{border-left:4px solid var(--warn)}
+.ritem .q{font-weight:600;margin-bottom:6px}
+.ritem ol{margin:0;padding-left:0;list-style:none;display:grid;gap:3px}
+.ritem li{padding:3px 8px;border-radius:6px;font-size:14px}
+.ritem li.c{background:var(--good-soft);color:var(--good);font-weight:600}
+.ritem li.x{background:var(--bad-soft);color:var(--bad);text-decoration:line-through}
+.ritem .meta{font-size:12px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;align-items:center}
+.ritem.hide-ans li.c{background:none;color:inherit;font-weight:inherit}
+.reveal{border:0;background:none;color:var(--accent);font-weight:600;padding:0;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.empty{color:var(--muted);padding:20px 0;text-align:center}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:9px;font-weight:600;font-size:14px;z-index:50;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+@media (max-width:600px){header.top{position:static}.quizbar{top:0}.flag{white-space:nowrap}.qnum{font-size:12px}.qtext{font-size:16.5px}.score{font-size:42px}.card{padding:16px}nav.tabs button{padding:7px 9px;font-size:14px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Trắc nghiệm Lịch sử Đảng<small>SS010 · Đáp án cuối sách đỏ</small></div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="home" aria-selected="true">Làm bài</button>
+      <button role="tab" data-tab="bank" aria-selected="false">Ngân hàng câu</button>
+      <button role="tab" data-tab="stats" aria-selected="false">Thống kê</button>
+    </nav>
+    <button class="iconbtn" id="themeBtn" title="Đổi giao diện sáng/tối" aria-label="Đổi giao diện sáng/tối">◐</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- ========== HOME / SETUP ========== -->
+  <section id="v-home">
+    <h1>Làm bài trắc nghiệm</h1>
+    <p class="muted" id="bankInfo" style="margin:0 0 20px"></p>
+    <div class="card resume" id="resumeCard" hidden style="margin-bottom:16px">
+      <div class="row" style="justify-content:space-between">
+        <div><b>Bạn có một bài đang làm dở</b><div class="small muted" id="resumeInfo"></div></div>
+        <div class="row"><button class="btn primary" id="resumeBtn">Làm tiếp</button><button class="btn ghost" id="discardBtn">Bỏ bài này</button></div>
+      </div>
+    </div>
+    <div class="grid two">
+      <form class="card" id="setupForm" onsubmit="return false">
+        <div class="field">
+          <span class="lbl">Chế độ</span>
+          <div class="seg">
+            <label><input type="radio" name="mode" value="practice" checked><span>Luyện tập — biết đúng/sai ngay</span></label>
+            <label><input type="radio" name="mode" value="exam"><span>Thi thử — chấm khi nộp</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <span class="lbl">Nguồn câu hỏi</span>
+          <div class="seg" id="srcSeg">
+            <label><input type="radio" name="src" value="all" checked><span>Tất cả</span></label>
+            <label><input type="radio" name="src" value="range"><span>Khoảng câu</span></label>
+            <label><input type="radio" name="src" value="wrong"><span>Câu hay sai <b id="cntWrong"></b></span></label>
+            <label><input type="radio" name="src" value="marked"><span>Đã đánh dấu <b id="cntMarked"></b></span></label>
+            <label><input type="radio" name="src" value="new"><span>Chưa làm <b id="cntNew"></b></span></label>
+          </div>
+          <div class="row" id="rangeRow" hidden style="margin-top:10px">
+            Từ câu <input type="number" id="rFrom" min="1" value="1"> đến câu <input type="number" id="rTo" min="1">
+          </div>
+          <div class="hint" id="srcHint"></div>
+        </div>
+        <div class="field">
+          <span class="lbl">Số câu</span>
+          <div class="row">
+            <input type="number" id="nQ" min="1" value="40">
+            <div class="seg" id="nQuick">
+              <label><input type="radio" name="nq" value="20"><span>20</span></label>
+              <label><input type="radio" name="nq" value="40" checked><span>40</span></label>
+              <label><input type="radio" name="nq" value="60"><span>60</span></label>
+              <label><input type="radio" name="nq" value="all"><span>Hết</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="field" id="timeField" hidden>
+          <span class="lbl">Thời gian (phút)</span>
+          <div class="row"><input type="number" id="tMin" min="0" value="45"><span class="small muted">0 = không giới hạn. Hết giờ tự nộp bài.</span></div>
+        </div>
+        <div class="field">
+          <span class="lbl">Tuỳ chọn</span>
+          <label class="check"><input type="checkbox" id="optShuffleQ" checked><span>Trộn thứ tự câu hỏi</span></label>
+          <label class="check"><input type="checkbox" id="optShuffleA" checked><span>Trộn thứ tự đáp án <span class="small muted">(tự giữ nguyên với câu có “Tất cả/Cả … đáp án trên”)</span></span></label>
+          <label class="check" id="autoNextRow"><input type="checkbox" id="optAutoNext"><span>Tự chuyển câu khi trả lời đúng</span></label>
+        </div>
+        <button class="btn primary" id="startBtn" style="width:100%;padding:12px">Bắt đầu</button>
+      </form>
+      <div class="grid" style="align-content:start">
+        <div class="card">
+          <h2>Tiến độ của bạn</h2>
+          <div class="stats-mini" id="homeStats"></div>
+        </div>
+        <div class="card">
+          <h2>Phím tắt</h2>
+          <ul class="keys">
+            <li><span class="kbd">1</span>–<span class="kbd">4</span> hoặc <span class="kbd">A</span>–<span class="kbd">D</span>: chọn đáp án</li>
+            <li><span class="kbd">←</span> <span class="kbd">→</span>: câu trước / sau</li>
+            <li><span class="kbd">Enter</span>: sang câu tiếp</li>
+            <li><span class="kbd">F</span>: đánh dấu câu</li>
+          </ul>
+          <p class="small muted" style="margin:10px 0 0">Bài làm và thống kê được lưu trên trình duyệt này, tải lại trang vẫn làm tiếp được.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== QUIZ ========== -->
+  <section id="v-quiz" hidden>
+    <div class="quizbar">
+      <span class="pill" id="qPos">1/40</span>
+      <div class="progress" aria-hidden="true"><i id="qBar"></i></div>
+      <span class="pill" id="qScore" hidden></span>
+      <span class="pill timer" id="qTimer" hidden></span>
+      <button class="btn primary" id="submitBtn">Nộp bài</button>
+    </div>
+    <div class="qlayout">
+      <div class="card" id="qCard">
+        <div class="qhead">
+          <span class="qnum" id="qNum"></span>
+          <button class="flag" id="flagBtn" title="Đánh dấu (F)">☆ Đánh dấu</button>
+        </div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <div id="qFeedback"></div>
+        <div class="qnav">
+          <button class="btn" id="prevBtn">← Câu trước</button>
+          <button class="btn" id="nextBtn">Câu sau →</button>
+        </div>
+      </div>
+      <div class="card navcard">
+        <details class="navwrap" id="navDetails" open>
+          <summary><span class="row" style="justify-content:space-between"><span>Danh sách câu</span><span class="small muted" id="navCount"></span></span></summary>
+          <div style="margin-top:10px" class="navgrid" id="navGrid"></div>
+          <div class="legend" id="legend"></div>
+          <div class="row" style="margin-top:10px">
+            <button class="btn ghost small" id="jumpUnans">Câu chưa làm</button>
+            <button class="btn ghost small" id="jumpFlag">Câu đánh dấu</button>
+          </div>
+        </details>
+        <button class="btn ghost danger small" id="quitBtn" style="margin-top:12px;width:100%">Thoát (lưu lại để làm tiếp)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESULT ========== -->
+  <section id="v-result" hidden>
+    <div class="card">
+      <div class="row" style="justify-content:space-between;align-items:flex-end">
+        <div>
+          <div class="lbl">Kết quả</div>
+          <div class="score" id="rScore"></div>
+          <div class="muted" id="rDetail"></div>
+        </div>
+        <div class="row">
+          <button class="btn primary" id="retryWrong">Làm lại câu sai &amp; bỏ trống</button>
+          <button class="btn" id="retryAll">Làm lại bộ này</button>
+          <button class="btn ghost" id="toHome">Về trang đầu</button>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:18px">
+      <div class="seg" id="rFilter">
+        <label><input type="radio" name="rf" value="all" checked><span>Tất cả</span></label>
+        <label><input type="radio" name="rf" value="no"><span>Sai</span></label>
+        <label><input type="radio" name="rf" value="skip"><span>Bỏ trống</span></label>
+        <label><input type="radio" name="rf" value="ok"><span>Đúng</span></label>
+        <label><input type="radio" name="rf" value="fl"><span>Đã đánh dấu</span></label>
+      </div>
+    </div>
+    <div class="review" id="rList"></div>
+  </section>
+
+  <!-- ========== BANK ========== -->
+  <section id="v-bank" hidden>
+    <h1>Ngân hàng câu hỏi</h1>
+    <p class="muted" style="margin:0 0 14px">Tra cứu nhanh: gõ từ khoá (không cần dấu), ví dụ “1930”, “cuong linh”, “Dien Bien Phu”.</p>
+    <div class="card" style="margin-bottom:14px">
+      <input type="search" id="bSearch" placeholder="Tìm trong câu hỏi và đáp án…">
+      <div class="row" style="margin-top:10px;justify-content:space-between">
+        <div class="seg" id="bFilter">
+          <label><input type="radio" name="bf" value="all" checked><span>Tất cả</span></label>
+          <label><input type="radio" name="bf" value="marked"><span>Đã đánh dấu</span></label>
+          <label><input type="radio" name="bf" value="wrong"><span>Hay sai</span></label>
+        </div>
+        <label class="check" style="margin:0"><input type="checkbox" id="bHide"><span>Che đáp án (tự kiểm tra)</span></label>
+      </div>
+    </div>
+    <div class="small muted" id="bCount"></div>
+    <div class="review" id="bList"></div>
+  </section>
+
+  <!-- ========== STATS ========== -->
+  <section id="v-stats" hidden>
+    <h1>Thống kê</h1>
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <h2>Tổng quan</h2>
+        <div class="stats-mini" id="sStats"></div>
+        <h2 style="margin-top:20px">Lịch sử làm bài</h2>
+        <div id="sHistory"></div>
+      </div>
+      <div class="card">
+        <h2>Câu hay sai nhất</h2>
+        <div id="sWorst"></div>
+        <div class="row" style="margin-top:16px">
+          <button class="btn danger" id="resetBtn">Xoá toàn bộ thống kê</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+
+<script id="qdata" type="application/json">
+[{"n":1,"q":"Đối tượng nghiên cứu của môn học Lịch sử Đảng Cộng sản Việt Nam?","opts":["Các sự kiện lịch sử Đảng","Cương lĩnh, đường lối của Đảng","Quá trình lãnh đạo của Đảng đối với cách mạng Việt Nam","Tất cả các đáp án trên"],"answer":3},
+{"n":2,"q":"Môn học Lịch sử Đảng Cộng sản Việt Nam có chức năng như thế nào?","opts":["Nhận thức","Giáo dục","Dự báo và phê phán","Cả 3 đáp án trên"],"answer":3},
+{"n":3,"q":"Nhiệm vụ của môn học Lịch sử Đảng Cộng sản Việt Nam là gì?","opts":["Hệ thống hóa đường lối của Đảng","Tái hiện tiến trình lịch sử Đảng","Tổng kết lịch sử Đảng","Tất cả các đáp án trên"],"answer":3},
+{"n":4,"q":"Phương pháp luận nghiên cứu môn học Lịch sử Đảng Cộng sản Việt Nam là gì?","opts":["Chủ nghĩa duy tâm","Chủ nghĩa duy vật lịch sử","Chủ nghĩa duy vật biện chứng","Cả 2 đáp án b,c"],"answer":3},
+{"n":5,"q":"Tổ chức Quốc tế Cộng sản được thành lập vào năm nào?","opts":["Năm 1919","Năm 1920","Năm 1921","Năm 1922"],"answer":0},
+{"n":6,"q":"Giai cấp nào hình thành cùng với chính sách cai trị của thực dân Pháp?","opts":["Giai cấp công nhân và nông dân","Giai cấp công nhân và tư sản","Giai cấp nông dân và tư sản","Giai cấp nông dân và địa chủ"],"answer":1},
+{"n":7,"q":"Giai cấp nào chiếm đông đảo nhất trong nước Việt Nam dưới thời Pháp thuộc?","opts":["Giai cấp địa chủ","Giai cấp tư sản","Giai cấp công nhân","Giai cấp nông dân"],"answer":3},
+{"n":8,"q":"Phong trào Đông Du do cụ Phan Bội Châu lãnh đạo theo khuynh hướng nào?","opts":["Bạo động","Ôn hòa","Thỏa hiệp","Cải cách"],"answer":0},
+{"n":9,"q":"Cuộc khởi nghĩa của Phan Đình Phùng thất bại vào năm nào?","opts":["Năm 1893","Năm 1894","Năm 1895","Năm 1896"],"answer":3},
+{"n":10,"q":"Xu hướng cải cách của cụ Phan Châu Trinh với phương châm:","opts":["Khai dân trí, chấn dân khí, hậu dân sinh","Học, học nữa, học mãi","Tiên học lễ, hậu học văn","Dân tộc, dân quyền, dân sinh"],"answer":0},
+{"n":11,"q":"Phong trào Cần Vương do ai khởi xướng?","opts":["Phan Châu Trinh","Vua hàm Nghi và Tôn Thất Thuyết","Hoàng Hoa Thám","Phan Bội Châu"],"answer":1},
+{"n":12,"q":"Bản án chế độ thực dân Pháp được viết bằng ngôn ngữ nào?","opts":["Tiếng Pháp","Tiếng Anh","Tiếng Nga","Tiếng Hán"],"answer":0},
+{"n":13,"q":"Phong trào nông dân Yên Thế do ai khởi xướng?","opts":["Hoàng Hoa Thám","Vua Hàm Nghi","Phan Bội Châu","Phan Châu Trinh"],"answer":0},
+{"n":14,"q":"Phong trào chống Thuế ở Trung kỳ diễn ra vào thời gian nào?","opts":["Năm 1908","Năm 1907","Năm 1906","Năm 1905"],"answer":0},
+{"n":15,"q":"Tổ chức Việt Nam Quang phục hội thành lập năm nào?","opts":["1911","1912","1913","1914"],"answer":1},
+{"n":16,"q":"Triều đình nhà Nguyễn đã ký với thực dân Pháp các văn bản nào?","opts":["Hiệp ước 1862","Hiệp ước 1874","Hiệp ước 1883, 1884","Tất cả đáp án trên"],"answer":3},
+{"n":17,"q":"Điền cụm từ đúng để hoàn thiện quan điểm của Nguyễn Ái Quốc: “Đảng muốn vững phải có [……] làm cốt, trong đảng ai cũng phải hiểu, ai cũng phải theo [……] ấy”.","opts":["Phương pháp","Chủ nghĩa","Lý luận","Đường lối"],"answer":1},
+{"n":18,"q":"Phong trào nào đã góp phần truyền bá tư tưởng vô sản, rèn luyện cán bộ và xây dựng phát triển tổ chức của công nhân?","opts":["Công nhân","Vô sản hóa","Tâm tâm xã","Nông dân"],"answer":1},
+{"n":19,"q":"Tổ chức Việt Nam quốc dân đảng do ai lãnh đạo?","opts":["Huỳnh Thúc Kháng","Đặng Nguyên Cẩn","Hoàng Hoa Thám","Nguyễn Thái Học"],"answer":3},
+{"n":20,"q":"Cuộc khởi nghĩa ở Yên Bái diễn ra vào thời gian nào?","opts":["2/1930","2/1931","2/1932","2/1933"],"answer":0},
+{"n":21,"q":"Điền từ vào chỗ trống để hoàn thiện câu sau: “dù màu da có khác nhau, trên thế giới chỉ có hai giống người, giống người [……] và giống người bị [……]”.","opts":["Bóc lột","Áp bức","Đàn áp","Áp đặt"],"answer":0},
+{"n":22,"q":"Hồ Chí Minh lấy tên Nguyễn Ái Quốc vào năm nào?","opts":["Năm 1919","Năm 1920","Năm 1921","Năm 1922"],"answer":0},
+{"n":23,"q":"Luận cương chính trị tháng 10-1930 đã xác định động lực chính của cách mạng tư sản dân quyền là những giai cấp nào?","opts":["Vô sản và nông dân","Công nhân","Toàn thể dân tộc Việt Nam","Công nhân, nông dân, tiểu tư sản, trí thức, trung nông"],"answer":0},
+{"n":24,"q":"Đại hội/Hội nghị nào của Đảng đánh dấu sự phục hồi hệ thống tổ chức của Đảng và phong trào cách mạng quần chúng?","opts":["Hội nghị lần thứ nhất tháng 10-1930","Đại hội lần thứ nhất (3-1935)","Hội nghị toàn quốc của Đảng (1945)","Quốc dân đại hội Tân Trào (1945)"],"answer":1},
+{"n":25,"q":"Đại hội VII Quốc tế Cộng sản tại Mátxcơva tháng 7-1935 đã xác định kẻ thù nguy hiểm trước mắt của nhân dân thế giới là ai?","opts":["Chủ nghĩa đế quốc","Phản động thuộc địa","Chủ nghĩa phát xít","Chủ nghĩa dân tộc"],"answer":2},
+{"n":26,"q":"Phương án nào sau đây phản ánh phương hướng chiến lược cách mạng Việt Nam được xác định trong Luận cương chính trị (10/1930)?","opts":["Lúc đầu làm cách mạng tư sản dân quyền, có tính chất thổ địa và phản đế, sau đó sẽ tiếp tục phát triển, bỏ qua thời kỳ tư bản mà tranh đấu thẳng lên con đường xã hội chủ nghĩa","Lúc đầu làm cách mạng tư sản dân quyền, có tính chất thổ địa và phản đế, sau đó sẽ tiếp tục phát triển tuần tự từ thời kỳ tư bản đến xã hội chủ nghĩa","Lúc đầu làm cách mạng tư sản dân quyền, có tính chất phản đế, sau đó sẽ tiếp tục phát triển tuần tự từ thời kỳ tư bản đến xã hội chủ nghĩa","Không có đáp án đúng"],"answer":0},
+{"n":27,"q":"Hội nghị Ban Chấp hành Trung ương Đảng (11-1939) đã chủ trương thành lập mặt trận nào?","opts":["Mặt trận dân tộc thống nhất phản đế Đông Dương","Mặt trận phản đế Đông Dương","Mặt trận dân chủ Đông Dương","Mặt trận Việt Minh"],"answer":0},
+{"n":28,"q":"Kẻ thù chủ yếu của cách mạng Việt Nam được xác định trong thời kỳ 1936-1939 là ai?","opts":["Thực dân Pháp","Địa chủ phong kiến","Bọn phản động thuộc địa và bè lũ tay sai","Thực dân Pháp và địa chủ phong kiến"],"answer":2},
+{"n":29,"q":"Hội nghị Ban Chấp hành Trung ương Đảng (5-1941) đã bầu đồng chí nào làm Tổng Bí thư?","opts":["Lê Hồng Phong","Hà Huy Tập","Trường Chinh","Nguyễn Văn Cừ"],"answer":2},
+{"n":30,"q":"Khu giải phóng nào được xem là căn cứ địa chính của cách mạng cả nước?","opts":["Đông Triều (Quảng Yên)","Hòa - Ninh - Thanh","Vĩnh Tuy","Việt Bắc"],"answer":3},
+{"n":31,"q":"Đại biểu các tổ chức cộng sản nào đã tham dự Hội nghị thành lập Đảng đầu tiên năm 1930?","opts":["Đông Dương cộng sản Đảng, An Nam cộng sản Đảng và Đông Dương cộng sản liên đoàn","Đông Dương cộng sản Đảng và An Nam cộng sản Đảng","An Nam cộng sản Đảng và Đông Dương cộng sản liên đoàn","Đông Dương cộng sản Đảng và Đông Dương cộng sản liên đoàn"],"answer":1},
+{"n":32,"q":"Nguyên nhân chủ yếu và có ý nghĩa quyết định sự bùng nổ và phát triển của cao trào cách mạng Việt Nam năm 1930?","opts":["Tác động tiêu cực của cuộc khủng hoảng kinh tế 1929 – 1933","Chính sách khủng bố trắng của đế quốc Pháp","Chính sách tăng cường vơ vét bóc lột của đế quốc Pháp","Sự lãnh đạo của Đảng Cộng sản Việt Nam"],"answer":3},
+{"n":33,"q":"Trong cao trào dân chủ 1936 - 1939, Đảng chủ trương vận dụng hình thức đấu tranh nào?","opts":["Công khai, hợp pháp","Nửa công khai, nửa hợp pháp","Bí mật, bất hợp pháp","Tất cả đáp án trên"],"answer":3},
+{"n":34,"q":"Phong trào Vô sản hóa do Hội Việt Nam cách mạng thanh niên phát động được thực hiện vào thời gian nào?","opts":["Ngày 29/9/1928","Ngày 29/9/1929","Ngày 29/9/1930","Ngày 29/9/1931"],"answer":0},
+{"n":35,"q":"Nội dung nào sau đây phản ánh nguyên tắc chỉ đạo khởi nghĩa được xác định tại Hội nghị toàn quốc của Đảng họp ở Tân Trào (14,15/8/1945)?","opts":["Đánh nhanh, thắng nhanh","Đánh chắc, tiến chắc","Tập trung, thống nhất và kịp thời","Đánh nhanh, rút gọn"],"answer":2},
+{"n":36,"q":"Khẩu hiệu đấu tranh: “Phản đối xâm lược! Hoàn toàn độc lập! Chính quyền nhân dân” được đề ra tại Hội nghị toàn quốc của Đảng (Tân Trào - 14,15/8/1945) nhằm để chống kẻ thù nào?","opts":["Đế quốc Mỹ","Phát xít Nhật","Thực dân Pháp","Địa chủ phong kiến"],"answer":1},
+{"n":37,"q":"Cuộc khởi nghĩa nào sau đây được đánh giá là “tiếng súng báo hiệu cho cuộc khởi nghĩa toàn quốc bước đầu đấu tranh bằng võ lực của các dân tộc ở một nước Đông Dương”?","opts":["Khởi nghĩa Bắc Sơn","Khởi nghĩa Yên Thế","Khởi nghĩa Yên Bái","Phong trào Xô Viết Nghệ Tĩnh"],"answer":0},
+{"n":65,"q":"Hội nghị nào đã quyết định phát động toàn dân nổi dậy tổng khởi nghĩa giành chính quyền?","opts":["Hội nghị Ban Chấp hành Trung ương Đảng","Hội nghi Ban Thường vụ Trung ương Đảng","Hội nghị toàn quốc của Đảng","Hội nghị Tổng bộ Việt Minh"],"answer":2},
+{"n":66,"q":"Đông Dương Cộng sản Đảng và An Nam Cộng sản Đảng được ra đời từ tổ chức tiền thân nào?","opts":["Tân Việt cách mạng Đảng","Hội Việt Nam cách mạng Thanh niên","Việt Nam cách mạng đồng chí Hội","Cả a, b và c"],"answer":1},
+{"n":67,"q":"Đông Dương cộng sản liên đoàn hợp nhất vào Đảng Cộng sản Việt Nam khi nào?","opts":["22/2/1930","24/2/1930","24/2/1931","20/2/1931"],"answer":1},
+{"n":68,"q":"Tổ chức Đông Dương cộng sản Đảng được thành lập vào thời gian nào?","opts":["6/1927","6/1928","6/1929","7/1929"],"answer":2},
+{"n":69,"q":"Để xóa nạn mù chữ sau Cách mạng Tháng Tám năm 1945, Đảng ta đã vận động nhân dân thực hiện phong trào nào?","opts":["Xây dựng nếp sống văn hoá mới","Bình dân học vụ","Bài trừ các tệ nạn xã hội","Xoá bỏ văn hoá thực dân nô dịch phản động"],"answer":1},
+{"n":70,"q":"Để gạt mũi nhọn tiến công kẻ thù, Đảng ta đã tuyên bố tự giải tán vào ngày tháng năm nào và lấy tên gọi là gì?","opts":["02/09/1945 - Đảng cộng sản Đông Dương","25/11/1945 - Hội nghiên cứu Chủ nghĩa Mác- Lênin","03/02/1946 - Đảng Lao động Việt Nam","11/11/1945 - Hội nghiên cứu Chủ nghĩa Mác ở Đông Dương"],"answer":3},
+{"n":71,"q":"Đảng ta đã lựa chọn giải pháp gì trong mối quan hệ với thực dân Pháp sau ngày Pháp và Tưởng ký ước Trùng Khánh (28/02/1946)?","opts":["Thương lượng và hoá hoãn với Pháp","Kháng chiến chống thực dân Pháp","Nhân nhượng với quân đội Tưởng","Chống cả quân đội Tưởng và Pháp"],"answer":0},
+{"n":72,"q":"Tại sao Đảng lại lựa chọn giải pháp thương lượng với Pháp?","opts":["Chấm dứt cuộc kháng chiến ở Nam Bộ","Buộc quân Tưởng phải rút ngay về nước, tránh được tình trạng cùng một lú phải đối phó với nhiều kẻ thù","Phối hợp với Pháp tấn công Tưởng","Cả a, b và c"],"answer":3},
+{"n":73,"q":"Đâu là nơi được coi là căn cứ địa cách mạng của cả nước trong kháng chiến chống Pháp?","opts":["Tây Bắc","Việt Bắc","Hà Nội","Điện Biên Phủ"],"answer":1},
+{"n":74,"q":"Đối tượng chính nào của cách mạng Việt Nam được nêu ra tại Chính cương Lao động Việt Nam (tháng 2-1951)?","opts":["Chủ nghĩa đế quốc xâm lược Pháp và phong kiến phản động.","Chủ nghĩa đế quốc xâm lược Pháp, phát xít Nhật và phong kiến phản động","Chủ nghĩa đế quốc xâm lược Pháp, can thiệp Mỹ và phong kiến phản động","Đế quốc và phong kiến Việt Nam"],"answer":2},
+{"n":75,"q":"Chiến thắng nào đã căn bản đánh bại âm mưu đánh nhanh, thắng nhanh của thực dân Pháp?","opts":["Việt Bắc","Trung Du","Biên Giới","Hà Nam Ninh"],"answer":0},
+{"n":76,"q":"Việt Nam đã bắt đầu đặt quan hệ ngoại giao với Trung Quốc, Liên Xô và một số các nước khác vào thời điểm nào?","opts":["Năm 1945","Năm 1948","Năm 1950","Năm 1973"],"answer":2},
+{"n":77,"q":"Đại hội Đảng toàn quốc lần thứ hai đã bầu ai làm Tổng Bí thư Đảng Lao động Việt Nam?","opts":["Hồ Chí Minh","Trần Phú","Trường Chinh","Lê Duẩn"],"answer":2},
+{"n":78,"q":"Sau 16 năm lãnh đạo cách mạng Việt Nam, lần đầu tiên Đảng ta đã tuyên bố ra hoạt động công khai và tiến hành Đại hội. Đó là Đại hội lần thứ mấy?","opts":["Đại hội Đảng toàn quốc lần thứ nhất","Đại hội Đảng toàn quốc lần thứ hai","Đại hội Đảng toàn quốc lần thứ ba","Cả ba phương án đều sai"],"answer":1},
+{"n":79,"q":"Phương án nào sau đây phản ánh nhận thức về con đường cách mạng Việt Nam được nêu trong Chính cương của Đảng lao động Việt Nam (tháng 2-1951)?","opts":["Con đường cách mạng vô sản","Con đường cách mạng tư sản dân quyền và thổ địa cách mạng","Con đường cách mạng tư sản dân quyền","Con đường cách mạng dân tộc, dân chủ, nhân dân"],"answer":3},
+{"n":80,"q":"Đặc điểm ra đời của giai cấp công nhân Việt Nam như thế nào?","opts":["Ra đời trước giai cấp tư sản, trong cuộc khai thác thuộc địa lần thứ nhất của thực dân Pháp","Phần lớn xuất thân từ nông dân","Chịu sự áp bức và bóc lột của đế quốc, phong kiến và tư sản","Cả a, b và c"],"answer":3},
+{"n":81,"q":"Đại hội nào của Đảng đã quyết định tách ra 3 Đảng bộ Đảng Cộng sản ở nước Việt Nam, Lào và Campuchia?","opts":["Đại hội I (3/1935)","Đại hội II (2/1951)","Đại hội III (9/1960)","Đại hội IV (12/1976)"],"answer":1},
+{"n":82,"q":"Tháng 4/1952, Hội nghị Ban Chấp hành Trung ương lần thứ ba của Đảng đã xác định nhiệm vụ trọng tâm của công tác xây dựng Đảng, xây dựng quân đội giai đoạn này là:","opts":["“Luyện quân, lập công”","“Rèn cán, chỉnh quân”","“Chỉnh Đảng, chỉnh quân”","“Trung với Đảng, hiếu với dân”"],"answer":2},
+{"n":83,"q":"Ý nghĩa của Đại hội Đảng toàn quốc lần thứ II (2/1951) là gì?","opts":["“Kháng chiến, kiến quốc”","“Đẩy mạnh kháng chiến đi đến thắng lợi”","“Xây dựng chủ nghĩa xã hội ở Miền Bắc”","“Kháng chiến, kiến quốc”, “thúc đẩy kháng chiến đến thắng lợi hoàn toàn và xây dựng Đảng lao động Việt Nam”"],"answer":3},
+{"n":84,"q":"Trong giai đoạn cuối cuộc kháng chiến chống Pháp, nhằm thực hiện nhiệm vụ dân chủ, Đảng ra đã chủ trương thực hiện một số giải pháp. Phương án nào sau đây không phải chủ trương của Đảng ta lúc đó:","opts":["Cải cách ruộng đất","Triệt để giảm tô, giảm tức","Tịch thu ruộng đất của Việt gian chia cho toàn thể nhân dân","Cả hai phương án b, c"],"answer":2},
+{"n":85,"q":"Nava đã đưa tổng số binh lực lên Điện Biên Phủ lúc cao nhất là 16.200 quân; bố trí thành 3 phân khu, 49 cứ điểm nhằm mục đích biến nơi đây thành?","opts":["Một tập đoàn cứ điểm mạnh nhất Đông Dương","Một nơi tập trung đông nhất khối quân chủ lực","Căn cứ quân sự phòng thủ Đông Dương","Tất cả các phương án trên"],"answer":0},
+{"n":86,"q":"Nhằm phát huy sức mạnh của hậu phương, chi viện tiền tuyến, nhất là lực lượng nông dân, cho cuộc tiến công chiến lược Đông Xuân 1953-1954 và chiến dịch Điện Biên Phủ, Đảng đã quyết định phát động phong trào nào?","opts":["“Ba đảm đang, ba sẵn sàng”","“Quần chúng đấu tranh triệt để giảm tô, giảm tức và tiến hành cải cách ruộng đất”","“Mỗi người dân là một chiến sĩ, mỗi làng xã là một pháo đài, mỗi đường phố là một mặt trận”","“Tăng gia sản xuất ngay, tăng gia sản xuất nữa” và “Quyết tử cho Tổ quốc quyết sinh”"],"answer":1},
+{"n":87,"q":"Hãy điền vào chỗ trống câu sau đây: Nói về tầm quan trọng của chiến dịch Điện Biên Phủ, Chủ tịch Hồ Chí Minh chỉ rõ: “Chiến dịch này là một chiến dịch rất quan trọng, không những về [……] mà cả về [……] không những đối với trong nước mà đối với quốc tế. Vì vậy, toàn [……], toàn [……], toàn [……] phải tập trung hoàn thành cho kỳ được”. (Chỉ thị của Chủ tịch Hồ Chí Minh cho Đại tướng Võ Nguyên Giáp (12/1953)","opts":["Quân sự, chính trị, Đảng, quân, dân","Quân sự, chính trị - xã hội, Đảng, quân, dân","Chính trị, quân sự, dân, quân, Đảng","Quân sự, chính trị, dân, quân, Đảng"],"answer":3},
+{"n":88,"q":"Đối với cách mạng thế giới, chiến thắng Điện Biên Phủ mang ý nghĩa gì?","opts":["Góp phần làm sụp đổ hoàn toàn hệ thống thực dân kiểu cũ trên thế giới","Cổ vũ mạnh mẽ nhân dân các dân tộc bị áp bức trên thế giới vùng lên đấu tranh giành độc lập","Lần đầu tiên trong lịch sử một nước thuộc địa nhỏ yếu đã đánh thắng một nước thực dân hùng mạnh, đó là thắng lợi của các lực lượng hoà bình, dân chủ và xã hội chủ nghĩa trên toàn thế giới","Cả ba phương án trên"],"answer":3},
+{"n":89,"q":"Nêu một số nguyên nhân thắng lợi của cuộc kháng chiến chống thực dân Pháp của Việt Nam?","opts":["Nhân dân Việt Nam giàu truyền thống yêu nước; được sự lãnh đạo tài tình của Đảng Cộng sản Việt Nam","Có lực lượng đại đoàn kết toàn dân tộc, có chính quyền cách mạng dân chủ nhân dân và hậu phương kháng chiến vững chắc","Sự liên minh chiến đấu của 3 nước Đông Dương, sự giúp đỡ của các nước Trung Quốc, Liên Xô, các nước XHCN","Cả ba phương án trên"],"answer":3},
+{"n":90,"q":"Hội nghị Trung ương 8 (5-1941) bầu ai làm Tổng bí thư?","opts":["Hồ Chí Minh","Phạm Văn Đồng","Nguyễn Văn Cừ","Trường Chinh"],"answer":3},
+{"n":91,"q":"“Trong lúc này quyền lợi của bộ phận, của giai cấp phải đặt dưới sự sinh tử, tồn vong của quốc gia, của dân tộc. Trong lúc này nếu không giải quyết được vấn đề dân tộc giải phóng, không đòi được độc lập, tự do cho toàn thể dân tộc, thì chẳng những toàn thể quốc gia dân tộc còn chịu mãi kiếp ngựa trâu, mà quyền lợi của bộ phận, giai cấp đến vạn năm cũng không đòi lại được”. Đoạn trích trên được Nguyễn Ái Quốc trình bày tại Hội nghị nào?","opts":["Hội nghị Trung ương 6 (11-1939)","Hội nghị Trung ương 7 (11-1940)","Hội nghị Trung ương 8 (5-1941)","Hội nghị Trung ương 3 (3-1937)"],"answer":2},
+{"n":92,"q":"Nguyên nhân chủ yếu nào dẫn đến sai lầm trong chỉ đạo thực hiện cải cách ruộng đất ở miền Bắc giai đoạn 1954-1956?","opts":["Cường điệu hóa đấu tranh giai cấp ở nông thôn, dẫn đến mở rộng quá mức đối tượng đấu tranh","Sử dụng hình thức, phương pháp không phù hợp với đối tượng là địa chủ ở nông thôn Việt Nam","Do chủ quan, giáo điều, không xuất phát từ tình hình thực tiễn, nhất là những thay đổi quan trọng về quan hệ giai cấp, xã hội ở nông thôn miền Bắc sau ngày giải phóng","Trong chỉnh đốn tổ chức, đã nhận định sai về tình hình tổ chức cơ sở Đảng ở nông thôn."],"answer":2},
+{"n":93,"q":"Nội dung nào sau đây phản ánh bài học kinh nghiệm được rút ra từ cuộc kháng chiến chống thực dân Pháp (1946-1954)?","opts":["Kết hợp chặt chẽ và giải quyết đúng đắn mối quan hệ giữa hai nhiệm vụ cơ bản vừa kháng chiến vừa kiến quốc, chống đế quốc và chống phong kiến","Giương cao ngọn cờ giải phóng dân tộc, giải quyết đúng đắn mối quan hệ giữa hai nhiệm vụ độc lập dân tộc và cách mạng ruộng đất","Triệt để lợi dụng mâu thuẫn trong hàng ngũ địch, thực hành nhân nhượng có nguyên tắc “Dĩ bất biến, ứng vạn biến”","Tăng cường đại đoàn kết dân tộc, dựa vào sự ủng hộ vật chất là chính trị, tinh thần của toàn dân"],"answer":0},
+{"n":94,"q":"Nhiệm vụ chủ yếu trước mắt của miền Bắc sau tháng 7/1954 được Bộ Chính trị xác định là nhiệm vụ nào?","opts":["Hàn gắn vết thương chiến tranh, phục hồi kinh tế","Xây dựng kinh tế phát triển nhanh và mạnh","Tập trung vào 3 chương trình trọng điểm là lương thực-thực phẩm-hàng tiêu dùng","Phát triển công nghiệp hóa, hiện đại hóa miền Bắc"],"answer":0},
+{"n":95,"q":"Chọn cụm từ đúng điền vào chỗ trống: “Trung Nam Bắc đều là bờ cõi của ta, nước ta nhất định sẽ [……], đồng bào cả nước nhất định được [……]”.","opts":["Thống nhất, giải phóng","Thống nhất, hạnh phúc","Thống nhất, tự do","Thống nhất, độc lập"],"answer":0},
+{"n":96,"q":"Thực dân Pháp rút khỏi Việt Nam vào thời gian nào?","opts":["10/10/1953","101/10/1954","10/10/1955","10/10/1956"],"answer":1},
+{"n":97,"q":"Hội nghị lần thứ 6 của Ban Chấp hành Trung ương Đảng (7/1954) xác định “hiện nay [……] là kẻ thù chính của nhân dân thế giới và nó đang trở thành kẻ thù chính và trực tiếp của nhân dân Đông Dương [……]”. Cho biết đó là kẻ thù nào?","opts":["Thực dân Pháp","Đế quốc Mỹ","Phát xít Nhật","Tưởng Giới Thạch"],"answer":1},
+{"n":98,"q":"Hội nghị nào của Đảng đã quyết định mở cuộc Tổng tấn công và nổi dậy Mậu Thân 1968?","opts":["Hội nghị Trung ương 13 – Khoá III của Đảng (1/1967)","Hội nghị Bộ Chính trị (5/1967)","Hội nghị Bộ Chính trị (12/1967)","Hội nghị Bộ Chính trị (10/1967)"],"answer":2},
+{"n":99,"q":"Chọn cụm từ đúng điền vào chỗ trống: Đại hội III (9/1960) của Đảng đã đề ra đường lối chung cho cách mạng Việt Nam: “[……] tiến hành cách mạng dân tộc dân chủ nhân dân ở miền Nam, thực hiện [……] nước nhà, hoàn thành [……] và [……] trong cả nước”.","opts":["Thống nhất, độc lập, dân chủ","Thống nhất, độc lập, dân tộc","Thống nhất, giải phóng, dân tộc","Thống nhất, giải phóng, dân chủ"],"answer":0},
+{"n":100,"q":"Lời kêu gọi toàn quốc kháng chiến được Hồ Chí Minh viết vào thời gian nào?","opts":["21/7/1954","22/7/1954","23/7/1954","24/7/1954"],"answer":1},
+{"n":101,"q":"Bản Đề cương đường lối cách mạng Việt Nam ở miền Nam do ai soạn thảo?","opts":["Lê Duẩn","Trường Chinh","Nguyễn Văn Cừ","Hồ Chí Minh"],"answer":0},
+{"n":102,"q":"Phong trào Đồng khởi bùng nổ vào thời gian nào?","opts":["Ngày 17/1/1960","Ngày 17/1/1961","Ngày 17/1/1962","Ngày 17/1/1963"],"answer":0},
+{"n":103,"q":"“Chiến tranh có thể kéo dài 5 năm, 10 năm, 20 năm hoặc lâu hơn nữa. Hà Nội, Hải Phòng và một số thành phố, xí nghiệp có thể bị tàn phá, song nhân dân Việt Nam quyết không sợ. Không có gì quý hơn độc lập tự do”. Đoạn trích này được nêu ra trong văn kiện nào?","opts":["Lời kêu gọi toàn quốc kháng chiến của Chủ tịch Hồ Chí Minh (19/12/1946)","Lời kêu gọi của Chủ tịch Hồ Chí Minh (17/7/1966)","Chỉ thị toàn dân kháng chiến của Ban thường vụ Trung ương Đảng (22/12/1946)","Kháng chiến nhất định thắng lợi của Trường Chinh (1947)"],"answer":1},
+{"n":104,"q":"Phong trào Đồng khởi do ai lãnh đạo?","opts":["Võ Nguyên Giáp","Nguyễn Văn Cừ","Nguyễn Thị Định","Trần Văn Trà"],"answer":2},
+{"n":105,"q":"Hội nghị nào của Đảng quyết định mở cuộc Tổng tấn công và nổi dậy giải phóng Sài Gòn trước tháng 5/1975?","opts":["Hội nghị Trung ương 21-Khoá III của Đảng (7/1973)","Hội nghị Bộ Chính trị (10/1974)","Hội nghị Trung ương 23-Khoá III của Đảng (12/1974)","Hội nghị Bộ Chính trị (3/1975)"],"answer":3},
+{"n":106,"q":"Tổng thống Mỹ Richard Nixon thay thế chiến lược “chiến tranh cục bộ” bằng chiến lược “Việt Nam hóa chiến tranh” nhằm mục đích gì?","opts":["Đánh nhanh, thắng nhanh","Dùng người Việt đánh người Việt","Lấy chiến tranh nuôi chiến tranh","Kết thúc chiến tranh trong danh dự, buộc ta phải ngồi vào bàn đàm phán ký kết những điều khoản có lợi cho Mỹ"],"answer":1},
+{"n":107,"q":"Hội nghị lần thứ 21 Ban Chấp hành Trung ương Đảng (khóa III) xác định con đường cách mạng của nhân dân miền Nam (7-1973) là con đường nào?","opts":["Bạo lực cách mạng và đàm phán","Kháng chiến, kiến quốc","Tranh thủ biện pháp ngoại giao","Con đường bạo lực cách mạng và giữ vững đường lối chiến lược tiến công"],"answer":3},
+{"n":108,"q":"Phương án nào sau đây không phản ánh nguyên nhân thắng lợi của cuộc kháng chiến chống Mỹ, cứu nước (1954-1975)?","opts":["Là do có sự lãnh đạo đúng đắn của Đảng Cộng sản Việt Nam","Là do sự kết hợp đúng đắn giữa hai nhiệm vụ chống đế quốc và chống phong kiến","Là kết quả của cuộc chiến đấu đầy gian khổ hy sinh của nhân dân và quân đội cả nước","Là kết quả của sự nghiệp cách mạng xã hội chủ nghĩa ở miền Bắc"],"answer":1},
+{"n":109,"q":"Ý nào sau đây phản ánh bài học kinh nghiệm của cuộc kháng chiến chống Mỹ, cứu nước (1954-1975)?","opts":["Giương cao ngọn cờ độc lập dân tộc và chủ nghĩa xã hội nhằm huy động sức mạnh toàn dân đánh Mỹ, cả nước đánh Mỹ","Kết hợp chặt chẽ và giải quyết đúng đắn mối quan hệ giữa hai nhiệm vụ cơ bản vừa kháng chiến vừa kiến quốc, chống đế quốc và chống phong kiến.","Cần triệt để lợi dụng mâu thuẫn của kẻ thù để cô lập, phân hóa kẻ thù","Thực hiện chính sách ngoại giao thêm bạn bớt thù"],"answer":0},
+{"n":110,"q":"Đáp án nào sau đây không phản ánh đúng ý nghĩa lịch sử của Đại hội Đảng toàn quốc lần thứ III?","opts":["Buộc Mỹ phải dừng cuộc chiến và tiến hành đàm phán với Việt Nam","Đường lối giương cao ngọn cờ độc lập dân tộc và chủ nghĩa xã hội, vừa phù hợp với miền Bắc vừa phù hợp với miền Nam, vừa phù hợp với cả nước Việt Nam vừa phù hợp với tình hình quốc tế","Phát huy và kết hợp được sức mạnh của hậu phương và tiền tuyến, sức mạnh cả nước và sức mạnh của ba dòng thác cách mạng trên thế giới","Tranh thủ được sự đồng tình giúp đỡ của cả Liên Xô và Trung Quốc"],"answer":0},
+{"n":111,"q":"Chiến lược Chiến tranh đơn phương của đế quốc Mỹ ở miền Nam diễn ra trong giai đoạn nào?","opts":["1954 - 1959","1954 - 1960","1954 - 1964","1964 - 1968"],"answer":1},
+{"n":112,"q":"Chủ trương nào của Đảng được xác định tại Bộ Chính trị (25/3/1975)?","opts":["Giải phóng miền Nam trước mùa khô","Giải phóng miền Nam trước mùa mưa","Giải phóng miền Nam trước mùa thu","Giải phóng miền Nam trước mùa đông"],"answer":1},
+{"n":113,"q":"“Thần tốc, thần tốc hơn nữa, táo bạo, táo bạo hơn nữa, sốc tới chiến trường giải phóng miền Nam, quyết chiến và toàn thắng”. Chỉ đạo trên do ai đề ra?","opts":["Nguyễn Chí Thanh","Văn Tiến Dũng","Võ Nguyên Giáp","Trần Văn Trà"],"answer":2},
+{"n":114,"q":"Việc đề ra kế hoạch giải phóng miền Nam trong hai năm (1975-1976), nhưng nhấn mạnh \"cả năm 1975 là thời cơ\" mang ý nghĩa gì?","opts":["Tính quyết liệt, mạo hiểm của Đảng","Tính khoa học, linh hoạt của Đảng.","Tính đúng đắn, sáng tạo và linh hoạt của Đảng","Tính nhạy bén, sáng tạo của Đảng"],"answer":2},
+{"n":115,"q":"Chiến dịch Hồ Chí Minh giải phóng Sài Gòn - Gia Định bắt đầu vào thời gian nào?","opts":["Ngày 26/4/1975","Ngày 25/4/1975","Ngày 24/4/1975","Ngày 23/4/1975"],"answer":0},
+{"n":116,"q":"Thắng lợi quân sự nào của quân dân ta đã làm dấy lên cao trào “tìm Mỹ mà đánh, lùng Ngụy mà diệt” trên khắp miền Nam?","opts":["Chiến thắng Vạn Tường (1965)","Chiến thắng Ấp Bắc (1963)","Đồng Khởi (1959-1960)"],"answer":0},
+{"n":140,"q":"Điểm nổi bật trong đường lối xây dựng, phát triển kinh tế của Đại hội IV là gì?","opts":["Ưu tiên phát triển thương nghiệp","Ưu tiên phát triển công nghiệp và nông nghiệp","Ưu tiên phát triển công nghiệp nặng","Ưu tiên phát triển nông nghiệp"],"answer":2},
+{"n":141,"q":"Đại hội đại biểu toàn quốc lần thứ IV có ý nghĩa lịch sử như thế nào?","opts":["Là đại hội lãnh đạo thắng lợi sự nghiệp xây dựng và bảo vệ chủ nghĩa xã hội ở miền Bắc và cuộc kháng chiến chống Mỹ cứu nước","Là đại hội đưa cả nước đi lên chủ nghĩa xã hội","Là đại hội toàn thắng của sự nghiệp giải phóng dân tộc, thống nhất Tổ quốc, khẳng định và xác định đường lối đưa cả nước tiến lên chủ nghĩa xã hội","Cả a, b, c đều đúng"],"answer":2},
+{"n":142,"q":"Bước đột phá đầu tiên đổi mới kinh tế của Đảng thể hiện ở nội dung nào?","opts":["Miễn giảm thuế nông nghiệp","Chủ trương phá bỏ những rào cản để cho “sản xuất bung ra”","Ưu tiên phát triển công nghiệp nặng","Khoán sản phẩm đến nhóm và người lao động"],"answer":1},
+{"n":143,"q":"Hội nghị trung ương nào được xem là bước đột phá đầu tiên đổi mới kinh tế của Đảng?","opts":["Hội nghị Trung ương 5 (12/1968)","Hội nghị Trung ương 7 (3/1980)","Hội nghị Trung ương 7 (9/1980)","Hội nghị Trung ương 6 (8/1979)"],"answer":3},
+{"n":144,"q":"Chỉ thị 100 CT/TW của Ban Bí thư Trung ương Đảng (1/1981) đưa ra chủ trương nào sau đây?","opts":["Phát huy quyền sản xuất kinh doanh của các xí nghiệp quốc doanh","Mở rộng hình thức trả lương khoán, lương sản phẩm","Khoán sản phẩm đến nhóm và người lao động trong hợp tác xã nông nghiệp","Cải tiến công tác phân phối lưu thông"],"answer":2},
+{"n":145,"q":"Hội nghị Trung ương nào của Đảng được xem là bước đột phá thứ hai đổi mới kinh tế của Đảng?","opts":["Hội nghị Bộ Chính trị (4/1988)","Hội nghị Trung ương 10 (5/1986)","Hội nghị Trung ương 8 (6/1985)","Hội nghị Trung ương 9 (12/1985)"],"answer":2},
+{"n":146,"q":"Hội nghị Trung ương 8 (6/1985) đề ra chủ trương nào sau đây?","opts":["Về lưu thông phân phối, xóa bỏ tình trạng ngăn sông cấm chợ","Cho nông dân được khoán ruộng đất","Xóa bỏ cơ chế tập trung quan liêu bao cấp, lấy giá lương tiền là khâu đột phá để chuyển sang cơ chế hạch toán, kinh doanh xã hội chủ nghĩa","Ưu tiên phát triển nông nghiệp"],"answer":2},
+{"n":147,"q":"Hội nghị nào của Ban Chấp hành Trung ương Đảng quyết định phải dứt khoát xoá bỏ cơ chế tập trung quan liêu bao cấp, thực hiện hạch toán kinh doanh xã hội chủ nghĩa?","opts":["Hội nghị Trung ương 8 (6/1985)","Hội nghị Trung ương 9 (12/1985)","Hội nghị Trung ương 10 (5/1986)","Hội nghị Bộ Chính trị (4/1988)"],"answer":0},
+{"n":148,"q":"Chủ trương xây dựng và tổ chức thực hiện ba chương trình kinh kế lớn về lương thực, thực phẩm; hàng tiêu dùng; hàng xuất khẩu được Đảng đề ra tại Đại hội nào?","opts":["Đại hội lần thứ IV","Đại hội lần thứ V","Đại hội lần thứ VI","Đại hội lần thứ VII"],"answer":2},
+{"n":149,"q":"Bài học kinh nghiệm nào được rút ra trong Đại hội Đảng toàn quốc lần thứ VI (12/1986)?","opts":["Đảng phải luôn luôn xuất phát từ thực tế, tôn trọng và hành động theo quy luật khách quan","Chăm lo xây dựng Đảng ngang tầm với một Đảng cầm quyền lãnh đạo nhân dân tiến hành cách mạng xã hội chủ nghĩa","Kết hợp ngọn cờ độc lập dân tộc gắn liền với chủ nghĩa xã hội","Đáp án a và b"],"answer":3},
+{"n":150,"q":"Tư tưởng chỉ đạo cốt lõi của Đại hội VI của Đảng có nội dung gì?","opts":["Đổi mới toàn diện, đồng bộ cả về kinh tế, chính trị, tư tưởng trước hết là đổi mới kinh tế","Đổi mới kinh tế là trọng tâm, đổi mới chính trị là then chốt","Giải phóng mọi năng lực sản xuất hiện có, khai thác mọi tiềm năng của đất nước và sử dụng có hiệu quả sự giúp đỡ quốc tế để phát triển lực lượng sản xuất đi đôi với xây dựng và củng cố quan hệ sản xuất","Xóa bỏ tình trạng độc quyền ngoại thương"],"answer":2},
+{"n":151,"q":"Luật Đầu tư nước ngoài được Quốc hội khóa VIII thông qua, có hiệu lực từ ngày nào?","opts":["Ngày 1/1/1988","Ngày 3/1/1988","Ngày 5/1/1988","Ngày 7/1//1988"],"answer":0},
+{"n":152,"q":"Nội dung bước đột phá thứ ba về đổi mới kinh tế của Đảng tập trung vào các lĩnh vực nào?","opts":["Bù giá vào lương; cơ chế quản lý kinh kế; khoán sản phẩm","Xóa bỏ rào cản cho sản xuất bung ra; cải cách giá lương tiền; cơ chế quản lý kinh kế","Phân phối lưu thông; xóa bỏ rào cản cho sản xuất bung ra; cải cách giá lương tiền","Cơ cấu sản xuất; cải tạo xã hội chủ nghĩa; cơ chế quản lý kinh tế"],"answer":3},
+{"n":153,"q":"Đại hội nào Đảng có chủ đề là “Trí tuệ, đổi mới, dân chủ, kỷ cương và đoàn kết”?","opts":["Đại hội lần thứ V","Đại hội lần thứ VII","Đại hội lần thứ VI","Đại hội lần thứ IX"],"answer":1},
+{"n":154,"q":"Ý nào sau đây không phản ánh bài học kinh nghiệm được nêu tại Đại hội Đảng toàn quốc lần thứ VII?","opts":["Sự lãnh đạo đúng đắn của Đảng là nhân tố hàng đầu bảo đảm thắng lợi của cách mạng Việt Nam","Không ngừng củng cố, tăng cường đoàn kết: đoàn kết toàn Đảng, đoàn kết toàn dân, đoàn kết dân tộc, đoàn kết quốc tế","Sự nghiệp cách mạng là của nhân dân, do nhân dân, vì nhân dân","Nắm vững hai nhiệm vụ kháng chiến và kiến quốc"],"answer":3},
+{"n":155,"q":"Mô hình kinh tế tổng quát được xác định tại Cương lĩnh năm 1991 có đặc điểm gì?","opts":["Nền kinh tế hàng hoá nhiều thành phần, vận hành theo cơ chế kế hoạch hóa tập trung","Nền kinh tế hàng hoá có 2 thành phần kinh tế (kinh tế Nhà nước, kinh tế tập thể), vận hành theo cơ chế thị trường có sự quản lý của Nhà nước","Nền kinh tế hàng hoá nhiều thành phần, vận hành theo cơ chế thị trường tự do","Nền kinh tế hàng hoá nhiều thành phần theo định hướng xã hội chủ nghĩa, vận hành theo cơ chế thị trường có sự quản lý của Nhà nước"],"answer":3},
+{"n":156,"q":"Mục tiêu cơ bản của 5 năm (1991-1995) được xác định trong Cương lĩnh năm 1991 có nội dung gì?","opts":["Đưa đất nước phát triển nhanh, phát triển mạnh","Đưa đất nước ra khỏi tình trạng khủng hoảng","Phát triển đất nước có nền công nghiệp hiện đại","Phát triển đất nước có nền kinh tế tri thức"],"answer":1},
+{"n":157,"q":"Nhận định sau đây được nêu ra tại Đại hội lần thứ mấy của Đảng? “Đảng Cộng sản Việt Nam lấy chủ nghĩa Mác-Lênin và tư tưởng Hồ Chí Minh là nền tảng tư tưởng và kim chỉ nam cho hành động, tiếp thu tinh hoa trí tuệ của dân tộc và nhân loại, nắm vững quy luật khách quan và thực tiễn của đất nước để đề ra Cương lĩnh chính trị, đường lối cách mạng đúng đắn, phù hợp với yêu cầu, nguyện vọng của nhân dân”.","opts":["Đại hội lần thứ VI","Đại hội lần thứ VIII","Đại hội lần thứ VII","Đại hội lần thứ IX"],"answer":2},
+{"n":158,"q":"Đại hội lần thứ VII của Đảng đã thông qua các văn kiện nào?","opts":["Cương lĩnh chính trị đầu tiên và Luận cương chính trị","Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội và Luận cương chính trị","Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội và Chiến lược ổn định và phát triển kinh tế- xã hội đến năm 2000","Chiến lược ổn định và phát triển kinh tế- xã hội đến năm 2000 và Cương lĩnh chính trị đầu tiên"],"answer":2},
+{"n":159,"q":"Đảng Cộng sản Việt Nam đóng vai trò gì trong hệ thống chính trị?","opts":["Tổ chức lãnh đạo","Vừa là thành viên vừa là tổ chức lãnh đạo","Thành viên","Không có đáp án đúng"],"answer":1},
+{"n":160,"q":"Đảng cộng sản Việt Nam tổ chức và hoạt động theo nguyên tắc cơ bản nào?","opts":["Tập thể lãnh đạo, cá nhân phụ trách","Đoàn kết thống nhất","Tập trung dân chủ","Tự phê bình và phê bình"],"answer":2},
+{"n":161,"q":"Hội nghị đại biểu toàn quốc giữa nhiệm kỳ của Đảng (1/1994) đã chỉ ra các thách thức nào đối với sự nghiệp đổi mới đất nước?","opts":["Nguy cơ về nghèo đói và nợ nần; nguy cơ bị cô lập; nguy cơ tụt hậu về kinh tế; nguy cơ chệch hướng xã hội chủ nghĩa","Nguy cơ tụt hậu về kinh tế; nguy cơ về nạn tham nhũng và tệ nạn quan liêu; nguy cơ chệch hướng xã hội chủ nghĩa; nguy cơ diễn biến hòa bình của các thế lực thù địch","Nguy cơ ô nhiễm môi trường sinh thái; nguy cơ chệch hướng xã hội chủ nghĩa; nguy cơ về dịch bệnh; nguy cơ về nạn tham nhũng và tệ nạn quan liêu","Nguy cơ tụt hậu xa về kinh tế; nguy cơ chệch hướng xã hội chủ nghĩa; nguy cơ về nạn tham nhũng và tệ quan liêu; nguy cơ “diễn biến hoà bình” của các thế lực thù địch"],"answer":3},
+{"n":162,"q":"Hội nghị nào của Ban Chấp hành Trung ương chủ trương tiếp tục xây dựng và hoàn thiện Nhà nước cộng hoà xã hội chủ nghĩa Việt Nam, cải cách một bước nền hành chính nhà nước?","opts":["Hội nghị Trung ương lần thứ 8 (1/1995)","Hội nghị Trung ương lần thứ 3 (6/1992)","Hội nghị Trung ương lần thứ 2 (12/1991)","Hội nghị Trung ương lần thứ 5 (6/1993)"],"answer":0},
+{"n":163,"q":"Đại hội lần thứ VIII của Đảng đã bổ sung đặc trưng tổng quát nào về mục tiêu xây dựng chủ nghĩa xã hội ở Việt Nam?","opts":["Trí tuệ - đổi mới, dân chủ - kỷ cương - đoàn kết","Dân giàu, nước mạnh, xã hội công bằng, văn minh","Đoàn kết - Dân chủ - Đổi mới - Phát triển","Nâng cao năng lực lãnh đạo và sức chiến đấu của Đảng, phát huy sức mạnh toàn dân tộc, đẩy mạnh toàn diện công cuộc đổi mới, sớm đưa nước ta ra khỏi tình trạng kém phát triển"],"answer":1},
+{"n":164,"q":"Nghị quyết xây dựng và phát triển nền văn hoá Việt Nam tiên tiến, đậm đà bản sắc dân tộc được đề ra tại Hội nghị Trung ương nào?","opts":["Hội nghị Trung ương 5 (7/1998)","Hội nghị Trung ương 4 (6/1997)","Hội nghị Trung ương 2 (12/1996)","Hội nghị Trung ương 7 (8/1999)"],"answer":0},
+{"n":165,"q":"Nghị quyết Trung ương 5, khóa VIII (7/1998) khẳng định bản sắc dân tộc Việt Nam bao gồm nội dung nào?","opts":["Những giá trị bền vững và tinh hoa của cộng đồng các dân tộc thiểu số","Những giá trị văn hóa và tinh hoa của cộng đồng các dân tộc Việt Nam và thế giới","Những giá trị bền vững và tinh hoa của cộng đồng các dân tộc Việt Nam","Những giá trị bền vững và tinh hoa văn hóa của nhân loại"],"answer":2},
+{"n":166,"q":"Đáp án nào sau đây không đúng khi nói về quan điểm công nghiệp hóa trong thời kỳ đổi mới?","opts":["Giữ vững độc lập, tự chủ, đi đôi với mở rộng quan hệ quốc tế, đa phương hoá, đa dạng hoá quan hệ đối ngoại","Công nghiệp hoá, hiện đại hoá là sự nghiệp của toàn dân, của mọi thành phần kinh tế, trong đó kinh tế nhà nước giữ vai trò chủ đạo","Lấy việc phát huy nguồn lực con người là yếu tố cơ bản cho sự phát triển nhanh và bền vững","Ưu tiên phát triển công nghiệp nặng một cách hợp lý"],"answer":3},
+{"n":167,"q":"Đại hội lần thứ mấy của Đảng đánh dấu bước ngoặt chuyển đất nước sang thời kỳ mới đẩy mạnh công nghiệp hóa, hiện đại hóa?","opts":["Đại hội VII","Đại hội VIII","Đại hội IX","Đại hội VI"],"answer":1},
+{"n":168,"q":"Với những giá trị lý luận và thực tiễn, Nghị quyết Trung ương 5 khóa VIII (7/1998) được đánh giá như thế nào?","opts":["Tuyên ngôn văn hóa","Cương lĩnh văn hóa","Đề cương văn hóa","Đường lối văn hóa"],"answer":0},
+{"n":169,"q":"Nghị quyết về định hướng chiến lược phát triển giáo dục - đào tạo xác định mục tiêu nào để xây dựng con người trong thời kỳ công nghiệp hoá, hiện đại hoá và nhiệm vụ đến năm 2000?","opts":["Hồng và chuyên","Đức và tài","Cần và kiệm","Năng động và sáng tạo"],"answer":0},
+{"n":170,"q":"Chọn từ đúng điền vào chỗ trống. “Xây dựng và phát triển văn hóa là sự nghiệp của toàn dân do Đảng lãnh đạo, trong đó đội ngũ [……] giữ vai trò quan trọng”?","opts":["Lao động","Tri thức","Công nhân","Trí thức"],"answer":3},
+{"n":171,"q":"Theo Đại hội Đảng toàn quốc lần thứ IX, mối quan hệ giữa các giai cấp, các tầng lớp trong xã hội là “Quan hệ [……] trong nội bộ nhân dân, đoàn kết và hợp tác lâu dài trong sự nghiệp xây dựng và bảo vệ Tổ quốc”?","opts":["Hợp tác và đoàn kết","Đồng thuận","Hợp tác và đấu tranh","Tùy thuộc lẫn nhau"],"answer":2},
+{"n":172,"q":"Ý nào sau đây không phản ánh đặc điểm mô hình kinh tế tổng quát của Việt Nam trong thời kỳ quá độ đi lên chủ nghĩa xã hội?","opts":["Nền kinh tế hàng hóa nhiều thành phần vận động theo cơ chế thị trường","Có sự quản lý của Nhà nước theo định hướng xã hội chủ nghĩa","Có nhiều hình thức sở hữu, nhiều thành phần kinh tế, nhiều hình thức phân phối","Phân phối chủ yếu theo hình thức cào bằng"],"answer":3},
+{"n":173,"q":"Đại hội Đảng toàn quốc lần thứ IX đã khẳng định như thế nào về con đường quá độ lên chủ nghĩa xã hội bỏ qua chế độ tư bản chủ nghĩa?","opts":["Bỏ qua việc xác lập vị trí thống trị của quan hệ sản xuất","Bỏ qua chế độ chính trị, kiến trúc thượng tầng xã hội chủ nghĩa","Bỏ qua tất cả từ cơ sở hạ tầng đến kiến trúc thượng tầng tư bản chủ nghĩa","Bỏ qua việc xác lập vị trí thống trị của quan hệ sản xuất và kiến trúc thượng tầng xã hội chủ nghĩa, nhưng tiếp thu, kế thừa những thành tựu mà nhân loại đã đạt đến, dưới chế độ tư bản chủ nghĩa, đặc biệt về khoa học - công nghệ để phát triển nhanh lực lượng sản xuất xây dựng nền kinh tế hiện đại"],"answer":3},
+{"n":174,"q":"Quan điểm nào dưới đây không đúng trong đường lối đối ngoại đề ra tại Đại hội Đảng toàn quốc lần thứ IX?","opts":["Mở rộng quan hệ đối ngoại, chủ động hội nhập kinh tế quốc tế","Xem mối quan hệ với Liên Xô là hòn đá tảng","Đa phương hoá, đa dạng hoá các quan hệ quốc tế","Việt Nam sẵn sàng là bạn, là đối tác tin cậy của các nước trong cộng đồng quốc tế, phấn đấu vì hoà bình, độc lập và phát triển"],"answer":1},
+{"n":175,"q":"Phương châm đối ngoại của Việt Nam được xác định tại Đại hội Đảng toàn quốc lần thứ IX có nội dung gì?","opts":["Việt Nam muốn là bạn với tất cả các nước trong cộng đồng thế giới, phấn đấu vì hòa bình, hữu nghị và hợp tác","Chủ động, tích cực hội nhập kinh tế quốc tế","Việt Nam sẵn sàng là bạn, là đối tác tin cậy của các nước trong cộng đồng quốc tế, phấn đấu vì hoà bình, độc lập và phát triển","Cả 3 đáp án trên"],"answer":2},
+{"n":176,"q":"Nội dung chủ yếu nào của đấu tranh giai cấp được khẳng định tại Đại hội Đảng toàn quốc lần thứ IX?","opts":["Thực hiện thắng lợi sự nghiệp công nghiệp hóa, hiện đại hóa theo định hướng xã hội chủ nghĩa","Đấu tranh xem ai thắng ai","Loại bỏ giai cấp tư sản","Không có đáp án đúng"],"answer":0},
+{"n":177,"q":"Chủ đề của Đại hội Đảng toàn quốc lần thứ X là gì?","opts":["Nâng cao năng lực lãnh đạo và sức chiến đấu của Đảng, phát huy sức mạnh toàn dân tộc, đẩy mạnh toàn diện công cuộc đổi mới, sớm đưa nước ta ra khỏi tình trạng kém phát triển","Giải phóng mọi năng lực sản xuất hiện có, khai thác mọi tiềm năng của đất nước và sử dụng có hiệu quả sự giúp đỡ quốc tế để phát triển lực lượng sản xuất đi đôi với xây dựng và củng cố quan hệ sản xuất","Dân giàu, nước mạnh, xã hội công bằng, văn minh","Đoàn kết - Dân chủ - Đổi mới - Phát triển"],"answer":0},
+{"n":178,"q":"Quan điểm nổi bật của Đại hội Đảng toàn quốc lần thứ X là gì?","opts":["Coi kinh tế Nhà nước đóng vai trò chủ đạo","Coi kinh tế tư nhân là thành phần không thể thiếu của nền kinh tế","Cho phép đảng viên làm kinh tế tư nhân","Cả 3 câu trên"],"answer":2},
+{"n":179,"q":"Nghị quyết về xây dựng giai cấp công nhân trong thời kỳ đẩy mạnh công nghiệp hoá, hiện đại hoá đất nước được ban hành trong Hội nghị Trung ương nào?","opts":["Hội nghị Trung ương 6 (1-2008)","Hội nghị Trung ương 4 (2-2007)","Hội nghị Trung ương 5 (7-2007)","Hội nghị Trung ương 6 (8-2007)"],"answer":3},
+{"n":180,"q":"Hội nghị Trung ương 7, khóa X (7-2008) đã ban hành Nghị quyết nào?","opts":["Nghị quyết về xây dựng đội ngũ trí thức trong thời kỳ đẩy mạnh công nghiệp hoá, hiện đại hoá đất nước và hội nhập kinh tế quốc tế","Nghị quyết chuyên đề về tăng cường sự lãnh đạo của Đảng đối với công tác thanh niên thời kỳ đẩy mạnh công nghiệp hoá, hiện đại hoá","Nghị quyết về chủ trương tiếp tục đổi mới phương thức lãnh đạo của Đảng đối với hoạt động của hệ thống chính trị","Nghị quyết về chủ trương nâng cao năng lực lãnh đạo, sức chiến đấu của tổ chức cơ sở đảng và chất lượng đội ngũ cán bộ, đảng viên"],"answer":0},
+{"n":181,"q":"Quan điểm: “Thanh niên là rường cột của nước nhà, chủ nhân tương lai của đất nước, là lực lượng xung kích trong xây dựng và bảo vệ Tổ quốc, một trong những nhân tố quyết định sự thành bại của sự nghiệp công nghiệp hoá, hiện đại hoá đất nước, hội nhập quốc tế và xây dựng chủ nghĩa xã hội” được đề ra tại Nghị quyết nào?","opts":["Nghị quyết chuyên đề về tăng cường sự lãnh đạo của Đảng đối với công tác thanh niên thời kỳ đẩy mạnh công nghiệp hoá, hiện đại hoá","Nghị quyết về chủ trương tiếp tục đổi mới phương thức lãnh đạo của Đảng đối với hoạt động của hệ thống chính trị","Nghị quyết về chủ trương nâng cao năng lực lãnh đạo, sức chiến đấu của tổ chức cơ sở đảng và chất lượng đội ngũ cán bộ, đảng viên","Nghị quyết chuyên đề về tăng cường sự lãnh đạo của Đảng đối với công tác thanh niên thời kỳ đẩy mạnh công nghiệp hoá, hiện đại hoá"],"answer":3},
+{"n":182,"q":"Văn kiện nào sau đây được thông qua tại Đại hội Đảng toàn quốc lần thứ XI?","opts":["Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội","Chiến lược phát triển kinh tế-xã hội 2001-2010","Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội (bổ sung, phát triển năm 2011); Chiến lược, phát triển kinh tế-xã hội 2011-2020","Chiến lược ổn định và phát triển kinh tế-xã hội đến năm 2000"],"answer":2},
+{"n":183,"q":"Mục tiêu cơ bản xây dựng đất nước được xác định trong Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội (bổ sung, phát triển năm 2011) có nội dung gì?","opts":["Việt Nam sẽ trở thành nước công nông nghiệp, theo định hướng xã hội chủ nghĩa vào giữa thế kỷ XXI","Việt Nam sẽ trở thành nước công nghiệp, theo định hướng xã hội chủ nghĩa vào giữa thế kỷ XXI","Việt Nam sẽ trở thành nước công nghiệp hiện đại, theo định hướng xã hội chủ nghĩa vào năm 2020","Việt Nam sẽ trở thành nước công nghiệp hiện đại, theo định hướng xã hội chủ nghĩa vào giữa thế kỷ XXI"],"answer":3},
+{"n":184,"q":"Trong Chiến lược phát triển kinh tế - xã hội giai đoạn 2011-2020, Đại hội Đảng toàn quốc lần thứ XI đã xác định ba đột phá chiến lược nào?","opts":["Hoàn thiện thể chế kinh tế thị trường định hướng xã hội chủ nghĩa; Phát triển nhanh nguồn nhân lực, nhất là nguồn nhân lực chất lượng cao, gắn kết chặt chẽ phát triển nguồn nhân lực với phát triển và ứng dụng khoa học, công nghệ; Xây dựng hệ thống kết cấu hạ tầng đồng bộ, với một số công trình hiện đại, tập trung vào hệ thống giao thông và hạ tầng đô thị lớn.","Hoàn thiện thể chế kinh tế thị trường định hướng xã hội chủ nghĩa; Phát triển nhanh nguồn nhân lực, nhất là nguồn nhân lực chất lượng cao, gắn kết chặt chẽ phát triển nguồn nhân lực với phát triển và ứng dụng khoa học, công nghệ; Xây dựng nền văn hóa tiên tiến đậm đà bản sắc dân tộc","Phát triển nhanh nguồn nhân lực, nhất là nguồn nhân lực chất lượng cao, gắn kết chặt chẽ phát triển nguồn nhân lực với phát triển và ứng dụng khoa học, công nghệ; Xây dựng nền văn hóa tiên tiến đậm đà bản sắc dân tộc; Đẩy mạnh tiến trình công nghiệp hóa đất nước","Không có đáp án nào đúng"],"answer":0},
+{"n":185,"q":"Nghị quyết ”về phát triển khoa học và công nghệ phục vụ sự nghiệp công nghiệp hóa, hiện đại hóa trong điều kiện kinh tế thị trường định hướng xã hội chủ nghĩa và hội nhập quốc tế” được đề ra tại Hội nghị Trung ương nào?","opts":["Hội nghị Trung ương 7 (5-2013)","Hội nghị Trung ương 4, khóa XI (1-2012)","Hội nghị Trung ương 6 (10-2012)","Hội nghị Trung ương 6, khóa X (5-2012)"],"answer":2},
+{"n":186,"q":"Nghị quyết “Về đổi mới căn bản, toàn diện giáo dục và đào tạo, đáp ứng yêu cầu công nghiệp hóa, hiện đại hóa trong điều kiện kinh tế thị trường định hướng xã hội chủ nghĩa và hội nhập quốc tế” được đề ra tại Hội nghị Trung ương nào?","opts":["Hội nghị Trung ương 6, khóa X (5-2012)","Hội nghị Trung ương 7 (5-2013)","Hội nghị Trung ương 4, khóa XI (1-2012)","Hội nghị Trung ương 8 (11-2013)"],"answer":3},
+{"n":187,"q":"Phương hướng cơ bản để thúc đẩy tiến trình công nghiệp hóa ở Việt Nam được xác định trong Cương lĩnh năm 2011 có nội dung gì?","opts":["Đẩy mạnh công nghiệp hoá gắn liền hiện đại hoá đất nước","Đẩy mạnh công nghiệp hoá, hiện đại hoá đất nước gắn với phát triển kinh tế tri thức, bảo vệ tài nguyên, môi trường","Đẩy mạnh phát triển công nghiệp nặng","Đẩy mạnh phát triển nông nghiệp"],"answer":1},
+{"n":188,"q":"Chọn phương án diễn dạt đúng về đặc trưng mới của chủ nghĩa xã hội được bổ sung tại Đại hội Đảng toàn quốc lần thứ X?","opts":["Dân giàu, nước mạnh, văn minh; Có nhà nước pháp quyền XHCN","Dân giàu, nước mạnh, dân chủ, công bằng; Có nhà nước pháp quyền XHCN","Dân giàu, nước mạnh, dân chủ, văn minh; Có nhà nước pháp quyền XHCN","Dân giàu, nước mạnh, công bằng, dân chủ, văn minh; Có nhà nước pháp quyền XHCN"],"answer":3},
+{"n":189,"q":"Chỉ thị 05-CT/TW của Bộ Chính trị về việc tiếp tục đẩy mạnh “Học tập tư tưởng, đạo đức, phong cách Hồ Chí Minh” ban hành vào thời gian nào?","opts":["Tháng 6/2016","Tháng 5/2016","Tháng 7/2016","Tháng 8/2016"],"answer":1},
+{"n":190,"q":"Chọn phương án diễn dạt đúng về công tác dân tộc của Nghị quyết sô 24-NQ/TW ngày 12/3/2003?","opts":["Các dân tộc thiểu số Việt Nam bình đẳng, đoàn kết, tương trợ, giúp nhau cùng phát triển","Các dân tộc Việt Nam đoàn kết, tương trợ, giúp nhau cùng phát triển","Các dân tộc Việt Nam bình đẳng, đoàn kết, tương trợ, giúp nhau cùng phát triển","Các dân tộc thiểu số Việt Nam bình đẳng, đoàn kết, tương trợ, giúp nhau cùng xóa mù chữ"],"answer":2},
+{"n":191,"q":"Đại hội XI diễn ra trong bối cảnh như thế nào?","opts":["Chiến tranh cục bộ, xung đội vũ trang, khủng bố diễn biến phức tạp","Thiên tai, dịch bệnh, biến đổi khí hậu, ô nhiễm môi trường","Suy thoái kinh tế toàn cầu","Tất cả các đáp án trên"],"answer":3},
+{"n":192,"q":"Việt Nam trở thành Ủy viên không thường trực Hội đồng Bảo an nhiệm kỳ 2020-2021 vào thời gian nào?","opts":["Ngày 7/6/2019","Ngày 6/7/2019","Ngày 7/7/2019","Ngày 8/7/2019"],"answer":0},
+{"n":193,"q":"Một trong các bài học kinh nghiệm của Đảng trong quá trình lãnh đạo cộng cuộc đổi mới có nội dung là?","opts":["Đổi mới phải toàn diện, có bước đi phù hợp; phải tôn trọng quy luật khách quan, xuất phát từ thực tiễn, bám sát thực tiễn, coi trọng tổng kết thực tiễn, nghiên cứu lý luận, tập trung giải quyết kịp thời, hiệu quả những vấn đề do thực tiễn đặt ra","Đổi mới phải toàn diện, đồng bộ, có bước đi phù hợp; phải tôn trọng quy luật khách quan, xuất phát từ thực tiễn, bám sát thực tiễn, coi trọng tổng kết thực tiễn, nghiên cứu lý luận, tập trung giải quyết kịp thời, hiệu quả những vấn đề do thực tiễn đặt ra","Đổi mới phải toàn diện, đồng bộ; phải tôn trọng quy luật khách quan, xuất phát từ thực tiễn, bám sát thực tiễn, coi trọng tổng kết thực tiễn, nghiên cứu lý luận, tập trung giải quyết kịp thời, hiệu quả những vấn đề do thực tiễn đặt ra","Đổi mới phải toàn diện, đồng bộ, có bước đi phù hợp; phải tôn trọng quy luật khách quan, xuất phát từ thực tiễn, bám sát thực tiễn, coi trọng tổng kết thực tiễn, tập trung giải quyết kịp thời, hiệu quả những vấn đề do thực tiễn đặt ra"],"answer":1},
+{"n":194,"q":"Cương lĩnh năm 2011 bổ sung thêm các vấn đề toàn cầu nào?","opts":["Chống tham nhũng và lãng phí","Chống chủ nghĩa cực đoan và ô nhiễm môi trường","Chống khủng bố và biến đổi khí hậu","Chống đói nghèo và khủng hoảng kinh tế"],"answer":2},
+{"n":195,"q":"Chủ trương tiếp tục hoàn thiện thể chế kinh tế thị trường định hướng xã hội chủ nghĩa được xác định tại Hội nghị Trung ương nào?","opts":["Hội nghị Trung ương 5, khóa XII (2/2017)","Hội nghị Trung ương 7 (5- 2013)","Hội nghị Trung ương 4, khóa XII (10-2016)","Hội nghị Trung ương 8 (10-2018)"],"answer":0},
+{"n":196,"q":"Phương hướng cơ bản xây dựng chủ nghĩa xã hội được xác định tại Cương lĩnh chính trị năm 2011 có nội dung gì?","opts":["Hoàn thiện thể chế kinh tế thị trường định hướng xã hội chủ nghĩa, trọng tâm là tạo lập môi trường cạnh tranh bình đẳng và cải cách hành chính","Xây dựng nền dân chủ xã hội chủ nghĩa, thực hiện đại đoàn kết toàn dân tộc, tăng cường và mở rộng mặt trận dân tộc thống nhất","Xây dựng hệ thống kết cấu hạ tầng đồng bộ, với một số công trình hiện đại, tập trung vào hệ thống giao thông và hạ tầng đô thị lớn","Phát triển kinh tế nhanh và bền vững, bảo vệ môi trường"],"answer":1},
+{"n":197,"q":"Quan điểm “Doanh nghiệp nhà nước là lực lượng nòng cốt của kinh tế nhà nước, là lực lượng vật chất quan trọng, là công cụ hỗ trợ để nha nước điều tiết nền kinh tế, ổn định kinh tế vĩ mô” được xác định tại Hội nghị Trung ương nào?","opts":["Hội nghị trung ương 5 (2/2017)","Hội nghị Trung ương 7 (5- 2013)","Hội nghị Trung ương 6 (5-2012)","Hội nghị Trung ương 8 (10-2018)"],"answer":2},
+{"n":198,"q":"Phương hướng cơ bản xây dựng Nhà nước Việt Nam được xác định tại Cương lĩnh chính trị năm 2011 có nội dung gì?","opts":["Xây dựng Nhà nước pháp quyền xã hội chủ nghĩa của nhân dân, do nhân dân, vì nhân dân","Giữa xây dựng nền văn hóa tiên tiến đậm đà bản sắc dân tộc và hội nhập quốc tế","Giữa phát triển nhanh và bền vững, bảo vệ môi trường","Phát triển nhanh nguồn nhân lực, nhất là nguồn nhân lực có chất lượng cao, tập trung vào việc đổi mới căn bản và toàn diện nền giáo dục quốc dân"],"answer":0},
+{"n":199,"q":"Chọn cụm từ đúng điền vào chỗ trống. Hệ thống chính trị Việt Nam vận hành theo cơ chế: “Đảng [……], Nhà nước [……], Dân [……]”.","opts":["Làm chủ, quản lý, lãnh đạo","Quản lý, lãnh đạo, làm chủ","Lãnh đạo, quản lý, làm chủ","Lãnh đạo, quản lý, quyết định"],"answer":2},
+{"n":200,"q":"Mục tiêu phát triển khoa học công nghệ đạt trình độ tiên tiến thế giới được Đại hội Đảng toàn quốc lần thứ XII xác định vào năm nào?","opts":["Năm 2030","Năm 2025","Năm 2027","Năm 2020"],"answer":0}]
+</script>
+<script>
+"use strict";
+/* ---------- Dữ liệu ---------- */
+const RAW = JSON.parse(document.getElementById("qdata").textContent);
+const Q = RAW.filter(x => x.q && Array.isArray(x.opts) && x.opts.length >= 2 && Number.isInteger(x.answer) && x.answer >= 0 && x.answer < x.opts.length)
+             .sort((a, b) => a.n - b.n);
+const byN = new Map(Q.map(x => [x.n, x]));
+const LET = "ABCDEFGH";
+const K = { session: "lsd-ss010-session", stats: "lsd-ss010-stats", marks: "lsd-ss010-marks", hist: "lsd-ss010-history", theme: "lsd-ss010-theme", setup: "lsd-ss010-setup" };
+
+/* ---------- Lưu trữ (an toàn khi localStorage bị chặn) ---------- */
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+  del(k) { try { localStorage.removeItem(k); } catch {} },
+};
+let stats = store.get(K.stats, {});           // { n: {r, w, last: 1|0} }
+let marks = new Set(store.get(K.marks, []));  // số câu đã đánh dấu
+let hist = store.get(K.hist, []);             // [{t, mode, total, correct, secs}]
+let S = store.get(K.session, null);           // phiên làm bài hiện tại
+if (S && !S.ids?.every(n => byN.has(n))) S = null;
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const plain = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/gi, "d").toLowerCase();
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const fmtTime = s => { s = Math.max(0, Math.round(s)); const m = Math.floor(s / 60), r = s % 60; return (m >= 60 ? Math.floor(m / 60) + ":" + String(m % 60).padStart(2, "0") : m) + ":" + String(r).padStart(2, "0"); };
+// Đáp án kiểu "Tất cả đáp án trên", "Cả 2 đáp án b,c", "a và b đúng" -> không trộn
+const refersOthers = x => x.opts.some(o => /(tat ca|ca \d|ca hai|ca ba|ca 2|ca 3|dap an tren|y tren|phuong an tren|\b[a-d]\s*(va|,)\s*[a-d]\b|deu (dung|sai))/.test(plain(o)));
+let toastT;
+function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), 1600); }
+const isWrongQ = n => { const s = stats[n]; return s && (s.last === 0 || s.w > s.r); };
+
+/* ---------- Giao diện sáng/tối ---------- */
+function applyTheme(t) { if (t) document.documentElement.dataset.theme = t; else delete document.documentElement.dataset.theme; }
+applyTheme(store.get(K.theme, null));
+$("themeBtn").onclick = () => {
+  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  const t = dark ? "light" : "dark"; applyTheme(t); store.set(K.theme, t);
+};
+
+/* ---------- Điều hướng tab ---------- */
+const VIEWS = ["home", "quiz", "result", "bank", "stats"];
+function show(v) {
+  VIEWS.forEach(x => $("v-" + x).hidden = x !== v);
+  const tab = v === "quiz" || v === "result" ? "home" : v;
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tab));
+  if (v === "home") renderHome();
+  if (v === "bank") renderBank();
+  if (v === "stats") renderStats();
+  window.scrollTo({ top: 0 });
+}
+document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => {
+  if (b.dataset.tab === "home" && S && !S.done) { show("quiz"); renderQuiz(); return; }
+  show(b.dataset.tab);
+});
+
+/* ---------- Trang đầu / thiết lập ---------- */
+const form = $("setupForm");
+const val = name => form.querySelector(`input[name=${name}]:checked`).value;
+function sourceList() {
+  const src = val("src");
+  if (src === "range") {
+    const a = +$("rFrom").value || 1, b = +$("rTo").value || Q[Q.length - 1].n;
+    return Q.filter(x => x.n >= Math.min(a, b) && x.n <= Math.max(a, b));
+  }
+  if (src === "wrong") return Q.filter(x => isWrongQ(x.n));
+  if (src === "marked") return Q.filter(x => marks.has(x.n));
+  if (src === "new") return Q.filter(x => !stats[x.n]);
+  return Q;
+}
+function updateSetup() {
+  const mode = val("mode");
+  $("timeField").hidden = mode !== "exam";
+  $("autoNextRow").hidden = mode !== "practice";
+  $("rangeRow").hidden = val("src") !== "range";
+  const list = sourceList();
+  const nq = form.querySelector("input[name=nq]:checked");
+  if (nq && nq.value === "all") $("nQ").value = list.length;
+  $("nQ").max = Math.max(1, list.length);
+  const n = Math.min(+$("nQ").value || list.length, list.length);
+  $("srcHint").textContent = list.length ? `Có ${list.length} câu trong nguồn này — sẽ làm ${n} câu.` : "Nguồn này chưa có câu nào.";
+  $("startBtn").disabled = !list.length;
+  if (mode === "exam" && !$("tMin").dataset.touched) $("tMin").value = Math.max(1, Math.round(n * 60 / 60 * 1.0));
+}
+form.addEventListener("change", e => {
+  if (e.target.name === "nq" && e.target.value !== "all") $("nQ").value = e.target.value;
+  if (e.target.id === "tMin") $("tMin").dataset.touched = 1;
+  updateSetup(); saveSetup();
+});
+$("nQ").addEventListener("input", () => { form.querySelectorAll("input[name=nq]").forEach(r => r.checked = r.value === $("nQ").value); updateSetup(); saveSetup(); });
+["rFrom", "rTo"].forEach(id => $(id).addEventListener("input", () => { updateSetup(); saveSetup(); }));
+$("tMin").addEventListener("input", () => { $("tMin").dataset.touched = 1; saveSetup(); });
+function saveSetup() {
+  store.set(K.setup, { mode: val("mode"), src: val("src"), n: $("nQ").value, from: $("rFrom").value, to: $("rTo").value, t: $("tMin").dataset.touched ? $("tMin").value : null,
+    sq: $("optShuffleQ").checked, sa: $("optShuffleA").checked, an: $("optAutoNext").checked });
+}
+function loadSetup() {
+  const s = store.get(K.setup, null);
+  $("rTo").value = Q.length ? Q[Q.length - 1].n : 1;
+  if (!s) return;
+  const set = (name, v) => { const r = form.querySelector(`input[name=${name}][value="${v}"]`); if (r) r.checked = true; };
+  set("mode", s.mode); set("src", s.src);
+  if (s.n) { $("nQ").value = s.n; form.querySelectorAll("input[name=nq]").forEach(r => r.checked = r.value === String(s.n)); }
+  if (s.from) $("rFrom").value = s.from; if (s.to) $("rTo").value = s.to;
+  if (s.t != null) { $("tMin").value = s.t; $("tMin").dataset.touched = 1; }
+  $("optShuffleQ").checked = s.sq !== false; $("optShuffleA").checked = s.sa !== false; $("optAutoNext").checked = !!s.an;
+}
+function statTiles() {
+  const done = Q.filter(x => stats[x.n]).length;
+  let r = 0, w = 0; for (const k in stats) { r += stats[k].r; w += stats[k].w; }
+  const mastered = Q.filter(x => stats[x.n] && stats[x.n].last === 1).length;
+  return [
+    [Q.length, "câu trong ngân hàng"],
+    [done, "câu đã làm"],
+    [r + w ? Math.round(r * 100 / (r + w)) + "%" : "—", "tỉ lệ đúng"],
+    [mastered, "câu lần gần nhất đúng"],
+    [Q.filter(x => isWrongQ(x.n)).length, "câu hay sai"],
+    [marks.size, "câu đánh dấu"],
+  ].map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+}
+function renderHome() {
+  const nums = Q.map(x => x.n);
+  $("bankInfo").textContent = Q.length ? `${Q.length} câu hỏi có đáp án, đánh số ${nums[0]}–${nums[nums.length - 1]} theo phần trắc nghiệm cuối sách (file gốc bị hỏng vài trang nên thiếu ${nums[nums.length - 1] - nums[0] + 1 - Q.length} câu).` : "Chưa có dữ liệu câu hỏi.";
+  $("cntWrong").textContent = Q.filter(x => isWrongQ(x.n)).length;
+  $("cntMarked").textContent = marks.size;
+  $("cntNew").textContent = Q.filter(x => !stats[x.n]).length;
+  $("homeStats").innerHTML = statTiles();
+  const live = S && !S.done;
+  $("resumeCard").hidden = !live;
+  if (live) {
+    const a = Object.keys(S.ans).length;
+    $("resumeInfo").textContent = `${S.mode === "exam" ? "Thi thử" : "Luyện tập"} · đã trả lời ${a}/${S.ids.length} câu` + (S.limit ? ` · còn ${fmtTime(timeLeft())}` : "");
+  }
+  updateSetup();
+}
+$("resumeBtn").onclick = () => { show("quiz"); renderQuiz(); };
+$("discardBtn").onclick = () => { if (confirm("Bỏ bài đang làm dở?")) { S = null; store.del(K.session); renderHome(); } };
+
+/* ---------- Tạo phiên làm bài ---------- */
+function startSession(list, opt) {
+  const ids = (opt.shuffleQ ? shuffle(list) : list.slice()).slice(0, opt.n || list.length).map(x => x.n);
+  if (!ids.length) { toast("Không có câu nào để làm"); return; }
+  const order = {};
+  for (const n of ids) {
+    const x = byN.get(n), idx = x.opts.map((_, i) => i);
+    order[n] = opt.shuffleA && !refersOthers(x) ? shuffle(idx) : idx;
+  }
+  S = { mode: opt.mode, ids, order, ans: {}, cur: 0, start: Date.now(), elapsed: 0, limit: opt.mode === "exam" ? opt.limit * 60 : 0, autoNext: !!opt.autoNext, opt, done: false };
+  save(); show("quiz"); renderQuiz();
+}
+$("startBtn").onclick = () => {
+  const list = sourceList();
+  startSession(list, { mode: val("mode"), n: Math.min(+$("nQ").value || list.length, list.length), shuffleQ: $("optShuffleQ").checked, shuffleA: $("optShuffleA").checked,
+    autoNext: $("optAutoNext").checked, limit: Math.max(0, +$("tMin").value || 0) });
+};
+function save() { if (S) { S.elapsed = elapsed(); S.start = Date.now(); store.set(K.session, S); } }
+const elapsed = () => S ? S.elapsed + (S.done ? 0 : (Date.now() - S.start) / 1000) : 0;
+const timeLeft = () => S.limit - elapsed();
+
+/* ---------- Làm bài ---------- */
+function record(n, ok) {
+  const s = stats[n] || (stats[n] = { r: 0, w: 0, last: null });
+  ok ? s.r++ : s.w++; s.last = ok ? 1 : 0; store.set(K.stats, stats);
+}
+function choose(orig) {
+  const n = S.ids[S.cur];
+  if (S.mode === "practice") {
+    if (S.ans[n] != null) return;
+    S.ans[n] = orig;
+    const ok = orig === byN.get(n).answer;
+    record(n, ok); save(); renderQuiz();
+    if (ok && S.autoNext && S.cur < S.ids.length - 1) setTimeout(() => { if (S && S.ids[S.cur] === n) go(1); }, 650);
+  } else {
+    S.ans[n] = S.ans[n] === orig ? undefined : orig;
+    if (S.ans[n] === undefined) delete S.ans[n];
+    save(); renderQuiz();
+  }
+}
+function go(d) { const c = S.cur + d; if (c < 0 || c >= S.ids.length) return; S.cur = c; save(); renderQuiz(); }
+function jump(i) { S.cur = i; save(); renderQuiz(); if (matchMedia("(max-width:899px)").matches) $("qCard").scrollIntoView({ behavior: "smooth", block: "start" }); }
+function toggleMark(n) { marks.has(n) ? marks.delete(n) : marks.add(n); store.set(K.marks, [...marks]); }
+
+function renderQuiz() {
+  if (!S) return show("home");
+  const n = S.ids[S.cur], x = byN.get(n), a = S.ans[n], practice = S.mode === "practice";
+  const answered = Object.keys(S.ans).length, total = S.ids.length;
+  $("qPos").textContent = `${S.cur + 1}/${total}`;
+  $("qBar").style.width = (answered * 100 / total) + "%";
+  $("qNum").textContent = `CÂU ${S.cur + 1} · (số ${n} trong sách)`;
+  $("qText").textContent = x.q;
+  const fl = marks.has(n);
+  $("flagBtn").className = "flag" + (fl ? " on" : ""); $("flagBtn").textContent = fl ? "★ Đã đánh dấu" : "☆ Đánh dấu";
+  const locked = practice && a != null;
+  $("qOpts").innerHTML = S.order[n].map((orig, i) => {
+    let cls = "opt";
+    if (locked) { if (orig === x.answer) cls += " right"; else if (orig === a) cls += " wrong"; }
+    else if (orig === a) cls += " sel";
+    return `<button class="${cls}" data-o="${orig}" ${locked ? "disabled" : ""}><span class="let">${LET[i]}</span><span>${esc(x.opts[orig])}</span></button>`;
+  }).join("");
+  $("qOpts").querySelectorAll(".opt").forEach(b => b.onclick = () => choose(+b.dataset.o));
+  $("qFeedback").innerHTML = locked ? (a === x.answer
+    ? `<div class="feedback ok">✓ Chính xác!</div>`
+    : `<div class="feedback no">✗ Sai. Đáp án đúng: ${LET[S.order[n].indexOf(x.answer)]}. ${esc(x.opts[x.answer])}</div>`) : "";
+  $("prevBtn").disabled = S.cur === 0;
+  const last = S.cur === total - 1;
+  $("nextBtn").textContent = last ? (practice ? "Xem kết quả" : "Nộp bài") : "Câu sau →";
+  $("nextBtn").className = "btn" + (last ? " primary" : "");
+  $("submitBtn").textContent = practice ? "Kết thúc" : "Nộp bài";
+  if (practice) {
+    const ok = S.ids.filter(k => S.ans[k] != null && S.ans[k] === byN.get(k).answer).length;
+    $("qScore").hidden = false; $("qScore").textContent = `✓ ${ok} · ✗ ${answered - ok}`;
+  } else $("qScore").hidden = true;
+  // Bảng câu
+  $("navGrid").innerHTML = S.ids.map((k, i) => {
+    let c = "";
+    if (S.ans[k] != null) c = practice ? (S.ans[k] === byN.get(k).answer ? "ok" : "no") : "ans";
+    if (i === S.cur) c += " cur"; if (marks.has(k)) c += " fl";
+    return `<button class="${c}" data-i="${i}" aria-label="Câu ${i + 1}">${i + 1}</button>`;
+  }).join("");
+  $("navGrid").querySelectorAll("button").forEach(b => b.onclick = () => jump(+b.dataset.i));
+  $("navCount").textContent = `${answered}/${total} đã làm`;
+  $("legend").innerHTML = (practice
+    ? `<span><i style="background:var(--good-soft);border-color:var(--good)"></i>Đúng</span><span><i style="background:var(--bad-soft);border-color:var(--bad)"></i>Sai</span>`
+    : `<span><i style="background:var(--accent-soft);border-color:var(--accent)"></i>Đã chọn</span>`) +
+    `<span><i></i>Chưa làm</span><span><i style="background:var(--warn);border-color:var(--warn);border-radius:50%"></i>Đánh dấu</span>`;
+  tick();
+}
+$("prevBtn").onclick = () => go(-1);
+$("nextBtn").onclick = () => S.cur === S.ids.length - 1 ? submit() : go(1);
+$("submitBtn").onclick = () => submit();
+$("flagBtn").onclick = () => { toggleMark(S.ids[S.cur]); renderQuiz(); };
+$("quitBtn").onclick = () => { save(); show("home"); };
+$("jumpUnans").onclick = () => {
+  const t = S.ids.length; for (let d = 1; d <= t; d++) { const i = (S.cur + d) % t; if (S.ans[S.ids[i]] == null) return jump(i); }
+  toast("Bạn đã làm hết các câu");
+};
+$("jumpFlag").onclick = () => {
+  const t = S.ids.length; for (let d = 1; d <= t; d++) { const i = (S.cur + d) % t; if (marks.has(S.ids[i])) return jump(i); }
+  toast("Chưa đánh dấu câu nào");
+};
+
+/* ---------- Đồng hồ ---------- */
+function tick() {
+  if (!S || S.done) return;
+  const t = $("qTimer");
+  if (S.limit) {
+    const left = timeLeft(); t.hidden = false; t.textContent = "⏱ " + fmtTime(left); t.classList.toggle("low", left < 60);
+    if (left <= 0 && !$("v-quiz").hidden) { toast("Hết giờ — đã tự nộp bài"); submit(true); }
+  } else { t.hidden = false; t.classList.remove("low"); t.textContent = "⏱ " + fmtTime(elapsed()); }
+}
+setInterval(() => { if (S && !S.done && !$("v-quiz").hidden) tick(); }, 1000);
+setInterval(() => { if (S && !S.done && !$("v-quiz").hidden) save(); }, 10000);
+addEventListener("visibilitychange", () => { if (document.hidden) save(); });
+addEventListener("pagehide", save);
+
+/* ---------- Nộp bài & kết quả ---------- */
+function submit(force) {
+  const un = S.ids.filter(n => S.ans[n] == null).length;
+  if (!force && un && !confirm(`Còn ${un} câu chưa trả lời. ${S.mode === "exam" ? "Vẫn nộp bài?" : "Vẫn kết thúc?"}`)) return;
+  if (S.mode === "exam") for (const n of S.ids) if (S.ans[n] != null) record(n, S.ans[n] === byN.get(n).answer);
+  S.elapsed = elapsed(); S.done = true;
+  const correct = S.ids.filter(n => S.ans[n] === byN.get(n).answer).length;
+  hist.unshift({ t: Date.now(), mode: S.mode, total: S.ids.length, correct, secs: Math.round(S.elapsed) });
+  hist = hist.slice(0, 50); store.set(K.hist, hist);
+  store.set(K.session, S);
+  show("result"); renderResult();
+}
+function renderResult() {
+  const total = S.ids.length, correct = S.ids.filter(n => S.ans[n] === byN.get(n).answer).length;
+  const skip = S.ids.filter(n => S.ans[n] == null).length;
+  $("rScore").textContent = `${correct}/${total}`;
+  $("rDetail").textContent = `${Math.round(correct * 100 / total)}% · Điểm hệ 10: ${(correct * 10 / total).toFixed(2)} · Sai ${total - correct - skip} · Bỏ trống ${skip} · Thời gian ${fmtTime(S.elapsed)}`;
+  $("retryWrong").disabled = correct === total;
+  const f = document.querySelector("input[name=rf]:checked").value;
+  const items = S.ids.map((n, i) => {
+    const x = byN.get(n), a = S.ans[n];
+    const st = a == null ? "skip" : a === x.answer ? "ok" : "no";
+    return { n, i, x, a, st };
+  }).filter(o => f === "all" || (f === "fl" ? marks.has(o.n) : o.st === f));
+  $("rList").innerHTML = items.length ? items.map(o => reviewItem(o.x, { idx: o.i + 1, pick: o.a, st: o.st, order: S.order[o.n] })).join("") : `<p class="empty">Không có câu nào.</p>`;
+  bindMarkButtons($("rList"), renderResult);
+}
+function reviewItem(x, o) {
+  const order = o.order || x.opts.map((_, i) => i);
+  const lis = order.map((orig, i) => {
+    let c = orig === x.answer ? "c" : (orig === o.pick ? "x" : "");
+    return `<li class="${c}">${LET[i]}. ${esc(x.opts[orig])}${orig === o.pick ? " ← bạn chọn" : ""}</li>`;
+  }).join("");
+  const s = stats[x.n];
+  const tag = o.st === "ok" ? "Đúng" : o.st === "no" ? "Sai" : o.st === "skip" ? "Bỏ trống" : "";
+  return `<div class="ritem ${o.st || ""} ${o.hide ? "hide-ans" : ""}" data-n="${x.n}">
+    <div class="q">${o.idx ? `<span class="mono small muted">#${o.idx}</span> ` : ""}<span class="mono small" style="color:var(--accent)">Câu ${x.n}.</span> ${esc(x.q)}</div>
+    <ol>${lis}</ol>
+    <div class="meta">${tag ? `<b>${tag}</b>` : ""}${s ? `<span>Đã làm ${s.r + s.w} lần · đúng ${s.r}</span>` : ""}
+      <button class="reveal" data-mark="${x.n}">${marks.has(x.n) ? "★ Bỏ đánh dấu" : "☆ Đánh dấu"}</button>
+      ${o.hide ? `<button class="reveal" data-show>Hiện đáp án</button>` : ""}</div></div>`;
+}
+function bindMarkButtons(root, rerender) {
+  root.querySelectorAll("[data-mark]").forEach(b => b.onclick = () => { toggleMark(+b.dataset.mark); rerender(); });
+  root.querySelectorAll("[data-show]").forEach(b => b.onclick = () => { b.closest(".ritem").classList.remove("hide-ans"); b.remove(); });
+}
+$("rFilter").addEventListener("change", renderResult);
+$("retryWrong").onclick = () => {
+  const list = S.ids.filter(n => S.ans[n] !== byN.get(n).answer).map(n => byN.get(n));
+  startSession(list, { ...S.opt, n: list.length });
+};
+$("retryAll").onclick = () => startSession(S.ids.map(n => byN.get(n)), { ...S.opt, n: S.ids.length });
+$("toHome").onclick = () => { S = null; store.del(K.session); show("home"); };
+
+/* ---------- Ngân hàng câu ---------- */
+let bankT;
+function renderBank() {
+  const q = plain($("bSearch").value.trim()), f = document.querySelector("input[name=bf]:checked").value, hide = $("bHide").checked;
+  const words = q.split(/\s+/).filter(Boolean);
+  const list = Q.filter(x => (f === "all" || (f === "marked" ? marks.has(x.n) : isWrongQ(x.n))) &&
+    (!words.length || (h => words.every(w => h.includes(w)))(plain(x.n + " " + x.q + " " + x.opts.join(" ")))));
+  $("bCount").textContent = `${list.length} câu`;
+  const shown = list.slice(0, 300);
+  $("bList").innerHTML = shown.length ? shown.map(x => reviewItem(x, { hide })).join("") + (list.length > 300 ? `<p class="empty">… thu hẹp tìm kiếm để xem thêm</p>` : "") : `<p class="empty">Không tìm thấy câu nào.</p>`;
+  bindMarkButtons($("bList"), renderBank);
+}
+$("bSearch").addEventListener("input", () => { clearTimeout(bankT); bankT = setTimeout(renderBank, 120); });
+$("bFilter").addEventListener("change", renderBank);
+$("bHide").addEventListener("change", renderBank);
+
+/* ---------- Thống kê ---------- */
+function renderStats() {
+  $("sStats").innerHTML = statTiles();
+  $("sHistory").innerHTML = hist.length ? `<table><thead><tr><th>Thời điểm</th><th>Chế độ</th><th>Kết quả</th><th>Thời gian</th></tr></thead><tbody>` +
+    hist.slice(0, 20).map(h => `<tr><td>${new Date(h.t).toLocaleString("vi-VN", { dateStyle: "short", timeStyle: "short" })}</td><td>${h.mode === "exam" ? "Thi thử" : "Luyện tập"}</td>
+      <td><b>${h.correct}/${h.total}</b> <span class="muted">(${Math.round(h.correct * 100 / h.total)}%)</span></td><td class="mono">${fmtTime(h.secs)}</td></tr>`).join("") + `</tbody></table>`
+    : `<p class="empty">Chưa có bài nào.</p>`;
+  const worst = Q.filter(x => stats[x.n] && stats[x.n].w).sort((a, b) => stats[b.n].w - stats[a.n].w || stats[a.n].r - stats[b.n].r).slice(0, 15);
+  $("sWorst").innerHTML = worst.length ? `<div class="review" style="margin-top:0">${worst.map(x => reviewItem(x, {})).join("")}</div>` : `<p class="empty">Chưa có câu sai nào. Cố lên!</p>`;
+  bindMarkButtons($("sWorst"), renderStats);
+}
+$("resetBtn").onclick = () => {
+  if (!confirm("Xoá toàn bộ thống kê, lịch sử và đánh dấu? Không thể hoàn tác.")) return;
+  stats = {}; marks = new Set(); hist = [];
+  [K.stats, K.marks, K.hist].forEach(store.del); renderStats(); toast("Đã xoá thống kê");
+};
+
+/* ---------- Phím tắt ---------- */
+addEventListener("keydown", e => {
+  if ($("v-quiz").hidden || !S || S.done || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return;
+  const k = e.key.toLowerCase(), order = S.order[S.ids[S.cur]];
+  let i = -1;
+  if (/^[1-8]$/.test(k)) i = +k - 1; else if (/^[a-h]$/.test(k) && k !== "f") i = k.charCodeAt(0) - 97;
+  if (i >= 0 && i < order.length) { e.preventDefault(); choose(order[i]); return; }
+  if (k === "arrowright") { e.preventDefault(); go(1); }
+  else if (k === "arrowleft") { e.preventDefault(); go(-1); }
+  else if (k === "enter") { e.preventDefault(); S.cur === S.ids.length - 1 ? submit() : go(1); }
+  else if (k === "f") { e.preventDefault(); $("flagBtn").click(); }
+});
+
+/* ---------- Khởi động ---------- */
+loadSetup();
+if (S && S.done) { show("result"); renderResult(); }
+else show("home");
+</script>
+</body>
+</html>
