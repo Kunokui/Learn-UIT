@@ -1,0 +1,1407 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ôn thi cuối kỳ IT007</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: sticky tab bar over one reading column (max 1040px); each tab is a view; simulator is a two-pane tool that stacks on phones. */
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --sunk:#E9EDF2; --ink:#141C26; --muted:#566273; --line:#D7DDE5;
+  --accent:#1D58B8; --accent-ink:#FFFFFF; --accent-soft:#E2EBF9; --warn:#9A4E06; --warn-soft:#FBEEDD;
+  --good:#17703F; --good-soft:#DDF2E5; --bad:#B0281E; --bad-soft:#F9E1DE;
+  --p1:#A9C8F5; --p2:#F5C38F; --p3:#A8DDB9; --p4:#E7B0D6; --p5:#F1E08D; --p6:#B7B4F0; --p7:#9ED9DD; --p8:#F2AFA6; --p-ink:#141C26; --idle:#E3E7EC;
+  --f-display:"Bricolage Grotesque", "Be Vietnam Pro", system-ui, sans-serif;
+  --f-body:"Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F141A; --surface:#161D26; --sunk:#1D2530; --ink:#E5EAF1; --muted:#98A4B3; --line:#2A3441;
+  --accent:#86ADF2; --accent-ink:#0F141A; --accent-soft:#1C2A40; --warn:#E6A65C; --warn-soft:#33261A;
+  --good:#63C78E; --good-soft:#16301F; --bad:#F08A80; --bad-soft:#3A1D1B;
+  --p1:#2F5D9E; --p2:#8E5A21; --p3:#2C7349; --p4:#86386E; --p5:#7A6A14; --p6:#4E4A9E; --p7:#22747A; --p8:#93413A; --p-ink:#F1F4F8; --idle:#252E3A;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F141A; --surface:#161D26; --sunk:#1D2530; --ink:#E5EAF1; --muted:#98A4B3; --line:#2A3441;
+  --accent:#86ADF2; --accent-ink:#0F141A; --accent-soft:#1C2A40; --warn:#E6A65C; --warn-soft:#33261A;
+  --good:#63C78E; --good-soft:#16301F; --bad:#F08A80; --bad-soft:#3A1D1B;
+  --p1:#2F5D9E; --p2:#8E5A21; --p3:#2C7349; --p4:#86386E; --p5:#7A6A14; --p6:#4E4A9E; --p7:#22747A; --p8:#93413A; --p-ink:#F1F4F8; --idle:#252E3A;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding-block:28px 18px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,44px);line-height:1.08;margin:6px 0 10px;text-wrap:balance;letter-spacing:-.01em}
+h2{font-family:var(--f-display);font-weight:700;font-size:24px;line-height:1.2;margin:0 0 12px;text-wrap:balance}
+h3{font-size:16px;font-weight:700;margin:0 0 6px}
+p{margin:0 0 10px}
+.lede{color:var(--muted);max-width:68ch;margin:0}
+.chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tag{font-family:var(--f-mono);font-size:12px;padding:3px 9px;border-radius:999px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{flex:0 0 auto;border:0;background:none;font:600 14px var(--f-body);color:var(--muted);padding:13px 12px 11px;border-bottom:3px solid transparent;cursor:pointer}
+@media (max-width:640px){nav.tabs .wrap{flex-wrap:wrap;overflow-x:visible}nav.tabs button{padding:9px 9px 7px;font-size:13px}}
+nav.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+nav.tabs button:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main{padding-block:26px 60px}
+section.view{display:grid;gap:22px;grid-template-columns:minmax(0,1fr)}
+section.view>*,.chap>*{min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+code,.mono{font-family:var(--f-mono);font-size:.9em}
+pre{font-family:var(--f-mono);font-size:13px;line-height:1.5;background:var(--sunk);border-radius:8px;padding:12px 14px;overflow-x:auto;margin:8px 0;white-space:pre}
+ul.tight{margin:4px 0 10px;padding-left:20px}
+ul.tight li{margin:2px 0}
+.kv{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:6px 16px;margin:8px 0}
+.kv dt{font-weight:600}
+.kv dd{margin:0;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.grid2>*{min-width:0}
+.mini{background:var(--sunk);border-radius:8px;padding:12px 14px}
+.mini h3{font-size:14px}
+.chap{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+.chap>h2 .num{font-family:var(--f-mono);font-size:14px;color:var(--accent);font-weight:600;display:block;letter-spacing:.06em}
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{color:var(--accent);text-decoration:none;font-weight:600;font-size:14px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.tablewrap{overflow-x:auto;margin:6px 0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:13px;background:var(--sunk)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--f-mono);font-size:13px}
+.formula{font-family:var(--f-mono);font-size:14px;background:var(--accent-soft);border-radius:8px;padding:10px 14px;display:grid;gap:4px}
+.state-diagram{overflow-x:auto}
+.state-diagram svg{display:block;max-width:100%;height:auto;min-width:520px}
+/* traps */
+.traps{display:grid;gap:10px}
+.trap{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.trap>div{padding:12px 16px;min-width:0}
+.trap .wrong{background:var(--bad-soft)}
+.trap .right{background:var(--surface)}
+.trap .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px}
+.trap .wrong .lbl{color:var(--bad)}
+.trap .right .lbl{color:var(--good)}
+@media (max-width:640px){.trap{grid-template-columns:1fr}}
+/* quiz */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:none;padding:7px 12px;font:600 13px var(--f-body);color:var(--muted);cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+select,input[type=number],input[type=text]{font:500 14px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+.btn{font:600 14px var(--f-body);border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:none}
+.scorebar{display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;font-variant-numeric:tabular-nums}
+.scorebar b{font-family:var(--f-display);font-size:26px}
+.progress{height:6px;border-radius:3px;background:var(--sunk);overflow:hidden;flex:1 1 160px;min-width:120px;align-self:center}
+.progress i{display:block;height:100%;background:var(--accent)}
+.qlist{display:grid;gap:14px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:10px}
+.q.correct{border-color:var(--good)}
+.q.wrongq{border-color:var(--bad)}
+.qhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.qhead .qn{font-family:var(--f-mono);font-weight:600;color:var(--accent)}
+.qtext{font-weight:500}
+.opts{display:grid;gap:6px}
+.opt{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;text-align:left;font:400 14.5px/1.5 var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt .L{font-family:var(--f-mono);font-weight:600;color:var(--muted)}
+.opt.is-right{background:var(--good-soft);border-color:var(--good)}
+.opt.is-right .L{color:var(--good)}
+.opt.is-wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt.is-wrong .L{color:var(--bad)}
+.opt[disabled]{cursor:default}
+.explain{background:var(--accent-soft);border-radius:8px;padding:10px 14px;font-size:14px}
+.explain b{color:var(--accent)}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+/* simulator */
+.sim{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:18px;align-items:start}
+.sim>*{min-width:0}
+@media (max-width:860px){.sim{grid-template-columns:1fr}}
+.ptable input{width:100%;min-width:44px;padding:5px 6px;font-family:var(--f-mono);font-size:13px}
+.ptable td{padding:4px 4px;border:0}
+.ptable th{padding:5px 4px;background:none;border-bottom:1px solid var(--line)}
+.ptable .del{border:0;background:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:2px 6px}
+.field{display:grid;gap:4px;font-size:13px;font-weight:600;color:var(--muted)}
+.fields{display:flex;flex-wrap:wrap;gap:12px;align-items:end}
+.algo-btns{display:flex;flex-wrap:wrap;gap:6px}
+.algo-btns button{font:600 13px var(--f-body);padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.algo-btns button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.gantt-scroll{overflow-x:auto;padding-bottom:4px}
+.gantt{position:relative;height:74px}
+.gantt .bar{position:absolute;top:0;height:42px;display:flex;align-items:center;justify-content:center;font:600 13px var(--f-mono);color:var(--p-ink);border-right:2px solid var(--surface);overflow:hidden;white-space:nowrap}
+.gantt .bar.idle{background:repeating-linear-gradient(45deg,var(--idle),var(--idle) 4px,transparent 4px,transparent 8px);color:var(--muted);font-weight:400}
+.gantt .tick{position:absolute;top:46px;transform:translateX(-50%);font:500 12px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.gantt .tick::before{content:"";position:absolute;left:50%;top:-6px;height:5px;border-left:1px solid var(--muted)}
+.log{font-family:var(--f-mono);font-size:12.5px;line-height:1.6;max-height:260px;overflow:auto;background:var(--sunk);border-radius:8px;padding:10px 12px}
+.log div{white-space:nowrap}
+.log .t{color:var(--accent);font-weight:600}
+.best{background:var(--good-soft);color:var(--good);font-weight:700}
+.note{background:var(--warn-soft);color:var(--ink);border-radius:8px;padding:10px 14px;font-size:14px}
+.note b{color:var(--warn)}
+.presets{display:grid;gap:8px}
+.preset{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.preset .nm{font-weight:600}
+details.ans{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+details.ans summary{cursor:pointer;padding:9px 14px;font-weight:600;color:var(--accent)}
+details.ans>div{padding:0 14px 12px}
+.answers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 12px;font-family:var(--f-mono);font-size:13px}
+footer{color:var(--muted);font-size:13px;padding-block:20px 40px;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion:no-preference){.opt,.btn,.algo-btns button{transition:background-color .15s,border-color .15s}}
+</style>
+
+<style>
+/* bổ sung cho bản cuối kỳ */
+.card>*{min-width:0}
+select{max-width:100%}
+.field input{min-width:0;max-width:100%}
+.chips-row .tag{white-space:normal}
+.prt{border-collapse:collapse;font-family:var(--f-mono);font-size:13px;width:auto}
+.prt th,.prt td{border:1px solid var(--line);padding:4px 7px;text-align:center;min-width:28px}
+.prt th{background:var(--sunk);color:var(--ink);font-weight:600}
+.prt td.hit{color:var(--muted)}
+.prt td.new{background:var(--accent-soft);font-weight:700;color:var(--accent)}
+.prt td.lbl{font-family:var(--f-body);text-align:left;color:var(--muted);font-weight:600;background:var(--sunk);white-space:nowrap}
+.prt tr.f td.flt{color:var(--bad);font-weight:700}
+.prt td.vic{color:var(--warn);font-size:12px}
+.bk{border-collapse:collapse;font-family:var(--f-mono);font-size:13px;width:auto}
+.bk th,.bk td{border:1px solid var(--line);padding:4px 8px;text-align:center}
+.bk th{background:var(--sunk);font-weight:600}
+.bk td.l{text-align:left;font-weight:600}
+.bk td.ok{background:var(--good-soft);color:var(--good);font-weight:600}
+.bk td.no{background:var(--bad-soft);color:var(--bad)}
+.bk input{width:44px;padding:3px 4px;font-family:var(--f-mono);font-size:13px;text-align:center}
+.freq td.bar{width:45%}
+.freq .b{height:10px;border-radius:5px;background:var(--accent)}
+.code2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.code2 pre{margin:0}
+.pill-ok{display:inline-block;font:600 12px var(--f-mono);padding:2px 8px;border-radius:999px;background:var(--good-soft);color:var(--good)}
+.pill-no{display:inline-block;font:600 12px var(--f-mono);padding:2px 8px;border-radius:999px;background:var(--bad-soft);color:var(--bad)}
+.steps{counter-reset:s;display:grid;gap:6px;margin:6px 0 10px;padding:0;list-style:none}
+.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:8px}
+.steps li::before{content:counter(s);font:600 12px var(--f-mono);color:var(--accent-ink);background:var(--accent);border-radius:999px;width:22px;height:22px;display:grid;place-items:center;margin-top:1px}
+</style>
+
+<header class="top wrap">
+  <div class="eyebrow">IT007 · Hệ điều hành · Cuối kỳ HK1</div>
+  <h1>Ôn thi cuối kỳ Hệ điều hành</h1>
+  <p class="lede">Tóm tắt chương 5–9 (Đồng bộ, Deadlock, Quản lý bộ nhớ, Bộ nhớ ảo, Linux &amp; Windows) theo slide bài giảng 2024 và slide training BHT CNPM 2025-2026. Kèm thống kê dạng đề từ 7 đề cuối kỳ (2019 → 2025), ngân hàng trắc nghiệm có lời giải, bài tự luận giải sẵn và công cụ kiểm tra bài thay trang, Banker, cấp phát vùng nhớ.</p>
+  <div class="chips-row"><span class="tag">Trắc nghiệm 6–8đ</span><span class="tag">Tự luận: thay trang · Banker · Đ/S · thuật ngữ EN</span><span class="tag">75–80 phút · không tài liệu</span></div>
+</header>
+
+<nav class="tabs" aria-label="Các phần ôn tập">
+  <div class="wrap" role="tablist">
+    <button role="tab" data-view="lythuyet">Lý thuyết</button>
+    <button role="tab" data-view="dangde">Dạng đề &amp; công thức</button>
+    <button role="tab" data-view="bay">Bẫy hay gặp</button>
+    <button role="tab" data-view="tracnghiem">Trắc nghiệm</button>
+    <button role="tab" data-view="thaytrang">Mô phỏng thay trang</button>
+    <button role="tab" data-view="banker">Mô phỏng Banker</button>
+    <button role="tab" data-view="tuluan">Tự luận đề cũ</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ LÝ THUYẾT ============ -->
+<section class="view" id="v-lythuyet">
+  <div class="toc"><a href="#c5" data-jump="c5">5 · Đồng bộ</a><a href="#c6" data-jump="c6">6 · Deadlock</a><a href="#c7" data-jump="c7">7 · Quản lý bộ nhớ</a><a href="#c8" data-jump="c8">8 · Bộ nhớ ảo</a><a href="#c9" data-jump="c9">9 · Linux &amp; Windows</a><a href="#cen" data-jump="cen">EN · Thuật ngữ</a></div>
+
+  <!-- CHƯƠNG 5 -->
+  <article class="chap" id="c5">
+    <h2><span class="num">CHƯƠNG 5</span>Đồng bộ tiến trình</h2>
+    <div class="card">
+      <h3>Race condition và vùng tranh chấp</h3>
+      <ul class="tight">
+        <li><b>Race condition</b>: hiện tượng xảy ra khi nhiều tiến trình <b>cùng truy cập đồng thời</b> vào dữ liệu chia sẻ; kết quả cuối cùng <b>phụ thuộc thứ tự thực thi</b> ⇒ dữ liệu có thể sai, không nhất quán (inconsistency). Ví dụ kinh điển: Producer <code>count++</code> và Consumer <code>count--</code> (mỗi lệnh dịch ra 3 lệnh máy load/tăng/store nên có thể bị cắt ngang).</li>
+        <li><b>Critical section (CS, vùng tranh chấp)</b>: đoạn code của mỗi tiến trình có thao tác trên dữ liệu chia sẻ.</li>
+        <li>Cấu trúc tổng quát: <code>entry section → critical section → exit section → remainder section</code>, đặt trong <code>while(1)</code>.</li>
+      </ul>
+      <h3>3 yêu cầu của lời giải bài toán vùng tranh chấp</h3>
+      <dl class="kv">
+        <dt>Mutual exclusion</dt><dd>Khi P đang thực thi trong CS của nó thì không có Q nào khác đang thực thi trong CS của Q.</dd>
+        <dt>Progress</dt><dd>Một tiến trình tạm dừng <b>bên ngoài</b> CS không được ngăn cản các tiến trình khác vào CS; việc chọn ai vào tiếp không bị trì hoãn vô hạn (vi phạm ⇒ deadlock).</dd>
+        <dt>Bounded waiting</dt><dd>Mỗi tiến trình chỉ phải chờ vào CS trong khoảng thời gian có hạn; không xảy ra đói tài nguyên (vi phạm ⇒ starvation).</dd>
+      </dl>
+      <p class="note"><b>Không phải yêu cầu:</b> “các tiến trình phải từ bỏ CPU khi vào CS”, “tiến trình dừng ngoài CS không được giữ tài nguyên”, “phải liên tục kiểm tra điều kiện để vào CS” (đó là busy waiting, một <i>hệ quả</i> chứ không phải yêu cầu).</p>
+    </div>
+
+    <div class="card">
+      <h3>Phân loại giải pháp đồng bộ</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Nhóm</th><th>Loại</th><th>Ví dụ</th><th>Ghi nhớ</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="2"><b>Busy waiting</b></td><td>Phần mềm (không cần phần cứng hay HĐH)</td><td>Dùng biến cờ, kiểm tra luân phiên (turn), <b>Peterson</b>, Bakery</td><td>Tốn CPU vì liên tục kiểm tra điều kiện</td></tr>
+          <tr><td>Phần cứng</td><td><b>Cấm ngắt</b>, <code>test_and_set</code>, <code>compare_and_swap</code>, biến đơn nguyên (atomic), memory barrier</td><td>Lệnh đơn nguyên (atomic) không chia cắt được</td></tr>
+          <tr><td><b>Sleep &amp; Wakeup</b></td><td>Có hỗ trợ của HĐH</td><td><b>Mutex lock, semaphore, monitor</b> (critical region)</td><td>Tiến trình chưa vào được CS thì bị block, nhường CPU</td></tr>
+        </tbody></table></div>
+      <p class="small muted">Hai nhóm Busy waiting và Sleep &amp; Wakeup khác nhau ở <b>sự hỗ trợ của hệ điều hành</b>. Peterson là giải pháp duy nhất trong các đáp án “không cần HĐH hỗ trợ”.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Giải pháp kiểm tra luân phiên (turn)</h3>
+        <pre>// P0                  // P1
+while (turn == 1);     while (turn == 0);
+/* CS */               /* CS */
+turn = 1;              turn = 0;</pre>
+        <p>Đảm bảo <b>mutual exclusion</b>; <b>không</b> đảm bảo progress (P0 có remainder dài, giữ lượt nên P1 không vào được dù CS trống).</p>
+      </div>
+      <div class="card">
+        <h3>Giải pháp Peterson (2 tiến trình)</h3>
+        <pre>flag[i] = true;  turn = j;
+while (flag[j] &amp;&amp; turn == j);
+/* critical section */
+flag[i] = false;</pre>
+        <p>Dùng <code>int turn</code> và <code>bool flag[2]</code>. Thỏa cả 3 yêu cầu. Là giải pháp <b>phần mềm, busy waiting</b>.</p>
+        <p><b>Kiến trúc hiện đại:</b> với tiến trình đa tiểu trình, vi xử lý và/hoặc trình biên dịch có thể <b>sắp xếp lại các lệnh độc lập</b> ⇒ kết quả không nhất quán ⇒ Peterson có thể sai. Cần <b>memory barrier</b>.</p>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Memory model &amp; memory barrier</h3>
+        <ul class="tight">
+          <li><b>Memory model</b>: tập quy tắc, ràng buộc cho việc sử dụng bộ nhớ. Hai loại: <b>sắp xếp mạnh</b> (thay đổi trên một CPU được CPU khác thấy ngay) và <b>sắp xếp yếu</b> (có thể không thấy ngay).</li>
+          <li><b>Memory barrier</b>: một <b>chỉ thị (instruction)</b> bắt buộc mọi thay đổi trong bộ nhớ phải được truyền tới (hiển thị) tất cả CPU khác; mọi load/store trước nó hoàn tất trước khi load/store sau nó thực hiện.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Giải pháp phần cứng</h3>
+        <ul class="tight">
+          <li><b>Cấm ngắt</b>: vào CS thì disable interrupt. Chỉ đúng trên <b>đơn CPU</b>; trên đa CPU chỉ cấm được ngắt tại CPU thực thi lệnh, CPU khác vẫn truy cập bộ nhớ chia sẻ ⇒ không đảm bảo loại trừ tương hỗ.</li>
+          <li><b>TestAndSet(&amp;lock)</b>: đọc và ghi một biến trong một thao tác atomic. <code>while(TestAndSet(&amp;lock)); CS; lock=false;</code> ⇒ đảm bảo mutual exclusion nhưng <b>không đảm bảo bounded waiting</b> (có thể starvation).</li>
+          <li><code>compare_and_swap</code>, biến atomic: cùng ý tưởng.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Mutex lock</h3>
+      <pre>acquire() { while (!available); /* busy wait */  available = false; }
+release() { available = true; }</pre>
+      <ul class="tight">
+        <li>Vào CS gọi <code>acquire()</code>, ra gọi <code>release()</code>; hai thao tác phải <b>đơn nguyên</b>.</li>
+        <li>Cài đặt như trên vẫn có thể gây <b>busy waiting</b> (spinlock). <b>Binary semaphore</b> có tác dụng giống khóa mutex.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Semaphore</h3>
+      <ul class="tight">
+        <li>Là <b>biến số nguyên</b> (không phải số thực), chỉ truy xuất qua 2 thao tác đơn nguyên <code>wait(S)</code> và <code>signal(S)</code>. Hai loại: <b>counting</b> và <b>binary</b> (0/1). Có thể dùng counting semaphore như binary semaphore.</li>
+        <li><code>wait(S)</code>: <b>giảm</b> S đi 1, dùng khi <b>muốn sử dụng tài nguyên</b>. <code>signal(S)</code>: <b>tăng</b> S lên 1, dùng khi <b>trả lại tài nguyên</b>.</li>
+        <li>Cần hỗ trợ của HĐH để cài đặt (block/wakeup). Đoạn mã định nghĩa <code>wait</code>/<code>signal</code> <b>cũng chính là vùng tranh chấp</b> ⇒ đơn CPU dùng cấm ngắt; đa CPU dùng giải pháp phần mềm/phần cứng (busy waiting nhưng rất ngắn).</li>
+      </ul>
+      <div class="grid2">
+        <div><h3 style="font-size:14px">Cài đặt không busy waiting</h3>
+<pre>typedef struct { int value; struct process *list; } semaphore;
+wait(S)   { S-&gt;value--;
+            if (S-&gt;value &lt; 0) { thêm P vào S-&gt;list; block(); } }
+signal(S) { S-&gt;value++;
+            if (S-&gt;value &lt;= 0) { lấy P khỏi S-&gt;list; wakeup(P); } }</pre></div>
+        <div><h3 style="font-size:14px">Ý nghĩa giá trị</h3>
+          <ul class="tight">
+            <li>Mỗi semaphore gắn với một <b>hàng đợi</b> (danh sách liên kết các PCB). Tiến trình phải chờ thì bị <b>blocked</b> và đặt vào hàng đợi đó.</li>
+            <li><b>S ≥ 0</b>: số lần các tiến trình có thể gọi <code>wait(S)</code> mà <b>không bị blocked</b>.</li>
+            <li><b>S &lt; 0</b>: |S| = số tiến trình đang đợi trên S. S = −3 ⇒ <b>3</b> tiến trình đang đợi (không phải 4).</li>
+            <li>Sau khi giảm, block khi giá trị <b>âm</b> (không phải “không dương”).</li>
+          </ul></div>
+      </div>
+      <p class="note"><b>Nhận xét:</b> thứ tự <code>wait/signal</code> và giá trị khởi tạo ảnh hưởng đến tính đúng đắn và hiệu suất; dùng sai có thể gây deadlock hoặc starvation.</p>
+    </div>
+
+    <div class="card">
+      <h3>Đồng bộ thứ tự bằng semaphore (dạng tự luận)</h3>
+      <p>Quy tắc: “A phải xong trước B” ⇒ một semaphore <code>s = 0</code>; sau A gọi <code>signal(s)</code>, trước B gọi <code>wait(s)</code>.</p>
+      <p>Ví dụ slide BHT: P2 xong trước R2; Q1 xong trước R1 và P2. Khởi tạo <code>s1 = 0, s2 = 0</code>.</p>
+      <div class="code2">
+        <pre>// P
+P1;
+wait(s2);
+P2;
+signal(s2);  // cho R
+signal(s1);</pre>
+        <pre>// Q
+Q1;
+signal(s2);  // cho P2
+signal(s2);  // cho R1
+Q2;</pre>
+        <pre>// R
+wait(s2);
+R1;
+wait(s1);
+R2;</pre>
+      </div>
+      <p class="small muted">Đồ thị ưu tiên T1 → T2, T1 → T3, T2 → T4, T3 → T4: có thể dùng tối thiểu 2 semaphore (T1 gọi <code>signal(a)</code> hai lần; T4 gọi <code>wait(b)</code> hai lần), mỗi cạnh một semaphore thì cần 4.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Monitor</h3>
+        <ul class="tight">
+          <li><b>Cấu trúc ngôn ngữ cấp cao</b>, chức năng như semaphore nhưng dễ điều khiển hơn; <b>có thể hiện thực bằng semaphore</b>.</li>
+          <li>Gồm: các thủ tục, đoạn code khởi tạo, các biến dữ liệu cục bộ (chỉ được truy cập bởi thủ tục trong monitor).</li>
+          <li>Tiến trình “vào monitor” bằng cách gọi một thủ tục của nó. <b>Chỉ một tiến trình</b> ở trong monitor tại một thời điểm.</li>
+          <li><b>Biến điều kiện</b> (condition variable) <code>condition x, y;</code> cho phép tiến trình <b>đợi “trong monitor”</b>; chỉ thao tác bằng <code>x.wait()</code> (vào hàng đợi trên x, bị block) và <code>x.signal()</code> (phục hồi một tiến trình đang đợi trên x). <b>Không truy cập được từ bên ngoài monitor.</b></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Critical region &amp; Liveness</h3>
+        <ul class="tight">
+          <li><code>region v when B do S;</code> trong khi S được thực thi, <b>không tiến trình nào khác truy xuất được biến v</b>. Critical region là cấu trúc ngôn ngữ cấp cao.</li>
+          <li><b>Liveness</b>: tập các đặc điểm hệ thống phải thỏa để đảm bảo tiến trình <b>thực sự chạy</b> (ví dụ progress, bounded waiting).</li>
+          <li>Liveness thất bại: chờ không giới hạn, ví dụ <b>deadlock</b>, <b>starvation</b>, <b>priority inversion</b> (nghịch đảo ưu tiên).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>3 bài toán đồng bộ kinh điển</h3>
+      <div class="grid2">
+        <div class="mini">
+          <h3>Bounded-buffer (Producer–Consumer)</h3>
+          <p>Yêu cầu: Producer không ghi vào buffer đầy; Consumer không đọc buffer rỗng; hai bên không thao tác buffer cùng lúc.</p>
+<pre>semaphore mutex = 1, empty = n, full = 0;
+// Producer          // Consumer
+wait(empty);         wait(full);
+wait(mutex);         wait(mutex);
+ thêm vào buffer      lấy khỏi buffer
+signal(mutex);       signal(mutex);
+signal(full);        signal(empty);</pre>
+          <p class="small">Chỉ dùng <code>empty</code>, <code>full</code> mà <b>bỏ mutex</b> ⇒ vùng tranh chấp (buffer, count) bị bỏ qua, không đảm bảo loại trừ tương hỗ.</p>
+        </div>
+        <div class="mini">
+          <h3>Readers–Writers (ưu tiên Reader)</h3>
+<pre>semaphore rw_mutex = 1, mutex = 1; int readcount = 0;
+// Writer            // Reader
+wait(rw_mutex);      wait(mutex); readcount++;
+ ghi dữ liệu         if (readcount == 1) wait(rw_mutex);
+signal(rw_mutex);    signal(mutex);
+                      đọc dữ liệu
+                     wait(mutex); readcount--;
+                     if (readcount == 0) signal(rw_mutex);
+                     signal(mutex);</pre>
+          <ul class="tight small">
+            <li><code>rw_mutex</code> (wrt): loại trừ tương hỗ cho Writer, Reader đầu tiên khóa / Reader cuối mở cho Writer.</li>
+            <li><code>mutex</code>: bảo vệ <code>readcount</code> (<code>readcount++/--</code> là vùng tranh chấp), <b>không</b> phải cho Writer.</li>
+            <li>Writer trong CS và n Reader đợi ⇒ <b>1</b> Reader trong hàng đợi <b>rw_mutex</b>, <b>n−1</b> Reader trong hàng đợi <b>mutex</b>.</li>
+            <li>Writer <code>signal(rw_mutex)</code> ⇒ có thể phục hồi một Reader hoặc Writer đang đợi.</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h3>Dining-Philosophers (5 triết gia, 5 đũa)</h3>
+<pre>semaphore chopstick[5] = {1,1,1,1,1};
+wait(chopstick[i]);
+wait(chopstick[(i+1) % 5]);
+  ăn
+signal(chopstick[i]);
+signal(chopstick[(i+1) % 5]);</pre>
+          <p>Ai cũng cầm đũa trái trước ⇒ <b>có thể deadlock</b>. Cách tránh deadlock (vẫn có thể <b>starvation</b>):</p>
+          <ul class="tight small">
+            <li>Cho tối đa 4 triết gia ngồi vào bàn (hoặc tăng thêm 1 đũa).</li>
+            <li>Chỉ cầm đũa khi cả 2 chiếc đều sẵn sàng.</li>
+            <li>Bất đối xứng: vị trí lẻ cầm trái trước, vị trí chẵn cầm phải trước.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- CHƯƠNG 6 -->
+  <article class="chap" id="c6">
+    <h2><span class="num">CHƯƠNG 6</span>Deadlock (tắc nghẽn)</h2>
+    <div class="card">
+      <h3>Định nghĩa</h3>
+      <ul class="tight">
+        <li>Một tiến trình gọi là <b>deadlock</b> nếu nó đang đợi một sự kiện <b>sẽ không bao giờ xảy ra</b>. Thường có nhiều hơn một tiến trình liên quan.</li>
+        <li><b>Trì hoãn vô hạn định (starvation)</b>: tiến trình bị trì hoãn lặp đi lặp lại trong khi hệ thống đáp ứng tiến trình khác (sẵn sàng nhưng không bao giờ được CPU).</li>
+        <li>Ví dụ: P0 <code>wait(S); wait(Q);</code>, P1 <code>wait(Q); wait(S);</code> với S = Q = 1.</li>
+      </ul>
+      <h3>4 điều kiện cần (đồng thời xảy ra)</h3>
+      <dl class="kv">
+        <dt>Mutual exclusion</dt><dd>Ít nhất một tài nguyên được giữ theo chế độ <b>không chia sẻ</b> (nonsharable).</dd>
+        <dt>Hold and wait</dt><dd>Một tiến trình đang giữ ít nhất một tài nguyên và đợi thêm tài nguyên do tiến trình khác giữ.</dd>
+        <dt>No preemption</dt><dd>Tài nguyên không thể bị lấy lại, chỉ được trả lại từ tiến trình đang giữ khi nó muốn.</dd>
+        <dt>Circular wait</dt><dd>Tồn tại một chu trình chờ đợi giữa các tiến trình.</dd>
+      </dl>
+      <p class="small muted">Bẫy: “mỗi tiến trình chỉ yêu cầu tài nguyên theo thứ tự tăng dần” là <i>cách ngăn</i> circular wait, không phải điều kiện cần.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Đồ thị cấp phát tài nguyên (RAG)</h3>
+        <ul class="tight">
+          <li>Đồ thị <b>có hướng</b>. Tập đỉnh V gồm 2 loại: <b>tiến trình</b> P và <b>loại tài nguyên</b> R (chấm bên trong = số thực thể).</li>
+          <li>Tập cạnh E gồm 2 loại: <b>cạnh yêu cầu</b> Pi → Rj; <b>cạnh cấp phát</b> Rj → Pi.</li>
+          <li>Không có chu trình ⇒ <b>không có deadlock</b>.</li>
+          <li>Có chu trình: mỗi loại tài nguyên <b>1 thực thể</b> ⇒ <b>có deadlock</b>; nhiều thực thể ⇒ <b>có thể</b> deadlock.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Đồ thị wait-for</h3>
+        <ul class="tight">
+          <li>Xây dựng <b>từ</b> RAG bằng cách bỏ các đỉnh tài nguyên; <b>đỉnh là các tiến trình</b>.</li>
+          <li>Cạnh Pi → Pj nếu Pi đang chờ tài nguyên mà Pj giữ.</li>
+          <li>Dùng để <b>phát hiện</b> deadlock khi mỗi loại tài nguyên <b>chỉ có một thực thể</b>. Có chu trình ⇔ có deadlock.</li>
+          <li>Giải thuật tìm chu trình: <b>O(n²)</b>, n là số đỉnh.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Các phương pháp giải quyết deadlock</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Phương pháp</th><th>Ý tưởng</th><th>Đặc điểm</th></tr></thead>
+        <tbody>
+          <tr><td><b>Ngăn</b> (prevention)</td><td>Không cho phép (ít nhất) một trong 4 điều kiện cần xảy ra</td><td>Sử dụng tài nguyên <b>không hiệu quả</b></td></tr>
+          <tr><td><b>Tránh</b> (avoidance)</td><td>Các tiến trình cung cấp thông tin về tài nguyên cần (số lượng <b>tối đa</b>); hệ thống kiểm tra trạng thái cấp phát để <b>không đi đến trạng thái không an toàn</b></td><td>Vẫn đảm bảo hiệu suất sử dụng tài nguyên tối đa đến mức có thể. Giải thuật: RAG (1 thực thể), <b>Banker</b> (nhiều thực thể)</td></tr>
+          <tr><td><b>Phát hiện và phục hồi</b></td><td>Cho phép deadlock xảy ra, phát hiện rồi phục hồi</td><td>Wait-for graph hoặc giải thuật kiểu Banker với cột Request</td></tr>
+          <tr><td><b>Bỏ qua</b></td><td>Xem như deadlock không bao giờ xảy ra</td><td>Đa số HĐH (UNIX, Windows) dùng</td></tr>
+        </tbody></table></div>
+      <h3 style="margin-top:12px">Ngăn deadlock từng điều kiện</h3>
+      <ul class="tight">
+        <li><b>Mutual exclusion</b>: tài nguyên không chia sẻ (printer) không làm được; tài nguyên chia sẻ (read-only file) không cần.</li>
+        <li><b>Hold and wait</b>: (1) yêu cầu toàn bộ tài nguyên một lần, đủ thì cấp, không đủ thì block; (2) khi yêu cầu thì không được giữ tài nguyên nào. Khó áp dụng thực tế.</li>
+        <li><b>No preemption</b>: tiến trình A đang giữ tài nguyên và yêu cầu thêm chưa được đáp ứng ⇒ hệ thống lấy lại tài nguyên A đang giữ (hoặc lấy của tiến trình đang đợi khác để cấp cho A).</li>
+        <li><b>Circular wait</b>: gán thứ tự cho tất cả loại tài nguyên; mỗi tiến trình chỉ yêu cầu theo thứ tự tăng dần.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Trạng thái an toàn và giải thuật Banker</h3>
+      <ul class="tight">
+        <li>Chuỗi &lt;P1, …, Pn&gt; <b>an toàn</b> nếu mỗi Pi được thỏa bởi tài nguyên hệ thống đang có <b>cộng</b> tài nguyên mà các Pj (j &lt; i) đang giữ.</li>
+        <li>Tồn tại chuỗi an toàn ⇒ <b>safe</b> ⇒ không deadlock. Không tồn tại ⇒ <b>unsafe</b> ⇒ <b>có thể</b> deadlock (không phải chắc chắn).</li>
+        <li>Trạng thái cấp phát được định nghĩa dựa trên: số tài nguyên còn lại, số đã cấp phát và <b>yêu cầu tối đa</b> của các tiến trình.</li>
+      </ul>
+      <div class="grid2">
+        <div class="mini"><h3>Kiểm tra an toàn</h3>
+          <ol class="steps"><li><code>Need = Max − Allocation</code>; <code>Work = Available</code>.</li><li>Tìm Pi chưa xong có <code>Need<sub>i</sub> ≤ Work</code>. Không còn ⇒ bước 4.</li><li><code>Work = Work + Allocation<sub>i</sub></code>, thêm Pi vào chuỗi, quay lại bước 2.</li><li>Chuỗi chứa đủ mọi tiến trình ⇒ an toàn.</li></ol></div>
+        <div class="mini"><h3>Yêu cầu cấp phát Request<sub>i</sub></h3>
+          <ol class="steps"><li><code>Request ≤ Need<sub>i</sub></code>? Không ⇒ báo lỗi (vượt yêu cầu tối đa).</li><li><code>Request ≤ Available</code>? Không ⇒ Pi phải chờ.</li><li>Giả định cấp: <code>Available −= Req</code>, <code>Alloc<sub>i</sub> += Req</code>, <code>Need<sub>i</sub> −= Req</code>.</li><li>Chạy kiểm tra an toàn: an toàn thì cấp, không thì Pi chờ và khôi phục trạng thái cũ.</li></ol></div>
+      </div>
+      <p class="small muted">Phát hiện deadlock khi mỗi loại có nhiều thực thể: làm giống Banker nhưng thay Need bằng <b>Request</b>; tiến trình không có trong chuỗi là tiến trình bị deadlock. Thời gian chạy <b>O(m × n²)</b>, m = số loại tài nguyên, n = số tiến trình.</p>
+    </div>
+
+    <div class="card">
+      <h3>Phục hồi deadlock</h3>
+      <ul class="tight">
+        <li><b>Báo người vận hành</b>, hoặc hệ thống tự phục hồi bằng cách bẻ gãy chu trình: <b>chấm dứt một hay nhiều tiến trình</b>, hoặc <b>lấy lại tài nguyên</b> từ một hay nhiều tiến trình. (“Cung cấp thêm tài nguyên” không nằm trong danh sách.)</li>
+        <li>Chấm dứt tiến trình hiệu quả: <b>lần lượt từng tiến trình</b> cho đến khi không còn deadlock (chấm dứt toàn bộ thì tốn kém).</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- CHƯƠNG 7 -->
+  <article class="chap" id="c7">
+    <h2><span class="num">CHƯƠNG 7</span>Quản lý bộ nhớ</h2>
+    <div class="card">
+      <h3>Khái niệm cơ sở</h3>
+      <ul class="tight">
+        <li>Chương trình phải được mang vào bộ nhớ và đặt trong một tiến trình để xử lý. <b>Input queue</b>: các tiến trình trên đĩa đang chờ được nạp.</li>
+        <li>Mục tiêu: nạp càng nhiều tiến trình vào bộ nhớ càng tốt (tăng mức độ đa chương).</li>
+        <li><b>Địa chỉ luận lý (logical)</b> = <b>địa chỉ ảo</b>: do CPU tạo ra. <b>Địa chỉ vật lý (physical)</b> = <b>địa chỉ thực</b>: địa chỉ thực sự trong bộ nhớ. Các loại khác: địa chỉ tuyệt đối, địa chỉ tương đối (relocatable). MMU chuyển logical → physical.</li>
+      </ul>
+      <h3>Chuyển đổi địa chỉ (address binding)</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Thời điểm</th><th>Điều kiện / cách làm</th><th>Nhược điểm</th></tr></thead>
+        <tbody>
+          <tr><td><b>Compile time</b></td><td>Biết trước địa chỉ nạp chương trình ⇒ sinh mã tuyệt đối (ví dụ .COM của MS-DOS)</td><td><b>Phải biên dịch lại</b> nếu thay đổi địa chỉ nạp</td></tr>
+          <tr><td><b>Load time</b></td><td>Compiler sinh mã khả tái định vị; địa chỉ thực tính lúc nạp</td><td>Phải <b>nạp lại</b> nếu địa chỉ nền thay đổi</td></tr>
+          <tr><td><b>Execution time</b></td><td>Trì hoãn đến lúc chạy; tiến trình di chuyển được trong bộ nhớ</td><td>Cần <b>hỗ trợ phần cứng</b> (thanh ghi nền, MMU)</td></tr>
+        </tbody></table></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Dynamic linking</h3>
+        <p>Quá trình <b>link đến một external module sau khi đã tạo xong load module</b>, trì hoãn đến lúc thực thi. Thư viện chia sẻ (DLL, .so), dùng stub. <b>Cần hỗ trợ của HĐH</b> (kiểm tra thủ tục có trong không gian nhớ của tiến trình chưa).</p>
+      </div>
+      <div class="card">
+        <h3>Dynamic loading</h3>
+        <p><b>Chỉ khi nào cần được gọi đến</b> thì một thủ tục mới được nạp vào bộ nhớ chính. Hiệu quả khi có nhiều mã ít dùng (thủ tục xử lý lỗi). <b>Không cần HĐH hỗ trợ đặc biệt</b>: user tự thiết kế, HĐH chỉ cung cấp thư viện hỗ trợ.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Phân mảnh (fragmentation)</h3>
+      <div class="grid2">
+        <div class="mini"><h3>Phân mảnh ngoại (external)</h3><p>Tổng vùng trống <b>đủ</b> cho yêu cầu nhưng <b>không liên tục</b>. Giải quyết bằng <b>kết khối (compaction)</b>: dời các vùng nhớ để gom vùng trống thành khối liên tục lớn; hoặc dùng phân trang.</p></div>
+        <div class="mini"><h3>Phân mảnh nội (internal)</h3><p>Vùng cấp phát <b>lớn hơn</b> vùng yêu cầu, phần dư bên trong không dùng được. Ví dụ cấp 20480 byte cho yêu cầu 20324 byte; trang cuối của tiến trình trong phân trang.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Mô hình quản lý bộ nhớ liên tục</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Mô hình</th><th>Đặc điểm</th><th>Phân mảnh</th></tr></thead>
+        <tbody>
+          <tr><td><b>Fixed partitioning</b></td><td>Chia bộ nhớ thành các partition rời nhau, <b>số lượng cố định</b>, kích thước bằng hoặc khác nhau. Tiến trình nạp vào partition đủ lớn.</td><td><b>Nội</b></td></tr>
+          <tr><td><b>Dynamic partitioning</b></td><td>Số lượng và kích thước partition thay đổi; mỗi tiến trình được cấp đúng dung lượng cần.</td><td><b>Ngoại</b></td></tr>
+        </tbody></table></div>
+      <h3 style="margin-top:12px">Chiến lược chọn vùng trống</h3>
+      <dl class="kv">
+        <dt>First-fit</dt><dd>Chọn vùng trống <b>phù hợp đầu tiên kể từ đầu bộ nhớ</b>.</dd>
+        <dt>Next-fit</dt><dd>Chọn vùng trống phù hợp đầu tiên <b>kể từ vị trí cấp phát cuối cùng</b> (con trỏ).</dd>
+        <dt>Best-fit</dt><dd>Chọn vùng trống <b>nhỏ nhất</b> đủ lớn.</dd>
+        <dt>Worst-fit</dt><dd>Chọn vùng trống <b>lớn nhất</b>.</dd>
+      </dl>
+      <p class="small muted">Công cụ kiểm tra ở tab “Dạng đề &amp; công thức”.</p>
+    </div>
+
+    <div class="card">
+      <h3>Phân trang (paging) — cấp phát không liên tục</h3>
+      <ul class="tight">
+        <li>Bộ nhớ <b>vật lý</b> chia thành các <b>khung trang (frame)</b>; bộ nhớ <b>luận lý</b> chia thành các <b>trang (page)</b> cùng kích thước (lũy thừa của 2).</li>
+        <li>Địa chỉ luận lý = (<b>p</b> chỉ số trang, <b>d</b> offset). <b>Bảng phân trang</b> ánh xạ p → f; địa chỉ vật lý = f × kích thước trang + d. HĐH tạo <b>một bảng phân trang cho mỗi tiến trình</b>.</li>
+        <li><b>PTBR</b> (page-table base register) trỏ đến <b>vị trí</b> bảng trang; <b>PTLR</b> (page-table length register) cho biết <b>kích thước</b> bảng trang.</li>
+        <li>Không có phân mảnh ngoại; <b>có phân mảnh nội</b> (trang cuối của tiến trình).</li>
+        <li>Bảng trang đặt trong bộ nhớ chính ⇒ mỗi truy xuất dữ liệu cần <b>2 lần</b> truy xuất bộ nhớ ⇒ dùng <b>TLB</b>.</li>
+      </ul>
+      <h3>TLB (translation look-aside buffer)</h3>
+      <p>Bộ nhớ kết hợp (associative), tìm kiếm song song, rất nhanh, chứa một phần các mục của bảng trang. Tìm p trong TLB: <b>hit</b> ⇒ lấy f ngay (1 lần truy xuất bộ nhớ); <b>miss</b> ⇒ tra bảng trang trong bộ nhớ (thêm 1 lần) rồi cập nhật TLB. Mục đích: <b>giảm thời gian truy xuất</b> bộ nhớ khi bảng trang ở bộ nhớ chính.</p>
+      <div class="formula"><span>EAT = (ε + x)·α + (ε + 2x)·(1 − α) = ε + (2 − α)·x</span><span class="small" style="font-family:var(--f-body)">ε: thời gian tìm trong TLB · x: một chu kỳ truy xuất bộ nhớ · α: hit ratio</span></div>
+      <h3 style="margin-top:12px">Bảo vệ bộ nhớ, phân trang đa cấp, bảng trang băm/đảo</h3>
+      <ul class="tight">
+        <li>Mỗi mục bảng trang có <b>valid-invalid bit</b> (trang thuộc không gian địa chỉ tiến trình hay không) và bit bảo vệ read/write.</li>
+        <li><b>Phân trang đa cấp</b>: chia p thành p1, p2, … để bảng trang không phải liên tục (ví dụ 32 bit: 10 + 10 + 12 offset).</li>
+        <li>Bảng trang băm (hashed), bảng trang đảo (inverted: một bảng cho toàn hệ thống, mỗi mục ứng với một frame).</li>
+      </ul>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Phân đoạn (segmentation)</h3>
+        <ul class="tight">
+          <li>Địa chỉ luận lý = (<b>số hiệu đoạn s</b>, <b>offset d</b>); xác định bằng <b>tên đoạn và offset</b> (không phải kích thước). Các đoạn có kích thước <b>khác nhau</b>.</li>
+          <li>Bảng phân đoạn: mỗi mục có <b>base</b> và <b>limit (length)</b>. Hợp lệ khi <b>d &lt; limit</b> ⇒ địa chỉ vật lý = base + d.</li>
+          <li><b>STBR</b> trỏ đến vị trí bảng phân đoạn; <b>STLR</b> cho biết <b>số đoạn</b>. Chỉ số đoạn s hợp lệ nếu <b>s &lt; STLR</b>.</li>
+          <li>Gây phân mảnh ngoại.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Swapping</h3>
+        <p>Chuyển tạm thời tiến trình ra bộ nhớ phụ (backing store) rồi đưa trở lại để tiếp tục. <b>Roll out, roll in</b>: dùng cho định thời ưu tiên, tiến trình ưu tiên thấp bị swap ra. Thời gian swap chủ yếu là thời gian truyền dữ liệu, tỉ lệ với dung lượng.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- CHƯƠNG 8 -->
+  <article class="chap" id="c8">
+    <h2><span class="num">CHƯƠNG 8</span>Bộ nhớ ảo</h2>
+    <div class="card">
+      <h3>Tổng quan</h3>
+      <ul class="tight">
+        <li>Nhận xét: không phải tất cả các phần của tiến trình cần có trong bộ nhớ cùng lúc. <b>Bộ nhớ ảo</b>: kỹ thuật cho phép xử lý một tiến trình <b>không được nạp toàn bộ</b> vào bộ nhớ vật lý.</li>
+        <li><b>Ưu điểm</b>: tiến trình chạy được <b>ngay cả khi kích thước lớn hơn bộ nhớ thực</b>; số tiến trình trong bộ nhớ <b>nhiều hơn</b>; giảm I/O khi nạp/swap.</li>
+        <li><b>Điều kiện cần</b>: HĐH phải quản lý việc di chuyển trang/đoạn giữa bộ nhớ chính và bộ nhớ thứ cấp; phần cứng hỗ trợ phân trang/phân đoạn. Kích thước tiến trình <b>không</b> cần cố định hay nhỏ hơn bộ nhớ vật lý.</li>
+        <li>Hai kỹ thuật cài đặt: <b>demand paging</b> và <b>demand segmentation</b>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Phân trang theo yêu cầu (demand paging)</h3>
+      <ul class="tight">
+        <li>Các trang của tiến trình <b>chỉ được nạp vào bộ nhớ chính khi được yêu cầu</b> (lazy swapper / pager).</li>
+        <li>Truy xuất trang không có trong bộ nhớ (valid bit = 0) ⇒ phần cứng gây ngắt <b>page fault</b> ⇒ kích hoạt <b>PFSR</b> (page-fault service routine).</li>
+        <li>Cần hỗ trợ phần cứng: valid-invalid bit, bộ nhớ phụ (swap space), khả năng restart lệnh.</li>
+      </ul>
+      <h3>Các bước của PFSR</h3>
+      <ol class="steps">
+        <li>Chuyển tiến trình về trạng thái <b>blocked</b>.</li>
+        <li>Phát yêu cầu đọc đĩa để nạp trang vào một frame trống; trong lúc chờ I/O, tiến trình khác được cấp CPU.</li>
+        <li>I/O xong, đĩa gây ngắt đến HĐH; PFSR cập nhật page table và chuyển tiến trình về <b>ready</b>.</li>
+      </ol>
+      <p class="small muted">Không còn frame trống ⇒ chọn trang “hy sinh” (victim) để thay; dùng <b>dirty bit</b> để chỉ ghi ra đĩa trang đã bị sửa.</p>
+    </div>
+
+    <div class="card">
+      <h3>Giải thuật thay trang</h3>
+      <p>Mục tiêu: <b>số lỗi trang nhỏ nhất</b>.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Giải thuật</th><th>Trang bị thay</th><th>Ghi nhớ</th></tr></thead>
+        <tbody>
+          <tr><td><b>FIFO</b></td><td>Trang có thời gian <b>được nạp vào bộ nhớ sớm nhất</b></td><td>Đơn giản; bị <b>nghịch lý Belady</b>: số lỗi trang <b>tăng</b> dù được cấp nhiều frame hơn</td></tr>
+          <tr><td><b>OPT</b></td><td>Trang <b>được tham chiếu trễ nhất trong tương lai</b> (hoặc không bao giờ dùng lại)</td><td>Ít lỗi trang nhất, không có Belady, không cài đặt được trong thực tế (phải biết trước chuỗi)</td></tr>
+          <tr><td><b>LRU</b></td><td>Trang có <b>thời điểm tham chiếu nhỏ nhất</b> (lâu nhất chưa dùng)</td><td>Xấp xỉ OPT nhìn về quá khứ; cần hỗ trợ phần cứng (bộ đếm hoặc stack); ít CPU hỗ trợ đầy đủ</td></tr>
+        </tbody></table></div>
+      <p class="note"><b>Cách vẽ bảng:</b> mỗi cột là một lần truy xuất, mỗi hàng là một frame, đánh dấu * dưới cột có lỗi trang. Đề thường hỏi “tại lần truy xuất trang X lần đầu tiên, trang nào bị thay” hoặc “đếm số lỗi trang trước thời điểm đó (không tính lỗi khi nạp X)”. Kiểm tra bằng tab “Mô phỏng thay trang”.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Cấp phát frame</h3>
+        <ul class="tight">
+          <li>Cấp <b>ít</b> frame ⇒ nhiều page fault. Cấp <b>nhiều</b> frame ⇒ giảm mức độ đa chương.</li>
+          <li><b>Cấp phát tĩnh</b> (fixed-allocation): số frame không đổi, xác định lúc nạp. Gồm cấp bằng nhau (100 frame / 5 tiến trình = 20), cấp theo tỉ lệ <code>a<sub>i</sub> = s<sub>i</sub> / S × m</code>, cấp theo ưu tiên.</li>
+          <li><b>Cấp phát động</b> (variable-allocation): số frame thay đổi khi chạy. Tỉ lệ page fault <b>cao ⇒ cấp thêm</b>, <b>thấp ⇒ giảm bớt</b>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Thrashing (trì trệ)</h3>
+        <ul class="tight">
+          <li>Hiện tượng các trang nhớ của một tiến trình bị <b>hoán chuyển vào/ra liên tục</b>; page fault rất cao, CPU rảnh.</li>
+          <li><b>Locality</b>: tập các trang được tham chiếu gần nhau. Thrashing xảy ra khi tổng kích thước các locality <b>lớn hơn</b> kích thước bộ nhớ.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Giải pháp tập làm việc (working-set model)</h3>
+      <ul class="tight">
+        <li>Thiết kế dựa trên <b>nguyên lý cục bộ (locality)</b>. Mục tiêu: <b>xác định tiến trình thực sự sử dụng bao nhiêu frame</b>.</li>
+        <li><b>WS(t)</b>: tập các trang được tham chiếu trong Δ lần tham chiếu gần nhất. <b>WSS</b> = số trang <b>khác nhau</b> trong WS. Ví dụ WS = {1, 2, 5, 2, 1, 5, 2} ⇒ Δ = 7 nhưng <b>WSS = 3</b>.</li>
+        <li>Δ quá nhỏ: không bao phủ toàn bộ locality. Δ quá lớn: bao phủ nhiều locality. Δ = ∞: gồm mọi trang đã dùng.</li>
+        <li><b>D = Σ WSS<sub>i</sub></b>. Nếu <b>D &gt; m</b> (số frame) ⇒ thrashing ⇒ <b>tạm dừng một tiến trình</b>, chuyển trang của nó ra đĩa và thu hồi frame.</li>
+        <li>Loại trừ được thrashing mà vẫn đảm bảo mức độ đa chương (tối ưu việc sử dụng CPU).</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- CHƯƠNG 9 -->
+  <article class="chap" id="c9">
+    <h2><span class="num">CHƯƠNG 9</span>Hệ điều hành Linux và Windows</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Linux</h3>
+        <ul class="tight">
+          <li>HĐH hiện đại, miễn phí, dựa trên UNIX, mã nguồn mở, giấy phép <b>GNU GPL</b>. Bản phân phối: RedHat (thương mại), Debian (miễn phí), Canonical, SuSE; gói RPM.</li>
+          <li>3 thành phần chính: <b>nhân</b>, <b>thư viện hệ thống</b>, <b>công cụ hệ thống</b>. Toàn bộ mã nhân chạy kernel mode trên cùng một không gian địa chỉ.</li>
+          <li><b>Module nhân</b>: biên dịch, nạp, gỡ độc lập với phần còn lại; cài đặt driver, file system hoặc giao thức mạng. Slide liệt kê <b>4 thành phần hỗ trợ module</b>: module-management system, module loader/unloader, driver-registration system, conflict-resolution mechanism.</li>
+          <li>Tiến trình: <code>fork()</code> tạo, <code>exec()</code> chạy chương trình mới; thuộc tính chia 3 nhóm: định danh, môi trường, ngữ cảnh.</li>
+          <li>IPC: <b>signal</b> để báo sự kiện (số lượng giới hạn, không chứa dữ liệu). <b>Chuyển dữ liệu</b>: <b>pipe</b>, <b>network</b>, <b>shared memory</b>.</li>
+          <li>Định thời: bản 2.5 dùng O(1); bản 2.6 dùng <b>CFS</b>.</li>
+          <li>Bộ nhớ vật lý chia thành các <b>vùng (zone)</b>: slide 2024 liệt kê <b>6</b> vùng DMA, DMA32, NORMAL, HIGHMEM, MOVABLE, DEVICE (sách cũ: 4 vùng đầu). Mỗi vùng có page allocator riêng dùng giải thuật <b>buddy heap</b>.</li>
+          <li>Phân trang: pageout-policy + paging mechanism; ghi trang dùng <b>next-fit</b>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Windows 10</h3>
+        <ul class="tight">
+          <li>Nguyên tắc thiết kế: bảo mật, tin cậy, dễ mở rộng (RPC, ALPC), hiệu năng, tương thích POSIX, di động, hỗ trợ quốc tế (NLS), tiết kiệm năng lượng, hỗ trợ nhiều thiết bị.</li>
+          <li>Kernel mode: <b>HAL</b>, nhân, executive. User mode: environmental subsystems, protection subsystems.</li>
+          <li>Thành phần: <b>Nhân</b> (định thời thread, chuyển ngữ cảnh, xử lý ngắt) · <b>Hyper-V Hypervisor</b> (<b>ảo hóa</b>) · <b>HAL</b> (che giấu khác biệt phần cứng) · <b>Secure kernel</b> (Trustlet, TPM) · <b>Executive</b> (quản lý bộ nhớ ảo, tiến trình, I/O, năng lượng, PnP, registry, LPC).</li>
+          <li>Thread có <b>8 trạng thái</b>; mỗi thread có user-mode và kernel-mode stack.</li>
+          <li>Định thời <b>32 mức ưu tiên</b>: real-time 16–31, variable 0–15; soft real-time.</li>
+          <li>Bộ nhớ ảo: cấp phát 2 bước (reserve rồi commit); trang có 6 trạng thái; page directory 1024 mục × 4 byte, mỗi bảng trang 1024 PTE, trang 4 KB.</li>
+          <li><b>Registry</b>: quản lý thông tin cấu hình, lưu trong các <b>hive</b>. <b>PnP manager</b>: nhận biết thay đổi phần cứng, nạp driver. <b>LPC</b>: giao tiếp hai tiến trình cùng máy theo client–server.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- THUẬT NGỮ -->
+  <article class="chap" id="cen">
+    <h2><span class="num">EN</span>Thuật ngữ tiếng Anh (câu trả lời ngắn tối đa 2 từ)</h2>
+    <div class="card">
+      <p class="muted small">Đề HK2 2023-24 và HK1 2024-25 có câu “trả lời bằng tiếng Anh, tối đa 2 từ”. Học thuộc các cặp sau.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Mô tả</th><th>Thuật ngữ</th></tr></thead>
+        <tbody id="glossary"></tbody></table></div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ DẠNG ĐỀ ============ -->
+<section class="view" id="v-dangde" hidden>
+  <div>
+    <h2>Cấu trúc đề và tần suất chủ đề</h2>
+    <p class="muted" style="max-width:72ch">Thống kê từ 7 đề cuối kỳ: 2019-20 HK1, 2020-21 HK1, 2022-23 HK1 và HK2, 2023-24 HK1 và HK2, 2024-25 HK1. Đề gần đây: 15–20 câu trắc nghiệm (6đ) + tự luận 4đ gồm Đúng/Sai, thuật ngữ tiếng Anh, câu lý thuyết ngắn và một bài tính (thay trang hoặc Banker).</p>
+  </div>
+  <div class="card">
+    <div class="tablewrap"><table class="freq"><thead><tr><th>Chủ đề</th><th class="num">Số đề có</th><th></th><th>Ghi chú</th></tr></thead><tbody id="freqBody"></tbody></table></div>
+  </div>
+
+  <div>
+    <h2>Công thức và cách giải nhanh</h2>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>1 · EAT với TLB</h3>
+      <div class="formula"><span>EAT = ε + (2 − α)·x</span></div>
+      <p class="small" style="margin-top:8px">Biết 3 đại lượng, suy ra đại lượng còn lại.</p>
+      <ul class="tight small">
+        <li>α = 0.8, x = 180, EAT = 240 ⇒ ε = 240 − 1.2·180 = 24. α = 0.95 ⇒ EAT = 24 + 1.05·180 = <b>213 ns</b>.</li>
+        <li>α = 0.95, ε = 21, EAT = 210 ⇒ x = 189 / 1.05 = <b>180 ns</b>.</li>
+        <li>α = 0.95, x = 160, EAT = 190 ⇒ ε = 190 − 168 = <b>22 ns</b>.</li>
+        <li>ε = 12.5, x = 250, EAT = 275 ⇒ 2 − α = 1.05 ⇒ α = <b>0.95</b>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>2 · Số bit và kích thước bảng trang</h3>
+      <ul class="tight small">
+        <li>Offset d = log₂(kích thước trang). Ví dụ 4096 B ⇒ 12 bit.</li>
+        <li>Số bit p = log₂(số trang); số bit f = log₂(số frame).</li>
+        <li>Địa chỉ ảo = p + d bit; địa chỉ vật lý = f + d bit. 64 frame × 4096 B ⇒ 6 + 12 = <b>18 bit</b>.</li>
+        <li>Số địa chỉ ảo = số trang × kích thước trang (128 × 4096 = 2¹⁹ = 524288).</li>
+        <li>Kích thước bảng trang = số mục (số trang) × kích thước mỗi mục. 128 × 4 B = <b>512 B</b>.</li>
+        <li>Mục bảng trang tối thiểu = số bit f (+1 bit valid nếu đề yêu cầu): 64 frame ⇒ 6 + 1 = 7 bit.</li>
+        <li>Ngược lại: số mục = kích thước bảng / kích thước mục; 1 MB / 2 B = 2¹⁹.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>3 · Đổi địa chỉ trong phân trang</h3>
+      <ul class="tight small">
+        <li>Luận lý → vật lý: p = ⌊LA / size⌋, d = LA mod size; PA = f·size + d.</li>
+        <li>Vật lý → luận lý: f = ⌊PA / size⌋, tìm trang p đang nằm ở frame f; LA = p·size + d.</li>
+        <li>Offset luôn được giữ nguyên ⇒ dùng offset để ghép cặp địa chỉ khi dựng bảng trang.</li>
+        <li>Ví dụ: size 2048, trang 1, 2, 3, 4 ở frame 3, 2, 4, 1. PA 6854 = 3·2048 + 710 ⇒ frame 3 ⇒ trang 1 ⇒ LA = 2048 + 710 = <b>2758</b>.</li>
+        <li>Phân trang đa cấp: tách bit từ trái. 4 + 4 + 8 bit cho 3 cấp, 32 bit ⇒ offset 16 bit cuối: 0xAAADDDCB ⇒ <b>0xDDCB</b>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>4 · Phân đoạn</h3>
+      <ul class="tight small">
+        <li>Địa chỉ (s, d) hợp lệ khi d &lt; length[s]; PA = base[s] + d.</li>
+        <li>Ví dụ đoạn 1 có length 123: địa chỉ (1, 178) <b>không hợp lệ</b>.</li>
+      </ul>
+      <h3 style="margin-top:10px">5 · Cấp phát frame theo tỉ lệ</h3>
+      <p class="small"><code>a<sub>i</sub> = s<sub>i</sub> / S × m</code>. s₁ = 10, s₂ = 120, m = 64 ⇒ a₁ ≈ 5, a₂ ≈ 59.</p>
+    </div>
+  </div>
+
+  <div class="card" style="display:grid;gap:12px">
+    <h3>6 · Kiểm tra chiến lược chọn vùng nhớ (first / next / best / worst-fit)</h3>
+    <p class="small muted" style="margin:0">Nhập kích thước các phân vùng theo thứ tự, đánh dấu vùng đã cấp phát, vị trí con trỏ (cho next-fit) và danh sách tiến trình cần cấp phát lần lượt.</p>
+    <div class="fields">
+      <label class="field" for="fitParts" style="flex:1 1 260px">Phân vùng (KB, cách nhau dấu phẩy)<input type="text" id="fitParts" value="250, 150, 180, 320, 360"></label>
+      <label class="field" for="fitUsed">Vùng đã cấp (số thứ tự)<input type="text" id="fitUsed" value="3" style="width:120px"></label>
+      <label class="field" for="fitPtr">Con trỏ ở vùng<input type="number" id="fitPtr" value="3" min="1" style="width:90px"></label>
+      <label class="field" for="fitReq">Tiến trình (KB)<input type="text" id="fitReq" value="240" style="width:140px"></label>
+    </div>
+    <div class="toolbar"><select id="fitPreset" aria-label="Đề có sẵn"><option value="">Mở đề có sẵn…</option></select></div>
+    <div id="fitOut"></div>
+  </div>
+</section>
+
+<!-- ============ BẪY ============ -->
+<section class="view" id="v-bay" hidden>
+  <div>
+    <h2>Bẫy hay gặp trong đề</h2>
+    <p class="muted">Các phương án nhiễu lặp lại qua nhiều năm. Cột trái là phát biểu sai hay được cài vào đề, cột phải là phát biểu đúng.</p>
+  </div>
+  <div class="traps" id="traps"></div>
+</section>
+
+<!-- ============ TRẮC NGHIỆM ============ -->
+<section class="view" id="v-tracnghiem" hidden>
+  <div class="card" style="display:grid;gap:14px">
+    <div class="toolbar">
+      <div class="seg" id="chapSeg" role="group" aria-label="Lọc theo chương">
+        <button data-c="0" aria-pressed="true">Tất cả</button><button data-c="5" aria-pressed="false">C5</button><button data-c="6" aria-pressed="false">C6</button><button data-c="7" aria-pressed="false">C7</button><button data-c="8" aria-pressed="false">C8</button><button data-c="9" aria-pressed="false">C9</button>
+      </div>
+      <label class="field" style="flex-direction:row;display:flex;align-items:center;gap:6px" for="srcSel">Đề
+        <select id="srcSel"><option value="">Tất cả đề</option></select>
+      </label>
+      <label style="display:flex;align-items:center;gap:6px;font-size:14px" for="onlyWrong"><input type="checkbox" id="onlyWrong"> Chỉ câu làm sai</label>
+      <label style="display:flex;align-items:center;gap:6px;font-size:14px" for="onlyNew"><input type="checkbox" id="onlyNew"> Chỉ câu chưa làm</label>
+    </div>
+    <div class="toolbar">
+      <button class="btn" id="shuffleBtn">Xáo trộn thứ tự</button>
+      <button class="btn ghost" id="resetBtn">Làm lại các câu đang lọc</button>
+    </div>
+    <div class="scorebar"><span><b id="scRight">0</b> đúng</span><span><b id="scWrong">0</b> sai</span><span class="muted" id="scLeft"></span><div class="progress"><i id="scBar" style="width:0%"></i></div></div>
+    <p class="small muted" style="margin:0">Đề 2020-21 có đáp án chính thức. Các đề còn lại được giải theo slide bài giảng; bài tính (Banker, thay trang, EAT) đã kiểm lại bằng chương trình. Câu nào đề có hai phương án cùng khớp slide thì lời giải có ghi chú.</p>
+  </div>
+  <div class="qlist" id="qlist"></div>
+</section>
+
+<!-- ============ MÔ PHỎNG THAY TRANG ============ -->
+<section class="view" id="v-thaytrang" hidden>
+  <div>
+    <h2>Mô phỏng thay trang FIFO · OPT · LRU</h2>
+    <p class="muted" style="max-width:72ch">Nhập chuỗi truy xuất và số khung trang để xem bảng từng bước, trang bị thay và tổng số lỗi trang. Dùng để kiểm tra bài tự vẽ.</p>
+  </div>
+  <div class="card" style="display:grid;gap:12px">
+    <div class="fields">
+      <label class="field" for="prRef" style="flex:1 1 300px">Chuỗi truy xuất (chữ số liền nhau hoặc cách nhau)<input type="text" id="prRef" value="23148582613782624815"></label>
+      <label class="field" for="prN">Số khung trang<input type="number" id="prN" value="4" min="1" max="10" style="width:90px"></label>
+      <label class="field" for="prPreset">Đề có sẵn<select id="prPreset"><option value="">Chọn đề…</option></select></label>
+    </div>
+    <div class="algo-btns" id="prAlgo"><button data-a="FIFO" aria-pressed="false">FIFO</button><button data-a="OPT" aria-pressed="false">OPT</button><button data-a="LRU" aria-pressed="true">LRU</button></div>
+    <div class="scorebar" id="prSummary"></div>
+  </div>
+  <div class="card" style="display:grid;gap:10px">
+    <div class="tablewrap" id="prTable"></div>
+    <p class="small muted" style="margin:0">Ô tô đậm: trang vừa nạp. Hàng “Lỗi”: * là có lỗi trang. Hàng “Thay”: trang bị chọn làm victim. OPT: nếu nhiều trang không còn được dùng lại, chọn trang ở khung phía trên (đề thường chấp nhận mọi lựa chọn trong trường hợp này).</p>
+  </div>
+  <div class="card">
+    <h3>So sánh số lỗi trang trên chuỗi này</h3>
+    <div id="prCompare"></div>
+  </div>
+</section>
+
+<!-- ============ MÔ PHỎNG BANKER ============ -->
+<section class="view" id="v-banker" hidden>
+  <div>
+    <h2>Mô phỏng giải thuật Banker</h2>
+    <p class="muted" style="max-width:72ch">Nhập Allocation, Max, Available (4 loại tài nguyên R1–R4, 5 tiến trình như đề thi). Công cụ tính Need, tìm chuỗi an toàn, kiểm tra một chuỗi cho trước và xét yêu cầu cấp phát thêm.</p>
+  </div>
+  <div class="card" style="display:grid;gap:12px">
+    <div class="toolbar"><select id="bkPreset" aria-label="Đề có sẵn"><option value="">Mở đề có sẵn…</option></select></div>
+    <div class="tablewrap" id="bkInput"></div>
+  </div>
+  <div class="card" style="display:grid;gap:10px">
+    <h3>Kiểm tra an toàn</h3>
+    <div class="tablewrap" id="bkSafe"></div>
+    <div id="bkSafeMsg"></div>
+  </div>
+  <div class="grid2">
+    <div class="card" style="display:grid;gap:10px">
+      <h3>Kiểm tra một chuỗi cho trước</h3>
+      <label class="field" for="bkSeq">Chuỗi (ví dụ 1 4 2 5 3)<input type="text" id="bkSeq" placeholder="1 4 2 5 3"></label>
+      <div id="bkSeqOut" class="small"></div>
+    </div>
+    <div class="card" style="display:grid;gap:10px">
+      <h3>Yêu cầu cấp phát thêm</h3>
+      <div class="fields">
+        <label class="field" for="bkReqP">Tiến trình<select id="bkReqP"><option value="1">P1</option><option value="2">P2</option><option value="3">P3</option><option value="4">P4</option><option value="5">P5</option></select></label>
+        <label class="field" for="bkReqV">Request (R1 R2 R3 R4)<input type="text" id="bkReqV" placeholder="2 2 1 3" style="width:140px"></label>
+      </div>
+      <div id="bkReqOut" class="small"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TỰ LUẬN ============ -->
+<section class="view" id="v-tuluan" hidden>
+  <div>
+    <h2>Tự luận đề cũ có lời giải</h2>
+    <p class="muted" style="max-width:72ch">Tự làm trước rồi mở lời giải. Các bài thay trang và Banker có nút mở thẳng trong mô phỏng để xem bảng chi tiết.</p>
+  </div>
+  <div id="tlList" style="display:grid;gap:14px"></div>
+</section>
+
+</main>
+
+<footer class="wrap">Nguồn: slide bài giảng IT007 (Week07–Week14, 2024), slide training cuối kỳ BHT CNPM 2025-2026, đề cuối kỳ BHT CNPM 2019-2020 đến 2024-2025 (đáp án chính thức có ở đề 2020-2021). Tiến độ trắc nghiệm chỉ lưu trên trình duyệt của bạn.</footer>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+/* ---------- tabs ---------- */
+const views=["lythuyet","dangde","bay","tracnghiem","thaytrang","banker","tuluan"];
+function show(v){
+  if(!views.includes(v))v="lythuyet";
+  views.forEach(x=>{$("#v-"+x).hidden=x!==v});
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.view===v?"true":"false"));
+}
+function go(v){show(v);try{history.replaceState(null,"","#"+v)}catch(e){}window.scrollTo({top:0})}
+document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>go(b.dataset.view)));
+document.querySelectorAll("[data-jump]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();document.getElementById(a.dataset.jump).scrollIntoView({behavior:"smooth",block:"start"})}));
+const h0=(location.hash||"").slice(1);
+show(["c5","c6","c7","c8","c9","cen"].includes(h0)?"lythuyet":h0);
+
+/* ---------- glossary ---------- */
+const GLOSS=[
+["Hiện tượng nhiều tiến trình cùng truy cập đồng thời dữ liệu chia sẻ, kết quả phụ thuộc thứ tự thực thi","Race condition"],
+["Đoạn code có thao tác trên dữ liệu chia sẻ","Critical section"],
+["Tập đặc điểm hệ thống phải thỏa để đảm bảo tiến trình thực sự chạy","Liveness"],
+["Chỉ thị bắt buộc mọi thay đổi bộ nhớ được hiển thị đến mọi CPU khác","Memory barrier"],
+["Quy tắc và ràng buộc cho việc sử dụng bộ nhớ (sắp xếp mạnh/yếu)","Memory model"],
+["Nghịch đảo ưu tiên (tiến trình ưu tiên cao phải đợi tiến trình ưu tiên thấp)","Priority inversion"],
+["Tiến trình đợi một sự kiện không bao giờ xảy ra","Deadlock"],
+["Tiến trình bị trì hoãn vô hạn định","Starvation"],
+["Đồ thị có hướng gồm đỉnh tiến trình và loại tài nguyên","Resource-allocation graph"],
+["Đồ thị phát hiện deadlock khi mỗi loại tài nguyên có 1 thực thể, tạo từ RAG","Wait-for graph"],
+["Giải thuật tránh deadlock khi mỗi loại tài nguyên có nhiều thực thể","Banker's algorithm"],
+["Trạng thái tồn tại chuỗi an toàn","Safe state"],
+["Kỹ thuật cho phép xử lý tiến trình không được nạp toàn bộ vào bộ nhớ vật lý","Virtual memory"],
+["Chỉ nạp trang vào bộ nhớ khi được yêu cầu","Demand paging"],
+["Lỗi xảy ra khi truy xuất trang không có trong bộ nhớ","Page fault"],
+["Thủ tục phục vụ lỗi trang","PFSR (page-fault service routine)"],
+["Trang hy sinh bị chọn để thay thế","Victim page"],
+["Số lỗi trang tăng dù cấp nhiều frame hơn","Belady's anomaly"],
+["Các trang nhớ của tiến trình bị hoán chuyển vào/ra liên tục","Thrashing"],
+["Tập các trang được tham chiếu gần nhau","Locality"],
+["Tập các trang được sử dụng gần đây nhất","Working set"],
+["Bộ đệm tra cứu nhanh chỉ số trang","TLB"],
+["Gom các vùng nhớ trống rời rạc thành khối liên tục","Compaction"],
+["Vùng trống đủ tổng dung lượng nhưng không liên tục","External fragmentation"],
+["Vùng cấp phát lớn hơn yêu cầu, phần dư bên trong bị lãng phí","Internal fragmentation"],
+["Thủ tục chỉ được nạp khi được gọi đến","Dynamic loading"],
+["Link đến module ngoài sau khi đã tạo load module","Dynamic linking"],
+["Chuyển tiến trình tạm thời ra bộ nhớ phụ rồi đưa vào lại","Swapping"],
+["Quản lý thông tin cấu hình trên Windows","Registry"],
+["Thành phần cung cấp chức năng ảo hóa trên Windows 10","Hyper-V Hypervisor"]
+];
+$("#glossary").innerHTML=GLOSS.map(g=>`<tr><td>${g[0]}</td><td><b class="mono">${g[1]}</b></td></tr>`).join("");
+
+/* ---------- frequency ---------- */
+const FREQ=[
+["Thay trang FIFO / OPT / LRU",7,"Mọi đề; tự luận vẽ bảng ở 19-20, 22-23 HK1, 24-25"],
+["Chiến lược first / next / best / worst-fit",7,"Cho dãy phân vùng + con trỏ, hỏi tiến trình vào vùng nào"],
+["RAG, điều kiện deadlock, wait-for graph",7,"Phát biểu đúng/sai; xét hệ thống nào có deadlock"],
+["Semaphore (định nghĩa, giá trị, wait/signal)",7,"Ý nghĩa S âm/dương, signal tăng hay giảm"],
+["Giải thuật Banker / chuỗi an toàn",6,"Chọn chuỗi KHÔNG an toàn, xét yêu cầu cấp phát; tự luận ở 20-21, 23-24 HK1"],
+["EAT với TLB",6,"Biết 3 trong 4 đại lượng ε, x, α, EAT"],
+["Tính bit / kích thước bảng trang",6,"Số bit f, địa chỉ vật lý, số mục, kích thước bảng"],
+["Đổi địa chỉ trong phân trang",5,"Luận lý ↔ vật lý khi biết trang nằm ở frame nào"],
+["Ngăn / tránh / phát hiện / phục hồi deadlock",7,"Phân biệt ngăn (bỏ 1 trong 4 điều kiện) và tránh (trạng thái an toàn)"],
+["Working set, thrashing, cấp phát frame",6,"Mục tiêu working set, D &gt; m, cấp phát động"],
+["Bài toán đồng bộ kinh điển",6,"Readers–Writers (3 đề), Dining-Philosophers (3), Bounded-buffer (2)"],
+["Yêu cầu lời giải vùng tranh chấp",4,"Chọn tính chất KHÔNG cần thỏa"],
+["Monitor, biến điều kiện",4,"Biến điều kiện không truy cập được từ ngoài monitor"],
+["Peterson, memory barrier, cấm ngắt",4,"Peterson sai trên kiến trúc hiện đại do sắp xếp lại lệnh"],
+["Address binding, dynamic linking/loading",5,"Nhược điểm compile time; so sánh linking và loading"],
+["Linux &amp; Windows",3,"Registry, Hyper-V, module nhân, zone bộ nhớ, IPC trên Linux"]
+];
+$("#freqBody").innerHTML=FREQ.map(f=>`<tr><td>${f[0]}</td><td class="num">${f[1]}/7</td><td class="bar"><div class="b" style="width:${f[1]/7*100}%"></div></td><td class="small muted">${f[2]}</td></tr>`).join("");
+
+/* ---------- fit calculator ---------- */
+const FITP=[
+["19-20 HK1 câu 5 (next-fit)","250,300,150,100,300","3",3,"160"],
+["20-21 HK1 câu 20 (first-fit)","150,180,400,200,320","3,4",4,"160"],
+["22-23 HK1 câu 8 (first-fit)","250,150,180,320,360","3",3,"240"],
+["22-23 HK2 tự luận 1 (first-fit 240, best-fit 310)","150,250,380,420,320,400","2",2,"240"],
+["23-24 HK1 câu 22 (first-fit P, Q)","405,260,350,240,365,340","3",3,"230,335"]
+];
+$("#fitPreset").insertAdjacentHTML("beforeend",FITP.map((p,i)=>`<option value="${i}">${esc(p[0])}</option>`).join(""));
+$("#fitPreset").addEventListener("change",e=>{const p=FITP[e.target.value];if(!p)return;$("#fitParts").value=p[1].replace(/,/g,", ");$("#fitUsed").value=p[2];$("#fitPtr").value=p[3];$("#fitReq").value=p[4];fit()});
+const nums=s=>(s.match(/\d+/g)||[]).map(Number);
+function fit(){
+  const parts=nums($("#fitParts").value), used=new Set(nums($("#fitUsed").value).map(x=>x-1)), reqs=nums($("#fitReq").value);
+  let ptr0=Math.max(0,(+$("#fitPtr").value||1)-1);
+  if(!parts.length||!reqs.length){$("#fitOut").innerHTML="";return}
+  const algos=["First-fit","Next-fit","Best-fit","Worst-fit"];
+  const rows=algos.map(a=>{
+    const u=new Set(used); let ptr=ptr0; const res=[];
+    for(const r of reqs){
+      let pick=-1; const free=parts.map((s,i)=>i).filter(i=>!u.has(i)&&parts[i]>=r);
+      if(a==="First-fit") pick=free.length?free[0]:-1;
+      else if(a==="Next-fit"){for(let k=1;k<=parts.length;k++){const i=(ptr+k)%parts.length;if(!u.has(i)&&parts[i]>=r){pick=i;break}}}
+      else if(a==="Best-fit") pick=free.length?free.reduce((b,i)=>parts[i]<parts[b]?i:b):-1;
+      else pick=free.length?free.reduce((b,i)=>parts[i]>parts[b]?i:b):-1;
+      if(pick>=0){u.add(pick);ptr=pick;res.push(`vùng <b>${pick+1}</b> (${parts[pick]} KB)`)}else res.push(`<span style="color:var(--bad)">không cấp được</span>`);
+    }
+    return `<tr><td><b>${a}</b></td>${res.map(x=>`<td>${x}</td>`).join("")}</tr>`;
+  }).join("");
+  $("#fitOut").innerHTML=`<div class="tablewrap"><table style="max-width:640px"><thead><tr><th>Chiến lược</th>${reqs.map(r=>`<th>${r} KB</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div><p class="small muted">Vùng đã cấp không được dùng lại; mỗi phân vùng cố định chỉ chứa một tiến trình. Next-fit bắt đầu tìm từ vùng ngay sau con trỏ và vòng lại đầu bộ nhớ.</p>`;
+}
+["#fitParts","#fitUsed","#fitPtr","#fitReq"].forEach(s=>$(s).addEventListener("input",fit));
+fit();
+
+/* ---------- traps ---------- */
+const TRAPS=[
+["wait(S) tăng S thêm 1; signal(S) giảm S đi 1.","<b>wait giảm</b>, <b>signal tăng</b>. wait dùng khi muốn sử dụng tài nguyên, signal khi trả lại."],
+["S = −4 ⇒ có 5 (hoặc 4+1) tiến trình đang đợi; sau khi giảm, block nếu giá trị “không dương”.","S âm ⇒ |S| tiến trình đang đợi (−4 ⇒ 4). Block khi giá trị sau khi giảm là <b>âm</b>."],
+["Semaphore là biến số thực; S dương là số tiến trình đang đợi.","Semaphore là <b>biến nguyên</b>; S ≥ 0 là số lần gọi wait(S) không bị blocked."],
+["Đoạn mã wait()/signal() không phải vùng tranh chấp.","Chúng <b>chính là vùng tranh chấp</b>, cần cấm ngắt (đơn CPU) hoặc busy waiting ngắn (đa CPU)."],
+["Biến điều kiện truy cập được từ bên ngoài monitor.","Chỉ dùng <b>bên trong</b> monitor qua x.wait() và x.signal()."],
+["Sleep &amp; Wakeup không cần HĐH hỗ trợ; Peterson cần HĐH.","Sleep &amp; Wakeup (semaphore, monitor, mutex) cần HĐH. <b>Peterson</b> là phần mềm, không cần HĐH."],
+["Peterson là giải pháp dựa trên phần cứng.","Peterson là <b>phần mềm</b>, busy waiting; trên kiến trúc hiện đại cần memory barrier."],
+["Cấm ngắt đảm bảo loại trừ tương hỗ trên đa CPU.","Chỉ cấm ngắt tại CPU thực thi lệnh; CPU khác vẫn truy cập bộ nhớ chia sẻ."],
+["TestAndSet đảm bảo chờ đợi giới hạn.","Đảm bảo loại trừ tương hỗ nhưng <b>không</b> đảm bảo bounded waiting (có thể starvation)."],
+["Readers–Writers: semaphore mutex bảo đảm loại trừ tương hỗ cho Writer.","<b>mutex</b> bảo vệ readcount; <b>rw_mutex (wrt)</b> mới là loại trừ tương hỗ cho Writer."],
+["Writer trong CS, n Reader đợi ⇒ 1 Reader ở hàng đợi mutex, n−1 ở rw_mutex.","Ngược lại: <b>1</b> Reader ở hàng đợi <b>rw_mutex</b>, <b>n−1</b> ở hàng đợi <b>mutex</b>."],
+["Dining-Philosophers: tối đa 4 người ngồi thì tránh được cả deadlock và starvation.","Các cách sửa chỉ tránh được <b>deadlock</b>; starvation vẫn có thể xảy ra."],
+["RAG có chu trình ⇒ chắc chắn deadlock.","Chỉ chắc chắn khi mỗi loại tài nguyên có <b>1 thực thể</b>; nhiều thực thể ⇒ có thể."],
+["Trạng thái không an toàn ⇒ có deadlock.","Không an toàn ⇒ <b>có thể</b> deadlock. An toàn ⇒ không deadlock."],
+["Cạnh yêu cầu có hướng từ tài nguyên sang tiến trình.","Yêu cầu: <b>P → R</b>. Cấp phát: <b>R → P</b>."],
+["Đỉnh của wait-for graph là các loại tài nguyên; RAG được xây từ wait-for graph.","Đỉnh wait-for là <b>tiến trình</b>; wait-for được xây <b>từ</b> RAG."],
+["Phát hiện chu trình trong wait-for graph là O(n³).","<b>O(n²)</b>. Phát hiện với nhiều thực thể: O(m × n²)."],
+["Ngăn deadlock dùng tài nguyên hiệu quả nhờ kiểm tra trạng thái an toàn.","Đó là <b>tránh</b> deadlock. Ngăn = bỏ một trong 4 điều kiện, dùng tài nguyên kém hiệu quả."],
+["Giải thuật tránh deadlock yêu cầu khai báo số tài nguyên tối thiểu.","Khai báo số lượng <b>tối đa</b>."],
+["“Yêu cầu tài nguyên theo thứ tự tăng dần” là điều kiện cần của deadlock.","Đó là cách <b>ngăn</b> circular wait."],
+["Phục hồi deadlock bằng cách cung cấp thêm tài nguyên.","Phục hồi: báo người vận hành, chấm dứt tiến trình, lấy lại tài nguyên."],
+["PTLR xác định vị trí bảng trang; PTBR xác định kích thước.","<b>PTBR</b> = vị trí (base), <b>PTLR</b> = kích thước (length). Tương tự STBR/STLR."],
+["HĐH tạo một bảng phân trang dùng chung cho tất cả tiến trình.","<b>Mỗi tiến trình</b> một bảng trang (trừ bảng trang đảo)."],
+["Phân trang không có phân mảnh.","Không có phân mảnh <b>ngoại</b> nhưng <b>có</b> phân mảnh <b>nội</b>."],
+["Compaction giải quyết phân mảnh nội.","Compaction giải quyết phân mảnh <b>ngoại</b>."],
+["Fixed partitioning gây phân mảnh ngoại, cấp đúng dung lượng cần.","Fixed partitioning gây phân mảnh <b>nội</b>; dynamic partitioning mới cấp đúng dung lượng."],
+["Next-fit tìm từ đầu bộ nhớ.","Next-fit tìm từ <b>vị trí cấp phát cuối cùng</b>; first-fit mới tìm từ đầu."],
+["Bộ nhớ ảo giảm số tiến trình trong bộ nhớ; kích thước tiến trình phải nhỏ hơn bộ nhớ vật lý.","Bộ nhớ ảo cho phép <b>nhiều</b> tiến trình hơn và tiến trình <b>lớn hơn</b> bộ nhớ thực."],
+["Hai kỹ thuật cài đặt bộ nhớ ảo là simple paging và demand segmentation.","<b>Demand paging</b> và <b>demand segmentation</b>."],
+["Belady: số lỗi trang giảm khi cấp nhiều frame hơn.","Belady: số lỗi trang <b>tăng</b> dù cấp nhiều frame hơn (xảy ra với FIFO)."],
+["LRU thay trang được tham chiếu trễ nhất trong tương lai.","Đó là <b>OPT</b>. LRU thay trang có thời điểm tham chiếu <b>nhỏ nhất</b> (lâu nhất chưa dùng)."],
+["Cấp phát động: tỉ lệ lỗi trang cao thì giảm frame.","Lỗi trang <b>cao ⇒ cấp thêm</b>, <b>thấp ⇒ giảm bớt</b>."],
+["Thrashing khi tổng locality nhỏ hơn bộ nhớ; working set tạm dừng tiến trình khi D &lt; m.","Thrashing khi tổng locality <b>lớn hơn</b> bộ nhớ; tạm dừng khi <b>D &gt; m</b>."],
+["WS = {1,2,5,2,1,5,2} ⇒ WSS = 7.","Δ = 7 nhưng WSS = số trang <b>khác nhau</b> = 3."],
+["Compile time binding: chỉ cần nạp lại khi đổi địa chỉ.","Compile time phải <b>biên dịch lại</b>; load time mới phải nạp lại."],
+["Dynamic loading cần hỗ trợ đặc biệt của HĐH; dynamic linking thì không.","Ngược lại: <b>dynamic linking cần HĐH</b>; dynamic loading do user thiết kế."]
+];
+$("#traps").innerHTML=TRAPS.map(t=>`<div class="trap"><div class="wrong"><span class="lbl">Sai</span>${t[0]}</div><div class="right"><span class="lbl">Đúng</span>${t[1]}</div></div>`).join("");
+
+/* ---------- bảng dữ liệu cho câu hỏi ---------- */
+const BK={
+ b1920:{al:[[1,2,2,3],[3,1,3,1],[2,1,4,5],[3,1,5,2],[1,4,4,2]],mx:[[2,3,4,3],[3,8,6,1],[7,7,5,7],[5,4,6,7],[1,6,7,3]],av:[3,4,4,3]},
+ b2223:{al:[[1,2,2,1],[3,2,4,3],[5,1,2,2],[3,1,2,1],[1,2,1,4]],mx:[[3,2,4,3],[5,3,6,4],[7,5,5,5],[3,4,7,6],[4,6,3,7]],av:[3,4,3,3]},
+ b2324:{al:[[2,2,1,3],[4,2,1,1],[2,5,4,1],[1,4,2,3],[1,2,3,4]],mx:[[5,2,4,3],[4,4,6,2],[3,6,5,7],[4,6,4,6],[1,5,7,4]],av:[3,3,4,5]},
+ b2324b:{al:[[1,1,2,2],[3,1,4,2],[5,2,1,2],[3,2,3,3],[1,2,4,1]],mx:[[3,2,3,3],[3,5,6,4],[7,5,4,5],[3,4,5,6],[3,6,4,7]],av:[3,4,3,3]},
+ b2425:{al:[[2,3,2,1],[3,2,4,1],[5,2,1,3],[3,2,3,2],[1,3,5,4]],mx:[[4,7,4,3],[7,2,4,2],[7,6,5,7],[3,4,4,3],[3,5,7,4]],av:[2,2,4,4]},
+ b2021:{al:[[3,1,1,2],[1,1,2,1],[2,1,4,5],[3,5,2,2],[1,3,4,1]],mx:[[5,3,4,3],[3,4,6,1],[3,5,5,7],[4,6,4,5],[1,5,7,2]],av:[4,3,3,5]}
+};
+function bkTable(k){const d=BK[k];const r4=a=>a.map(x=>`<td>${x}</td>`).join("");
+  return `<div class="tablewrap"><table class="bk"><thead><tr><th rowspan="2">Tiến trình</th><th colspan="4">Allocation</th><th colspan="4">Max</th><th colspan="4">Available</th></tr><tr>${"<th>R1</th><th>R2</th><th>R3</th><th>R4</th>".repeat(3)}</tr></thead><tbody>${d.al.map((a,i)=>`<tr><td class="l">P${i+1}</td>${r4(a)}${r4(d.mx[i])}${i===0?r4(d.av):"<td></td><td></td><td></td><td></td>"}</tr>`).join("")}</tbody></table></div>`}
+
+/* ---------- câu hỏi trắc nghiệm ---------- */
+const Q=[
+/* ===== 2019-2020 HK1 (đề 3) ===== */
+{s:"19-20 HK1",c:5,q:"Chọn phát biểu ĐÚNG trong các phát biểu dưới đây?",o:["Có thể hiện thực binary semaphore bằng counting semaphore.","Lệnh wait(S) sẽ làm tăng giá trị của semaphore S thêm 1 đơn vị.","Lệnh signal(S) sẽ làm giảm giá trị của semaphore S đi 1 đơn vị.","Đoạn mã định nghĩa các lệnh wait(S) và signal(S) cũng là các vùng tranh chấp."],a:0,e:"Slide: “có thể sử dụng counting semaphore như một binary semaphore”. B, C đảo ngược tác dụng. <i>Lưu ý:</i> slide cũng ghi đoạn mã wait/signal “cũng chính là vùng tranh chấp” nên D cũng khớp slide; đề này không có đáp án chính thức, nếu gặp lại hãy đọc kỹ phương án."},
+{s:"19-20 HK1",c:8,q:"Chọn phát biểu ĐÚNG về phân trang theo yêu cầu?",o:["Số lượng tiến trình trong bộ nhớ nhiều hơn so với phân đoạn theo yêu cầu.","Phân trang theo yêu cầu làm giảm thời gian truy xuất bộ nhớ.","Các trang của tiến trình chỉ được nạp vào bộ nhớ chính khi được yêu cầu.","Phân trang theo yêu cầu có thể thực hiện mà không cần sự hỗ trợ của phần cứng."],a:2,e:"Định nghĩa demand paging. Cần hỗ trợ phần cứng (valid bit, restart lệnh); lỗi trang làm tăng thời gian truy xuất."},
+{s:"19-20 HK1",c:7,q:"Bộ vi xử lý MIPS R2000 có không gian địa chỉ ảo 32 bit với kích thước trang là 4096 byte. Hỏi kích thước của mỗi mục (entry) trong bảng trang là bao nhiêu nếu bảng trang có kích thước 2 MB?",o:["8 bit","16 bit","24 bit","32 bit"],a:1,e:"Offset 12 bit ⇒ số trang 2³²⁻¹² = 2²⁰ mục. 2 MB = 2²¹ byte ⇒ mỗi mục 2²¹ / 2²⁰ = 2 byte = 16 bit."},
+{s:"19-20 HK1",c:7,q:"Chọn phát biểu ĐÚNG về phân đoạn trong các phát biểu sau?",o:["Một địa chỉ luận lý được xác định bằng tên đoạn và kích thước của đoạn đó.","Mỗi đoạn có tên riêng với kích thước bằng nhau.","Thanh ghi STBR cho biết số lượng đoạn có trong bảng phân đoạn.","Một chỉ số đoạn là hợp lệ nếu nhỏ hơn giá trị của thanh ghi STLR."],a:3,e:"Địa chỉ = (tên/số đoạn, offset); các đoạn có kích thước khác nhau; STBR là vị trí bảng, STLR là số đoạn ⇒ s hợp lệ khi s &lt; STLR."},
+{s:"19-20 HK1",c:7,q:"Bộ nhớ chính chia thành các phân vùng cố định theo thứ tự: 1 (250 KB), 2 (300 KB), 3 (150 KB), 4 (100 KB), 5 (300 KB). Con trỏ đang ở vùng 3, vùng 3 đã được cấp phát, các vùng khác còn trống. Tiến trình P 160 KB sẽ được cấp phát vùng nào nếu dùng next-fit?",o:["1","2","4","5"],a:3,e:"Next-fit tìm từ sau con trỏ: vùng 4 (100) không đủ, vùng 5 (300) đủ ⇒ vùng 5."},
+{s:"19-20 HK1",c:6,q:"Chọn phát biểu SAI trong các phát biểu bên dưới?",o:["Nếu hệ thống đang ở trạng thái an toàn thì không có deadlock trong hệ thống.","Nếu hệ thống đang ở trạng thái không an toàn thì có deadlock trong hệ thống.","Nếu đồ thị cấp phát tài nguyên không chứa chu trình thì không có deadlock.","Nếu đồ thị cấp phát tài nguyên có một chu trình thì deadlock có thể xảy ra."],a:1,e:"Không an toàn chỉ <b>có thể</b> dẫn đến deadlock."},
+{s:"19-20 HK1",c:6,q:"Đồ thị cấp phát tài nguyên KHÔNG có đặc điểm nào dưới đây?",o:["Đồ thị có hướng.","Tập cạnh gồm 2 loại: cạnh yêu cầu và cạnh cấp phát.","Được xây dựng từ đồ thị wait-for.","Tập đỉnh gồm tất cả các tiến trình và loại tài nguyên."],a:2,e:"Ngược lại: wait-for graph được xây dựng từ RAG."},
+{s:"19-20 HK1",c:6,q:"“Các tiến trình cần cung cấp thông tin về tài nguyên nó cần để hệ thống cấp phát tài nguyên một cách thích hợp” là đặc điểm của phương pháp giải quyết deadlock nào?",o:["Ngăn deadlock","Tránh deadlock","Bỏ qua deadlock","Phát hiện deadlock và phục hồi"],a:1,e:"Tránh deadlock yêu cầu khai báo số tài nguyên tối đa để kiểm tra trạng thái an toàn."},
+{s:"19-20 HK1",c:7,q:"Cho bảng phân đoạn: đoạn 0 (base 2017, length 146), 1 (564, 123), 2 (900, 275), 3 (1242, 680). Địa chỉ luận lý nào KHÔNG hợp lệ?",o:["2, 215","1, 178","3, 399","0, 42"],a:1,e:"Hợp lệ khi offset &lt; length. Đoạn 1 có length 123 &lt; 178 ⇒ không hợp lệ."},
+{s:"19-20 HK1",c:6,q:"Cho các giải pháp: (1) Cung cấp thêm tài nguyên; (2) Báo người vận hành; (3) Chấm dứt một hay nhiều tiến trình; (4) Lấy lại tài nguyên từ một hay nhiều tiến trình. Khi xảy ra deadlock, giải pháp nào có thể dùng để phục hồi?",o:["(1), (2), (3)","(1), (3), (4)","(2), (3), (4)","(1), (2), (4)"],a:2,e:"Phục hồi: báo người vận hành hoặc tự bẻ gãy chu trình bằng chấm dứt tiến trình / lấy lại tài nguyên. (Đề gốc in nhầm nhãn phương án này là “D”.)"},
+{s:"19-20 HK1",c:7,q:"Hệ thống phân trang với kích thước trang 2048 byte. Địa chỉ ảo 6580 được ánh xạ thành địa chỉ vật lý 4532. Trang 3 của bộ nhớ ảo được nạp vào khung trang nào?",o:["2","3","4","5"],a:0,e:"6580 = 3·2048 + 436 ⇒ trang 3, offset 436. 4532 = 2·2048 + 436 ⇒ khung 2."},
+{s:"19-20 HK1",c:5,q:"4 tiểu trình T1–T4 với quan hệ T1 → T2, T1 → T3, T2 → T4, T3 → T4 (Tx phải kết thúc trước khi Ty bắt đầu). Dùng semaphore để đồng bộ thì cần ít nhất bao nhiêu semaphore?",o:["1","2","3","4"],a:1,e:"Semaphore a = 0: T1 xong gọi signal(a) hai lần; T2, T3 mỗi tiểu trình wait(a). Semaphore b = 0: T2, T3 xong signal(b); T4 wait(b) hai lần ⇒ 2 semaphore. (Mỗi cạnh một semaphore thì là 4; đề không có đáp án chính thức.)"},
+{s:"19-20 HK1",c:7,q:"Hệ thống phân trang, bảng trang trong bộ nhớ chính. Với TLB hit-ratio 90% thì EAT = 240 ns, thời gian tìm trong TLB là 20 ns. EAT là bao nhiêu nếu hit-ratio giảm còn 85%?",o:["20","200","230","250"],a:3,e:"240 = 20 + (2 − 0.9)x ⇒ x = 200. EAT = 20 + (2 − 0.85)·200 = 250 ns."},
+{s:"19-20 HK1",c:8,q:"Giải pháp tập làm việc được sử dụng để giải quyết vấn đề gì?",o:["Phát hiện deadlock","Trì trệ trên toàn bộ hệ thống do hoán chuyển trang nhớ","Thay thế trang nhớ","Đồng bộ hoạt động giữa các tiến trình"],a:1,e:"Working set dùng để chống thrashing."},
+{s:"19-20 HK1",c:7,q:"Máy tính có không gian địa chỉ ảo 32 bit, bảng trang 3 cấp: 4 bit đầu cho cấp 1, 4 bit kế cho cấp 2, 8 bit kế cho cấp 3, còn lại là offset. Truy xuất địa chỉ 0xAAADDDCB thì offset là bao nhiêu?",o:["0xAA","0xDDCB","0xCBAD","0xAD"],a:1,e:"4 + 4 + 8 = 16 bit cho chỉ số trang ⇒ offset 16 bit cuối = 4 chữ số hex cuối = 0xDDCB."},
+{s:"19-20 HK1",c:7,q:"Hệ thống cấp phát vùng nhớ 20480 byte cho tiến trình yêu cầu 20324 byte thì sẽ dẫn đến tình trạng gì?",o:["Số lỗi trang tăng lên","Phân mảnh ngoại","Deadlock","Phân mảnh nội"],a:3,e:"Vùng cấp lớn hơn yêu cầu, 156 byte dư bên trong ⇒ phân mảnh nội."},
+{s:"19-20 HK1",c:6,q:"Hệ thống 5 tiến trình, 4 loại tài nguyên, trạng thái t0 như bảng. Chọn phát biểu SAI.",tb:"b1920",o:["Trạng thái hiện tại của hệ thống là an toàn.","Tại t1, nếu P4 yêu cầu thêm (2, 3, 1, 3) thì hệ thống sẽ đáp ứng.","Tại t1, nếu P1 yêu cầu thêm (1, 2, 1, 2) thì hệ thống sẽ không đáp ứng.","Chuỗi &lt;P1, P3, P2, P5, P4&gt; là một chuỗi an toàn của hệ thống."],a:3,e:"Need: P1 (1,1,2,0), P2 (0,7,3,0), P3 (5,6,1,2), P4 (2,3,1,5), P5 (0,2,3,1). Chuỗi an toàn &lt;P1,P4,P5,P2,P3&gt; ⇒ A đúng. D: sau P1, Work = (4,6,6,6) nhưng Need P3 = (5,6,1,2) không thỏa ⇒ D sai. B: cấp xong vẫn có chuỗi &lt;P1,P4,P5,P2,P3&gt;. C: (1,2,1,2) &gt; Need P1 ⇒ không đáp ứng.",bk:"b1920"},
+{s:"19-20 HK1",c:8,q:"Cài đặt bộ nhớ ảo dùng phân trang theo yêu cầu với chiến lược cấp phát động: số frame cấp cho tiến trình thay đổi thế nào nếu tỉ lệ lỗi trang thấp?",o:["Giảm xuống","Tăng lên","Không thay đổi","Bị hệ thống thu hồi toàn bộ"],a:0,e:"Lỗi trang thấp ⇒ giảm bớt frame; cao ⇒ cấp thêm."},
+{s:"19-20 HK1",c:5,q:"Chọn phát biểu SAI trong các phát biểu dưới đây?",o:["Critical region là một cấu trúc ngôn ngữ cấp cao.","Nếu sử dụng semaphore không đúng thì có thể xảy ra deadlock hoặc starvation.","Monitor có thể được hiện thực bằng semaphore.","Nhóm giải pháp đồng bộ “Sleep &amp; Wakeup” không cần sự hỗ trợ của hệ điều hành."],a:3,e:"Sleep &amp; Wakeup cần HĐH để block/wakeup tiến trình."},
+
+/* ===== 2020-2021 HK1 (đáp án chính thức đề 1 & 3) ===== */
+{s:"20-21 HK1",c:7,q:"Liên kết động (dynamic linking) là gì?",o:["Quá trình liên kết đến một external module được thực hiện sau khi đã tạo xong load module.","Quá trình nạp một thủ tục vào bộ nhớ chính khi thủ tục đó được gọi.","Quá trình liên kết đến một external module được thực hiện trước khi đã tạo xong load module.","Quá trình nạp một thủ tục vào bộ nhớ chính khi chương trình được nạp vào bộ nhớ."],a:0,e:"B là dynamic loading."},
+{s:"20-21 HK1",c:6,q:"Chọn phát biểu SAI trong các phát biểu bên dưới?",o:["Một trạng thái của hệ thống được gọi là an toàn nếu tồn tại một chuỗi an toàn.","Nếu hệ thống đang ở trạng thái an toàn thì không có deadlock.","Nếu hệ thống đang ở trạng thái không an toàn thì có thể dẫn đến deadlock.","Nếu đồ thị cấp phát tài nguyên có chu trình thì có deadlock xảy ra trong hệ thống."],a:3,e:"Có chu trình chỉ chắc chắn deadlock khi mỗi loại tài nguyên có một thực thể."},
+{s:"20-21 HK1",c:7,q:"Kích thước trang và khung trang là 1024 byte. Trang 0 và trang 1 của bộ nhớ ảo lần lượt được nạp vào khung trang 4, 2. Địa chỉ ảo 684 được ánh xạ thành địa chỉ vật lý bao nhiêu?",o:["684","2732","4780","1708"],a:2,e:"684 thuộc trang 0, offset 684 ⇒ khung 4 ⇒ 4·1024 + 684 = 4780."},
+{s:"20-21 HK1",c:6,q:"Lựa chọn nào dưới đây KHÔNG phải là điều kiện cần để deadlock xảy ra?",o:["Ít nhất một tài nguyên được giữ theo chế độ không chia sẻ.","Một tiến trình đang giữ ít nhất một tài nguyên và đợi thêm tài nguyên do tiến trình khác giữ.","Tồn tại một chu trình đợi tài nguyên giữa các tiến trình trong hệ thống.","Tiến trình giữ ít nhất hai loại tài nguyên và chỉ hoàn trả khi đã sử dụng xong."],a:3,e:"A, B, C là mutual exclusion, hold and wait, circular wait."},
+{s:"20-21 HK1",c:7,q:"Bảng trang lưu trong bộ nhớ chính, dùng TLB với thời gian tìm 12.5 ns, EAT = 275 ns, chu kỳ truy xuất bộ nhớ x = 250 ns. Hỏi xác suất tìm thấy chỉ số trang trong TLB?",o:["0.05","237.5","0.95","262.5"],a:2,e:"275 = 12.5 + (2 − α)·250 ⇒ 2 − α = 1.05 ⇒ α = 0.95."},
+{s:"20-21 HK1",c:5,q:"Lựa chọn nào dưới đây KHÔNG phải là đặc điểm của semaphore?",o:["Semaphore là công cụ đồng bộ cung cấp bởi HĐH mà không đòi hỏi busy waiting.","Thao tác wait(S) được sử dụng để giành tài nguyên và làm giảm giá trị S 1 đơn vị.","Thao tác signal(S) sẽ giải phóng tài nguyên và tăng giá trị S 1 đơn vị.","Giá trị của một semaphore biểu diễn số lượng tiến trình đang đợi trên semaphore đó."],a:3,e:"Chỉ khi S âm thì |S| mới là số tiến trình đang đợi."},
+{s:"20-21 HK1",c:7,q:"Cơ chế kết khối có thể được sử dụng để giải quyết vấn đề nào dưới đây?",o:["Phân mảnh ngoại","Phân mảnh nội","Lỗi trang","Các trang nhớ bị hoán chuyển vào/ra liên tục"],a:0,e:"Compaction gom vùng trống rời rạc thành khối liên tục."},
+{s:"20-21 HK1",c:7,q:"Một bộ vi xử lý có không gian địa chỉ ảo 32 bit với tổng cộng 2¹⁹ mục trong bảng trang. Kích thước bảng trang là bao nhiêu nếu kích thước mỗi mục là 8 bit?",o:["1 MB","2 MB","512 KB","2²² byte"],a:2,e:"2¹⁹ mục × 1 byte = 2¹⁹ byte = 512 KB."},
+{s:"20-21 HK1",c:7,q:"Nếu bảng phân trang được lưu giữ trong bộ nhớ chính thì kích thước của nó được xác định bởi thành phần nào?",o:["TLBs","Thanh ghi page-table length","Thanh ghi page-table base","Số bit dùng để biểu diễn không gian địa chỉ"],a:1,e:"PTLR = kích thước bảng trang; PTBR = vị trí."},
+{s:"20-21 HK1",c:6,q:"Trạng thái cấp phát tài nguyên được định nghĩa dựa trên yếu tố nào?",o:["Số tài nguyên còn lại, số tài nguyên đã được cấp phát và yêu cầu tối đa của các tiến trình.","Số tài nguyên đã được cấp phát, số lượng tiến trình và yêu cầu tối đa của từng tiến trình.","Số tài nguyên còn lại và yêu cầu tối đa của các tiến trình.","Số tài nguyên còn lại và số tài nguyên đã được cấp phát."],a:0,e:"Available, Allocation, Max."},
+{s:"20-21 HK1",c:5,q:"Chọn phát biểu SAI trong các phát biểu bên dưới?",o:["Giải thuật Peterson và giải thuật Bakery là các giải pháp đồng bộ busy waiting sử dụng phần mềm.","Cấm ngắt là giải pháp đồng bộ luôn đảm bảo được tính chất loại trừ tương hỗ.","Trong giải thuật Bakery, trước khi vào vùng tranh chấp, mỗi tiến trình sẽ được nhận một con số.","Trong giải thuật Peterson, tính chất chờ đợi giới hạn luôn được đảm bảo."],a:1,e:"Cấm ngắt không đảm bảo loại trừ tương hỗ trên hệ thống nhiều CPU."},
+{s:"20-21 HK1",c:8,q:"Tiến trình được cấp 4 khung trang, 8 trang ảo, ban đầu khung trống. Chuỗi truy xuất: 6 2 4 7 5 8 3 4 1 2 3 7 5 6 1 2 8 3 5 1. Tại thời điểm truy xuất trang số 8 lần đầu tiên, trang nào bị thay thế nếu dùng OPT?",o:["6","2","7","5"],a:3,e:"Khi gặp 8 (vị trí 6), khung chứa 5, 2, 4, 7. Lần dùng kế tiếp: 2 (vt 10), 4 (vt 8), 7 (vt 12), 5 (vt 13) ⇒ 5 xa nhất bị thay.",pr:["62475834123756128351",4,"OPT"]},
+{s:"20-21 HK1",c:8,q:"Cùng chuỗi trên (4 khung). Tại thời điểm truy xuất trang số 1 lần đầu tiên, trang nào bị thay thế nếu dùng LRU?",o:["4","3","5","8"],a:2,e:"Trước khi truy xuất 1, khung chứa 5, 8, 3, 4 với lần dùng gần nhất 5 (vt 5) sớm nhất ⇒ thay 5.",pr:["62475834123756128351",4,"LRU"]},
+{s:"20-21 HK1",c:8,q:"Cùng chuỗi trên (4 khung). Tại thời điểm truy xuất trang số 1 lần đầu tiên, đã xảy ra tất cả bao nhiêu lỗi trang (không tính lỗi khi nạp trang 1) nếu dùng FIFO?",o:["6","7","8","9"],a:2,e:"6, 2, 4, 7 (4 lỗi), 5, 8, 3 (3 lỗi), 4 lại lỗi vì 4 đã bị thay ở bước 7 ⇒ 8 lỗi.",pr:["62475834123756128351",4,"FIFO"]},
+{s:"20-21 HK1",c:5,q:"Đoạn mã chứa các thao tác lên dữ liệu chia sẻ trong mỗi tiến trình được gọi là gì?",o:["Vùng tranh chấp","Loại trừ tương hỗ","Deadlock","Chuỗi an toàn"],a:0,e:"Critical section."},
+{s:"20-21 HK1",c:5,q:"Bài toán Reader-Writer dùng 2 semaphore mutex và wrt (khởi tạo 1), readcount = 0, ưu tiên Reader. Chọn phát biểu SAI.",code:"Writer:  wait(wrt); /* ghi */ signal(wrt);\nReader:  wait(mutex); readcount++;\n         if (readcount == 1) wait(wrt);\n         signal(mutex);\n         /* đọc */\n         wait(mutex); readcount--;\n         if (readcount == 0) signal(wrt);\n         signal(mutex);",o:["Nếu một Writer đang ở trong vùng tranh chấp và có n Reader đang đợi thì một Reader được xếp trong hàng đợi của mutex và n − 1 Reader kia trong hàng đợi của wrt.","Khi Writer thực thi signal(wrt), hệ thống có thể phục hồi thực thi của một trong các Reader đang đợi hoặc Writer đang đợi.","Semaphore wrt được sử dụng để bảo đảm tính loại trừ tương hỗ đối với các Writer.","Các lệnh readcount++ và readcount-- đều là các vùng tranh chấp."],a:0,e:"Đảo ngược: 1 Reader đợi ở <b>wrt</b> (đang giữ mutex), n − 1 Reader đợi ở <b>mutex</b>."},
+{s:"20-21 HK1",c:5,q:"Đặc điểm chung của nhóm giải pháp đồng bộ “Sleep &amp; Wakeup” là gì?",o:["Tiến trình tiếp tục dùng CPU khi chưa được vào vùng tranh chấp.","Cần có sự hỗ trợ của hệ điều hành.","Cần có sự hỗ trợ của phần cứng.","Không bao giờ xảy ra tình trạng đói tài nguyên."],a:1,e:"Tiến trình chưa vào được CS bị block (không chiếm CPU), cần HĐH."},
+{s:"20-21 HK1",c:5,q:"Lựa chọn nào KHÔNG phải là một yêu cầu của lời giải cho bài toán vùng tranh chấp?",o:["Một tiến trình tạm dừng bên ngoài vùng tranh chấp không được ngăn cản các tiến trình khác vào vùng tranh chấp.","Mỗi tiến trình chỉ phải chờ để được vào vùng tranh chấp trong một khoảng thời gian có hạn định nào đó. Không xảy ra tình trạng đói tài nguyên.","Khi P đang thực thi trong vùng tranh chấp của nó thì không có Q nào khác đang thực thi trong vùng tranh chấp của Q.","Khi một tiến trình không thực thi trong vùng tranh chấp, luôn có ít nhất một tiến trình khác đang thực thi các lệnh trong vùng tranh chấp."],a:3,e:"A, B, C là progress, bounded waiting, mutual exclusion."},
+{s:"20-21 HK1",c:7,q:"Phân vùng cố định: 1 (150 KB), 2 (180 KB), 3 (400 KB), 4 (200 KB), 5 (320 KB). Con trỏ ở vùng 4, vùng 3 và 4 đã cấp phát. Tiến trình P 160 KB được cấp vùng nào nếu dùng first-fit?",o:["1","3","2","5"],a:2,e:"First-fit tìm từ đầu: vùng 1 (150) không đủ, vùng 2 (180) đủ."},
+
+/* ===== 2022-2023 HK1 ===== */
+{s:"22-23 HK1",c:7,q:"Chọn phát biểu ĐÚNG về cơ chế phân trang?",o:["Bộ nhớ vật lý được chia thành các khung trang còn bộ nhớ luận lý được chia thành các trang.","Hệ điều hành tạo một bảng phân trang cho tất cả các tiến trình.","Thanh ghi PTLR xác định vị trí của bảng phân trang.","Kích thước của bảng phân trang được xác định bởi thanh ghi PTBR."],a:0,e:"Mỗi tiến trình một bảng trang; PTBR là vị trí, PTLR là kích thước."},
+{s:"22-23 HK1",c:5,q:"Các giải pháp đồng bộ được chia thành những nhóm nào?",o:["Busy Waiting – Sleep &amp; Wakeup","Busy Waiting – Circular Wait","Sleep &amp; Wakeup – Hold &amp; Wait","Sleep &amp; Wakeup – Mutual Exclusion"],a:0,e:"Circular wait, hold and wait, mutual exclusion là điều kiện deadlock."},
+{s:"22-23 HK1",c:7,q:"Kích thước trang 1024 byte. Các trang 1, 2, 3, 4 lần lượt nằm ở khung 5, 2, 4, 1. Địa chỉ vật lý 5524 nằm trong trang nào của bộ nhớ luận lý?",o:["1","2","3","4"],a:0,e:"5524 = 5·1024 + 404 ⇒ khung 5 ⇒ trang 1."},
+{s:"22-23 HK1",c:6,q:"Chọn phát biểu SAI trong các phát biểu sau?",o:["Nếu hệ thống đang ở trạng thái an toàn thì tồn tại ít nhất một chuỗi thứ tự an toàn.","Nếu đồ thị cấp phát tài nguyên có chu trình thì có deadlock xảy ra.","Nếu hệ thống đang ở trạng thái không an toàn thì có thể xảy ra deadlock.","Một tiến trình gọi là deadlock nếu nó đang đợi một sự kiện mà sẽ không bao giờ xảy ra."],a:1,e:"Có chu trình chỉ chắc chắn deadlock khi mỗi loại có 1 thực thể."},
+{s:"22-23 HK1",c:6,q:"Hệ thống nào có deadlock? (1) 3 tiến trình, R1–R3 mỗi loại 1 thực thể: P1 giữ R1 yêu cầu R3, P2 giữ R2 yêu cầu R3, P3 giữ R3 yêu cầu R1. (2) R1, R2 mỗi loại 1: P1 giữ R1 yêu cầu R2, P2 giữ R2, P3 yêu cầu R2. (3) R1, R2 mỗi loại 2: P1 yêu cầu 1 R1 và 1 R2, P2 giữ 1 R1 và 1 R2, P3 giữ 1 R1 và 1 R2.",o:["(1)","(1) và (2)","(2)","(3)"],a:0,e:"(1) chu trình P1 → R3 → P3 → R1 → P1, mỗi loại 1 thực thể ⇒ deadlock. (2) P2 không chờ gì nên chạy xong, có chuỗi &lt;P2, P1, P3&gt;. (3) P2, P3 không chờ gì ⇒ chuỗi &lt;P2, P3, P1&gt;."},
+{s:"22-23 HK1",c:5,q:"Giải pháp semaphore cho bài toán triết gia ăn tối: chopstick là mảng 5 semaphore khởi tạo 1, mỗi triết gia wait(chopstick[i]); wait(chopstick[(i+1)%5]); ăn; signal hai chiếc. Chọn phát biểu ĐÚNG.",o:["Giải pháp này có thể gây ra deadlock.","Giải pháp này cho phép tất cả các triết gia có thể ăn tối cùng một lúc.","Giải pháp này cho phép triết gia cầm các đũa chỉ khi cả hai chiếc đũa đều sẵn sàng.","Giải pháp này không gây ra deadlock nhưng có thể gây ra starvation."],a:0,e:"Cả 5 cùng cầm đũa trái ⇒ chờ vòng tròn ⇒ deadlock."},
+{s:"22-23 HK1",c:6,q:"Hệ thống 5 tiến trình, 4 loại tài nguyên, trạng thái t0 như bảng. Lựa chọn nào KHÔNG phải là một chuỗi an toàn?",tb:"b2223",o:["&lt;P5, P1, P4, P2, P3&gt;","&lt;P2, P4, P3, P1, P5&gt;","&lt;P3, P4, P1, P2, P5&gt;","&lt;P1, P4, P2, P5, P3&gt;"],a:3,e:"Need: P1 (2,0,2,2), P2 (2,1,2,1), P3 (2,4,3,3), P4 (0,3,5,5), P5 (3,4,2,3). Chuỗi D: P1 xong ⇒ Work = (4,6,5,4); Need P4 = (0,3,5,5) có R4 = 5 &gt; 4 ⇒ dừng.",bk:"b2223"},
+{s:"22-23 HK1",c:7,q:"Phân vùng cố định: 1 (250 KB), 2 (150 KB), 3 (180 KB), 4 (320 KB), 5 (360 KB). Con trỏ ở vùng 3, vùng 3 đã cấp phát. Tiến trình P 240 KB được cấp vùng nào nếu dùng first-fit?",o:["4","3","5","1"],a:3,e:"First-fit tìm từ đầu bộ nhớ (không quan tâm con trỏ): vùng 1 (250) đủ."},
+{s:"22-23 HK1",c:8,q:"Cho các yêu cầu: (1) Kích thước tiến trình cố định và xác định trước khi nạp; (2) HĐH phải quản lý sự di chuyển của trang/đoạn giữa bộ nhớ chính và bộ nhớ thứ cấp; (3) Kích thước tiến trình phải nhỏ hơn bộ nhớ vật lý. Yêu cầu nào là điều kiện cần để cài đặt bộ nhớ ảo?",o:["(1)","(2)","(2) và (3)","(1) và (2)"],a:1,e:"Bộ nhớ ảo cho phép tiến trình lớn hơn bộ nhớ thực, nên (1), (3) không cần."},
+{s:"22-23 HK1",c:5,q:"Để cho phép một tiến trình đợi trong monitor, cần phải khai báo loại biến nào?",o:["Biến điều kiện","Biến cục bộ","Biến hàng đợi","Biến thủ tục"],a:0,e:"Condition variable."},
+{s:"22-23 HK1",c:8,q:"Kỹ thuật cài đặt bộ nhớ ảo nào cho phép các trang của tiến trình chỉ được nạp vào bộ nhớ chính khi được yêu cầu?",o:["Dynamic loading","Dynamic linking","Demand paging","Frame allocation"],a:2,e:"Demand paging."},
+{s:"22-23 HK1",c:5,q:"Giải pháp đồng bộ nào KHÔNG cùng nhóm với các giải pháp còn lại?",o:["Semaphore","Monitor","Critical Region","Cấm ngắt"],a:3,e:"Cấm ngắt thuộc busy waiting (phần cứng); ba giải pháp còn lại thuộc Sleep &amp; Wakeup."},
+{s:"22-23 HK1",c:7,q:"Không gian địa chỉ ảo 128 trang, mỗi trang 4096 byte, ánh xạ vào bộ nhớ vật lý 32 khung trang. Chỉ số khung (f) được biểu diễn bởi bao nhiêu bit?",o:["5","7","19","11"],a:0,e:"32 = 2⁵ ⇒ 5 bit."},
+{s:"22-23 HK1",c:7,q:"Cùng dữ liệu trên (128 trang). Kích thước bảng phân trang là bao nhiêu byte nếu mỗi mục cần 4 byte?",o:["128","4096","512","32"],a:2,e:"128 mục × 4 byte = 512 byte."},
+{s:"22-23 HK1",c:7,q:"Bảng trang trong bộ nhớ chính, dùng TLB với α = 0.8 thì EAT = 240 ns, chu kỳ truy xuất bộ nhớ x = 180 ns. Nếu α = 0.95 thì EAT bằng bao nhiêu?",o:["216ns","213ns","171ns","189ns"],a:1,e:"240 = ε + 1.2·180 ⇒ ε = 24. EAT = 24 + 1.05·180 = 213 ns."},
+{s:"22-23 HK1",c:8,q:"Trong giải thuật thay trang LRU, trang được chọn để thay thế có đặc điểm gì?",o:["Trang nhớ có thời điểm tham chiếu nhỏ nhất.","Trang nhớ được tham chiếu trễ nhất trong tương lai.","Trang nhớ đầu tiên được nạp vào hệ thống.","Trang nhớ vừa được thay thế gần đây nhất."],a:0,e:"B là OPT, C là FIFO."},
+{s:"22-23 HK1",c:8,q:"Chọn phát biểu SAI về giải pháp tập làm việc?",o:["Nếu tổng kích thước tập làm việc của các tiến trình nhỏ hơn số khung trang của hệ thống thì một trong các tiến trình đang thực thi sẽ bị tạm dừng.","Giải pháp tập làm việc được thiết kế dựa trên nguyên lý cục bộ.","Mục tiêu của giải pháp tập làm việc là xác định tiến trình thực sự sử dụng bao nhiêu khung trang.","Giải pháp tập làm việc loại trừ được tình trạng trì trệ mà vẫn đảm bảo mức độ đa chương."],a:0,e:"Tạm dừng khi D <b>lớn hơn</b> m."},
+{s:"22-23 HK1",c:5,q:"Trên hệ thống nhiều CPU, giải pháp Cấm ngắt KHÔNG đảm bảo loại trừ tương hỗ là do nguyên nhân nào?",o:["Chỉ cấm ngắt được tại CPU thực thi lệnh đó, các CPU khác vẫn có thể truy cập bộ nhớ chia sẻ.","Tất cả CPU đều không thể truy cập bộ nhớ chia sẻ khi Cấm ngắt được thực thi.","Cấm ngắt cho phép đọc và ghi một biến trong một thao tác atomic.","Deadlock xảy ra trên tất cả các CPU khi Cấm ngắt được thực thi."],a:0,e:"C mô tả TestAndSet."},
+{s:"22-23 HK1",c:7,q:"Trong cơ chế phân trang, bảng phân trang được dùng để làm gì?",o:["Ánh xạ địa chỉ luận lý thành địa chỉ thực.","Chọn khối bộ nhớ trống để cấp phát cho một tiến trình.","Gom các vùng nhớ không liên tục thành vùng nhớ liên tục.","Chuyển tiến trình ra khỏi bộ nhớ chính và lưu trên hệ thống lưu trữ phụ."],a:0,e:"C là compaction, D là swapping."},
+{s:"22-23 HK1",c:6,q:"Chọn phát biểu SAI về đồ thị wait-for?",o:["Đồ thị wait-for được xây dựng từ đồ thị cấp phát tài nguyên.","Đồ thị wait-for được dùng để phát hiện deadlock khi mỗi loại tài nguyên chỉ có một thực thể.","Các đỉnh của đồ thị wait-for là các loại tài nguyên.","Nếu đồ thị wait-for có chu trình thì có deadlock xảy ra trong hệ thống."],a:2,e:"Đỉnh là các tiến trình."},
+{s:"22-23 HK1",c:5,q:"Chọn phát biểu SAI trong các phát biểu sau đây?",o:["Semaphore được chia thành hai loại là counting semaphore và binary semaphore.","Để cài đặt được semaphore, cần có sự hỗ trợ của hệ điều hành.","Khi tiến trình phải chờ trên semaphore S, nó bị blocked và đặt trong hàng đợi semaphore; hàng đợi này là danh sách liên kết các PCB.","Khi thực thi wait() trên S thì giá trị S giảm 1. Kế đó nếu giá trị này không dương thì tiến trình thực hiện wait() sẽ bị blocked."],a:3,e:"Bị blocked khi giá trị <b>âm</b>; giá trị 0 vẫn được đi tiếp."},
+{s:"22-23 HK1",c:6,q:"Chọn phát biểu ĐÚNG trong các phát biểu sau đây?",o:["Ngăn deadlock sử dụng tài nguyên hiệu quả thông qua việc kiểm tra trạng thái an toàn của hệ thống.","So với tránh deadlock, ngăn deadlock vẫn đảm bảo hiệu suất sử dụng tài nguyên tối đa đến mức có thể.","Giải thuật tránh deadlock yêu cầu mỗi tiến trình khai báo số lượng tài nguyên tối thiểu cần để thực hiện công việc.","Khi deadlock xảy ra, hệ thống có thể tự phục hồi bằng cách bẻ gãy chu trình deadlock thông qua việc chấm dứt một hay nhiều tiến trình."],a:3,e:"A, B mô tả tránh deadlock; C phải là tối đa."},
+{s:"22-23 HK1",c:6,q:"“Không cho phép (ít nhất) một trong 4 điều kiện cần cho deadlock” là đặc điểm của phương pháp nào?",o:["Tránh deadlock","Ngăn deadlock","Bỏ qua deadlock","Phát hiện deadlock và phục hồi hệ thống"],a:1,e:"Ngăn deadlock."},
+{s:"22-23 HK1",c:7,q:"Địa chỉ lệnh và dữ liệu có thể được chuyển đổi thành địa chỉ thực tại thời điểm biên dịch nếu thỏa mãn điều kiện nào?",o:["Địa chỉ nạp chương trình (trong bộ nhớ) phải được biết trước.","Kích thước chương trình phải được biết trước.","Bộ nhớ phải được chia thành các phân vùng có kích thước bằng nhau.","Trong quá trình thực thi, tiến trình chỉ có thể di chuyển trên một tập các trang nhớ cho trước."],a:0,e:"Compile time binding cần biết trước địa chỉ nạp."},
+{s:"22-23 HK1",c:5,q:"Cho các tính chất: (1) mutual exclusion; (2) tiến trình tạm dừng ngoài CS không được ngăn cản tiến trình khác vào CS; (3) các tiến trình phải từ bỏ CPU khi vào CS; (4) chờ có hạn, không starvation; (5) tiến trình tạm dừng ngoài CS không được giữ bất cứ tài nguyên nào. Lời giải cho vấn đề vùng tranh chấp KHÔNG cần thỏa tính chất nào?",o:["(2), (4), (5)","(3), (5)","(1), (2), (4)","(1), (3)"],a:1,e:"Ba yêu cầu là (1), (2), (4)."},
+
+/* ===== 2022-2023 HK2 ===== */
+{s:"22-23 HK2",c:8,q:"Cho các yêu cầu: (1) Kích thước tiến trình cố định và xác định trước khi nạp; (2) HĐH quản lý sự di chuyển trang giữa bộ nhớ chính và thứ cấp; (3) Kích thước tiến trình phải nhỏ hơn bộ nhớ vật lý; (4) Phần cứng quản lý bộ nhớ phải hỗ trợ phân trang. Yêu cầu nào KHÔNG phải là điều kiện cần để cài đặt bộ nhớ ảo?",o:["(3)","(4)","(1) và (3)","(1) và (2)"],a:2,e:"Điều kiện cần là (2) và (4)."},
+{s:"22-23 HK2",c:7,q:"Loại địa chỉ bộ nhớ nào sau đây tương đương với địa chỉ thực?",o:["Địa chỉ tuyệt đối","Địa chỉ luận lý","Địa chỉ ảo","Địa chỉ tương đối"],a:0,e:"Địa chỉ thực = địa chỉ vật lý (tuyệt đối). Địa chỉ ảo = địa chỉ luận lý."},
+{s:"22-23 HK2",c:5,q:"Trong tiến trình, những đoạn mã chứa các thao tác lên dữ liệu chia sẻ được gọi là gì?",o:["Remainder section","Busy Waiting","Critical section","Data inconsistency"],a:2,e:"Critical section."},
+{s:"22-23 HK2",c:8,q:"Chọn phát biểu SAI về bộ nhớ ảo?",o:["Nhờ bộ nhớ ảo, tiến trình có thể thực thi ngay cả khi kích thước của nó lớn hơn bộ nhớ thực.","Bộ nhớ ảo là kỹ thuật cho phép xử lý một tiến trình không được nạp toàn bộ vào bộ nhớ vật lý.","Khi sử dụng bộ nhớ ảo, số lượng tiến trình trong bộ nhớ ít hơn.","Để cài đặt bộ nhớ ảo, có thể sử dụng kỹ thuật phân trang theo yêu cầu."],a:2,e:"Số tiến trình trong bộ nhớ nhiều hơn."},
+{s:"22-23 HK2",c:6,q:"Chọn phát biểu SAI trong các phát biểu sau?",o:["Nếu hệ thống đang ở trạng thái an toàn thì tồn tại ít nhất một chuỗi thứ tự an toàn.","Có thể tránh được deadlock bằng cách đảm bảo hệ thống không đi đến trạng thái không an toàn.","Để deadlock xảy ra, chỉ cần thỏa mãn 3 điều kiện: loại trừ tương hỗ, giữ và chờ cấp thêm tài nguyên, tồn tại chu trình đợi.","Một tiến trình gọi là deadlock nếu nó đang đợi một sự kiện mà sẽ không bao giờ xảy ra."],a:2,e:"Cần đủ 4 điều kiện (thiếu no preemption)."},
+{s:"22-23 HK2",c:5,q:"Với Critical Region, biến chia sẻ v chỉ được truy xuất qua phát biểu <code>region v when B do S;</code>. Phát biểu này có ý nghĩa gì?",o:["Trong khi S được thực thi, không có tiến trình khác có thể truy xuất biến v.","Trong khi B được thực thi, không có tiến trình khác có thể truy xuất biến v.","Các tiến trình khác chỉ có thể truy xuất v khi B đúng.","Chỉ khi S được thực thi, các tiến trình khác mới được truy xuất biến v."],a:0,e:"Region bảo đảm loại trừ tương hỗ trên v trong lúc thực thi S."},
+{s:"22-23 HK2",c:5,q:"Đặc điểm chung của hai giải pháp đồng bộ Peterson và Bakery là gì?",o:["Đều là các giải pháp đồng bộ sử dụng phần mềm nằm trong nhóm Busy waiting.","Đều là các giải pháp sử dụng phần cứng nằm trong nhóm Busy waiting.","Đều cần hỗ trợ của hệ điều hành.","Đều là các giải pháp nằm trong nhóm Sleep &amp; Wakeup."],a:0,e:"Hai giải thuật phần mềm busy waiting."},
+{s:"22-23 HK2",c:5,q:"Giải pháp đồng bộ dùng TestAndSet, lock khởi tạo false. Chọn phát biểu SAI.",code:"do {\n  while (TestAndSet(&lock));\n    critical section\n  lock = false;\n    remainder section\n} while (1);",o:["Giải pháp này đảm bảo điều kiện loại trừ tương hỗ.","Giải pháp này đảm bảo điều kiện chờ đợi giới hạn.","Giải pháp này cho phép tối đa một tiến trình vào vùng tranh chấp tại một thời điểm.","Giải pháp này có thể gây ra starvation."],a:1,e:"Không có thứ tự chờ nên một tiến trình có thể bị vượt mãi ⇒ không bounded waiting."},
+{s:"22-23 HK2",c:7,q:"Tình trạng kích thước không gian nhớ còn trống đủ để thỏa mãn một yêu cầu cấp phát, tuy nhiên không gian nhớ này không liên tục được gọi là gì?",o:["External fragmentation","Fixed partitioning","Internal fragmentation","Dynamic partitioning"],a:0,e:"Phân mảnh ngoại."},
+{s:"22-23 HK2",c:7,q:"Bảng trang trong bộ nhớ chính, TLB hit ratio α = 0.9, chu kỳ truy xuất bộ nhớ x = 240 ns, thời gian tìm trong TLB ε = 36 ns. EAT là bao nhiêu?",o:["286ns","300ns","264ns","480ns"],a:1,e:"EAT = 36 + (2 − 0.9)·240 = 36 + 264 = 300 ns."},
+{s:"22-23 HK2",c:6,q:"Giải thuật nào được sử dụng để tránh deadlock trong trường hợp mỗi loại tài nguyên có nhiều thực thể?",o:["Giải thuật Banker","Giải thuật đồ thị cấp phát tài nguyên","Giải thuật phân trang","Giải thuật phân vùng động"],a:0,e:"Một thực thể ⇒ RAG; nhiều thực thể ⇒ Banker."},
+{s:"22-23 HK2",c:5,q:"Cho các tính chất: (1) mutual exclusion; (2) tiến trình tạm dừng ngoài CS không được ngăn cản tiến trình khác vào CS; (3) các tiến trình không phải từ bỏ CPU khi vào CS; (4) khi tiến trình đã có đủ tài nguyên thì phải hoàn trả trong khoảng thời gian hữu hạn; (5) chờ có hạn, không starvation. Lời giải cho vấn đề vùng tranh chấp cần thỏa những tính chất nào?",o:["(2), (4), (5)","(3), (5)","(1), (2), (5)","(1), (3)"],a:2,e:"Mutual exclusion, progress, bounded waiting."},
+{s:"22-23 HK2",c:6,q:"Chọn phát biểu SAI về đồ thị cấp phát tài nguyên?",o:["Đồ thị cấp phát tài nguyên là đồ thị có hướng.","Tập đỉnh gồm hai loại: các tiến trình và các loại tài nguyên.","Tập cạnh gồm hai loại: cạnh cấp phát và cạnh đáp ứng.","Đồ thị cấp phát tài nguyên không có chu trình thì không có deadlock."],a:2,e:"Hai loại cạnh là cạnh <b>yêu cầu</b> và cạnh cấp phát."},
+{s:"22-23 HK2",c:8,q:"Tiến trình được cấp 4 khung trang, 8 trang ảo, ban đầu khung trống. Chuỗi: 2 4 1 8 2 3 5 4 6 7 3 7 2 8 6 5 3 4 1 6. Tại thời điểm truy xuất trang số 5 lần đầu tiên, trang nào được chọn làm trang hy sinh nếu dùng LRU?",o:["3","8","1","2"],a:2,e:"Khi nạp 3 (vt 6): lần dùng gần nhất 4 (vt 2), 1 (vt 3), 8 (vt 4), 2 (vt 5) ⇒ thay 4. Khung còn 2, 3, 1, 8; khi nạp 5 (vt 7): 1 (vt 3) lâu nhất chưa dùng ⇒ thay <b>1</b>.",pr:["24182354673728653416",4,"LRU"]},
+{s:"22-23 HK2",c:8,q:"Cùng chuỗi trên (4 khung). Tại thời điểm truy xuất trang số 7 lần đầu tiên, đã xảy ra bao nhiêu lỗi trang (không tính lỗi khi nạp trang 7) nếu dùng OPT?",o:["7","5","6","4"],a:0,e:"Lỗi khi nạp 2, 4, 1, 8, 3, 5, 6 (trang 4 và 2 truy xuất lại vẫn còn) ⇒ 7 lỗi.",pr:["24182354673728653416",4,"OPT"]},
+{s:"22-23 HK2",c:8,q:"Mục tiêu của giải pháp tập làm việc là gì?",o:["Tăng tốc độ tìm kiếm chỉ số trang khi sử dụng TLBs.","Giảm thiểu số lượng lỗi trang.","Xác định tiến trình thực sự sử dụng bao nhiêu khung trang.","Đánh giá mức độ hiệu quả của các giải thuật thay thế trang."],a:2,e:"Theo slide."},
+{s:"22-23 HK2",c:6,q:"Chọn phát biểu ĐÚNG trong các phát biểu sau đây?",o:["Ngăn deadlock sử dụng tài nguyên hiệu quả qua việc kiểm tra trạng thái an toàn của hệ thống.","Đồ thị wait-for được sử dụng để phát hiện deadlock trong trường hợp mỗi loại tài nguyên chỉ có một thực thể.","Giải thuật ngăn deadlock sẽ yêu cầu mỗi tiến trình khai báo chính xác số lượng tài nguyên cần để thực hiện công việc.","Trạng thái cấp phát tài nguyên được định nghĩa dựa trên số tài nguyên còn lại, số đã cấp phát và yêu cầu tối thiểu của các tiến trình."],a:1,e:"A và C mô tả tránh deadlock; D phải là yêu cầu tối đa."},
+{s:"22-23 HK2",c:5,q:"Chọn phát biểu SAI trong các phát biểu sau đây?",o:["Semaphore được chia thành hai loại là counting semaphore và binary semaphore.","Nếu giá trị của semaphore S là −3 thì có 4 tiến trình đang đợi trên S.","Khi tiến trình phải chờ trên semaphore S, nó bị blocked và đặt trong hàng đợi semaphore; hàng đợi này là danh sách liên kết các PCB.","Khi thực thi wait() trên S thì giá trị S giảm 1. Kế đó nếu giá trị này âm thì tiến trình thực hiện wait() sẽ bị blocked."],a:1,e:"S = −3 ⇒ 3 tiến trình đang đợi."},
+{s:"22-23 HK2",c:5,q:"Bài toán Reader-Writer dùng 2 semaphore mutex = 1, wrt = 1, readcount = 0 (Reader: wait(mutex); readcount++; if (readcount == 1) wait(wrt); signal(mutex); … ). Vai trò của semaphore wrt trong trường hợp này là gì?",o:["Đảm bảo chỉ một Writer được sửa đổi nội dung CSDL tại một thời điểm.","Đảm bảo Writer không được cập nhật dữ liệu khi có một Reader đang truy xuất CSDL.","Đảm bảo nhiều Writer được cập nhật dữ liệu khi có một Reader đang truy xuất CSDL.","Đảm bảo chỉ cho phép một Reader được thay đổi biến readcount tại một thời điểm."],a:1,e:"“Trong trường hợp này” đề nhấn vào code Reader: Reader đầu tiên gọi wait(wrt) để chặn Writer khi đang có Reader. wrt cũng là loại trừ tương hỗ giữa các Writer (A), còn D là vai trò của mutex. Đề không có đáp án chính thức."},
+
+/* ===== 2023-2024 HK1 ===== */
+{s:"23-24 HK1",c:6,q:"Trong các điều kiện để xảy ra deadlock, loại trừ tương hỗ là tình trạng như thế nào?",o:["Một tiến trình đang giữ ít nhất một tài nguyên và đợi thêm tài nguyên do tiến trình khác giữ.","Tài nguyên không thể bị lấy lại mà chỉ có thể được trả lại từ tiến trình đang giữ tài nguyên đó khi nó muốn.","Ít nhất một tài nguyên được giữ theo chế độ không chia sẻ.","Một tiến trình luôn luôn bị lấy lại tài nguyên mỗi khi deadlock xảy ra."],a:2,e:"A là hold and wait, B là no preemption."},
+{s:"23-24 HK1",c:8,q:"Tiến trình được cấp 4 khung trang, 7 trang ảo, ban đầu khung trống. Chuỗi: 3 2 4 5 7 3 4 6 2 1 3 1 2 7 6 5. Tại thời điểm truy xuất trang số 6 lần đầu tiên, trang nào được chọn làm victim nếu dùng OPT?",o:["3","4","7","5"],a:1,e:"Trước khi nạp 6, khung chứa 3, 2, 4, 7 (5 đã bị thay khi nạp 7). Lần dùng kế tiếp: 2 (vt 9), 3 (vt 11), 7 (vt 14), 4 (không dùng nữa) ⇒ thay 4.",pr:["3245734621312765",4,"OPT"]},
+{s:"23-24 HK1",c:8,q:"Cùng chuỗi trên (4 khung). Tại thời điểm truy xuất trang số 1 lần đầu tiên, đã có bao nhiêu lỗi trang (không tính lỗi khi nạp trang 1) nếu dùng FIFO?",o:["8","5","6","7"],a:0,e:"3, 2, 4, 5 (4 lỗi); 7 thay 3; 3 thay 2; 4 trúng; 6 thay 4; 2 thay 5 ⇒ 8 lỗi trước khi nạp 1.",pr:["3245734621312765",4,"FIFO"]},
+{s:"23-24 HK1",c:5,q:"Chọn phát biểu SAI trong các phát biểu sau?",o:["Việc sử dụng khóa mutex có thể gây ra tình trạng busy waiting.","Đối với khóa mutex, các thao tác gọi acquire() hoặc release() phải được thực hiện đơn nguyên.","Binary semaphore có tác dụng giống với khóa mutex.","Đối với semaphore S, thao tác signal(S) được sử dụng khi muốn sử dụng tài nguyên."],a:3,e:"Muốn dùng tài nguyên thì gọi wait(S)."},
+{s:"23-24 HK1",c:7,q:"Bảng trang trong bộ nhớ chính, TLB hit ratio α = 0.95, thời gian tìm trong TLB ε = 21 ns, EAT = 210 ns. Thời gian một chu kỳ truy xuất bộ nhớ x là bao nhiêu?",o:["189ns","180ns","360ns","199.5ns"],a:1,e:"210 = 21 + 1.05x ⇒ x = 180 ns."},
+{s:"23-24 HK1",c:7,q:"Loại địa chỉ bộ nhớ nào sau đây tương ứng với địa chỉ luận lý?",o:["Địa chỉ ảo","Địa chỉ vật lý","Địa chỉ thực","Địa chỉ tuyệt đối"],a:0,e:"Luận lý = ảo; vật lý = thực = tuyệt đối."},
+{s:"23-24 HK1",c:5,q:"Biến điều kiện (condition variable) trong monitor KHÔNG có đặc điểm nào dưới đây?",o:["Chỉ có thể thao tác lên biến điều kiện bằng 2 thao tác wait() và signal().","Khi thực hiện x.wait(), tiến trình được chuyển vào hàng đợi trên biến điều kiện x.","Biến điều kiện có thể được truy cập từ bên ngoài monitor.","Biến điều kiện được sử dụng nhằm cho phép tiến trình đợi “trong monitor”."],a:2,e:"Chỉ dùng bên trong monitor."},
+{s:"23-24 HK1",c:6,q:"Giải thuật tránh deadlock giúp hệ thống không rơi vào deadlock bằng cách nào?",o:["Bảo đảm hệ thống không đi đến trạng thái không an toàn.","Không cho phép ít nhất một trong 4 điều kiện cần của deadlock.","Gán thứ tự cho tất cả tài nguyên, mỗi tiến trình chỉ yêu cầu theo thứ tự tăng dần.","Bắt buộc mỗi tiến trình yêu cầu toàn bộ tài nguyên cần thiết một lần."],a:0,e:"B, C, D là ngăn deadlock."},
+{s:"23-24 HK1",c:7,q:"Khuyết điểm của việc chuyển đổi địa chỉ lệnh và dữ liệu thành địa chỉ thực tại thời điểm biên dịch là gì?",o:["Phải tiến hành nạp lại (reload) nếu thay đổi địa chỉ nền.","Phải trì hoãn quá trình chuyển đổi địa chỉ đến thời điểm thực thi.","Phải tiến hành biên dịch lại nếu thay đổi địa chỉ nạp chương trình.","Địa chỉ thực phải được tính toán vào thời điểm viết chương trình."],a:2,e:"A là khuyết điểm của load time."},
+{s:"23-24 HK1",c:8,q:"Mục tiêu cần đạt của các giải thuật thay thế trang là gì?",o:["Xác định số khung trang cần cấp cho mỗi tiến trình.","Tăng số lượng trang nhớ được nạp vào bộ nhớ.","Số lượng lỗi trang nhỏ nhất.","Giảm tình trạng trì trệ do tiến trình không được cấp đủ khung trang."],a:2,e:"Theo slide."},
+{s:"23-24 HK1",c:8,q:"Chọn phát biểu ĐÚNG về bộ nhớ ảo?",o:["Nhờ bộ nhớ ảo, một tiến trình có thể thực thi ngay cả khi kích thước của nó lớn hơn bộ nhớ thực.","Bộ nhớ ảo là kỹ thuật cho phép tiến trình liên kết đến một external module sau khi đã tạo xong load module.","Khi sử dụng bộ nhớ ảo, số lượng tiến trình trong bộ nhớ ít hơn.","Có hai kỹ thuật cài đặt bộ nhớ ảo là simple paging và demand segmentation."],a:0,e:"B là dynamic linking; D phải là demand paging và demand segmentation."},
+{s:"23-24 HK1",c:7,q:"Cơ chế “chỉ khi nào cần được gọi đến thì một thủ tục mới được nạp vào bộ nhớ chính” được gọi là gì?",o:["Static linking","Dynamic loading","Static fragmentation","Dynamic linking"],a:1,e:"Dynamic loading."},
+{s:"23-24 HK1",c:5,q:"Để đảm bảo giải pháp Peterson hoạt động chính xác trên kiến trúc máy tính hiện đại, cần sử dụng công cụ nào?",o:["Memory model","Memory barrier","Liveness","Disable interrupt"],a:1,e:"Memory barrier ngăn sắp xếp lại các thao tác bộ nhớ."},
+{s:"23-24 HK1",c:5,q:"Hiện tượng xảy ra khi các tiến trình cùng truy cập đồng thời vào dữ liệu chia sẻ được gọi là gì?",o:["Race condition","Critical section","Mutual exclusion","Remainder section"],a:0,e:"Race condition."},
+{s:"23-24 HK1",c:5,q:"Trên kiến trúc máy tính hiện đại, với tiến trình đa tiểu trình, giải pháp Peterson có thể hoạt động không chính xác do nguyên nhân nào?",o:["Tốc độ thực thi của các tiểu trình khác nhau.","Vi xử lý và/hoặc trình biên dịch sắp xếp lại các thao tác (lệnh) mà độc lập với nhau, dẫn đến kết quả không nhất quán hoặc không đoán được.","Các lệnh hợp ngữ load và store có thể bị cắt ngang.","Không thể vô hiệu hóa ngắt khi có nhiều hơn 2 tiểu trình trong vùng tranh chấp."],a:1,e:"Theo slide."},
+{s:"23-24 HK1",c:5,q:"Một bạn sinh viên giải bài bounded-buffer bằng 2 semaphore empty (khởi tạo bằng kích thước buffer) và full (khởi tạo 0) như sau. Nhận xét nào ĐÚNG?",code:"Producer:              Consumer:\nwait(empty);           wait(full);\n// add to buffer[]     // remove from buffer[]\ncount++;               count--;\nsignal(full);          signal(empty);",o:["Tình trạng busy waiting vẫn có thể xuất hiện.","Vùng tranh chấp đã bị bỏ qua nên kết quả đồng bộ không đảm bảo loại trừ tương hỗ.","Tiến trình Producer vẫn có thể thêm phần tử khi buffer đã đầy.","Lời giải này đáp ứng đầy đủ các yêu cầu của bài toán bounded-buffer."],a:1,e:"Thiếu semaphore mutex bảo vệ buffer và count."},
+{s:"23-24 HK1",c:9,q:"Trên Linux, bộ nhớ vật lý được chia thành bao nhiêu vùng?",o:["2","3","4","5"],a:2,e:"Sách Silberschatz (bản dùng cho đề này): 4 vùng ZONE_DMA, ZONE_DMA32, ZONE_NORMAL, ZONE_HIGHMEM. <i>Lưu ý:</i> slide 2024 của môn liệt kê 6 vùng (thêm MOVABLE, DEVICE); nếu đề mới có phương án 6 thì chọn theo slide mới."},
+{s:"23-24 HK1",c:6,q:"Chọn phát biểu ĐÚNG về đồ thị cấp phát tài nguyên?",o:["Đồ thị không có chu trình thì có thể có deadlock.","Tập đỉnh gồm ba loại: tiến trình, loại tài nguyên và các thông số hệ thống.","Tập cạnh gồm cạnh cấp phát và cạnh yêu cầu, trong đó cạnh yêu cầu có hướng từ loại tài nguyên sang tiến trình.","Đồ thị có chu trình thì có deadlock nếu mỗi loại tài nguyên chỉ có một thực thể."],a:3,e:"Cạnh yêu cầu P → R."},
+{s:"23-24 HK1",c:6,q:"Khi deadlock xảy ra, nếu muốn phục hồi bằng cách chấm dứt tiến trình, cần thực hiện việc này như thế nào sao cho hiệu quả?",o:["Chấm dứt toàn bộ tiến trình bị deadlock.","Chấm dứt lần lượt từng tiến trình cho đến khi không còn deadlock.","Chấm dứt các tiến trình không bị deadlock.","Chọn ngẫu nhiên một tiến trình bị deadlock và chỉ chấm dứt tiến trình này."],a:1,e:"Chấm dứt lần lượt để hạn chế thiệt hại."},
+{s:"23-24 HK1",c:9,q:"Thành phần hệ thống nào trong Windows 10 cung cấp các chức năng ảo hóa?",o:["Hardware abstraction layer","Hyper-V Hypervisor","Secure kernel","Executive"],a:1,e:"Hyper-V Hypervisor."},
+{s:"23-24 HK1",c:8,q:"Tập các trang nhớ được tham chiếu gần nhau được gọi là gì?",o:["Locality","Working set","Thrashing","Page faults"],a:0,e:"Working set là tập các trang được dùng gần đây nhất."},
+{s:"23-24 HK1",c:7,q:"Phân vùng cố định: 1 (405 KB), 2 (260 KB), 3 (350 KB), 4 (240 KB), 5 (365 KB), 6 (340 KB). Con trỏ ở vùng 3, vùng 3 đã cấp phát. Dùng first-fit, tiến trình P 230 KB và Q 335 KB (theo thứ tự) được cấp vùng nào?",o:["P vùng 1 (405 KB), Q vùng 3 (350 KB).","P vùng 2 (260 KB), Q vùng 5 (365 KB).","P vùng 4 (240 KB), Q vùng 6 (340 KB).","P vùng 1 (405 KB), Q vùng 5 (365 KB)."],a:3,e:"P: vùng 1 đủ. Q: vùng 1 đã dùng, 2 (260) thiếu, 3 đã cấp, 4 (240) thiếu, 5 (365) đủ."},
+{s:"23-24 HK1",c:6,q:"Chọn phát biểu SAI về đồ thị wait-for?",o:["Các đỉnh trong đồ thị wait-for là các tiến trình.","Giải thuật phát hiện chu trình trong đồ thị wait-for có thời gian chạy O(n³), n là số đỉnh.","Nếu đồ thị wait-for có chu trình thì tồn tại deadlock.","Cạnh Pi → Pj nếu tiến trình Pi chờ tài nguyên từ tiến trình Pj."],a:1,e:"O(n²)."},
+{s:"23-24 HK1",c:5,q:"Chọn phát biểu ĐÚNG về bài toán triết gia ăn tối (Dining-Philosopher)?",o:["Nếu chỉ cho phép tối đa 4 triết gia ngồi vào bàn thì có thể tránh được cả deadlock và starvation.","Không có giải pháp nào có thể tránh được deadlock.","Nếu chỉ cho phép triết gia cầm đũa khi cả 2 chiếc đũa đã sẵn sàng thì có thể tránh được deadlock nhưng starvation vẫn có thể xảy ra.","Giải pháp bất đối xứng có thể tránh được starvation nhưng không tránh được deadlock."],a:2,e:"Các cách sửa chỉ tránh deadlock, không tránh starvation."},
+{s:"23-24 HK1",c:5,q:"Chọn phát biểu ĐÚNG về semaphore?",o:["Giá trị của semaphore S, nếu là số dương, thể hiện số lượng tiến trình/tiểu trình đang đợi trên S.","Khi sử dụng semaphore, thứ tự của các lệnh wait() và signal() hay giá trị khởi tạo có thể ảnh hưởng đến tính đúng đắn hay hiệu suất của chương trình.","Bản chất của semaphore là một biến số thực.","Khi cài đặt semaphore, đoạn mã định nghĩa wait() và signal() không phải là vùng tranh chấp."],a:1,e:"Theo slide nhận xét về semaphore."},
+
+/* ===== 2023-2024 HK2 ===== */
+{s:"23-24 HK2",c:9,q:"Công cụ nào dưới đây KHÔNG được dùng để chuyển dữ liệu giữa các tiến trình trên Linux?",o:["Pipe","Network","Shared memory","Signal"],a:3,e:"Signal chỉ báo sự kiện, không chứa dữ liệu."},
+{s:"23-24 HK2",c:6,q:"Hệ thống 5 tiến trình, 4 loại tài nguyên, trạng thái t0 như bảng. Lựa chọn nào KHÔNG phải là một chuỗi an toàn?",tb:"b2324b",o:["&lt;P4, P5, P2, P3, P1&gt;","&lt;P2, P3, P1, P4, P5&gt;","&lt;P3, P1, P2, P5, P4&gt;","&lt;P1, P5, P4, P2, P3&gt;"],a:3,e:"Need: P1 (2,1,1,1), P2 (0,4,2,2), P3 (2,3,3,3), P4 (0,2,2,3), P5 (2,4,0,6). Chuỗi D: P1 xong ⇒ Work = (4,5,5,5); P5 cần R4 = 6 &gt; 5 ⇒ dừng.",bk:"b2324b"},
+{s:"23-24 HK2",c:5,q:"Chọn phát biểu SAI về semaphore?",o:["Nếu giá trị của semaphore S bằng −4 thì có 4 tiến trình đang bị blocked trong hàng đợi của S.","Thao tác signal() sẽ được sử dụng khi muốn sử dụng tài nguyên.","Tiến trình sẽ phải chờ khi thực hiện wait() lên semaphore đang có giá trị không dương.","Semaphore được phân loại thành counting semaphore và binary semaphore."],a:1,e:"Muốn dùng tài nguyên thì gọi wait()."},
+{s:"23-24 HK2",c:6,q:"Lựa chọn nào dưới đây KHÔNG phải là điều kiện cần để xảy ra deadlock?",o:["Một tiến trình đang giữ ít nhất một tài nguyên và đợi thêm tài nguyên do tiến trình khác giữ.","Tài nguyên không thể bị lấy lại mà chỉ có thể được trả lại từ tiến trình đang giữ khi nó muốn.","Ít nhất một tài nguyên được giữ theo chế độ không chia sẻ.","Mỗi tiến trình chỉ có thể yêu cầu thực thể của một loại tài nguyên theo thứ tự tăng dần của loại tài nguyên."],a:3,e:"D là cách ngăn circular wait."},
+{s:"23-24 HK2",c:5,q:"Giải pháp đồng bộ nào sau đây không cần sự hỗ trợ từ hệ điều hành?",o:["Semaphore","Monitor","Mutex locks","Giải thuật Peterson"],a:3,e:"Peterson là giải pháp phần mềm."},
+{s:"23-24 HK2",c:8,q:"Tiến trình được cấp 5 khung trang, 7 trang ảo, ban đầu khung trống. Chuỗi: 1 2 1 5 4 3 7 2 6 5 3 4. Tại thời điểm truy xuất trang số 7 lần đầu tiên, trang nào được chọn làm victim nếu dùng LRU?",o:["1","2","5","4"],a:1,e:"Khung chứa 1, 2, 5, 4, 3. Lần dùng gần nhất: 2 (vt 2), 1 (vt 3), 5, 4, 3 ⇒ thay 2.",pr:["121543726534",5,"LRU"]},
+{s:"23-24 HK2",c:8,q:"Cùng chuỗi trên (5 khung). Có tất cả bao nhiêu lỗi trang nếu dùng OPT?",o:["4","5","6","7"],a:3,e:"Lỗi khi nạp 1, 2, 5, 4, 3 (5 lỗi), 7 (thay 1), 6 (thay 7) ⇒ 7 lỗi.",pr:["121543726534",5,"OPT"]},
+{s:"23-24 HK2",c:5,q:"Reader-Writer dùng rw_mutex và mutex khởi tạo 1, ưu tiên Reader, readcount = 0. Chọn phát biểu SAI.",code:"Reader:                         Writer:\nwait(mutex);                    wait(rw_mutex);\nread_count++;                   /* cập nhật dữ liệu */\nif (read_count == 1)            signal(rw_mutex);\n    wait(rw_mutex);\nsignal(mutex);\n/* đọc dữ liệu */\nwait(mutex);\nread_count--;\nif (read_count == 0)\n    signal(rw_mutex);\nsignal(mutex);",o:["Nếu một Writer đang ở trong vùng tranh chấp và có n Readers đang đợi thì một Reader được xếp trong hàng đợi của rw_mutex và n − 1 Reader kia trong hàng đợi của mutex.","Khi Writer thực thi signal(rw_mutex), hệ thống có thể phục hồi thực thi của một trong các Reader đang đợi hoặc Writer đang đợi.","Các lệnh readcount++ và readcount-- đều là các vùng tranh chấp.","Semaphore mutex được sử dụng để bảo đảm tính chất loại trừ tương hỗ đối với các Writer."],a:3,e:"mutex bảo vệ readcount; rw_mutex mới dành cho Writer."},
+{s:"23-24 HK2",c:7,q:"Chiến lược next-fit sẽ chọn khối nhớ trống như thế nào?",o:["Chọn khối nhớ trống nhỏ nhất.","Chọn khối nhớ trống phù hợp đầu tiên kể từ đầu bộ nhớ.","Chọn khối nhớ trống phù hợp đầu tiên kể từ vị trí cấp phát cuối cùng.","Chọn khối nhớ trống lớn nhất."],a:2,e:"A best-fit, B first-fit, D worst-fit."},
+{s:"23-24 HK2",c:6,q:"Hệ thống nào có deadlock? (1) R1, R2 mỗi loại 1: P1 giữ R1 yêu cầu R2, P2 giữ R2, P3 yêu cầu R2. (2) R1–R3 mỗi loại 1: P1 giữ R1 yêu cầu R3, P2 giữ R2 yêu cầu R3, P3 giữ R3 yêu cầu R1. (3) R1, R2 mỗi loại 2: P1 yêu cầu 1 R1 và 1 R2, P2 giữ 1 R1 và 1 R2, P3 giữ 1 R1 và yêu cầu 1 R2.",o:["(1)","(1) và (2)","(2)","(3)"],a:2,e:"(2) có chu trình P1 → R3 → P3 → R1 → P1 với mỗi loại một thực thể. (3): còn 1 R2 trống ⇒ cấp cho P3, P3 xong trả R1; P2 xong ⇒ P1 chạy được."},
+{s:"23-24 HK2",c:8,q:"Chọn phát biểu SAI về việc cấp phát khung trang cho tiến trình?",o:["Nếu HĐH cấp ít khung trang cho tiến trình thì sẽ làm xuất hiện nhiều lỗi trang.","Nếu HĐH cấp nhiều khung trang cho tiến trình thì sẽ làm giảm mức độ đa chương.","Số lượng khung trang được cấp cho mỗi tiến trình sẽ không thay đổi nếu sử dụng chiến lược cấp phát tĩnh.","Khi sử dụng chiến lược cấp phát động, nếu tỉ lệ lỗi trang cao, HĐH sẽ giảm bớt số lượng khung trang được cấp."],a:3,e:"Lỗi trang cao ⇒ cấp thêm."},
+{s:"23-24 HK2",c:5,q:"Lựa chọn nào dưới đây KHÔNG phải là một yêu cầu của bài toán bounded-buffer?",o:["Producer và Consumer không được thao tác trên buffer cùng lúc.","Producer không được ghi dữ liệu vào buffer đã đầy.","Consumer không được đọc dữ liệu từ buffer đang trống.","Luôn có ít nhất một Producer hoặc Consumer thao tác trên buffer tại bất cứ thời điểm nào."],a:3,e:"Không có yêu cầu này."},
+{s:"23-24 HK2",c:7,q:"Không gian địa chỉ ảo 256 trang, mỗi trang 4096 byte, ánh xạ vào bộ nhớ vật lý 64 khung trang. Địa chỉ vật lý gồm bao nhiêu bit?",o:["18","12","20","8"],a:0,e:"6 bit khung + 12 bit offset = 18."},
+{s:"23-24 HK2",c:7,q:"Cùng dữ liệu trên (256 trang). Kích thước bảng phân trang là bao nhiêu byte nếu mỗi mục cần 2 byte?",o:["128","4096","512","32"],a:2,e:"256 × 2 = 512 byte."},
+{s:"23-24 HK2",c:5,q:"Memory barrier là gì?",o:["Mô hình hoạt động của bộ nhớ trong hệ thống, bao gồm cách thức quản lý và truy xuất các vùng nhớ được cấp phát.","Một chỉ thị (instruction) mà bắt buộc mọi thay đổi trong bộ nhớ phải được truyền tải (hiển thị) đến tất cả bộ xử lý khác.","Tập hợp các quy tắc và ràng buộc cho việc sử dụng bộ nhớ.","Cơ chế cho phép vi xử lý hoặc trình biên dịch sắp xếp lại các thao tác độc lập với nhau trên bộ nhớ."],a:1,e:"C là memory model."},
+
+/* ===== 2024-2025 HK1 ===== */
+{s:"24-25 HK1",c:9,q:"Công cụ nào có chức năng quản lý các thông tin cấu hình (configuration) trên Windows?",o:["Secure Kernel","Registry","Plug-and-Play Manager","Local Procedure Call Facility"],a:1,e:"Registry, lưu trong các hive."},
+{s:"24-25 HK1",c:5,q:"Hai nhóm giải pháp đồng bộ Busy waiting và Sleep &amp; Wake up khác nhau ở điểm nào?",o:["Sự hỗ trợ từ phần cứng.","Số lượng tiến trình có thể đồng bộ.","Sự hỗ trợ của hệ điều hành.","Sử dụng cấm ngắt để cài đặt."],a:2,e:"Sleep &amp; Wakeup cần HĐH."},
+{s:"24-25 HK1",c:8,q:"Chọn phát biểu SAI trong các phát biểu sau đây.",o:["Phân trang theo yêu cầu là một kỹ thuật cài đặt bộ nhớ ảo.","Trong phân trang theo yêu cầu, các trang của tiến trình chỉ được nạp vào bộ nhớ chính khi được yêu cầu.","Ưu điểm của bộ nhớ ảo là cho phép một tiến trình có thể thực thi ngay cả khi kích thước của nó lớn hơn bộ nhớ thực.","Nghịch lý Belady là tình trạng số lỗi trang giảm mặc dù tiến trình đã được cấp nhiều khung trang hơn."],a:3,e:"Belady: số lỗi trang <b>tăng</b>."},
+{s:"24-25 HK1",c:7,q:"Chiến lược worst-fit sẽ chọn khối nhớ trống như thế nào?",o:["Chọn khối nhớ trống nhỏ nhất.","Chọn khối nhớ trống phù hợp đầu tiên kể từ đầu bộ nhớ.","Chọn khối nhớ trống phù hợp đầu tiên kể từ vị trí cấp phát cuối cùng.","Chọn khối nhớ trống lớn nhất."],a:3,e:"Worst-fit."},
+{s:"24-25 HK1",c:7,q:"Kích thước trang và khung trang là 2048. Các trang 1, 2, 3, 4 lần lượt nằm ở khung 3, 2, 4, 1. Địa chỉ vật lý 6854 được chuyển thành địa chỉ luận lý bao nhiêu?",o:["8902","4096","710","2758"],a:3,e:"6854 = 3·2048 + 710 ⇒ khung 3 ⇒ trang 1 ⇒ LA = 1·2048 + 710 = 2758."},
+{s:"24-25 HK1",c:6,q:"Hệ thống 5 tiến trình, 4 loại tài nguyên, trạng thái t0 như bảng. Lựa chọn nào là một chuỗi an toàn?",tb:"b2425",o:["&lt;P5, P2, P4, P3, P1&gt;","&lt;P2, P1, P3, P4, P5&gt;","&lt;P4, P3, P2, P5, P1&gt;","&lt;P1, P4, P2, P5, P3&gt;"],a:2,e:"Need: P1 (2,4,2,2), P2 (4,0,0,1), P3 (2,4,4,4), P4 (0,2,1,1), P5 (2,2,2,0). Available (2,2,4,4) ⇒ đi đầu được chỉ có P4 hoặc P5. C: P4 ⇒ (5,4,7,6), P3 ⇒ (10,6,8,9), P2, P5, P1 đều thỏa. A sai ở P2 (cần R1 = 4 &gt; 3).",bk:"b2425"},
+{s:"24-25 HK1",c:6,q:"Cùng bảng trên. Yêu cầu cấp phát nào sau đây sẽ được đáp ứng?",tb:"b2425",o:["P1 yêu cầu thêm (3, 4, 1, 1)","P3 yêu cầu thêm (1, 2, 2, 2)","P5 yêu cầu thêm (3, 2, 1, 1)","P1 yêu cầu thêm (1, 0, 2, 2)"],a:3,e:"A: R1 = 3 &gt; Need P1 = 2 ⇒ lỗi. C: vượt Need P5 (2,2,2,0). B: hợp lệ nhưng Available còn (1,0,2,2), không tiến trình nào chạy được ⇒ unsafe. D: Available còn (1,2,2,2) ⇒ chuỗi &lt;P4, P5, P1, P2, P3&gt; ⇒ đáp ứng.",bk:"b2425"},
+{s:"24-25 HK1",c:5,q:"Chọn phát biểu SAI về semaphore?",o:["Giá trị của semaphore S, nếu là số dương, thể hiện số lần mà các tiến trình/tiểu trình có thể thực thi wait(S) mà không bị blocked.","Thao tác signal() làm giảm giá trị của semaphore đi 1.","Khi hiện thực semaphore không busy waiting, mỗi semaphore được gắn với một hàng đợi.","Binary semaphore có tác dụng giống với khóa mutex."],a:1,e:"signal() tăng S."},
+{s:"24-25 HK1",c:6,q:"Chọn phát biểu SAI về mối quan hệ giữa đồ thị cấp phát tài nguyên và deadlock?",o:["Nếu đồ thị không chứa chu trình thì không có deadlock.","Nếu đồ thị có chu trình và mỗi loại tài nguyên chỉ có một thực thể thì có deadlock.","Nếu đồ thị có chu trình và mỗi loại tài nguyên có nhiều thực thể thì có thể xảy ra deadlock.","Nếu đồ thị cấp phát tài nguyên có chu trình thì có deadlock xảy ra trong hệ thống."],a:3,e:"Thiếu điều kiện “mỗi loại 1 thực thể”."},
+{s:"24-25 HK1",c:5,q:"Hai mô hình bộ nhớ phổ biến là những mô hình nào?",o:["Mô hình bộ nhớ ngắn và mô hình bộ nhớ dài.","Mô hình bộ nhớ được sắp xếp mạnh và mô hình bộ nhớ được sắp xếp yếu.","Mô hình bộ nhớ được sắp xếp xa và mô hình bộ nhớ được sắp xếp gần.","Mô hình bộ nhớ được sắp xếp và mô hình bộ nhớ không được sắp xếp."],a:1,e:"Strongly ordered và weakly ordered."},
+{s:"24-25 HK1",c:7,q:"Bảng trang trong bộ nhớ chính, TLB hit ratio α = 0.95, chu kỳ truy xuất bộ nhớ x = 160 ns, EAT = 190 ns. Thời gian tìm trong TLB ε là bao nhiêu?",o:["30ns","22ns","152ns","320ns"],a:1,e:"190 = ε + 1.05·160 = ε + 168 ⇒ ε = 22 ns."},
+{s:"24-25 HK1",c:5,q:"Giải pháp nào sau đây cho bài toán triết gia ăn tối có thể gây ra deadlock?",o:["Chỉ cho phép tối đa 4 triết gia ngồi vào bàn.","Chỉ cho phép triết gia cầm đũa khi cả 2 chiếc đũa đã sẵn sàng.","Giải pháp bất đối xứng: vị trí lẻ cầm đũa trái trước, vị trí chẵn cầm đũa phải trước.","Các triết gia cầm đũa bên trái trước, sau đó cầm đũa bên phải (mà không cần kiểm tra từng chiếc đũa đã sẵn sàng chưa)."],a:3,e:"Giải pháp cơ bản ⇒ deadlock khi cả 5 cùng cầm đũa trái. (Đề gốc in nhầm nhãn phương án C thành D.)"},
+{s:"24-25 HK1",c:8,q:"Chọn phát biểu ĐÚNG về giải thuật thay thế trang FIFO?",o:["Giải thuật FIFO cần sự hỗ trợ của phần cứng cho việc tìm kiếm; ít CPU cung cấp đủ sự hỗ trợ phần cứng cho FIFO.","Giải thuật FIFO thay thế trang nhớ được tham chiếu nhiều lần nhất.","Giải thuật FIFO thay thế trang nhớ có thời gian được nạp vào bộ nhớ sớm nhất trong các trang nhớ.","Giải thuật FIFO thay thế trang nhớ sẽ được tham chiếu sớm nhất trong tương lai."],a:2,e:"A là đặc điểm của LRU."},
+{s:"24-25 HK1",c:5,q:"Chọn phát biểu SAI về monitor?",o:["Tiến trình “vào monitor” bằng cách gọi một trong các thủ tục được định nghĩa trong monitor.","Chỉ có một tiến trình có thể vào monitor tại một thời điểm.","Các biến nội bộ của monitor được khai báo bên trong monitor và chỉ có thể được truy cập bởi các hàm nội bộ.","Các biến điều kiện được sử dụng nhằm cho phép tiến trình đợi “trong monitor” và có thể được truy cập từ bên ngoài monitor."],a:3,e:"Biến điều kiện không truy cập được từ bên ngoài."},
+{s:"24-25 HK1",c:7,q:"Một bộ vi xử lý có không gian địa chỉ ảo 64 bit. Bảng trang có bao nhiêu mục nếu kích thước bảng trang là 1 MB và kích thước mỗi mục là 16 bit?",o:["2¹⁹","2¹⁸","2²⁰","2¹⁶"],a:0,e:"1 MB / 2 byte = 2²⁰ / 2 = 2¹⁹ mục."},
+{s:"24-25 HK1",c:9,q:"Linux hỗ trợ bao nhiêu loại module nhân?",o:["4","3","5","6"],a:0,e:"Theo slide: “Linux hỗ trợ 4 loại module”: module-management system, module loader/unloader, driver-registration system, conflict-resolution mechanism."},
+{s:"24-25 HK1",c:8,q:"Lựa chọn nào thể hiện thứ tự đúng các bước hoạt động của PFSR? (1) Phát yêu cầu đọc đĩa để nạp trang vào frame trống, trong khi đợi I/O thì tiến trình khác được cấp CPU; (2) Sau khi I/O hoàn tất, đĩa gây ngắt đến HĐH, PFSR cập nhật page table và chuyển tiến trình về ready; (3) Chuyển tiến trình về trạng thái blocked.",o:["(3) → (1) → (2)","(1) → (2) → (3)","(3) → (2) → (1)","(2) → (1) → (3)"],a:0,e:"Block trước, rồi I/O, rồi cập nhật bảng trang."},
+{s:"24-25 HK1",c:6,q:"Khi mỗi loại tài nguyên có nhiều thực thể, giải thuật phát hiện deadlock có thời gian chạy O(m × n²). Ý nghĩa của m, n là gì?",o:["n là số loại tài nguyên; m là số tiến trình.","n là số tiến trình; m là số loại tài nguyên.","m là số thực thể sẵn sàng của mỗi loại tài nguyên; n là số tiến trình.","n là số thực thể sẵn sàng của mỗi loại tài nguyên; m là số tiến trình."],a:1,e:"n tiến trình, m loại tài nguyên."},
+{s:"24-25 HK1",c:7,q:"Cơ chế quản lý bộ nhớ phân chia cố định (fixed partitioning) có đặc điểm nào dưới đây?",o:["Gây ra hiện tượng phân mảnh nội.","Số lượng partition không cố định.","Các partition có thể có kích thước khác nhau.","Mỗi tiến trình được cấp phát chính xác dung lượng bộ nhớ cần thiết."],a:0,e:"Tiến trình nhỏ hơn partition vẫn chiếm cả partition ⇒ phân mảnh nội. B, D là đặc điểm của dynamic partitioning. <i>Lưu ý:</i> slide có nói partition “bằng hoặc khác nhau” nên C cũng có cơ sở; đề không có đáp án chính thức, A là đặc điểm hay được hỏi nhất."},
+{s:"24-25 HK1",c:5,q:"Lời giải cho bài toán vùng tranh chấp KHÔNG cần phải đảm bảo yêu cầu nào?",o:["Khi P đang thực thi trong CS của nó thì không có Q nào khác đang thực thi trong CS của Q.","Một tiến trình tạm dừng bên ngoài vùng tranh chấp không được ngăn cản các tiến trình khác vào vùng tranh chấp.","Các tiến trình phải liên tục kiểm tra điều kiện để được vào vùng tranh chấp.","Mỗi tiến trình chỉ phải chờ để được vào vùng tranh chấp trong một khoảng thời gian có hạn định. Không xảy ra starvation."],a:2,e:"Busy waiting không phải yêu cầu."}
+];
+
+const SRC=[...new Set(Q.map(q=>q.s))];
+$("#srcSel").insertAdjacentHTML("beforeend",SRC.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join(""));
+let answers=store.get("hdh-ck-answers",{});
+let order=Q.map((_,i)=>i);
+let fChap=0;
+function filtered(){
+  const src=$("#srcSel").value, ow=$("#onlyWrong").checked, on=$("#onlyNew").checked;
+  return order.filter(i=>{const q=Q[i];
+    if(fChap&&q.c!==fChap)return false; if(src&&q.s!==src)return false;
+    const a=answers[i];
+    if(ow&&!(a!==undefined&&a!==q.a))return false;
+    if(on&&a!==undefined)return false;
+    return true;});
+}
+function renderQuiz(){
+  const ids=filtered();
+  let r=0,w=0; ids.forEach(i=>{const a=answers[i];if(a===undefined)return; if(a===Q[i].a)r++;else w++;});
+  $("#scRight").textContent=r; $("#scWrong").textContent=w;
+  $("#scLeft").textContent=`${ids.length-r-w} chưa làm / ${ids.length} câu`;
+  $("#scBar").style.width=ids.length?((r+w)/ids.length*100)+"%":"0%";
+  if(!ids.length){$("#qlist").innerHTML=`<div class="card empty">Không có câu nào khớp bộ lọc. Bỏ bớt điều kiện lọc để xem thêm.</div>`;return;}
+  $("#qlist").innerHTML=ids.map((i,n)=>{
+    const q=Q[i], a=answers[i], done=a!==undefined;
+    const cls=done?(a===q.a?"q correct":"q wrongq"):"q";
+    const opts=q.o.map((o,k)=>{let c="opt";if(done){if(k===q.a)c+=" is-right";else if(k===a)c+=" is-wrong";}
+      return `<button class="${c}" data-q="${i}" data-k="${k}" ${done?"disabled":""}><span class="L">${"ABCD"[k]}.</span><span>${o}</span></button>`}).join("");
+    const links=(q.pr?` <button class="btn ghost" style="padding:2px 8px;font-size:13px" data-pr="${i}">Xem bảng thay trang</button>`:"")+(q.bk?` <button class="btn ghost" style="padding:2px 8px;font-size:13px" data-bkq="${q.bk}">Mở trong Banker</button>`:"");
+    const ex=done?`<div class="explain"><b>Đáp án ${"ABCD"[q.a]}.</b> ${q.e||""}${links}</div>`:"";
+    return `<article class="${cls}"><div class="qhead"><span class="qn">Câu ${n+1}</span><span class="tag">C${q.c}</span><span class="tag">${esc(q.s)}</span></div><div class="qtext">${q.q}</div>${q.code?`<pre>${esc(q.code)}</pre>`:""}${q.tb?bkTable(q.tb):""}<div class="opts">${opts}</div>${ex}</article>`;
+  }).join("");
+}
+$("#qlist").addEventListener("click",e=>{
+  const p=e.target.closest("[data-pr]");
+  if(p){const q=Q[+p.dataset.pr];loadPR(q.pr[0],q.pr[1],q.pr[2]);go("thaytrang");return;}
+  const k=e.target.closest("[data-bkq]");
+  if(k){loadBK(k.dataset.bkq);go("banker");return;}
+  const b=e.target.closest(".opt"); if(!b||b.disabled)return;
+  answers[+b.dataset.q]=+b.dataset.k; store.set("hdh-ck-answers",answers);
+  renderQuiz();
+});
+document.querySelectorAll("#chapSeg button").forEach(b=>b.addEventListener("click",()=>{fChap=+b.dataset.c;document.querySelectorAll("#chapSeg button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));renderQuiz()}));
+["#srcSel","#onlyWrong","#onlyNew"].forEach(s=>$(s).addEventListener("change",renderQuiz));
+$("#shuffleBtn").addEventListener("click",()=>{for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}renderQuiz()});
+$("#resetBtn").addEventListener("click",()=>{const ow=$("#onlyWrong").checked;$("#onlyWrong").checked=false;const ids=filtered();$("#onlyWrong").checked=ow;ids.forEach(i=>delete answers[i]);store.set("hdh-ck-answers",answers);renderQuiz()});
+renderQuiz();
+
+/* ---------- page replacement ---------- */
+const PRP=[
+["24-25 HK1 · tự luận 4 (4 khung)","23148582613782624815",4,"LRU"],
+["23-24 HK2 · câu 6, 7 (5 khung)","121543726534",5,"LRU"],
+["23-24 HK1 · câu 2, 3 (4 khung)","3245734621312765",4,"OPT"],
+["22-23 HK2 · câu 15, 16 (4 khung)","24182354673728653416",4,"LRU"],
+["22-23 HK1 · tự luận 1 (4 khung)","23279681513784624519",4,"OPT"],
+["20-21 HK1 · câu 13–15 (4 khung)","62475834123756128351",4,"OPT"],
+["19-20 HK1 · tự luận (4 khung)","32561274571346516473",4,"OPT"],
+["Slide BHT · ví dụ (3 khung)","1235624170671056",4,"FIFO"]
+];
+$("#prPreset").insertAdjacentHTML("beforeend",PRP.map((p,i)=>`<option value="${i}">${esc(p[0])}</option>`).join(""));
+let prAlgo="LRU";
+function simPR(ref,n,alg){
+  const fr=[],load={},last={},steps=[];let faults=0;
+  ref.forEach((p,i)=>{
+    let fault=false,victim=null,slot=fr.indexOf(p);
+    if(slot<0){fault=true;faults++;
+      if(fr.length<n){fr.push(p);slot=fr.length-1}
+      else{
+        if(alg==="FIFO")victim=fr.reduce((b,x)=>load[x]<load[b]?x:b);
+        else if(alg==="LRU")victim=fr.reduce((b,x)=>last[x]<last[b]?x:b);
+        else{const nx=x=>{for(let j=i+1;j<ref.length;j++)if(ref[j]===x)return j;return Infinity};victim=fr.reduce((b,x)=>nx(x)>nx(b)?x:b)}
+        slot=fr.indexOf(victim);fr[slot]=p;
+      }
+      load[p]=i;
+    }
+    last[p]=i;
+    steps.push({p,fr:fr.slice(),fault,victim,slot});
+  });
+  return {steps,faults};
+}
+function parseRef(s){const t=s.trim();return (/[\s,]/.test(t)?t.split(/[\s,]+/):t.split("")).filter(x=>/^\d+$/.test(x)).map(Number)}
+function renderPR(){
+  const ref=parseRef($("#prRef").value), n=Math.max(1,Math.min(10,+$("#prN").value||1));
+  if(!ref.length){$("#prTable").innerHTML="";$("#prSummary").innerHTML="";$("#prCompare").innerHTML="";return}
+  const {steps,faults}=simPR(ref,n,prAlgo);
+  let html=`<table class="prt"><thead><tr><th class="lbl">Truy xuất</th>${steps.map(s=>`<th>${s.p}</th>`).join("")}</tr></thead><tbody>`;
+  for(let k=0;k<n;k++){html+=`<tr><td class="lbl">Khung ${k+1}</td>${steps.map(s=>{const v=s.fr[k];if(v===undefined)return "<td></td>";return `<td class="${s.fault&&s.slot===k?"new":"hit"}">${v}</td>`}).join("")}</tr>`}
+  html+=`<tr class="f"><td class="lbl">Lỗi</td>${steps.map(s=>`<td class="flt">${s.fault?"*":""}</td>`).join("")}</tr>`;
+  html+=`<tr><td class="lbl">Thay</td>${steps.map(s=>`<td class="vic">${s.victim??""}</td>`).join("")}</tr></tbody></table>`;
+  $("#prTable").innerHTML=html;
+  $("#prSummary").innerHTML=`<span><b>${faults}</b> lỗi trang</span><span class="muted">${prAlgo} · ${n} khung · ${ref.length} lần truy xuất · tỉ lệ ${(faults/ref.length*100).toFixed(0)}%</span>`;
+  const res=["FIFO","OPT","LRU"].map(a=>[a,simPR(ref,n,a).faults]);const mn=Math.min(...res.map(r=>r[1]));
+  const res2=["FIFO","OPT","LRU"].map(a=>[a,n>1?simPR(ref,n-1,a).faults:null,simPR(ref,n+1,a).faults]);
+  $("#prCompare").innerHTML=`<div class="tablewrap"><table style="max-width:460px"><thead><tr><th>Giải thuật</th>${n>1?`<th class="num">${n-1} khung</th>`:""}<th class="num">${n} khung</th><th class="num">${n+1} khung</th></tr></thead><tbody>${res.map((r,i)=>`<tr><td><b>${r[0]}</b></td>${n>1?`<td class="num">${res2[i][1]}</td>`:""}<td class="num ${r[1]===mn?"best":""}">${r[1]}</td><td class="num">${res2[i][2]}</td></tr>`).join("")}</tbody></table></div><p class="small muted">Nếu FIFO có số lỗi tăng khi tăng khung thì đó là nghịch lý Belady.</p>`;
+}
+function loadPR(ref,n,alg){$("#prRef").value=ref;$("#prN").value=n;if(alg){prAlgo=alg;document.querySelectorAll("#prAlgo button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.a===alg?"true":"false"))}renderPR()}
+document.querySelectorAll("#prAlgo button").forEach(b=>b.addEventListener("click",()=>{prAlgo=b.dataset.a;document.querySelectorAll("#prAlgo button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));renderPR()}));
+$("#prRef").addEventListener("input",renderPR);$("#prN").addEventListener("input",renderPR);
+$("#prPreset").addEventListener("change",e=>{const p=PRP[e.target.value];if(p)loadPR(p[1],p[2],p[3])});
+renderPR();
+
+/* ---------- banker ---------- */
+const BKP=[
+["b2324","23-24 HK1 · tự luận 1 (P4 yêu cầu 2 2 1 3)","4","2 2 1 3"],
+["b2021","20-21 HK1 · tự luận (P3 yêu cầu 1 3 1 2)","3","1 3 1 2"],
+["b2425","24-25 HK1 · câu 6, 7","1","1 0 2 2"],
+["b2324b","23-24 HK2 · câu 2","",""],
+["b2223","22-23 HK1 · câu 7","",""],
+["b1920","19-20 HK1 · câu 18","4","2 3 1 3"]
+];
+$("#bkPreset").insertAdjacentHTML("beforeend",BKP.map(p=>`<option value="${p[0]}">${esc(p[1])}</option>`).join(""));
+let bk=JSON.parse(JSON.stringify(BK.b2324));
+const le=(a,b)=>a.every((x,i)=>x<=b[i]), add=(a,b)=>a.map((x,i)=>x+b[i]), sub=(a,b)=>a.map((x,i)=>x-b[i]);
+const fmt=a=>"("+a.join(", ")+")";
+function needOf(s){return s.al.map((a,i)=>sub(s.mx[i],a))}
+function safety(al,need,av){
+  const n=al.length,fin=Array(n).fill(false),seq=[],rows=[];let w=av.slice(),prog=true;
+  while(prog){prog=false;for(let i=0;i<n;i++){if(!fin[i]&&le(need[i],w)){rows.push({i,before:w.slice()});w=add(w,al[i]);fin[i]=true;seq.push(i);prog=true}}}
+  return {seq,rows,ok:seq.length===n,fin};
+}
+function renderBKInput(){
+  const inp=(arr,r,c,key)=>`<td><input type="number" min="0" value="${arr[c]}" data-k="${key}" data-r="${r}" data-c="${c}" aria-label="${key} P${r+1} R${c+1}"></td>`;
+  const need=needOf(bk);
+  $("#bkInput").innerHTML=`<table class="bk"><thead><tr><th rowspan="2"></th><th colspan="4">Allocation</th><th colspan="4">Max</th><th colspan="4">Need = Max − Alloc</th></tr><tr>${"<th>R1</th><th>R2</th><th>R3</th><th>R4</th>".repeat(3)}</tr></thead><tbody>${bk.al.map((a,i)=>`<tr><td class="l">P${i+1}</td>${a.map((_,c)=>inp(a,i,c,"al")).join("")}${bk.mx[i].map((_,c)=>inp(bk.mx[i],i,c,"mx")).join("")}${need[i].map(x=>`<td class="${x<0?"no":""}">${x}</td>`).join("")}</tr>`).join("")}<tr><td class="l">Available</td>${bk.av.map((_,c)=>inp(bk.av,0,c,"av")).join("")}<td colspan="8" class="small" style="text-align:left;color:var(--muted)">Need âm nghĩa là dữ liệu nhập sai (Allocation &gt; Max).</td></tr></tbody></table>`;
+}
+function renderBK(){
+  const need=needOf(bk), r=safety(bk.al,need,bk.av);
+  $("#bkSafe").innerHTML=`<table class="bk"><thead><tr><th>Bước</th><th>Chọn</th><th>Need</th><th>Work trước</th><th>+ Allocation</th><th>Work sau</th></tr></thead><tbody>${r.rows.map((x,k)=>`<tr><td>${k+1}</td><td class="l">P${x.i+1}</td><td>${fmt(need[x.i])}</td><td>${fmt(x.before)}</td><td>${fmt(bk.al[x.i])}</td><td>${fmt(add(x.before,bk.al[x.i]))}</td></tr>`).join("")}</tbody></table>`;
+  $("#bkSafeMsg").innerHTML=r.ok?`<p><span class="pill-ok">AN TOÀN</span> Chuỗi an toàn: &lt;${r.seq.map(i=>"P"+(i+1)).join(", ")}&gt; <span class="small muted">(quét theo thứ tự P1 → P5, mỗi vòng chọn tiến trình đầu tiên thỏa; đề có thể có nhiều chuỗi an toàn khác)</span></p>`:`<p><span class="pill-no">KHÔNG AN TOÀN</span> Không tìm được chuỗi đủ 5 tiến trình. Các tiến trình bị kẹt: ${r.fin.map((f,i)=>f?"":"P"+(i+1)).filter(Boolean).join(", ")}.</p>`;
+  checkSeq();checkReq();
+}
+function checkSeq(){
+  const s=nums($("#bkSeq").value).map(x=>x-1);
+  if(!s.length){$("#bkSeqOut").innerHTML="";return}
+  const need=needOf(bk);let w=bk.av.slice();const lines=[];
+  for(const i of s){if(i<0||i>=bk.al.length){lines.push(`P${i+1} không tồn tại`);break}
+    if(!le(need[i],w)){lines.push(`<span style="color:var(--bad)">P${i+1}: Need ${fmt(need[i])} &gt; Work ${fmt(w)} ⇒ dừng, <b>không phải</b> chuỗi an toàn.</span>`);$("#bkSeqOut").innerHTML=lines.join("<br>");return}
+    const w2=add(w,bk.al[i]);lines.push(`P${i+1}: Need ${fmt(need[i])} ≤ Work ${fmt(w)} ⇒ Work = ${fmt(w2)}`);w=w2}
+  lines.push(s.length===bk.al.length?`<span style="color:var(--good)"><b>Là chuỗi an toàn.</b></span>`:`<span class="muted">Chuỗi chưa đủ ${bk.al.length} tiến trình.</span>`);
+  $("#bkSeqOut").innerHTML=lines.join("<br>");
+}
+function checkReq(){
+  const p=+$("#bkReqP").value-1, req=nums($("#bkReqV").value);
+  if(req.length!==4){$("#bkReqOut").innerHTML=req.length?`<span class="muted">Nhập đủ 4 số.</span>`:"";return}
+  const need=needOf(bk);
+  if(!le(req,need[p])){$("#bkReqOut").innerHTML=`<span class="pill-no">TỪ CHỐI</span> Request ${fmt(req)} &gt; Need P${p+1} ${fmt(need[p])}: vượt yêu cầu tối đa, báo lỗi.`;return}
+  if(!le(req,bk.av)){$("#bkReqOut").innerHTML=`<span class="pill-no">PHẢI CHỜ</span> Request ${fmt(req)} ≤ Need nhưng &gt; Available ${fmt(bk.av)}.`;return}
+  const al2=bk.al.map(a=>a.slice()),need2=need.map(a=>a.slice()),av2=sub(bk.av,req);
+  al2[p]=add(al2[p],req);need2[p]=sub(need2[p],req);
+  const r=safety(al2,need2,av2);
+  $("#bkReqOut").innerHTML=`Bước 1: ${fmt(req)} ≤ Need ${fmt(need[p])} ✓ · Bước 2: ≤ Available ${fmt(bk.av)} ✓<br>Giả định cấp: Available = ${fmt(av2)}, Allocation P${p+1} = ${fmt(al2[p])}, Need P${p+1} = ${fmt(need2[p])}<br>`+(r.ok?`<span class="pill-ok">ĐÁP ỨNG</span> Trạng thái mới an toàn, chuỗi &lt;${r.seq.map(i=>"P"+(i+1)).join(", ")}&gt;.`:`<span class="pill-no">KHÔNG ĐÁP ỨNG</span> Trạng thái mới không an toàn (kẹt: ${r.fin.map((f,i)=>f?"":"P"+(i+1)).filter(Boolean).join(", ")}), P${p+1} phải chờ.`);
+}
+function loadBK(k){const p=BKP.find(x=>x[0]===k);bk=JSON.parse(JSON.stringify(BK[k]));$("#bkPreset").value=k;if(p){$("#bkReqP").value=p[2]||"1";$("#bkReqV").value=p[3]}$("#bkSeq").value="";renderBKInput();renderBK()}
+$("#bkInput").addEventListener("input",e=>{const t=e.target.closest("input[data-k]");if(!t)return;const v=Math.max(0,parseInt(t.value)||0);if(t.dataset.k==="av")bk.av[+t.dataset.c]=v;else bk[t.dataset.k][+t.dataset.r][+t.dataset.c]=v;
+  const need=needOf(bk);document.querySelectorAll("#bkInput tbody tr").forEach((tr,i)=>{if(i<5){const tds=tr.querySelectorAll("td");need[i].forEach((x,c)=>{const td=tds[9+c];td.textContent=x;td.className=x<0?"no":""})}});renderBK()});
+$("#bkPreset").addEventListener("change",e=>{if(e.target.value)loadBK(e.target.value)});
+$("#bkSeq").addEventListener("input",checkSeq);$("#bkReqV").addEventListener("input",checkReq);$("#bkReqP").addEventListener("change",checkReq);
+loadBK("b2324");
+
+/* ---------- tự luận ---------- */
+const prBtn=(ref,n,a,l)=>`<button class="btn" style="padding:4px 10px;font-size:13px" data-gopr="${ref}|${n}|${a}">${l}</button>`;
+const bkBtn=(k,l)=>`<button class="btn" style="padding:4px 10px;font-size:13px" data-gobk="${k}">${l}</button>`;
+function prStatic(ref,n,alg){
+  const r=parseRef(ref),{steps,faults}=simPR(r,n,alg);
+  let h=`<div class="tablewrap"><table class="prt"><thead><tr><th class="lbl">${alg}</th>${steps.map(s=>`<th>${s.p}</th>`).join("")}</tr></thead><tbody>`;
+  for(let k=0;k<n;k++)h+=`<tr><td class="lbl">Khung ${k+1}</td>${steps.map(s=>{const v=s.fr[k];return v===undefined?"<td></td>":`<td class="${s.fault&&s.slot===k?"new":"hit"}">${v}</td>`}).join("")}</tr>`;
+  h+=`<tr class="f"><td class="lbl">Lỗi</td>${steps.map(s=>`<td class="flt">${s.fault?"*":""}</td>`).join("")}</tr></tbody></table></div><p><b>${faults} lỗi trang.</b></p>`;return h;
+}
+const TL=[
+{t:"24-25 HK1 · câu 4 (1.5đ) · thay trang",q:"Tiến trình được cấp 4 khung trang, 8 trang ảo, ban đầu khung trống. Chuỗi truy xuất: <code>2 3 1 4 8 5 8 2 6 1 3 7 8 2 6 2 4 8 1 5</code>.<br>a. (0.5) Tại thời điểm truy xuất trang 6 lần đầu tiên, trang nào được chọn làm victim nếu dùng OPT?<br>b. (1) Vẽ bảng minh họa và tính số lỗi trang khi dùng LRU.",
+ a:()=>`<p><b>a.</b> Trước khi nạp 6, khung chứa 2, 5, 1, 8 (OPT đã thay 3 khi nạp 5, thay 4 khi nạp 8). Lần dùng kế tiếp: 2 (vt 14), 5 (vt 20), 1 (vt 10), 8 (vt 13) ⇒ <b>trang 5</b> xa nhất bị thay.</p><p><b>b.</b></p>${prStatic("23148582613782624815",4,"LRU")}${prBtn("23148582613782624815",4,"LRU","Mở trong mô phỏng")}`},
+{t:"24-25 HK1 · câu 1–3 · Đ/S, thuật ngữ, lý thuyết",q:"Câu 1 Đúng/Sai: a. Giải thuật Peterson là giải pháp đồng bộ dựa trên phần cứng. b. Hệ thống ở trạng thái không an toàn thì có deadlock. c. Phân trang là cơ chế cấp phát bộ nhớ không liên tục. d. Giải pháp tập làm việc loại trừ được thrashing mà vẫn đảm bảo mức độ đa chương.<br>Câu 2 (tiếng Anh, ≤ 2 từ): a. Thuật ngữ chỉ tập đặc điểm hệ thống phải thỏa để đảm bảo tiến trình thực sự chạy? b. Hiện tượng các trang nhớ của tiến trình bị hoán chuyển vào/ra liên tục?<br>Câu 3: Cơ chế kết khối (compaction) dùng để làm gì?",
+ a:()=>`<p><b>Câu 1:</b> a <b>Sai</b> (phần mềm) · b <b>Sai</b> (chỉ có thể) · c <b>Đúng</b> · d <b>Đúng</b>.</p><p><b>Câu 2:</b> a <b>Liveness</b> · b <b>Thrashing</b>.</p><p><b>Câu 3:</b> Dời chỗ các vùng nhớ đã cấp phát để gom các vùng trống rời rạc thành một khối trống liên tục lớn, giải quyết <b>phân mảnh ngoại</b>. Chỉ làm được khi địa chỉ được chuyển đổi lúc thực thi (execution time binding).</p>`},
+{t:"23-24 HK2 · câu 1–3 · Đ/S, thuật ngữ, so sánh",q:"Câu 1 Đúng/Sai: a. Thrashing xuất hiện khi tổng kích thước các locality lớn hơn bộ nhớ vật lý. b. Giải thuật ngăn deadlock kiểm tra trạng thái cấp phát để hệ thống không rơi vào deadlock. c. Compaction giải quyết phân mảnh nội. d. Các giải pháp đồng bộ dựa trên ngắt cần hỗ trợ từ phần cứng.<br>Câu 2 (tiếng Anh): a. Kỹ thuật cho phép xử lý tiến trình không được nạp toàn bộ vào bộ nhớ vật lý? b. Loại đồ thị dùng phát hiện deadlock khi mỗi loại tài nguyên có một thực thể, tạo từ RAG?<br>Câu 3: So sánh dynamic linking và dynamic loading theo thời điểm thực hiện và sự hỗ trợ của HĐH.",
+ a:()=>`<p><b>Câu 1:</b> a <b>Đúng</b> · b <b>Sai</b> (đó là tránh deadlock) · c <b>Sai</b> (phân mảnh ngoại) · d <b>Đúng</b>.</p><p><b>Câu 2:</b> a <b>Virtual memory</b> · b <b>Wait-for graph</b>.</p><div class="tablewrap"><table style="max-width:640px"><thead><tr><th></th><th>Dynamic linking</th><th>Dynamic loading</th></tr></thead><tbody><tr><td><b>Thời điểm</b></td><td>Liên kết đến module ngoài (thư viện) được trì hoãn đến <b>lúc thực thi</b>, sau khi đã tạo xong load module</td><td>Thủ tục chỉ được nạp vào bộ nhớ <b>khi được gọi đến</b> trong lúc chạy</td></tr><tr><td><b>Hỗ trợ HĐH</b></td><td><b>Cần</b> HĐH (kiểm tra thủ tục có trong không gian nhớ tiến trình, cho nhiều tiến trình dùng chung thư viện)</td><td><b>Không cần</b> hỗ trợ đặc biệt; người dùng tự thiết kế, HĐH chỉ cung cấp thư viện hỗ trợ</td></tr></tbody></table></div>`},
+{t:"23-24 HK2 · câu 3 · đồng bộ semaphore in “12345678”",q:"Hai tiểu trình: T1 in 1, 2, 5, 6; T2 in 3, 4, 7, 8. Dùng semaphore để kết quả luôn là <code>12345678</code>. Điền vào các vị trí [A]–[F].",code:"void* T1(void* arg) {      void* T2(void* arg) {\n  [A]                        [D]\n  printf(\"1\");               printf(\"3\");\n  printf(\"2\");               printf(\"4\");\n  [B]                        [E]\n  printf(\"5\");               printf(\"7\");\n  printf(\"6\");               printf(\"8\\n\");\n  [C]                        [F]\n}                          }",
+ a:()=>`<p>Khai báo: <code>sem_t s1, s2;</code> khởi tạo <code>s1 = 0, s2 = 0</code>. s1: “T1 đã in xong phần của mình, tới lượt T2”; s2: “T2 xong 3, 4, tới lượt T1”.</p><div class="code2"><pre>[A]  (để trống)
+[B]  signal(s1); wait(s2);
+[C]  signal(s1);</pre><pre>[D]  wait(s1);
+[E]  signal(s2); wait(s1);
+[F]  (để trống)</pre></div><p class="small muted">Kiểm tra: T2 bị chặn ở [D] cho đến khi T1 in xong 1, 2. T1 bị chặn ở [B] cho đến khi T2 in xong 3, 4. T2 lại bị chặn ở [E] cho đến khi T1 in xong 5, 6.</p>`},
+{t:"23-24 HK1 · tự luận 1 (1đ) · Banker",q:"Allocation / Max / Available như bảng. Nếu P4 yêu cầu thêm (2, 2, 1, 3), hệ thống có đáp ứng không? Giải thích.",tb:"b2324",
+ a:()=>`<p>Need: P1 (3,0,3,0), P2 (0,2,5,1), P3 (1,1,1,6), P4 (3,2,2,3), P5 (0,3,4,0).</p><p>Request (2,2,1,3) ≤ Need P4 (3,2,2,3) ✓ và ≤ Available (3,3,4,5) ✓.</p><p>Giả định cấp: Available = (1,1,3,2), Allocation P4 = (3,6,3,6), Need P4 = (1,0,1,0).</p><p>Kiểm tra an toàn: P4 (Need (1,0,1,0) ≤ (1,1,3,2)) ⇒ Work (4,7,6,8) · P5 ⇒ (5,9,9,12) · P1 ⇒ (7,11,10,15) · P2 ⇒ (11,13,11,16) · P3 ⇒ (13,18,15,17). Chuỗi an toàn <b>&lt;P4, P5, P1, P2, P3&gt;</b> ⇒ <b>đáp ứng</b>.</p><p class="small muted">Slide BHT ghi Allocation P4 = (1,4,3,3); với số trong đề gốc (1,4,2,3) kết luận vẫn là đáp ứng với cùng chuỗi.</p>${bkBtn("b2324","Mở trong Banker")}`},
+{t:"23-24 HK1 · tự luận 2, 3 · phân trang",q:"Không gian địa chỉ ảo 128 trang, mỗi trang 4096 byte, ánh xạ vào bộ nhớ vật lý 64 khung.<br>a. Có bao nhiêu địa chỉ ảo? b. Mỗi mục bảng trang cần ít nhất bao nhiêu bit nếu thêm 1 bit valid/invalid?<br>Câu 3: Khi dùng phân trang, có phân mảnh không? Giải thích.",
+ a:()=>`<p><b>a.</b> 128 × 4096 = 2⁷ × 2¹² = <b>2¹⁹ = 524 288</b> địa chỉ (19 bit).</p><p><b>b.</b> Mỗi mục lưu số hiệu khung: 64 = 2⁶ ⇒ 6 bit, thêm 1 bit valid ⇒ <b>7 bit</b>.</p><p><b>Câu 3.</b> Không có <b>phân mảnh ngoại</b> vì mọi frame trống đều cấp được cho bất kỳ trang nào (cấp phát không liên tục). Nhưng có <b>phân mảnh nội</b> ở trang cuối của tiến trình. Ví dụ trang 4096 B, tiến trình 10 000 B cần 3 trang = 12 288 B, phí 2288 B trong trang cuối.</p>`},
+{t:"22-23 HK1 · tự luận 1 (1.5đ) · FIFO & OPT",q:"4 khung, 9 trang ảo, chuỗi <code>2 3 2 7 9 6 8 1 5 1 3 7 8 4 6 2 4 5 1 9</code>.<br>a. Tại lần truy xuất trang 5 đầu tiên, trang nào bị thay nếu dùng FIFO? b. Vẽ bảng và tính số lỗi trang với OPT.",
+ a:()=>`<p><b>a.</b> FIFO: 2, 3, 7, 9 vào; 6 thay 2; 8 thay 3; 1 thay 7; khi nạp 5, trang vào sớm nhất còn lại là <b>9</b> ⇒ thay 9.</p><p><b>b.</b></p>${prStatic("23279681513784624519",4,"OPT")}${prBtn("23279681513784624519",4,"OPT","Mở trong mô phỏng")}`},
+{t:"22-23 HK1 · tự luận 2 (1đ) · TLB",q:"Khi cài đặt bảng phân trang, TLB thường được sử dụng. Mô tả vai trò của TLB và giải thích vì sao nó được sử dụng.",
+ a:()=>`<p>Bảng trang đặt trong bộ nhớ chính ⇒ mỗi lần truy xuất dữ liệu cần <b>2 lần</b> truy xuất bộ nhớ (một lần đọc bảng trang, một lần đọc dữ liệu), làm chậm gấp đôi.</p><p><b>TLB</b> là bộ nhớ kết hợp tốc độ cao, tìm kiếm song song, lưu một phần các cặp (p, f) vừa dùng. Khi dịch địa chỉ, tìm p trong TLB trước: <b>hit</b> ⇒ có f ngay, chỉ cần 1 lần truy xuất bộ nhớ; <b>miss</b> ⇒ tra bảng trang trong bộ nhớ rồi nạp cặp (p, f) vào TLB. Nhờ tính cục bộ, hit ratio cao nên EAT = ε + (2 − α)x gần với x.</p>`},
+{t:"22-23 HK2 · tự luận 1, 2 · cấp phát vùng nhớ & bảng trang",q:"1. Phân vùng: 1 (150 KB), 2 (250), 3 (380), 4 (420), 5 (320), 6 (400). Con trỏ ở vùng 2, vùng 2 đã cấp phát. a. First-fit, P 240 KB vào vùng nào? b. Best-fit, Q 310 KB vào vùng nào?<br>2. Trang 1024 byte. Tiến trình 4096 byte nạp vào 4 khung. Các địa chỉ luận lý 520, 3456, 1564, 2716 được chuyển thành địa chỉ vật lý 2568, 4636, 1692, 5524. Vẽ bảng trang.",
+ a:()=>`<p><b>1a.</b> First-fit từ đầu: vùng 1 (150) thiếu, vùng 2 đã cấp ⇒ <b>vùng 3 (380 KB)</b>. <b>1b.</b> Best-fit: các vùng trống ≥ 310 là 3 (380), 4 (420), 5 (320), 6 (400) ⇒ nhỏ nhất <b>vùng 5 (320 KB)</b>.</p><p><b>2.</b> Tiến trình có 4 trang (0–3). Offset được giữ nguyên khi dịch nên ghép cặp theo offset:</p><div class="tablewrap"><table style="max-width:520px"><thead><tr><th>Địa chỉ luận lý</th><th>Trang, offset</th><th>Địa chỉ vật lý</th><th>Khung</th></tr></thead><tbody><tr><td>520</td><td>0, 520</td><td>2568 = 2·1024 + 520</td><td>2</td></tr><tr><td>1564</td><td>1, 540</td><td>4636 = 4·1024 + 540</td><td>4</td></tr><tr><td>2716</td><td>2, 668</td><td>1692 = 1·1024 + 668</td><td>1</td></tr><tr><td>3456 (3, 384)</td><td>3, …</td><td>5524 = 5·1024 + 404</td><td>5</td></tr></tbody></table></div><p>Bảng trang: <b>trang 0 → khung 2, trang 1 → khung 4, trang 2 → khung 1, trang 3 → khung 5</b>.</p><p class="small muted">Bản scan cho offset của 3456 (384) không khớp 5524 (404); nhiều khả năng số gốc là 3476. Cách làm không đổi: trang 3 là trang còn lại, nằm ở khung 5.</p>`},
+{t:"20-21 HK1 · tự luận (2đ) · Banker (đáp án chính thức)",q:"a. Thực hiện giải thuật Banker xét trạng thái an toàn. b. Nếu P3 yêu cầu thêm (1, 3, 1, 2), hệ thống có đáp ứng không?",tb:"b2021",
+ a:()=>`<p><b>a.</b> Need: P1 (2,2,3,1), P2 (2,3,4,0), P3 (1,4,1,2), P4 (1,1,2,3), P5 (0,2,3,1). Work: (4,3,3,5) → P1 (7,4,4,7) → P2 (8,5,6,8) → P3 (10,6,10,13) → P4 (13,11,12,15) → P5 (14,14,16,16). Chuỗi <b>&lt;P1, P2, P3, P4, P5&gt;</b> ⇒ an toàn.</p><p><b>b.</b> (1,3,1,2) ≤ Need P3 (1,4,1,2) ✓ và ≤ Available (4,3,3,5) ✓. Giả định cấp: Available = (3,0,2,3), Allocation P3 = (3,4,5,7), Need P3 = (0,1,0,0). Không tiến trình nào có Need ≤ (3,0,2,3) (mọi tiến trình đều cần R2 ≥ 1) ⇒ không an toàn ⇒ <b>không đáp ứng</b>, P3 phải chờ.</p><p class="small muted">Thang điểm: Need đúng 0.5đ, Available (Work) đúng 0.25đ, chuỗi và kết luận 0.25đ. Câu b trừ 0.25đ nếu không xét đủ hai điều kiện Request ≤ Need và Request ≤ Available.</p>${bkBtn("b2021","Mở trong Banker")}`},
+{t:"19-20 HK1 · tự luận (2đ) · OPT & LRU",q:"4 khung, 7 trang ảo, chuỗi <code>3 2 5 6 1 2 7 4 5 7 1 3 4 6 5 1 6 4 7 3</code>. Vẽ bảng và tính số lỗi trang với a. OPT, b. LRU.",
+ a:()=>`${prStatic("32561274571346516473",4,"OPT")}${prStatic("32561274571346516473",4,"LRU")}${prBtn("32561274571346516473",4,"OPT","Mở trong mô phỏng")}`}
+];
+$("#tlList").innerHTML=TL.map((t,i)=>`<div class="card" style="display:grid;gap:10px"><div class="eyebrow">${esc(t.t)}</div><div>${t.q}</div>${t.code?`<pre>${esc(t.code)}</pre>`:""}${t.tb?bkTable(t.tb):""}<details class="ans" data-tl="${i}"><summary>Xem lời giải</summary><div></div></details></div>`).join("");
+document.querySelectorAll("#tlList details").forEach(d=>d.addEventListener("toggle",()=>{const box=d.querySelector("div");if(d.open&&!box.innerHTML)box.innerHTML=TL[+d.dataset.tl].a()},{once:false}));
+document.addEventListener("click",e=>{
+  const p=e.target.closest("[data-gopr]");if(p){const [r,n,a]=p.dataset.gopr.split("|");loadPR(r,+n,a);go("thaytrang");return}
+  const b=e.target.closest("[data-gobk]");if(b){loadBK(b.dataset.gobk);go("banker")}
+});
+})();
+</script>
+</body></html>
