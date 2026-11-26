@@ -189,13 +189,14 @@ select{max-width:100%}
 <header class="top wrap">
   <div class="eyebrow">IT007 · Hệ điều hành · Cuối kỳ HK1</div>
   <h1>Ôn thi cuối kỳ Hệ điều hành</h1>
-  <p class="lede">Tóm tắt chương 5–9 (Đồng bộ, Deadlock, Quản lý bộ nhớ, Bộ nhớ ảo, Linux &amp; Windows) theo slide bài giảng 2024 và slide training BHT CNPM 2025-2026. Kèm thống kê dạng đề từ 7 đề cuối kỳ (2019 → 2025), ngân hàng trắc nghiệm có lời giải, bài tự luận giải sẵn và công cụ kiểm tra bài thay trang, Banker, cấp phát vùng nhớ.</p>
-  <div class="chips-row"><span class="tag">Trắc nghiệm 6–8đ</span><span class="tag">Tự luận: thay trang · Banker · Đ/S · thuật ngữ EN</span><span class="tag">75–80 phút · không tài liệu</span></div>
+  <p class="lede">Tóm tắt chương 5–9 (Đồng bộ, Deadlock, Quản lý bộ nhớ, Bộ nhớ ảo, Linux &amp; Windows) theo slide bài giảng 2024 và slide training BHT CNPM 2025-2026. Có tab <b>Đề thi thử</b> sinh đề theo đúng form thi: 12–14 câu trắc nghiệm, Đúng/Sai có giải thích, điền thuật ngữ tiếng Anh, chạy tay Banker hoặc thay trang kèm câu lý thuyết. Kèm ngân hàng trắc nghiệm từ 7 đề cũ, bài tự luận giải sẵn và công cụ kiểm tra Banker, thay trang, cấp phát vùng nhớ.</p>
+  <div class="chips-row"><span class="tag">I. Trắc nghiệm 12–14 câu</span><span class="tag">II.1 Đúng/Sai + giải thích</span><span class="tag">II.2 Thuật ngữ tiếng Anh</span><span class="tag">II.3 Banker / thay trang + lý thuyết</span></div>
 </header>
 
 <nav class="tabs" aria-label="Các phần ôn tập">
   <div class="wrap" role="tablist">
     <button role="tab" data-view="lythuyet">Lý thuyết</button>
+    <button role="tab" data-view="dethithu">Đề thi thử</button>
     <button role="tab" data-view="dangde">Dạng đề &amp; công thức</button>
     <button role="tab" data-view="bay">Bẫy hay gặp</button>
     <button role="tab" data-view="tracnghiem">Trắc nghiệm</button>
@@ -707,11 +708,47 @@ signal(chopstick[(i+1) % 5]);</pre>
   </article>
 </section>
 
+<!-- ============ ĐỀ THI THỬ ============ -->
+<section class="view" id="v-dethithu" hidden>
+  <div>
+    <h2>Đề thi thử theo form mới</h2>
+    <p class="muted" style="max-width:74ch">Mỗi lần bấm “Tạo đề mới” sẽ sinh một đề gồm: <b>I.</b> 12–14 câu trắc nghiệm lấy ngẫu nhiên từ ngân hàng đề cũ; <b>II.1</b> phát biểu Đúng/Sai bắt buộc giải thích; <b>II.2</b> mô tả tiếng Việt cần điền thuật ngữ tiếng Anh; <b>II.3a</b> bài Banker (an toàn + yêu cầu cấp phát) hoặc thay trang FIFO/LRU/OPT với số liệu mới; <b>II.3b</b> câu lý thuyết ngắn gắn với bài 3a. Làm trên giấy hoặc ngay trên trang, rồi mở đáp án từng phần.</p>
+  </div>
+  <div class="card" style="display:grid;gap:12px">
+    <div class="toolbar">
+      <label class="field" for="mkType" style="flex-direction:row;display:flex;align-items:center;gap:6px">Câu 3a
+        <select id="mkType"><option value="rand">Ngẫu nhiên</option><option value="banker">Banker</option><option value="page">Thay trang</option></select></label>
+      <label class="field" for="mkN" style="flex-direction:row;display:flex;align-items:center;gap:6px">Số câu trắc nghiệm
+        <select id="mkN"><option>12</option><option selected>13</option><option>14</option></select></label>
+      <button class="btn primary" id="mkNew">Tạo đề mới</button>
+      <button class="btn ghost" id="mkShowAll">Hiện tất cả đáp án</button>
+    </div>
+    <p class="small muted" style="margin:0" id="mkInfo"></p>
+  </div>
+  <div id="mkBody" style="display:grid;gap:18px"></div>
+  <div class="card" style="display:grid;gap:10px">
+    <h3>Luyện riêng phần tự luận</h3>
+    <p class="small muted" style="margin:0">Toàn bộ ngân hàng Đúng/Sai, thuật ngữ và câu lý thuyết 3b dùng để sinh đề, kèm đáp án.</p>
+    <div class="toolbar"><button class="btn" data-bank="tf">Đúng/Sai</button><button class="btn" data-bank="term">Thuật ngữ</button><button class="btn" data-bank="th">Lý thuyết 3b</button></div>
+    <div id="bankOut"></div>
+  </div>
+</section>
+
 <!-- ============ DẠNG ĐỀ ============ -->
 <section class="view" id="v-dangde" hidden>
   <div>
     <h2>Cấu trúc đề và tần suất chủ đề</h2>
-    <p class="muted" style="max-width:72ch">Thống kê từ 7 đề cuối kỳ: 2019-20 HK1, 2020-21 HK1, 2022-23 HK1 và HK2, 2023-24 HK1 và HK2, 2024-25 HK1. Đề gần đây: 15–20 câu trắc nghiệm (6đ) + tự luận 4đ gồm Đúng/Sai, thuật ngữ tiếng Anh, câu lý thuyết ngắn và một bài tính (thay trang hoặc Banker).</p>
+    <div class="card" style="margin:10px 0 14px;display:grid;gap:6px">
+      <h3>Form đề cuối kỳ</h3>
+      <ol class="tight">
+        <li><b>Trắc nghiệm</b>: 12–14 câu, chọn 1 đáp án đúng.</li>
+        <li><b>Tự luận câu 1 — Đúng/Sai &amp; giải thích</b>: mỗi phát biểu ghi Đúng hoặc Sai và <b>bắt buộc</b> giải thích ngắn gọn (sửa lại thành phát biểu đúng hoặc nêu lý do).</li>
+        <li><b>Tự luận câu 2 — Thuật ngữ tiếng Anh</b>: cho mô tả tiếng Việt, điền thuật ngữ (viết tắt hoặc đầy đủ): race condition, thrashing, working set, TLB, PFSR…</li>
+        <li><b>Tự luận câu 3 — Giải thuật + lý thuyết</b>: 3a chạy tay Banker (Safety/Request) hoặc thay trang (FIFO/LRU/OPT); 3b câu lý thuyết ngắn liên quan (trạng thái an toàn, Belady, thrashing…).</li>
+      </ol>
+      <p class="small muted">Luyện đúng form ở tab <b>Đề thi thử</b>.</p>
+    </div>
+    <p class="muted" style="max-width:72ch">Thống kê chủ đề từ 7 đề cuối kỳ: 2019-20 HK1, 2020-21 HK1, 2022-23 HK1 và HK2, 2023-24 HK1 và HK2, 2024-25 HK1.</p>
   </div>
   <div class="card">
     <div class="tablewrap"><table class="freq"><thead><tr><th>Chủ đề</th><th class="num">Số đề có</th><th></th><th>Ghi chú</th></tr></thead><tbody id="freqBody"></tbody></table></div>
@@ -889,7 +926,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 
 /* ---------- tabs ---------- */
-const views=["lythuyet","dangde","bay","tracnghiem","thaytrang","banker","tuluan"];
+const views=["lythuyet","dethithu","dangde","bay","tracnghiem","thaytrang","banker","tuluan"];
 function show(v){
   if(!views.includes(v))v="lythuyet";
   views.forEach(x=>{$("#v-"+x).hidden=x!==v});
@@ -1402,6 +1439,209 @@ document.addEventListener("click",e=>{
   const p=e.target.closest("[data-gopr]");if(p){const [r,n,a]=p.dataset.gopr.split("|");loadPR(r,+n,a);go("thaytrang");return}
   const b=e.target.closest("[data-gobk]");if(b){loadBK(b.dataset.gobk);go("banker")}
 });
+
+/* ================= ĐỀ THI THỬ THEO FORM MỚI ================= */
+/* II.1 Đúng/Sai: [phát biểu, đúng?, giải thích] */
+const TF=[
+["Race condition xảy ra khi nhiều tiến trình cùng truy cập đồng thời dữ liệu chia sẻ và kết quả phụ thuộc thứ tự thực thi.",1,"Đúng. Đây là định nghĩa race condition; có thể dẫn đến dữ liệu không nhất quán."],
+["Lời giải bài toán vùng tranh chấp phải bảo đảm các tiến trình liên tục kiểm tra điều kiện để vào vùng tranh chấp.",0,"Sai. Ba yêu cầu là mutual exclusion, progress, bounded waiting. Liên tục kiểm tra là busy waiting — một hệ quả của một số giải pháp, không phải yêu cầu."],
+["Giải pháp Peterson là giải pháp đồng bộ dựa trên phần cứng.",0,"Sai. Peterson là giải pháp phần mềm thuộc nhóm busy waiting, không cần hỗ trợ của phần cứng hay HĐH."],
+["Trên kiến trúc máy tính hiện đại, giải pháp Peterson có thể hoạt động sai với tiến trình đa tiểu trình.",1,"Đúng. CPU/trình biên dịch có thể sắp xếp lại các lệnh độc lập; cần dùng memory barrier."],
+["Cấm ngắt bảo đảm loại trừ tương hỗ trên hệ thống nhiều CPU.",0,"Sai. Chỉ cấm ngắt được trên CPU đang thực thi lệnh; các CPU khác vẫn truy cập bộ nhớ chia sẻ."],
+["Các giải pháp đồng bộ dựa trên ngắt cần sự hỗ trợ từ phần cứng.",1,"Đúng. Cấm/cho phép ngắt là chỉ thị phần cứng."],
+["Giải pháp TestAndSet bảo đảm điều kiện chờ đợi giới hạn (bounded waiting).",0,"Sai. TestAndSet bảo đảm loại trừ tương hỗ nhưng một tiến trình có thể bị vượt mãi ⇒ có thể starvation."],
+["Thao tác signal(S) làm giảm giá trị semaphore S đi 1.",0,"Sai. signal tăng S lên 1 (trả tài nguyên); wait mới giảm S (xin tài nguyên)."],
+["Nếu giá trị semaphore S bằng −3 thì có 3 tiến trình đang bị blocked trong hàng đợi của S.",1,"Đúng. Khi S âm, |S| là số tiến trình đang đợi trên S."],
+["Đoạn mã định nghĩa wait() và signal() của semaphore không phải là vùng tranh chấp.",0,"Sai. wait/signal phải thực thi đơn nguyên nên chính chúng là vùng tranh chấp (giải bằng cấm ngắt hoặc busy waiting ngắn)."],
+["Biến điều kiện trong monitor có thể được truy cập từ bên ngoài monitor.",0,"Sai. Biến điều kiện chỉ dùng bên trong monitor qua x.wait() và x.signal()."],
+["Monitor có thể được hiện thực bằng semaphore.",1,"Đúng. Mỗi thủ tục được bọc bằng wait(mutex) … signal(mutex); biến điều kiện cũng cài bằng semaphore."],
+["Trong bài toán Readers–Writers ưu tiên Reader, semaphore mutex bảo đảm loại trừ tương hỗ giữa các Writer.",0,"Sai. mutex bảo vệ biến readcount; rw_mutex (wrt) mới là loại trừ tương hỗ cho Writer."],
+["Bài toán triết gia ăn tối: chỉ cho phép triết gia cầm đũa khi cả hai chiếc đều sẵn sàng thì tránh được deadlock.",1,"Đúng, nhưng starvation vẫn có thể xảy ra."],
+["Bài toán triết gia ăn tối: cho tối đa 4 người ngồi vào bàn thì tránh được cả deadlock lẫn starvation.",0,"Sai. Chỉ tránh được deadlock; starvation vẫn có thể xảy ra."],
+["Nếu hệ thống đang ở trạng thái không an toàn thì có deadlock xảy ra.",0,"Sai. Không an toàn chỉ là CÓ THỂ dẫn đến deadlock; trạng thái an toàn thì chắc chắn không deadlock."],
+["Nếu đồ thị cấp phát tài nguyên có chu trình và mỗi loại tài nguyên chỉ có một thực thể thì có deadlock.",1,"Đúng. Với nhiều thực thể, chu trình chỉ là có thể deadlock."],
+["Nếu đồ thị cấp phát tài nguyên có chu trình thì có deadlock xảy ra trong hệ thống.",0,"Sai. Chỉ chắc chắn khi mỗi loại tài nguyên có một thực thể; nhiều thực thể thì có thể không deadlock."],
+["Giải thuật ngăn deadlock kiểm tra trạng thái cấp phát tài nguyên để bảo đảm hệ thống không rơi vào deadlock.",0,"Sai. Đó là tránh deadlock (Banker). Ngăn deadlock là không cho một trong 4 điều kiện cần xảy ra."],
+["Giải thuật tránh deadlock yêu cầu mỗi tiến trình khai báo số lượng tài nguyên tối thiểu cần dùng.",0,"Sai. Phải khai báo số lượng tối đa (Max)."],
+["Gán thứ tự cho các loại tài nguyên và chỉ cho phép yêu cầu theo thứ tự tăng dần giúp ngăn điều kiện chờ vòng (circular wait).",1,"Đúng. Đây là cách ngăn deadlock bằng loại bỏ circular wait."],
+["Đồ thị wait-for được dùng để phát hiện deadlock khi mỗi loại tài nguyên chỉ có một thực thể.",1,"Đúng. Đỉnh là tiến trình; có chu trình ⇔ có deadlock. Nhiều thực thể thì dùng giải thuật kiểu Banker với Request."],
+["Cung cấp thêm tài nguyên là một cách phục hồi khi deadlock xảy ra.",0,"Sai. Phục hồi: báo người vận hành, chấm dứt tiến trình hoặc lấy lại tài nguyên."],
+["Cơ chế kết khối (compaction) có thể được sử dụng để giải quyết vấn đề phân mảnh nội.",0,"Sai. Compaction gom vùng trống rời rạc, giải quyết phân mảnh ngoại."],
+["Cơ chế phân trang là cơ chế cấp phát bộ nhớ không liên tục.",1,"Đúng. Các trang của tiến trình có thể nằm ở các frame bất kỳ."],
+["Cơ chế phân trang không gây ra bất kỳ loại phân mảnh nào.",0,"Sai. Không có phân mảnh ngoại nhưng có phân mảnh nội ở trang cuối của tiến trình."],
+["Thanh ghi PTLR cho biết vị trí của bảng phân trang trong bộ nhớ.",0,"Sai. PTBR cho biết vị trí, PTLR cho biết kích thước bảng phân trang."],
+["Chuyển đổi địa chỉ tại thời điểm biên dịch phải biên dịch lại nếu thay đổi địa chỉ nạp chương trình.",1,"Đúng. Đó là nhược điểm của compile time binding (load time thì phải nạp lại)."],
+["Dynamic loading cần sự hỗ trợ đặc biệt của hệ điều hành.",0,"Sai. Dynamic loading do người dùng thiết kế, HĐH chỉ cung cấp thư viện; dynamic linking mới cần HĐH."],
+["Fixed partitioning gây ra hiện tượng phân mảnh nội.",1,"Đúng. Tiến trình nhỏ hơn partition vẫn chiếm cả partition."],
+["Next-fit chọn khối nhớ trống phù hợp đầu tiên kể từ đầu bộ nhớ.",0,"Sai. Đó là first-fit; next-fit tìm từ vị trí cấp phát cuối cùng."],
+["Nhờ bộ nhớ ảo, một tiến trình có thể thực thi ngay cả khi kích thước của nó lớn hơn bộ nhớ thực.",1,"Đúng. Đây là ưu điểm chính của bộ nhớ ảo."],
+["Khi sử dụng bộ nhớ ảo, số lượng tiến trình trong bộ nhớ ít hơn.",0,"Sai. Mỗi tiến trình chỉ nạp một phần nên số tiến trình trong bộ nhớ nhiều hơn."],
+["Nghịch lý Belady là tình trạng số lỗi trang giảm dù tiến trình được cấp nhiều khung trang hơn.",0,"Sai. Belady: số lỗi trang TĂNG dù được cấp nhiều khung hơn (xảy ra với FIFO)."],
+["Giải thuật OPT không bị nghịch lý Belady.",1,"Đúng. OPT (và LRU) là giải thuật stack, không bị Belady."],
+["Giải thuật LRU thay trang sẽ được tham chiếu trễ nhất trong tương lai.",0,"Sai. Đó là OPT; LRU thay trang lâu nhất chưa được tham chiếu (thời điểm tham chiếu nhỏ nhất)."],
+["Khi dùng chiến lược cấp phát động, nếu tỉ lệ lỗi trang cao thì HĐH giảm bớt số khung trang của tiến trình.",0,"Sai. Lỗi trang cao ⇒ cấp thêm khung; thấp ⇒ giảm bớt."],
+["Hiện tượng thrashing xuất hiện khi tổng kích thước các locality lớn hơn kích thước bộ nhớ vật lý.",1,"Đúng. Khi đó tiến trình liên tục thiếu frame và hoán chuyển trang."],
+["Giải pháp tập làm việc loại trừ được thrashing mà vẫn bảo đảm mức độ đa chương.",1,"Đúng. Theo slide: khi D = ΣWSS > m thì tạm dừng một tiến trình."],
+["Với giải pháp tập làm việc, nếu tổng kích thước các tập làm việc nhỏ hơn số khung trang thì phải tạm dừng một tiến trình.",0,"Sai. Tạm dừng khi tổng WSS LỚN HƠN số khung trang m."],
+["Trên Linux, signal được dùng để chuyển dữ liệu giữa các tiến trình.",0,"Sai. Signal chỉ báo sự kiện, không chứa dữ liệu; chuyển dữ liệu dùng pipe, network, shared memory."],
+["Registry là công cụ quản lý thông tin cấu hình trên Windows.",1,"Đúng. Thông tin cấu hình lưu trong các hive do registry quản lý."]
+];
+/* II.2 Thuật ngữ: [mô tả, đáp án hiển thị, các cách viết chấp nhận] */
+const TERMS=[
+["Hiện tượng nhiều tiến trình cùng truy cập đồng thời dữ liệu chia sẻ, kết quả phụ thuộc thứ tự thực thi.","Race condition",["race condition"]],
+["Đoạn mã trong tiến trình có thao tác trên dữ liệu chia sẻ.","Critical section",["critical section","cs","critical region"]],
+["Tính chất: khi một tiến trình đang ở trong vùng tranh chấp thì không tiến trình nào khác được vào.","Mutual exclusion",["mutual exclusion"]],
+["Tính chất: mỗi tiến trình chỉ phải chờ vào vùng tranh chấp trong một khoảng thời gian có hạn.","Bounded waiting",["bounded waiting"]],
+["Tiến trình liên tục kiểm tra điều kiện để vào vùng tranh chấp, chiếm CPU vô ích.","Busy waiting",["busy waiting","spinlock"]],
+["Tập các đặc điểm hệ thống phải thỏa để đảm bảo tiến trình thực sự chạy (tiến triển).","Liveness",["liveness"]],
+["Chỉ thị bắt buộc mọi thay đổi trong bộ nhớ được hiển thị đến tất cả bộ xử lý khác.","Memory barrier",["memory barrier","memory fence"]],
+["Tập quy tắc và ràng buộc cho việc sử dụng bộ nhớ (sắp xếp mạnh hoặc yếu).","Memory model",["memory model"]],
+["Biến nguyên chỉ truy xuất qua hai thao tác đơn nguyên wait và signal.","Semaphore",["semaphore"]],
+["Cấu trúc ngôn ngữ cấp cao gồm thủ tục, dữ liệu cục bộ, chỉ một tiến trình hoạt động bên trong tại một thời điểm.","Monitor",["monitor"]],
+["Biến cho phép tiến trình đợi bên trong monitor, thao tác bằng wait() và signal().","Condition variable",["condition variable","condition"]],
+["Tiến trình ưu tiên cao phải chờ tiến trình ưu tiên thấp đang giữ tài nguyên.","Priority inversion",["priority inversion"]],
+["Tiến trình bị trì hoãn vô hạn định dù hệ thống vẫn đáp ứng tiến trình khác.","Starvation",["starvation","indefinite blocking"]],
+["Tiến trình đợi một sự kiện sẽ không bao giờ xảy ra.","Deadlock",["deadlock"]],
+["Điều kiện deadlock: tiến trình đang giữ tài nguyên và đợi thêm tài nguyên do tiến trình khác giữ.","Hold and wait",["hold and wait","hold & wait"]],
+["Điều kiện deadlock: tài nguyên không thể bị lấy lại, chỉ được tiến trình đang giữ tự trả.","No preemption",["no preemption"]],
+["Điều kiện deadlock: tồn tại chu trình các tiến trình chờ lẫn nhau.","Circular wait",["circular wait"]],
+["Đồ thị có hướng gồm đỉnh tiến trình, đỉnh loại tài nguyên, cạnh yêu cầu và cạnh cấp phát.","Resource-allocation graph (RAG)",["resource allocation graph","rag","resourceallocationgraph"]],
+["Đồ thị phát hiện deadlock khi mỗi loại tài nguyên có một thực thể, tạo từ đồ thị cấp phát tài nguyên.","Wait-for graph",["wait for graph","waitfor graph"]],
+["Giải thuật tránh deadlock khi mỗi loại tài nguyên có nhiều thực thể.","Banker's algorithm",["banker","bankers algorithm","banker algorithm"]],
+["Trạng thái tồn tại ít nhất một chuỗi thứ tự an toàn.","Safe state",["safe state","safe"]],
+["Thứ tự cấp phát mà mọi tiến trình đều hoàn thành được.","Safe sequence",["safe sequence"]],
+["Địa chỉ do CPU sinh ra, còn gọi là địa chỉ ảo.","Logical address",["logical address","virtual address"]],
+["Phần cứng chuyển địa chỉ luận lý sang địa chỉ vật lý khi thực thi.","MMU (Memory Management Unit)",["mmu","memory management unit"]],
+["Thủ tục chỉ được nạp vào bộ nhớ khi được gọi đến.","Dynamic loading",["dynamic loading"]],
+["Liên kết đến module ngoài được trì hoãn đến lúc thực thi.","Dynamic linking",["dynamic linking"]],
+["Chuyển tạm thời tiến trình ra bộ nhớ phụ rồi đưa trở lại để tiếp tục thực thi.","Swapping",["swapping","swap"]],
+["Vùng trống đủ tổng dung lượng nhưng không liên tục nên không cấp phát được.","External fragmentation",["external fragmentation"]],
+["Vùng nhớ cấp phát lớn hơn yêu cầu, phần dư bên trong bị lãng phí.","Internal fragmentation",["internal fragmentation"]],
+["Dời các vùng nhớ để gom các vùng trống thành một khối liên tục.","Compaction",["compaction"]],
+["Bộ đệm phần cứng tốc độ cao lưu các cặp (số trang, số khung) vừa dùng.","TLB (Translation Look-aside Buffer)",["tlb","translation lookaside buffer","translation look aside buffer"]],
+["Thanh ghi chứa vị trí của bảng phân trang trong bộ nhớ.","PTBR (Page-Table Base Register)",["ptbr","page table base register"]],
+["Thanh ghi cho biết kích thước bảng phân trang.","PTLR (Page-Table Length Register)",["ptlr","page table length register"]],
+["Thời gian truy xuất bộ nhớ hiệu dụng khi có TLB.","EAT (Effective Access Time)",["eat","effective access time","effective memory access time"]],
+["Kỹ thuật cho phép xử lý tiến trình không được nạp toàn bộ vào bộ nhớ vật lý.","Virtual memory",["virtual memory"]],
+["Các trang chỉ được nạp vào bộ nhớ chính khi được yêu cầu.","Demand paging",["demand paging"]],
+["Lỗi xảy ra khi truy xuất trang không có trong bộ nhớ chính.","Page fault",["page fault"]],
+["Thủ tục của HĐH xử lý lỗi trang.","PFSR (Page-Fault Service Routine)",["pfsr","page fault service routine"]],
+["Trang bị chọn để thay thế khi không còn khung trống.","Victim page",["victim page","victim"]],
+["Bit cho biết trang đã bị sửa từ khi nạp, cần ghi ra đĩa khi thay.","Dirty bit (modify bit)",["dirty bit","modify bit","modified bit"]],
+["Số lỗi trang tăng dù được cấp nhiều khung trang hơn.","Belady's anomaly",["belady","beladys anomaly","belady anomaly"]],
+["Các trang nhớ của một tiến trình bị hoán chuyển vào/ra liên tục.","Thrashing",["thrashing"]],
+["Tập các trang được tham chiếu gần nhau.","Locality",["locality","locality of reference"]],
+["Tập các trang được tiến trình sử dụng gần đây nhất.","Working set",["working set"]],
+["Thông tin cấu hình Windows được lưu và quản lý bởi công cụ này.","Registry",["registry"]],
+["Thành phần cung cấp chức năng ảo hóa trên Windows 10.","Hyper-V Hypervisor",["hyper v","hyperv","hypervisor","hyper v hypervisor"]]
+];
+/* II.3b lý thuyết theo loại bài */
+const TH={
+banker:[
+["Trạng thái an toàn là gì? Trạng thái không an toàn có chắc chắn dẫn đến deadlock không?","Trạng thái an toàn là trạng thái tồn tại ít nhất một chuỗi an toàn &lt;P1…Pn&gt;: mỗi Pi được đáp ứng bởi tài nguyên đang có cộng tài nguyên các Pj (j &lt; i) trả lại. An toàn ⇒ không deadlock. Không an toàn <b>chưa chắc</b> deadlock, chỉ là có thể xảy ra."],
+["Giải thuật Banker thuộc phương pháp giải quyết deadlock nào? Nó yêu cầu tiến trình cung cấp thông tin gì?","Thuộc phương pháp <b>tránh deadlock</b> (avoidance), dùng khi mỗi loại tài nguyên có nhiều thực thể. Mỗi tiến trình phải khai báo trước số lượng tối đa (<b>Max</b>) mỗi loại tài nguyên nó cần."],
+["Phân biệt ngăn deadlock và tránh deadlock.","<b>Ngăn</b>: không cho phép (ít nhất) một trong 4 điều kiện cần xảy ra (ví dụ cấp toàn bộ tài nguyên một lần, đánh thứ tự tài nguyên) ⇒ dùng tài nguyên kém hiệu quả. <b>Tránh</b>: tiến trình khai báo Max, hệ thống kiểm tra trạng thái cấp phát, chỉ cấp khi trạng thái mới vẫn an toàn ⇒ hiệu suất cao hơn."],
+["Nêu 4 điều kiện cần để xảy ra deadlock.","Mutual exclusion (ít nhất một tài nguyên không chia sẻ); Hold and wait (giữ và đợi thêm); No preemption (không lấy lại được); Circular wait (chờ vòng)."],
+["Khi một yêu cầu Request ≤ Need nhưng Request &gt; Available thì hệ thống xử lý thế nào? Còn nếu Request &gt; Need?","Request &gt; Available: tiến trình phải <b>chờ</b> vì không đủ tài nguyên. Request &gt; Need: <b>báo lỗi</b> vì tiến trình vượt quá yêu cầu tối đa đã khai báo."],
+["Giải thuật phát hiện deadlock (nhiều thực thể) khác Banker ở điểm nào?","Dùng ma trận <b>Request</b> (yêu cầu hiện tại) thay cho Need, chạy giống giải thuật an toàn; tiến trình không có mặt trong chuỗi là tiến trình bị deadlock. Độ phức tạp O(m × n²). Banker dùng Need để tránh trước khi cấp."],
+["Khi deadlock đã xảy ra, có những cách phục hồi nào? Chấm dứt tiến trình thế nào cho hiệu quả?","Báo người vận hành; hoặc hệ thống tự bẻ gãy chu trình bằng chấm dứt một hay nhiều tiến trình hoặc lấy lại tài nguyên. Chấm dứt <b>lần lượt từng tiến trình</b> cho đến khi hết deadlock (thay vì chấm dứt tất cả)."]
+],
+page:[
+["Nghịch lý Belady là gì? Giải thuật nào trong FIFO, LRU, OPT có thể gặp?","Số lỗi trang <b>tăng</b> dù tiến trình được cấp nhiều khung trang hơn. Xảy ra với <b>FIFO</b>; LRU và OPT không bị."],
+["Vì sao giải thuật OPT không cài đặt được trong thực tế? Nó dùng để làm gì?","OPT phải biết trước chuỗi truy xuất trong tương lai, điều HĐH không biết. Dùng làm <b>chuẩn so sánh</b> vì cho số lỗi trang ít nhất."],
+["Giải thuật LRU cần hỗ trợ gì để cài đặt?","Cần hỗ trợ phần cứng: <b>bộ đếm</b> (lưu thời điểm tham chiếu mỗi trang) hoặc <b>stack</b> các số trang; ít CPU hỗ trợ đầy đủ nên thường dùng giải thuật xấp xỉ."],
+["Lỗi trang (page fault) là gì? Nêu các bước PFSR xử lý.","Truy xuất trang không có trong bộ nhớ (valid bit = 0) gây ngắt page fault. PFSR: (1) chuyển tiến trình sang blocked; (2) yêu cầu đọc đĩa nạp trang vào frame trống (thiếu thì chọn victim), CPU cấp cho tiến trình khác; (3) I/O xong, cập nhật bảng trang, chuyển tiến trình về ready."],
+["Thrashing là gì? Giải pháp tập làm việc giải quyết thế nào?","Thrashing: các trang của tiến trình bị hoán chuyển vào/ra liên tục, lỗi trang rất cao. Working set dựa trên nguyên lý locality: cấp cho tiến trình đủ WSS; nếu D = ΣWSS &gt; m (số frame) thì tạm dừng một tiến trình, thu hồi frame của nó."],
+["Phân biệt chiến lược cấp phát frame tĩnh và động.","<b>Tĩnh</b>: số frame không đổi, xác định lúc nạp (cấp bằng nhau, theo tỉ lệ kích thước, theo ưu tiên). <b>Động</b>: số frame thay đổi khi chạy — lỗi trang cao thì cấp thêm, thấp thì giảm bớt."],
+["Demand paging là gì? Ưu điểm của bộ nhớ ảo?","Chỉ nạp trang vào bộ nhớ chính khi được yêu cầu. Bộ nhớ ảo cho phép tiến trình lớn hơn bộ nhớ thực chạy được, nhiều tiến trình hơn trong bộ nhớ, giảm I/O khi nạp."],
+["Dirty bit (modify bit) dùng để làm gì khi thay trang?","Cho biết trang đã bị sửa từ khi nạp. Victim có dirty bit = 1 mới phải ghi ra đĩa; bằng 0 thì ghi đè luôn ⇒ giảm thời gian phục vụ lỗi trang."]
+]};
+
+const rnd=n=>Math.floor(Math.random()*n);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=(a,k)=>shuffle(a).slice(0,k);
+const normT=s=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"");
+const vfmt=a=>"("+a.join(", ")+")";
+const vle=(a,b)=>a.every((x,i)=>x<=b[i]),vadd=(a,b)=>a.map((x,i)=>x+b[i]),vsub=(a,b)=>a.map((x,i)=>x-b[i]);
+
+function genBanker(){
+  for(let t=0;t<400;t++){
+    const al=[],need=[];for(let i=0;i<5;i++){al.push([0,0,0,0].map(()=>rnd(5)));need.push([0,0,0,0].map(()=>rnd(5)))}
+    const av=[0,0,0,0].map(()=>1+rnd(4));const s=safety(al,need,av);if(!s.ok)continue;
+    const mx=al.map((a,i)=>vadd(a,need[i]));
+    // yêu cầu: ≤ need, ≤ available, khác 0
+    const cand=[];for(let p=0;p<5;p++)for(let r=0;r<6;r++){const req=need[p].map((x,j)=>Math.min(x,av[j])).map(x=>x?rnd(x+1):0);if(!req.some(Boolean))continue;
+      const al2=al.map(a=>a.slice()),n2=need.map(a=>a.slice());al2[p]=vadd(al2[p],req);n2[p]=vsub(n2[p],req);cand.push([p,req,safety(al2,n2,vsub(av,req)).ok])}
+    if(!cand.length)continue;const want=Math.random()<.5;const good=cand.filter(c=>c[2]===want);
+    if(!good.length&&t<300)continue;const [p,req]=(good.length?good:cand)[rnd((good.length?good:cand).length)];
+    return {al,mx,need,av,p,req};
+  }
+}
+function bankerSolution(b){
+  const s=safety(b.al,b.need,b.av);
+  let h=`<p><b>Need = Max − Allocation</b>:</p><div class="tablewrap"><table class="bk"><thead><tr><th></th><th>R1</th><th>R2</th><th>R3</th><th>R4</th></tr></thead><tbody>${b.need.map((n,i)=>`<tr><td class="l">P${i+1}</td>${n.map(x=>`<td>${x}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  h+=`<p><b>Giải thuật an toàn</b> (Work = Available = ${vfmt(b.av)}):</p><div class="tablewrap"><table class="bk"><thead><tr><th>Bước</th><th>Chọn</th><th>Need ≤ Work</th><th>Work mới = Work + Allocation</th></tr></thead><tbody>${s.rows.map((r,k)=>`<tr><td>${k+1}</td><td class="l">P${r.i+1}</td><td>${vfmt(b.need[r.i])} ≤ ${vfmt(r.before)}</td><td>${vfmt(vadd(r.before,b.al[r.i]))}</td></tr>`).join("")}</tbody></table></div>`;
+  h+=`<p>Tồn tại chuỗi an toàn <b>&lt;${s.seq.map(i=>"P"+(i+1)).join(", ")}&gt;</b> ⇒ hệ thống ở trạng thái <b>an toàn</b>. (Có thể có chuỗi an toàn khác.)</p>`;
+  const p=b.p,req=b.req,av2=vsub(b.av,req),al2=b.al.map(a=>a.slice()),n2=b.need.map(a=>a.slice());al2[p]=vadd(al2[p],req);n2[p]=vsub(n2[p],req);
+  const s2=safety(al2,n2,av2);
+  h+=`<p><b>Yêu cầu của P${p+1}: Request = ${vfmt(req)}</b></p><ol class="tight"><li>Request ≤ Need<sub>P${p+1}</sub> = ${vfmt(b.need[p])} ✓</li><li>Request ≤ Available = ${vfmt(b.av)} ✓</li><li>Giả định cấp: Available = ${vfmt(av2)}, Allocation<sub>P${p+1}</sub> = ${vfmt(al2[p])}, Need<sub>P${p+1}</sub> = ${vfmt(n2[p])}.</li></ol>`;
+  if(s2.ok)h+=`<div class="tablewrap"><table class="bk"><thead><tr><th>Bước</th><th>Chọn</th><th>Work trước</th><th>Work sau</th></tr></thead><tbody>${s2.rows.map((r,k)=>`<tr><td>${k+1}</td><td class="l">P${r.i+1}</td><td>${vfmt(r.before)}</td><td>${vfmt(vadd(r.before,al2[r.i]))}</td></tr>`).join("")}</tbody></table></div><p>Trạng thái mới an toàn với chuỗi <b>&lt;${s2.seq.map(i=>"P"+(i+1)).join(", ")}&gt;</b> ⇒ <span class="pill-ok">ĐÁP ỨNG</span> yêu cầu.</p>`;
+  else h+=`<p>Với Available = ${vfmt(av2)}, ${s2.seq.length?`chỉ chạy được ${s2.seq.map(i=>"P"+(i+1)).join(", ")} rồi `:""}không còn tiến trình nào có Need ≤ Work (kẹt: ${s2.fin.map((f,i)=>f?"":"P"+(i+1)).filter(Boolean).join(", ")}) ⇒ trạng thái không an toàn ⇒ <span class="pill-no">KHÔNG ĐÁP ỨNG</span>, P${p+1} phải chờ.</p>`;
+  return h;
+}
+function genPage(){
+  const n=3+rnd(2),len=16+rnd(5),maxp=n===3?6:7+rnd(2);let ref=[];
+  while(ref.length<len){const v=1+rnd(maxp);if(ref.length&&ref[ref.length-1]===v)continue;ref.push(v)}
+  const algs=shuffle(["FIFO","LRU","OPT"]);const A=algs[0],B=algs[1];
+  // chọn trang x mà lần truy xuất đầu tiên gây thay trang theo B
+  const st=simPR(ref,n,B).steps;const seen=new Set();let x=null,vic=null;
+  st.forEach((s,i)=>{if(x===null&&!seen.has(s.p)&&s.victim!=null&&i>n+1){x=s.p;vic=s.victim}seen.add(s.p)});
+  return {ref,n,A,B,x,vic};
+}
+
+let MK=null;
+function renderMock(){
+  const nq=+$("#mkN").value;let type=$("#mkType").value;if(type==="rand")type=Math.random()<.5?"banker":"page";
+  // trắc nghiệm: rải đều các chương
+  const byC={};Q.forEach((q,i)=>{(byC[q.c]||(byC[q.c]=[])).push(i)});
+  const want={5:4,6:3,7:3,8:3,9:1};let ids=[];Object.keys(want).forEach(c=>{ids=ids.concat(pick(byC[c]||[],want[c]))});
+  ids=shuffle(ids);while(ids.length>nq)ids.pop();while(ids.length<nq){const i=rnd(Q.length);if(!ids.includes(i))ids.push(i)}
+  const tf=pick(TF.map((_,i)=>i),4),terms=pick(TERMS.map((_,i)=>i),4),th=pick(TH[type].map((_,i)=>i),2);
+  MK={ids,tf,terms,type,th,sel:{},bank:type==="banker"?genBanker():null,page:type==="page"?genPage():null};
+  const L="ABCD";
+  let h=`<div class="card" style="display:grid;gap:12px"><h2 style="margin:0">I. Trắc nghiệm (${nq} câu)</h2>`+
+    ids.map((qi,n)=>{const q=Q[qi];return `<article class="q" id="mkq${n}"><div class="qhead"><span class="qn">Câu ${n+1}</span><span class="tag">C${q.c}</span><span class="tag">${esc(q.s)}</span></div><div class="qtext">${q.q}</div>${q.code?`<pre>${esc(q.code)}</pre>`:""}${q.tb?bkTable(q.tb):""}<div class="opts">${q.o.map((o,k)=>`<button class="opt" data-mq="${n}" data-k="${k}"><span class="L">${L[k]}.</span><span>${o}</span></button>`).join("")}</div><div class="mkex"></div></article>`}).join("")+
+    `<div class="toolbar"><button class="btn primary" id="mkGrade">Chấm trắc nghiệm</button><span id="mkScore" class="scorebar"></span></div></div>`;
+  h+=`<div class="card" style="display:grid;gap:12px"><h2 style="margin:0">II. Tự luận</h2><h3>Câu 1 — Đúng hay Sai? Giải thích ngắn gọn.</h3>`+
+    tf.map((ti,n)=>`<div class="mini" style="display:grid;gap:8px"><div><b>${"abcd"[n]}.</b> ${TF[ti][0]}</div><div class="toolbar"><div class="seg" role="group" aria-label="Chọn Đúng hoặc Sai"><button data-tf="${n}" data-v="1" aria-pressed="false">Đúng</button><button data-tf="${n}" data-v="0" aria-pressed="false">Sai</button></div></div><textarea rows="2" placeholder="Giải thích…" aria-label="Giải thích câu ${"abcd"[n]}" style="font:14px var(--f-body);width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--surface);color:var(--ink)"></textarea><div class="tfans" hidden></div></div>`).join("")+
+    `<div class="toolbar"><button class="btn" id="mkTfShow">Xem đáp án câu 1</button></div>`;
+  h+=`<h3>Câu 2 — Điền thuật ngữ tiếng Anh (viết tắt hoặc đầy đủ)</h3>`+
+    terms.map((ti,n)=>`<div class="mini" style="display:grid;gap:6px"><div><b>${"abcd"[n]}.</b> ${TERMS[ti][0]}</div><input type="text" data-term="${n}" placeholder="Thuật ngữ…" aria-label="Thuật ngữ câu ${"abcd"[n]}"><div class="tmans small"></div></div>`).join("")+
+    `<div class="toolbar"><button class="btn" id="mkTermShow">Chấm câu 2</button></div>`;
+  h+=`<h3>Câu 3 — Giải thuật và lý thuyết</h3>`;
+  if(type==="banker"){const b=MK.bank;
+    h+=`<p><b>3a.</b> Hệ thống có 5 tiến trình P1–P5 và 4 loại tài nguyên R1–R4. Tại thời điểm t0:</p><div class="tablewrap"><table class="bk"><thead><tr><th rowspan="2">Tiến trình</th><th colspan="4">Allocation</th><th colspan="4">Max</th><th colspan="4">Available</th></tr><tr>${"<th>R1</th><th>R2</th><th>R3</th><th>R4</th>".repeat(3)}</tr></thead><tbody>${b.al.map((a,i)=>`<tr><td class="l">P${i+1}</td>${a.map(x=>`<td>${x}</td>`).join("")}${b.mx[i].map(x=>`<td>${x}</td>`).join("")}${i===0?b.av.map(x=>`<td>${x}</td>`).join(""):"<td></td><td></td><td></td><td></td>"}</tr>`).join("")}</tbody></table></div><ol class="tight"><li>Tính ma trận Need. Hệ thống có ở trạng thái an toàn không? Nếu có, chỉ ra một chuỗi an toàn.</li><li>Tại t1, P${b.p+1} yêu cầu thêm ${vfmt(b.req)}. Hệ thống có đáp ứng được không? Giải thích.</li></ol><details class="ans"><summary>Xem lời giải 3a</summary><div>${bankerSolution(b)}</div></details>`}
+  else{const g=MK.page;
+    h+=`<p><b>3a.</b> Một tiến trình được cấp <b>${g.n}</b> khung trang, ban đầu các khung đều trống. Tiến trình truy xuất các trang theo thứ tự:</p><p class="mono" style="font-size:16px;letter-spacing:.12em">${g.ref.join(" ")}</p><ol class="tight"><li>Vẽ bảng minh họa và tính số lỗi trang khi dùng giải thuật <b>${g.A}</b>.</li>${g.x!=null?`<li>Tại thời điểm truy xuất trang <b>${g.x}</b> lần đầu tiên, trang nào bị chọn làm trang hy sinh (victim) nếu dùng giải thuật <b>${g.B}</b>?</li>`:""}</ol><details class="ans"><summary>Xem lời giải 3a</summary><div>${prStatic(g.ref.join(" "),g.n,g.A)}${g.x!=null?`<p><b>Ý 2 (${g.B})</b>: victim là trang <b>${g.vic}</b>.</p>${prStatic(g.ref.join(" "),g.n,g.B)}`:""}<p class="small muted">OPT: nếu nhiều trang không còn được dùng lại, chọn trang ở khung phía trên.</p></div></details>`}
+  h+=`<p style="margin-top:6px"><b>3b.</b> Trả lời ngắn:</p>`+th.map((ti,n)=>`<div class="mini" style="display:grid;gap:6px"><div><b>${n+1})</b> ${TH[type][ti][0]}</div><details class="ans"><summary>Xem đáp án</summary><div>${TH[type][ti][1]}</div></details></div>`).join("")+`</div>`;
+  $("#mkBody").innerHTML=h;
+  $("#mkInfo").textContent=`Đề gồm ${nq} câu trắc nghiệm, 4 câu Đúng/Sai, 4 thuật ngữ, câu 3 dạng ${type==="banker"?"Banker":"thay trang"}.`;
+}
+$("#mkBody").addEventListener("click",e=>{
+  const o=e.target.closest("[data-mq]");if(o&&!o.disabled){const n=+o.dataset.mq;MK.sel[n]=+o.dataset.k;o.parentElement.querySelectorAll(".opt").forEach(b=>b.style.borderColor=b===o?"var(--accent)":"");o.parentElement.querySelectorAll(".opt").forEach(b=>b.style.background=b===o?"var(--accent-soft)":"");return}
+  const t=e.target.closest("[data-tf]");if(t){t.parentElement.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b===t?"true":"false"));return}
+  if(e.target.closest("#mkGrade")){let r=0;MK.ids.forEach((qi,n)=>{const q=Q[qi],a=MK.sel[n],art=$("#mkq"+n);art.querySelectorAll(".opt").forEach((b,k)=>{b.disabled=true;b.style.background="";b.style.borderColor="";if(k===q.a)b.classList.add("is-right");else if(k===a)b.classList.add("is-wrong")});if(a===q.a)r++;art.className="q "+(a===q.a?"correct":"wrongq");art.querySelector(".mkex").innerHTML=`<div class="explain"><b>Đáp án ${"ABCD"[q.a]}.</b> ${q.e||""}</div>`});$("#mkScore").innerHTML=`<span><b>${r}</b> / ${MK.ids.length} câu đúng</span>`;return}
+  if(e.target.closest("#mkTfShow")){document.querySelectorAll("#mkBody .tfans").forEach((d,n)=>{const it=TF[MK.tf[n]];const btn=d.parentElement.querySelector("[aria-pressed=true]");const mine=btn?+btn.dataset.v:null;d.hidden=false;d.innerHTML=`<div class="explain"><b>${it[1]?"ĐÚNG":"SAI"}</b>${mine===null?"":mine===it[1]?" · bạn chọn đúng":" · bạn chọn sai"}. ${it[2].replace(/^(Đúng|Sai)[.,]\s*/,"")}</div>`});return}
+  if(e.target.closest("#mkTermShow")){document.querySelectorAll("#mkBody [data-term]").forEach(inp=>{const it=TERMS[MK.terms[+inp.dataset.term]];const v=normT(inp.value);const ok=v&&it[2].some(a=>normT(a)===v);inp.parentElement.querySelector(".tmans").innerHTML=`${ok?'<span class="pill-ok">ĐÚNG</span>':v?'<span class="pill-no">CHƯA ĐÚNG</span>':""} Đáp án: <b>${esc(it[1])}</b>`});return}
+});
+$("#mkNew").addEventListener("click",renderMock);
+$("#mkShowAll").addEventListener("click",()=>{["#mkGrade","#mkTfShow","#mkTermShow"].forEach(s=>{const b=$(s);if(b)b.click()});document.querySelectorAll("#mkBody details").forEach(d=>d.open=true)});
+$("#bankOut").parentElement.addEventListener("click",e=>{const b=e.target.closest("[data-bank]");if(!b)return;const k=b.dataset.bank;let h="";
+  if(k==="tf")h=`<div class="tablewrap"><table><thead><tr><th>Phát biểu</th><th>Đ/S</th><th>Giải thích</th></tr></thead><tbody>${TF.map(t=>`<tr><td>${t[0]}</td><td><b>${t[1]?"Đúng":"Sai"}</b></td><td class="small">${t[2]}</td></tr>`).join("")}</tbody></table></div>`;
+  else if(k==="term")h=`<div class="tablewrap"><table><thead><tr><th>Mô tả</th><th>Thuật ngữ</th></tr></thead><tbody>${TERMS.map(t=>`<tr><td>${t[0]}</td><td><b class="mono">${esc(t[1])}</b></td></tr>`).join("")}</tbody></table></div>`;
+  else h=["banker","page"].map(ty=>`<h3 style="margin-top:8px">${ty==="banker"?"Đi kèm bài Banker":"Đi kèm bài thay trang"}</h3>`+TH[ty].map(t=>`<details class="ans" style="margin-top:6px"><summary>${t[0]}</summary><div>${t[1]}</div></details>`).join("")).join("");
+  $("#bankOut").innerHTML=h});
+renderMock();
 })();
 </script>
 </body></html>
